@@ -32,13 +32,13 @@ A blazing-fast, deeply modular, and developer-friendly configuration for the Sur
 
 | 🔑 Key          | 📌 Description                           |
 | --------------- | ---------------------------------------- |
-| `gt`            | Switch to next tab                       |
-| `w`             | Close current tab                        |
-| `t`             | Open new tab                             |
-| `ao`            | Open `;di` command                       |
+| `gt`            | recent used tabs in omnibar              |
+| `w`             | scroll 10 20 pt down                     |
+| `t`             | hints letter to switch tab               |
+| `ao`            | download image with hints                |
 | `su`            | Go to last used tab (`;U`)               |
 | `C-1`           | Go to first tab (`g0`)                   |
-| `aa`            | Open omnibar for search (`S`)            |
+| `aa`            | go back in history                       |
 | `<Alt-j>`       | Move to right tab (`l`)                  |
 | `<Alt-k>`       | Move to left tab (`h`)                   |
 | `h`             | Scroll to bottom (`E`)                   |
@@ -288,15 +288,51 @@ If you're not using Advanced Mode or want full control over the code:
    ![Screenshot](src/assets/screenshots/ss-12-59-05-AM_03-07-25.png)
    pressing by `;e` on any https://webpage
 
-```
+4. Paste the entire content into the **configuration editor box**
 
+5. ✅ Click **Save**
+
+6. 🔁 Refresh your browser or tab to apply the changes
 
 ---
 
+### 🔐 Permissions Checklist
+
+Ensure these are enabled for the Surfingkeys extension:
+
+| Setting                   | ✅ Chrome |     ⚠️ Firefox     |
+| ------------------------- | :-------: | :----------------: |
+| Allow access to file URLs |    ☑️     | ❌ (not supported) |
+| Allow on all websites     |    ☑️     |         ☑️         |
+| Extension enabled         |    ☑️     |         ☑️         |
+
+---
+
+### 🧠 Pro Tip
+
+Use a **GitHub raw URL** in Advanced Mode to auto-load your config from anywhere:
+`https://raw.githubusercontent.com/your-username/surfingKeys/main/surfingkeys.bundle.js`
+
+````
+---
+
+## 🤝 Contributing
+
+We welcome all contributions to improve and expand this Surfingkeys configuration project!
+
+### 📋 How to Contribute
+
+1. **Fork** the repository on GitHub
+2. **Clone** your fork locally:
+
+   ```bash
+   git clone https://github.com/your-username/surfingKeys.git
+---
+then move bro...
 ### `Developer info:`
 
 ![Developer Info:](https://i.ibb.co/kVR4YmrX/developer-Info-Github-Banner.png)
 
 > 🚀
 > 🧠
-```
+````
