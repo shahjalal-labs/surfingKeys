@@ -44,3 +44,50 @@ api.mapkey("ae", "Conceptual Level1 Batch 10", function () {
 api.mapkey("ac", "Conceptual Level1 Batch 11", function () {
   window.open("https://web.programming-hero.com/conceptual-session", "_blank");
 });
+
+//t:redux
+api.mapkey("sr", "redux", function () {
+  window.open(
+    "https://web.programming-hero.com/level2-batch-1/video/level2-batch-1-21-1-project-initialization-and-redux-store-setup-recap",
+    "_blank",
+  );
+});
+
+//t: pre requisite
+api.mapkey("sp", "pre requisite level2", function () {
+  window.open(
+    "https://web.programming-hero.com/next-level-prerequisites-batch4/video/next-level-prerequisites-batch4-45-8-active-route-loading-spinner-uselocation-usenavigation",
+    "_blank",
+  );
+});
+
+//t: fbLevel2
+api.mapkey("s2", "fbLevel2", function () {
+  window.open("https://www.facebook.com/groups/phapollo4", "_blank");
+});
+//t:L2B4
+api.mapkey("s4", "L2B4 typescript module 2", function () {
+  window.open(
+    "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing",
+  );
+});
+//p: level1 batch 11
+api.mapkey("ai", "Level1 Batch 11", function () {
+  window.open(
+    "https://web.programming-hero.com/web-11/video/web-11-15-9-module-summary-legal-system-practice-task-",
+    "_blank",
+  );
+});
+//
+//p: outline level1 batch 11
+api.mapkey("ak", "outline level1 batch 11", function () {
+  window.open(
+    "https://web.programming-hero.com/675439d776a088463223e16d/course-outline",
+    "_blank",
+  );
+});
+//
+//p: level1 batch 11 fb suport group
+api.mapkey("aj", "fb  Level1 Batch 11 support group", function () {
+  window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
+});

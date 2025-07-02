@@ -31,3 +31,15 @@ api.mapkey("gh", "gemini ai", function () {
 api.mapkey("ah", "Deep ai", function () {
   window.open("https://deepai.org/dashboard/images", "_blank");
 });
+
+//t: open  claude ai
+api.mapkey("al", "Open claude ai", function () {
+  window.open("https://claude.ai/new");
+});
+api.mapkey("am", "Chk claude", function () {
+  if (window.location.hostname.includes("claude.ai")) {
+    window.location.href = "/new";
+  } else {
+    window.open("https://claude.ai/new", "_blank");
+  }
+});
