@@ -204,6 +204,53 @@ surfingkeys.bundle.js
 
 ```
 
+## 🌐 Step 2: Use the Bundled File in Your Browser
+
+You have **two options** to apply the configuration inside the Surfingkeys extension:
+
+---
+
+### 🅰️ Option A: 🔗 Use GitHub Raw File (Recommended)
+
+> ✅ Works in **Chrome** and **Firefox**
+
+This is the cleanest, most portable method—using your GitHub-hosted bundle.
+
+#### 🧭 Steps:
+
+1. ✅ Ensure all permissions are enabled in the **Surfingkeys extension settings**:
+
+   - ☑️ Allow access to file URLs
+   - ☑️ Allow on all websites
+   - ☑️ Enable extension
+
+2. 🔧 Enter **Advanced Mode**:
+
+   - Press `;e` on any webpage to enter Surfingkeys' configuration editor
+   - Click `Advanced Mode` to switch to raw URL input mode
+
+3. 🌐 Paste your GitHub raw bundle URL in the input field: `https://raw.githubusercontent.com/your-username/surfingKeys/main/surfingkeys.bundle.js`
+
+> 🔁 Your config will auto-fetch from this path every time the browser loads!
+
+4. 🧪 Click **Save**, then refresh the browser or reopen tabs.
+
+---
+
+### 🅱️ Option B: 📁 Use Local File (Chrome Only) ⚠️
+
+> ❌ Not supported in **Firefox** due to browser restrictions on local file access
+
+If you'd prefer using your local bundled file:
+
+#### 🛠 Steps:
+
+1. Run the build:
+
+```bash
+bun run build
+
+
 ---
 
 ### `Developer info:`
@@ -212,3 +259,4 @@ surfingkeys.bundle.js
 
 > 🚀
 > 🧠
+```
