@@ -251,6 +251,46 @@ If you'd prefer using your local bundled file:
 bun run build
 
 
+
+1. Get the **absolute path** of the bundled output file, for example:
+`/home/yourusername/surfingKeys/surfingkeys.bundle.js`
+
+
+2. Open any tab and press `;e` to launch the Surfingkeys **configuration editor**
+
+3. Click **Advanced Mode**
+
+4. Paste the `file://` path directly into the input box:
+![Screenshot](src/assets/screenshots/ss-12-59-05-AM_03-07-25.png)
+
+
+5. ✅ Click **Save** and reload any tabs to apply
+
+> ⚠️ This method **requires** that **"Allow access to file URLs"** is enabled in the Surfingkeys extension settings
+
+---
+
+
+> ✅ Works in **all browsers** (Chrome & Firefox)
+
+If you're not using Advanced Mode or want full control over the code:
+
+#### ✂️ Steps:
+
+1. Open the bundled file:
+
+`surfingkeys.bundle.js`
+```
+
+2. Copy **all the content**
+
+3. Go to:
+   ![Screenshot](src/assets/screenshots/ss-12-59-05-AM_03-07-25.png)
+   pressing by `;e` on any https://webpage
+
+```
+
+
 ---
 
 ### `Developer info:`
