@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "bun run esbuild .surfingkeys.js --bundle --outfile=surfingkeys.bundle.js --format=iife"
+    "build": "bun run esbuild surfingkeys.js --bundle --outfile=surfingkeys.bundle.js --format=iife"
   },
   "dependencies": {},
   "devDependencies": {

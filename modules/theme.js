@@ -1,3 +1,16 @@
+// t: toggle dark mode (CSS inversion)
+api.mapkey("ck", "🌒 Toggle dark mode (CSS inversion)", function () {
+  if (!document.getElementById("__sk_darkmode")) {
+    const style = document.createElement("style");
+    style.id = "__sk_darkmode";
+    style.innerHTML = `html { filter: invert(0.92) hue-rotate(180deg); background: #111 !important; } img, video { filter: invert(1) hue-rotate(180deg) !important; }`;
+    document.head.appendChild(style);
+    api.Front.showBanner("🌚 Dark mode ON");
+  } else {
+    document.getElementById("__sk_darkmode").remove();
+    api.Front.showBanner("🌞 Dark mode OFF");
+  }
+});
 //w: 25/11/2024 12:51 PM Mon GMT+6 Sharifpur, Gazipur, Dhaka
 settings.theme = `
 .sk_theme {
