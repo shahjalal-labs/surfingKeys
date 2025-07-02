@@ -162,17 +162,47 @@ A blazing-fast, deeply modular, and developer-friendly configuration for the Sur
 
 ---
 
+#### For general users:
+
+just copy the `surfingkeys.bundle.js` file path and paste it in the advanced mode load file option:
+generally the path is: `https://raw.githubusercontent.com/shahjalal-labs/surfingKeys/refs/heads/main/surfingkeys.bundle.js`
+![Screenshot](src/assets/screenshots/ss-12-42-27-AM_03-07-25.png)
+
+### For developers who want to know how to use modular SurfingKeys and configure like his own
+
+## 🚀 Getting Started
+
+This project provides a modular Surfingkeys configuration, bundled into a single file using **ESBuild** for easy maintenance and fast loading.
+
+---
+
+## 🧩 Clone the Project
+
+Start by cloning the repository to your local system:
+
+````bash
+git clone https://github.com/shahjalal-labs/surfingKeys.git
+cd surfingKeys
+
 ## 🛠️ Build & Apply Instructions
 
 ### 🧱 Build with ESBuild
 
+Ensure you have Bun installed. If not:
+```curl -fsSL https://bun.sh/install | bash
+```
 Run the following command using Bun to bundle all your modular files:
 
 ```bash
 bun run build
-```
+````
 
 This will generate a single bundled output file:
+
+```
+surfingkeys.bundle.js
+
+```
 
 ---
 
