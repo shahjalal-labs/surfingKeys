@@ -1,12 +1,12 @@
 //t: ph scribble l1b10
-api.mapkey("so", "scribble l1b10", () => {
+api.mapkey("pso", "scribble l1b10", () => {
   window.open(
     "https://web.programming-hero.com/update-1/video/update-1-42-1-scribbles-cafe-project-overview-and-tailwind-setup",
     "_blank",
   );
 });
 
-api.mapkey("a,", "HELP DESK", function () {
+api.mapkey("pa,", "HELP DESK", function () {
   window.open("https://helpdesk.programming-hero.com/", "_blank");
 });
 
