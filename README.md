@@ -50,24 +50,25 @@ A blazing-fast, deeply modular, and developer-friendly configuration for the Sur
 
 ### 🗺️ Navigation & Default Remappings (`defaultRemapped.js`)
 
-| 🔑 Key          | 📌 Description                                      |
-| --------------- | --------------------------------------------------- |
-| `gt`            | recent used tabs in omnibar                         |
-| `w`             | scroll down half page                               |
-| `t`             | hints letter to switch tab                          |
-| `ao`            | download image with hints                           |
-| `g0`            | Go to first tab (`g0`)                              |
-| `aa`            | go back in history                                  |
-| `j`             | scroll down                                         |
-| `k`             | scroll up                                           |
-| `h`, `l`        | swith to the left tab, l for swith to the right tab |
-| `gj`            | Scroll to bottom (`G`)                              |
-| `gj`            | Scroll to bottom (`G`)                              |
-| `gi`            | Yank URL on YouTube                                 |
-| `f` (in `lmap`) | Local hint modes for click to url                   |
-| `as`            | change scroll focus                                 |
-| `u`             | scroll up half page                                 |
-| `,`             | Switch to last used tab (`<Ctrl-6>`)                |
+| 🔑 Key   | 📌 Description                                      |
+| -------- | --------------------------------------------------- |
+| `gt`     | recent used tabs in omnibar                         |
+| `w`      | scroll down half page                               |
+| `t`      | hints letter to switch tab                          |
+| `ao`     | download image with hints                           |
+| `g0`     | Go to first tab (`g0`)                              |
+| `aa`     | go back in history                                  |
+| `j`      | scroll down                                         |
+| `k`      | scroll up                                           |
+| `h`, `l` | swith to the left tab, l for swith to the right tab |
+| `gj`     | Scroll to bottom (`G`)                              |
+| `gg`     | Scroll to top                                       |
+| `gi`     | focus to the first input field                      |
+| `i`      | focus to the input field                            |
+| `f` )    | Local hint modes for click to url                   |
+| `as`     | change scroll focus                                 |
+| `u`      | scroll up half page                                 |
+| `,`      | Switch to last used tab (`<Ctrl-6>`)                |
 
 ---
 
