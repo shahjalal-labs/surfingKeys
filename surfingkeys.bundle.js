@@ -1,5 +1,5 @@
 (() => {
-  // modules/defaultRemapped.js
+  // src/modules/defaultRemapped.js
   api.map("gt", "t");
   api.map("w", "d");
   api.map("t", "T");
@@ -18,9 +18,10 @@
   api.map("u", "<Ctrl-i>");
   api.map("Ctrl+d", "<Ctrl-f>");
   api.unmap("<ctrl-i>");
+  api.unmap("p");
   api.map(",", "<Ctrl-6>");
 
-  // modules/github.js
+  // src/modules/github.js
   api.mapkey("gr", "Repository Github", function() {
     window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
   });
@@ -90,7 +91,7 @@
     { domain: /./, prefix: " " }
   );
 
-  // settings/theme.js
+  // src/settings/theme.js
   api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {
     if (!document.getElementById("__sk_darkmode")) {
       const style = document.createElement("style");
@@ -143,11 +144,11 @@
     color: #cdd6f4; /* Text */
 }`;
 
-  // settings/settings.js
+  // src/settings/settings.js
   api.Hints.setCharacters("asdjkluiopwerm,nhgzxcvq'");
   settings.startToShowEmoji = 1;
 
-  // modules/opener/opener.js
+  // src/modules/opener/opener.js
   api.mapkey("ad", "Dotfiles", function() {
     window.open(
       "https://github.com/shahjalal-labs/allDotfilesBackupEndeavourOs",
@@ -164,7 +165,7 @@
     window.open("https://blank.page/", "_blank");
   });
 
-  // modules/opener/aiOpener.js
+  // src/modules/opener/aiOpener.js
   api.mapkey("sc", "Open ChatGPT chk", function() {
     let newTab = window.open("https://chatgpt.com/", "_blank");
     console.log(newTab, ".surfingkeys.js", 240);
@@ -200,7 +201,7 @@
     }
   });
 
-  // modules/opener/mernOpener.js
+  // src/modules/opener/mernOpener.js
   api.mapkey("cd", "daisy ui", function() {
     if (window.location.hostname.includes("daisy")) {
       window.location.href = "https://daisyui.com/docs/install/vite/";
@@ -215,7 +216,7 @@
     window.open("http://localhost:5173/", "_blank");
   });
 
-  // modules/opener/socialOpener.js
+  // src/modules/opener/socialOpener.js
   api.mapkey("sf", "Open Facebook", function() {
     window.open("https://www.facebook.com", "_blank");
   });
@@ -243,14 +244,14 @@
     }
   });
 
-  // modules/opener/phOpener.js
-  api.mapkey("so", "scribble l1b10", () => {
+  // src/modules/opener/phOpener.js
+  api.mapkey("pso", "scribble l1b10", () => {
     window.open(
       "https://web.programming-hero.com/update-1/video/update-1-42-1-scribbles-cafe-project-overview-and-tailwind-setup",
       "_blank"
     );
   });
-  api.mapkey("a,", "HELP DESK", function() {
+  api.mapkey("pa,", "HELP DESK", function() {
     window.open("https://helpdesk.programming-hero.com/", "_blank");
   });
   api.mapkey("sn", "PH b11 github repositories", function() {
@@ -311,5 +312,53 @@
   });
   api.mapkey("aj", "fb  Level1 Batch 11 support group", function() {
     window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
+  });
+
+  // src/modules/opener/islamicOpener.js
+  api.mapkey("sj", "Open Wedding Nasheed", function() {
+    window.open(
+      "https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds",
+      "_blank"
+    );
+  });
+
+  // src/modules/yank/imgYank.js
+  api.mapkey("ci", "\u{1F5BC}\uFE0F Copy image URL under cursor or focused image", () => {
+    const img = document.querySelector("img:hover") || document.activeElement;
+    if (img && img.tagName === "IMG") {
+      const url = img.src;
+      if (url) {
+        api.Clipboard.write(url);
+      }
+    }
+  });
+  var copyLoopActive = false;
+  api.mapkey(
+    "cl",
+    "\u{1F501} Copy multiple image URLs with hints loop",
+    function startCopyLoop() {
+      copyLoopActive = true;
+      const copyImageWithHints = () => {
+        if (!copyLoopActive) return;
+        api.Hints.create("img[src]", function(el) {
+          api.Clipboard.write(el.src);
+          setTimeout(copyImageWithHints, 300);
+        });
+      };
+      copyImageWithHints();
+    }
+  );
+  api.mapkey("cj", "\u{1F4F7} Copy image URL using hints", function() {
+    api.Hints.create("img[src]", function(el) {
+      api.Clipboard.write(el.src);
+    });
+  });
+  api.mapkey("cm", "\u{1F4C4} Copy image as Markdown", function() {
+    api.Hints.create("img[src]", function(el) {
+      const alt = el.alt || "image";
+      const markdown = `![${alt}](${el.src})`;
+      api.Clipboard.write(markdown);
+      api.Front.showPopup("\u2705 Copied as Markdown!");
+    });
   });
 })();
