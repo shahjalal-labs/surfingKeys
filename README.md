@@ -1,3 +1,7 @@
+### This is surfingKeys extension configuration for my own personal usage but anybody can uplift productiviy fully replace the mouse and vast automation
+
+root creadit goes to brookhong/Surfingkeys (https://github.com/brookhong/Surfingkeys)
+
 # 🌟 surfingKeys
 
 ## 📂 Project Information
@@ -30,27 +34,23 @@ A blazing-fast, deeply modular, and developer-friendly configuration for the Sur
 
 ### 🗺️ Navigation & Default Remappings (`defaultRemapped.js`)
 
-| 🔑 Key          | 📌 Description                           |
-| --------------- | ---------------------------------------- |
-| `gt`            | recent used tabs in omnibar              |
-| `w`             | scroll 10 20 pt down                     |
-| `t`             | hints letter to switch tab               |
-| `ao`            | download image with hints                |
-| `su`            | Go to last used tab (`;U`)               |
-| `C-1`           | Go to first tab (`g0`)                   |
-| `aa`            | go back in history                       |
-| `<Alt-j>`       | Move to right tab (`l`)                  |
-| `<Alt-k>`       | Move to left tab (`h`)                   |
-| `h`             | Scroll to bottom (`E`)                   |
-| `gj`            | Scroll to top (`G`)                      |
-| `gi`            | Yank URL on YouTube                      |
-| `l`             | Reload (`R`)                             |
-| `f` (in `lmap`) | Local hint mode `<t>`                    |
-| `as`            | Open file search (`;fs`)                 |
-| `u`             | Navigate forward in history (`<Ctrl-i>`) |
-| `Ctrl+d`        | Scroll down (`<Ctrl-f>`)                 |
-| `p`             | **Unmapped**                             |
-| `,`             | Switch to last tab (`<Ctrl-6>`)          |
+| 🔑 Key          | 📌 Description                                      |
+| --------------- | --------------------------------------------------- |
+| `gt`            | recent used tabs in omnibar                         |
+| `w`             | scroll down half page                               |
+| `t`             | hints letter to switch tab                          |
+| `ao`            | download image with hints                           |
+| `g0`            | Go to first tab (`g0`)                              |
+| `aa`            | go back in history                                  |
+| `j`             | scroll down                                         |
+| `k`             | scroll up                                           |
+| `h`, `l`        | swith to the left tab, l for swith to the right tab |
+| `gj`            | Scroll to top (`G`)                                 |
+| `gi`            | Yank URL on YouTube                                 |
+| `f` (in `lmap`) | Local hint modes for click to url                   |
+| `as`            | change scroll focus                                 |
+| `u`             | scroll up half page                                 |
+| `,`             | Switch to last used tab (`<Ctrl-6>`)                |
 
 ---
 
