@@ -90,7 +90,7 @@
     { domain: /./, prefix: " " }
   );
 
-  // modules/theme.js
+  // settings/theme.js
   api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {
     if (!document.getElementById("__sk_darkmode")) {
       const style = document.createElement("style");
@@ -142,4 +142,174 @@
     background: #1e1e2e; /* Base */
     color: #cdd6f4; /* Text */
 }`;
+
+  // settings/settings.js
+  api.Hints.setCharacters("asdjkluiopwerm,nhgzxcvq'");
+  settings.startToShowEmoji = 1;
+
+  // modules/opener/opener.js
+  api.mapkey("ad", "Dotfiles", function() {
+    window.open(
+      "https://github.com/shahjalal-labs/allDotfilesBackupEndeavourOs",
+      "_blank"
+    );
+  });
+  api.mapkey("ay", "youtube opening", function() {
+    window.open("https://www.youtube.com/", "_blank");
+  });
+  api.mapkey("sq", "Open Quran", function() {
+    window.open("https://quran.com", "_blank");
+  });
+  api.mapkey("sb", "Open blank page", function() {
+    window.open("https://blank.page/", "_blank");
+  });
+
+  // modules/opener/aiOpener.js
+  api.mapkey("sc", "Open ChatGPT chk", function() {
+    let newTab = window.open("https://chatgpt.com/", "_blank");
+    console.log(newTab, ".surfingkeys.js", 240);
+    setInterval(() => {
+      console.log(`hellow`);
+    }, 2e3);
+  });
+  api.mapkey("ax", "perplexity ai", function() {
+    if (window.location.hostname.includes("perplexity")) {
+      window.location.href = "https://www.perplexity.ai/";
+    } else {
+      window.open("https://www.perplexity.ai/", "_blank");
+    }
+  });
+  api.mapkey("gh", "gemini ai", function() {
+    if (window.location.hostname.includes("gemini")) {
+      window.location.href = "https://gemini.google.com/app";
+    } else {
+      window.open("https://gemini.google.com/app", "_blank");
+    }
+  });
+  api.mapkey("ah", "Deep ai", function() {
+    window.open("https://deepai.org/dashboard/images", "_blank");
+  });
+  api.mapkey("al", "Open claude ai", function() {
+    window.open("https://claude.ai/new");
+  });
+  api.mapkey("am", "Chk claude", function() {
+    if (window.location.hostname.includes("claude.ai")) {
+      window.location.href = "/new";
+    } else {
+      window.open("https://claude.ai/new", "_blank");
+    }
+  });
+
+  // modules/opener/mernOpener.js
+  api.mapkey("cd", "daisy ui", function() {
+    if (window.location.hostname.includes("daisy")) {
+      window.location.href = "https://daisyui.com/docs/install/vite/";
+    } else {
+      window.open("https://daisyui.com/docs/install/vite/", "_blank");
+    }
+  });
+  api.mapkey("at", "tailwind css v4 installation", function() {
+    window.open("https://tailwindcss.com/docs/installation/using-vite", "_blank");
+  });
+  api.mapkey("sl", "localhost", function() {
+    window.open("http://localhost:5173/", "_blank");
+  });
+
+  // modules/opener/socialOpener.js
+  api.mapkey("sf", "Open Facebook", function() {
+    window.open("https://www.facebook.com", "_blank");
+  });
+  api.mapkey("sa", "email inbox opening", function() {
+    window.open("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox", "_blank");
+  });
+  api.mapkey("sm", "whatsApp", function() {
+    window.open("https://web.whatsapp.com/", "_blank");
+  });
+  api.mapkey("and", "open ejp discord sesssion announcement", function() {
+    if (window.location.hostname.includes("discord")) {
+      window.location.href = "https://discord.com/channels/1386609361345843211/1386636865842708550";
+    } else {
+      window.open(
+        "https://discord.com/channels/1386609361345843211/1386636865842708550",
+        "_blank"
+      );
+    }
+  });
+  api.mapkey("anz", "open ejp discord sesssion announcement", function() {
+    if (window.location.hostname.includes("zoom")) {
+      window.location.href = "https://www.zoom.us/join";
+    } else {
+      window.open("https://www.zoom.us/profile", "_blank");
+    }
+  });
+
+  // modules/opener/phOpener.js
+  api.mapkey("so", "scribble l1b10", () => {
+    window.open(
+      "https://web.programming-hero.com/update-1/video/update-1-42-1-scribbles-cafe-project-overview-and-tailwind-setup",
+      "_blank"
+    );
+  });
+  api.mapkey("a,", "HELP DESK", function() {
+    window.open("https://helpdesk.programming-hero.com/", "_blank");
+  });
+  api.mapkey("sn", "PH b11 github repositories", function() {
+    window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
+  });
+  api.mapkey("s1", "fbLevel1", function() {
+    window.open("https://www.facebook.com/groups/programmingHero", "_blank");
+  });
+  api.mapkey("si", "L2B4Web", function() {
+    window.open(
+      "https://web.programming-hero.com/level2-batch-4-frontend-track/video/level2-batch-4-frontend-track-36-11-displaying-blogs-and-handling-loading-with-rtk-query-module-summary",
+      "_blank"
+    );
+  });
+  api.mapkey("sk", "outline L2B4", function() {
+    window.open(
+      "https://web.programming-hero.com/676fa61320dff5186afcd780/course-outline",
+      "_blank"
+    );
+  });
+  api.mapkey("ae", "Conceptual Level1 Batch 10", function() {
+    window.open("https://web.programming-hero.com/conceptual-session", "_blank");
+  });
+  api.mapkey("ac", "Conceptual Level1 Batch 11", function() {
+    window.open("https://web.programming-hero.com/conceptual-session", "_blank");
+  });
+  api.mapkey("sr", "redux", function() {
+    window.open(
+      "https://web.programming-hero.com/level2-batch-1/video/level2-batch-1-21-1-project-initialization-and-redux-store-setup-recap",
+      "_blank"
+    );
+  });
+  api.mapkey("sp", "pre requisite level2", function() {
+    window.open(
+      "https://web.programming-hero.com/next-level-prerequisites-batch4/video/next-level-prerequisites-batch4-45-8-active-route-loading-spinner-uselocation-usenavigation",
+      "_blank"
+    );
+  });
+  api.mapkey("s2", "fbLevel2", function() {
+    window.open("https://www.facebook.com/groups/phapollo4", "_blank");
+  });
+  api.mapkey("s4", "L2B4 typescript module 2", function() {
+    window.open(
+      "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing"
+    );
+  });
+  api.mapkey("ai", "Level1 Batch 11", function() {
+    window.open(
+      "https://web.programming-hero.com/web-11/video/web-11-15-9-module-summary-legal-system-practice-task-",
+      "_blank"
+    );
+  });
+  api.mapkey("ak", "outline level1 batch 11", function() {
+    window.open(
+      "https://web.programming-hero.com/675439d776a088463223e16d/course-outline",
+      "_blank"
+    );
+  });
+  api.mapkey("aj", "fb  Level1 Batch 11 support group", function() {
+    window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
+  });
 })();

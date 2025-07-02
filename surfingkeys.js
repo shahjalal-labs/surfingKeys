@@ -1,3 +1,9 @@
 import "./modules/defaultRemapped.js";
 import "./modules/github.js";
 import "./settings/theme.js";
+import "./settings/settings.js";
+import "./modules/opener/opener.js";
+import "./modules/opener/aiOpener.js";
+import "./modules/opener/mernOpener.js";
+import "./modules/opener/socialOpener.js";
+import "./modules/opener/phOpener.js";
