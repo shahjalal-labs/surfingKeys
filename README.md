@@ -1,6 +1,22 @@
-### This is surfingKeys extension configuration for my own personal usage but anybody can uplift productiviy fully replace the mouse and vast automation
+> ⚙️ **This is a customized configuration for the [Surfingkeys](https://github.com/brookhong/Surfingkeys) browser extension**, tailored for my personal workflow and productivity needs.
 
-root creadit goes to brookhong/Surfingkeys (https://github.com/brookhong/Surfingkeys)
+While originally crafted for personal use, **anyone can benefit** from this setup to:
+
+- 🚫 Fully replace mouse usage
+- ⚡ Streamline daily browsing tasks
+- 🤖 Automate workflows
+- 🧭 Navigate the web efficiently using keyboard shortcuts
+
+> 🙏 **Full credit** to the original creator: [brookhong/Surfingkeys](https://github.com/brookhong/Surfingkeys)
+> 🧠 **Surfingkeys is a vast and powerful tool** — what I've shared here is just the tip of the iceberg.
+
+There’s so much more you can explore:
+
+- 🧩 Build your own custom workflows
+- 🛠️ Extend it using the Surfingkeys API
+- ⚙️ Create fully automated, keyboard-driven browsing experiences
+
+> ✨ I must admit — this configuration is **only a glimpse** of what's possible. **With creativity and code, you can turn Surfingkeys into your ultimate browser automation engine.**
 
 # 🌟 surfingKeys
 
@@ -45,7 +61,8 @@ A blazing-fast, deeply modular, and developer-friendly configuration for the Sur
 | `j`             | scroll down                                         |
 | `k`             | scroll up                                           |
 | `h`, `l`        | swith to the left tab, l for swith to the right tab |
-| `gj`            | Scroll to top (`G`)                                 |
+| `gj`            | Scroll to bottom (`G`)                              |
+| `gj`            | Scroll to bottom (`G`)                              |
 | `gi`            | Yank URL on YouTube                                 |
 | `f` (in `lmap`) | Local hint modes for click to url                   |
 | `as`            | change scroll focus                                 |
