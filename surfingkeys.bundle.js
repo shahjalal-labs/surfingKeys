@@ -363,35 +363,13 @@
   });
 
   // src/settings/markdown/markdown.js
-  api.mapkey(
-    "cn",
-    "\u{1FA84} Convert clipboard text to Markdown and copy",
-    async function() {
-      try {
-        const text = await navigator.clipboard.readText();
-        const trimmed = text.trim();
-        if (!trimmed) {
-          api.Front.showPopup("\u274C Clipboard is empty");
-          return;
-        }
-        let markdownText;
-        if (trimmed.startsWith("http")) {
-          markdownText = `[${trimmed}](${trimmed})`;
-        } else if (trimmed.includes("\n")) {
-          markdownText = `\`\`\`
-${trimmed}
-\`\`\``;
-        } else if (trimmed.length < 50) {
-          markdownText = `### ${trimmed}`;
-        } else {
-          markdownText = trimmed;
-        }
-        await navigator.clipboard.writeText(markdownText);
-        api.Front.showPopup("\u2705 Copied as Markdown:\n" + markdownText);
-      } catch (err) {
-        api.Front.showPopup("\u274C Error reading clipboard");
-        console.error(err);
-      }
+  api.vmapkey("cn", "\u{1F4CB} Copy selection as Markdown using Turndown", function() {
+    if (typeof window.copyTableAsMarkdown === "function") {
+      window.copyTableAsMarkdown();
+    } else {
+      api.Front.showPopup(
+        "\u274C Function not found. Make sure Tampermonkey script is active."
+      );
     }
-  );
+  });
 })();
