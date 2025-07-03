@@ -1,10 +1,10 @@
 import TurndownService from "turndown";
+// const { mapkey, Clipboard, Front } = api;
 
-const turndown = new TurndownService({ headingStyle: "atx" });
+const turndown = new TurndownService();
 
-const { mapkey } = api;
-export default function markdownTableExport() {
-  mapkey("mt", "🧾 Convert HTML selection (table) to Markdown", async () => {
+export default function markdownDownload() {
+  api.mapkey("ca", "📋 Copy & Download Markdown from visual selection", () => {
     const sel = window.getSelection();
     if (!sel || sel.rangeCount === 0) {
       Front.showPopup("❌ No selection");
@@ -15,11 +15,22 @@ export default function markdownTableExport() {
     const div = document.createElement("div");
     div.appendChild(range);
 
-    const html = div.innerHTML;
-    const markdown = turndown.turndown(html);
+    const md = turndown.turndown(div.innerHTML);
 
-    api.Clipboard.write(markdown);
-    api.Front.showPopup("✅ Copied as Markdown");
-    console.log(markdown);
+    api.Clipboard.write(md);
+
+    const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    // const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    // a.download = `selection-${timestamp}.md`;
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    api.Front.showPopup("✅ Markdown copied & downloaded");
   });
 }
