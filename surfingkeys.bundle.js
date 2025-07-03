@@ -1,19 +1,17 @@
 (() => {
   // t: 🧿 Open multiple images in new tabs via hints
-  api.mapkey("co", "🧿 Open multiple images in new tabs", function () {
-    api.Hints.create(
-      "img[src]",
-      function (el) {
-        window.open(el.src, "_blank");
-        setTimeout(
-          () => api.Front.showPopup("✅ Opened image: " + el.src),
-          100,
-        );
-      },
-      { multipleHits: true },
-    );
+  // t: 🖼️ Copy image URL via hints + open in new tab
+  api.mapkey("cy", "🖼️ Copy image URL and open in new tab", () => {
+    api.Hints.create("img[src]", (el) => {
+      const url = el.src;
+      api.Clipboard.write(url);
+      window.open(url, "_blank");
+      api.Front.showPopup("✅ Copied and opened:\n" + url);
+    });
   });
-
+  api.mapkey("gI", "#7View image in new tab", function () {
+    api.Hints.create("img", (i) => api.tabOpenLink(i.src));
+  });
   // src/modules/defaultRemapped.js
   api.map("gt", "t");
   api.map("w", "d");
