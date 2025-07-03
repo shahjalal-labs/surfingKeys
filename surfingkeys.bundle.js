@@ -226,6 +226,13 @@
   api.mapkey("sm", "whatsApp", function() {
     window.open("https://web.whatsapp.com/", "_blank");
   });
+  api.mapkey("co", "open linkedin", function() {
+    if (window.location.hostname.includes("linkedin")) {
+      window.location.href = "https://www.linkedin.com/in/shahjalal-mern/";
+    } else {
+      window.open("https://www.linkedin.com/in/shahjalal-mern/", "_blank");
+    }
+  });
   api.mapkey("and", "open ejp discord sesssion announcement", function() {
     if (window.location.hostname.includes("discord")) {
       window.location.href = "https://discord.com/channels/1386609361345843211/1386636865842708550";
@@ -375,7 +382,7 @@
     api.Hints.create("img", (i) => api.tabOpenLink(i.src));
   });
 
-  // src/hoverClick/hoverClick.js
+  // src/modules/hoverClick/hoverClick.js
   api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
     api.Hints.create(
       "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",

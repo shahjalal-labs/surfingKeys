@@ -10,4 +10,4 @@ import "./src/modules/opener/phOpener";
 import "./src/modules/opener/islamicOpener";
 import "./src/modules/yank/imgYank";
 import "./src/modules/markdown/markdown";
-import "./src/hoverClick/hoverClick";
+import "./src/modules/hoverClick/hoverClick";

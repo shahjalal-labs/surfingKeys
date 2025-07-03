@@ -11,7 +11,14 @@ api.mapkey("sa", "email inbox opening", function () {
 api.mapkey("sm", "whatsApp", function () {
   window.open("https://web.whatsapp.com/", "_blank");
 });
-
+// p: open zoom session
+api.mapkey("co", "open linkedin", function () {
+  if (window.location.hostname.includes("linkedin")) {
+    window.location.href = "https://www.linkedin.com/in/shahjalal-mern/";
+  } else {
+    window.open("https://www.linkedin.com/in/shahjalal-mern/", "_blank");
+  }
+});
 // p: open discord session announcement
 api.mapkey("and", "open ejp discord sesssion announcement", function () {
   if (window.location.hostname.includes("discord")) {
