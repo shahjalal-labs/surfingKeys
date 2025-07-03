@@ -390,6 +390,6 @@
   // src/settings/markdown/md.js
   var { mapkey } = api;
   mapkey("ca", "\u{1F4DD} Copy selection as Markdown + Download", () => {
-    window.copyTableAsMarkdown();
+    copyTableAsMarkdown();
   });
 })();
