@@ -2,6 +2,7 @@
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
   api.Hints.create(
     "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
+    // { tabbed: true },
     function (el) {
       el.click();
 
@@ -34,5 +35,13 @@ api.mapkey("ca", "🔍 Reveal hidden elements using hints", function () {
     el.style.opacity = "1";
     el.hidden = false;
     api.Front.showPopup("✅ Revealed element: " + el.tagName);
+  });
+});
+
+api.mapkey("of", "#8Open URL in incognito window", function () {
+  api.Hints.create("*[href]", function (element) {
+    api?.RUNTIME("openIncognito", {
+      url: element.href,
+    });
   });
 });
