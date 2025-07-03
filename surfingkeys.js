@@ -9,5 +9,5 @@ import "./src/modules/opener/socialOpener";
 import "./src/modules/opener/phOpener";
 import "./src/modules/opener/islamicOpener";
 import "./src/modules/yank/imgYank";
-import "./src/settings/markdown/markdown";
+import "./src/modules/markdown/markdown";
 import "./src/hoverClick/hoverClick";
