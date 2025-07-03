@@ -1,32 +1,32 @@
-const { Front, Visual, Clipboard, vmapkey } = api;
+api.mapkey(
+  "cn",
+  "🪄 Convert clipboard text to Markdown and copy",
+  async function () {
+    try {
+      const text = await navigator.clipboard.readText();
+      const trimmed = text.trim();
 
-// This must be inside your SurfingKeys config
+      if (!trimmed) {
+        api.Front.showPopup("❌ Clipboard is empty");
+        return;
+      }
 
-vmapkey("cn", "📝 Copy selected text as Markdown", function () {
-  Visual.getWordUnderCursor(); // initialize selection if needed
-  Visual.getSelection(function (sel) {
-    const text = sel.trim();
-    if (!text) {
-      Front.showPopup("❌ No text selected");
-      return;
+      let markdownText;
+      if (trimmed.startsWith("http")) {
+        markdownText = `[${trimmed}](${trimmed})`;
+      } else if (trimmed.includes("\n")) {
+        markdownText = `\`\`\`\n${trimmed}\n\`\`\``;
+      } else if (trimmed.length < 50) {
+        markdownText = `### ${trimmed}`;
+      } else {
+        markdownText = trimmed;
+      }
+
+      await navigator.clipboard.writeText(markdownText);
+      api.Front.showPopup("✅ Copied as Markdown:\n" + markdownText);
+    } catch (err) {
+      api.Front.showPopup("❌ Error reading clipboard");
+      console.error(err);
     }
-
-    let markdown;
-    const lines = text.split("\n");
-    const isMultiLine = lines.length > 1;
-    const isURL = /^https?:\/\//.test(text);
-
-    if (isMultiLine || /^\s/.test(text)) {
-      markdown = "```js\n" + text + "\n```";
-    } else if (isURL) {
-      markdown = `[${text}](${text})`;
-    } else if (text.length < 50) {
-      markdown = "### " + text;
-    } else {
-      markdown = "`" + text + "`";
-    }
-
-    Clipboard.write(markdown);
-    Front.showPopup("✅ Markdown copied:\n" + markdown);
-  });
-});
+  },
+);

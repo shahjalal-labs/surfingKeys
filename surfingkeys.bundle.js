@@ -363,25 +363,35 @@
   });
 
   // src/settings/markdown/markdown.js
-  var { Front, Visual, Clipboard, vmapkey } = api;
-  vmapkey("cn", "\u{1F4DD} Copy selection as Markdown", function() {
-    Visual.getSelectedText(function(text) {
-      if (!text.trim()) {
-        Front.showPopup("\u274C No text selected");
-        return;
-      }
-      let markdownText;
-      if (text.includes("\n")) {
-        markdownText = `\`\`\`
-${text.trim()}
+  api.mapkey(
+    "cn",
+    "\u{1FA84} Convert clipboard text to Markdown and copy",
+    async function() {
+      try {
+        const text = await navigator.clipboard.readText();
+        const trimmed = text.trim();
+        if (!trimmed) {
+          api.Front.showPopup("\u274C Clipboard is empty");
+          return;
+        }
+        let markdownText;
+        if (trimmed.startsWith("http")) {
+          markdownText = `[${trimmed}](${trimmed})`;
+        } else if (trimmed.includes("\n")) {
+          markdownText = `\`\`\`
+${trimmed}
 \`\`\``;
-      } else if (text.length < 50) {
-        markdownText = `### ${text.trim()}`;
-      } else {
-        markdownText = `${text.trim()}`;
+        } else if (trimmed.length < 50) {
+          markdownText = `### ${trimmed}`;
+        } else {
+          markdownText = trimmed;
+        }
+        await navigator.clipboard.writeText(markdownText);
+        api.Front.showPopup("\u2705 Copied as Markdown:\n" + markdownText);
+      } catch (err) {
+        api.Front.showPopup("\u274C Error reading clipboard");
+        console.error(err);
       }
-      Clipboard.write(markdownText);
-      Front.showPopup("\u2705 Copied as Markdown:\n" + markdownText);
-    });
-  });
+    }
+  );
 })();
