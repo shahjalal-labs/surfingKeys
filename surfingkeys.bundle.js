@@ -1,14 +1,18 @@
 (() => {
   // t: 🧿 Open multiple images in new tabs via hints
   // t: 🖼️ Copy image URL via hints + open in new tab
-  api.mapkey("cy", "🖼️ Copy image URL and open in new tab", () => {
-    api.Hints.create("img[src]", (el) => {
-      const url = el.src;
-      api.Clipboard.write(url);
-      window.open(url, "_blank");
-      api.Front.showPopup("✅ Copied and opened:\n" + url);
-    });
+  // 🖼️ Copy multiple image URLs and open each in a new tab
+  api.mapkey("cy", "Copy multiple image URLs and open tabs", () => {
+    api.Hints.create(
+      "img[src]",
+      (el) => {
+        api.Clipboard.write(el.src);
+        api.tabOpenLink(el.src);
+      },
+      { multipleHits: true },
+    );
   });
+
   api.mapkey("gI", "#7View image in new tab", function () {
     api.Hints.create("img", (i) => api.tabOpenLink(i.src));
   });
