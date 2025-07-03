@@ -1,6 +1,5 @@
 //t: 🔁 Persistent smart click loop that detects and clicks both semantic and styled custom clickable elements across page navigations.
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
-  // "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]"
   api.Hints.create(
     "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
     function (el) {

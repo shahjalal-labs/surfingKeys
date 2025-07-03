@@ -361,4 +361,35 @@
       api.Front.showPopup("\u2705 Copied as Markdown!");
     });
   });
+
+  // src/hoverClick/hoverClick.js
+  api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
+    api.Hints.create(
+      "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
+      function(el) {
+        el.click();
+        setTimeout(() => {
+          repeatClickHints();
+        }, 200);
+      }
+    );
+  });
+  api.mapkey("ch", "\u{1F5B1}\uFE0F Smart hover using hints", function() {
+    api.Hints.create("*", function(el) {
+      ["mouseover", "mouseenter", "focus"].forEach((type) => {
+        el.dispatchEvent(
+          new MouseEvent(type, { bubbles: true, cancelable: true, view: window })
+        );
+      });
+    });
+  });
+  api.mapkey("ca", "\u{1F50D} Reveal hidden elements using hints", function() {
+    api.Hints.create("*", function(el) {
+      el.style.display = "block";
+      el.style.visibility = "visible";
+      el.style.opacity = "1";
+      el.hidden = false;
+      api.Front.showPopup("\u2705 Revealed element: " + el.tagName);
+    });
+  });
 })();
