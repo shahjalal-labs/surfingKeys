@@ -361,18 +361,27 @@
       api.Front.showPopup("\u2705 Copied as Markdown!");
     });
   });
-  api.mapkey(
-    "cy",
-    "\u{1F4CB} Copy actual image (blob) via hints",
-    function copyElementToClipboard(element) {
-      window.getSelection().removeAllRanges();
-      let range = document.createRange();
-      range.selectNode(
-        typeof element === "string" ? document.getElementById(elementName) : element
-      );
-      window.getSelection().addRange(range);
-      document.execCommand("copy");
-      window.getSelection().removeAllRanges();
-    }
-  );
+  api.mapkey("cy", "\u{1F4CB} Hint image \u2192 click \u2192 copy as file", () => {
+    api.Hints.create("img[src]", function(img) {
+      img.style.outline = "3px solid lime";
+      img.style.cursor = "pointer";
+      img.title = "Click to copy image to clipboard";
+      const clickHandler = async () => {
+        try {
+          const response = await fetch(img.src);
+          const blob = await response.blob();
+          const item = new ClipboardItem({ [blob.type]: blob });
+          await navigator.clipboard.write([item]);
+          api.Front.showPopup("\u2705 Copied image to clipboard");
+        } catch (err) {
+          api.Front.showPopup("\u274C Failed: " + err.message);
+        } finally {
+          img.style.outline = "";
+          img.style.cursor = "";
+          img.removeEventListener("click", clickHandler);
+        }
+      };
+      img.addEventListener("click", clickHandler, { once: true });
+    });
+  });
 })();
