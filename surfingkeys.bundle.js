@@ -361,6 +361,19 @@
       api.Front.showPopup("\u2705 Copied as Markdown!");
     });
   });
+  api.mapkey("cy", "Copy multiple image URLs and open tabs", () => {
+    api.Hints.create(
+      "img[src]",
+      (el) => {
+        api.Clipboard.write(el.src);
+        api.tabOpenLink(el.src);
+      },
+      { multipleHits: true }
+    );
+  });
+  api.mapkey("gI", "#7View image in new tab", function() {
+    api.Hints.create("img", (i) => api.tabOpenLink(i.src));
+  });
 
   // src/hoverClick/hoverClick.js
   api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {

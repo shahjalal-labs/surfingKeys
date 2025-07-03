@@ -50,3 +50,20 @@ api.mapkey("cm", "📄 Copy image as Markdown", function () {
     api.Front.showPopup("✅ Copied as Markdown!");
   });
 });
+
+// 🖼️ Copy multiple image URLs and open each in a new tab
+api.mapkey("cy", "Copy multiple image URLs and open tabs", () => {
+  api.Hints.create(
+    "img[src]",
+    (el) => {
+      api.Clipboard.write(el.src);
+      api.tabOpenLink(el.src);
+    },
+    { multipleHits: true },
+  );
+});
+
+// open img in new tab
+api.mapkey("gI", "#7View image in new tab", function () {
+  api.Hints.create("img", (i) => api.tabOpenLink(i.src));
+});
