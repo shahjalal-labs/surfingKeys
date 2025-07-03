@@ -363,13 +363,8 @@
   });
 
   // src/settings/markdown/markdown.js
-  api.vmapkey("cn", "\u{1F4CB} Copy selection as Markdown using Turndown", function() {
-    if (typeof window.copyTableAsMarkdown === "function") {
-      window.copyTableAsMarkdown();
-    } else {
-      api.Front.showPopup(
-        "\u274C Function not found. Make sure Tampermonkey script is active."
-      );
-    }
+  api.vmapkey("cn", "\u{1F4CB} Copy selection as Markdown using Turndown", () => {
+    const event = new CustomEvent("triggerCopyMarkdown");
+    window.dispatchEvent(event);
   });
 })();
