@@ -9,3 +9,4 @@ import "./src/modules/opener/socialOpener";
 import "./src/modules/opener/phOpener";
 import "./src/modules/opener/islamicOpener";
 import "./src/modules/yank/imgYank";
+import "./src/settings/markdown/md";

@@ -32,3 +32,7 @@ Now:
     Press md
 
     ✅ It will convert to Markdown blockquote and copy to clipboard
+
+give me routine in a table for a muslim developer
+
+give me routine in a table for a muslim developer
