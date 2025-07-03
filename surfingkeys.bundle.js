@@ -361,18 +361,18 @@
       api.Front.showPopup("\u2705 Copied as Markdown!");
     });
   });
-  api.mapkey("cy", "\u{1F4CB} Copy actual image (blob) via hints", async () => {
-    api.Hints.create("img[src]", async (el) => {
-      try {
-        const response = await fetch(el.src);
-        if (!response.ok) throw new Error("Failed to fetch image");
-        const blob = await response.blob();
-        const item = new ClipboardItem({ [blob.type]: blob });
-        await navigator.clipboard.write([item]);
-        api.Front.showPopup("\u2705 Image copied to clipboard as file");
-      } catch (err) {
-        api.Front.showPopup("\u274C Failed to copy image: " + err.message);
-      }
-    });
-  });
+  api.mapkey(
+    "cy",
+    "\u{1F4CB} Copy actual image (blob) via hints",
+    function copyElementToClipboard(element) {
+      window.getSelection().removeAllRanges();
+      let range = document.createRange();
+      range.selectNode(
+        typeof element === "string" ? document.getElementById(elementName) : element
+      );
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+    }
+  );
 })();
