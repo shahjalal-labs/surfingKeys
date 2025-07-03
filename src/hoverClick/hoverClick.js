@@ -1,13 +1,17 @@
 //t: 🔁 Persistent smart click loop that detects and clicks both semantic and styled custom clickable elements across page navigations.
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
-  api.Hints.create("*[onclick], button, a, input[type=submit]", function (el) {
-    el.click();
+  // "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]"
+  api.Hints.create(
+    "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
+    function (el) {
+      el.click();
 
-    // Wait a short moment, then re-show hints
-    setTimeout(() => {
-      repeatClickHints(); // Call itself again
-    }, 200); // Delay to allow DOM to update
-  });
+      // Wait a short moment, then re-show hints
+      setTimeout(() => {
+        repeatClickHints(); // Call itself again
+      }, 200); // Delay to allow DOM to update
+    },
+  );
 });
 
 //t: 🖱️ Smart hover using hints
