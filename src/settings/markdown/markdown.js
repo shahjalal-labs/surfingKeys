@@ -2,21 +2,33 @@ const { Front, Visual, Clipboard, vmapkey } = api;
 
 vmapkey("cn", "📝 Copy selection as Markdown", function () {
   Visual.getSelectedText(function (text) {
-    if (!text.trim()) {
+    const selected = text.trim();
+    if (!selected) {
       Front.showPopup("❌ No text selected");
       return;
     }
 
-    let markdownText;
-    if (text.includes("\n")) {
-      markdownText = `\`\`\`\n${text.trim()}\n\`\`\``;
-    } else if (text.length < 50) {
-      markdownText = `### ${text.trim()}`;
+    let markdown;
+
+    // Detect if it's a block of code
+    const lines = selected.split("\n");
+    const isCodeBlock = lines.length > 1 || selected.includes("  ");
+
+    if (isCodeBlock) {
+      // Wrap in Markdown fenced code block
+      markdown = `\`\`\`js\n${selected}\n\`\`\``;
+    } else if (selected.match(/^https?:\/\//)) {
+      // If it's a URL
+      markdown = `[${selected}](${selected})`;
+    } else if (selected.length < 50) {
+      // Short, probably a heading
+      markdown = `### ${selected}`;
     } else {
-      markdownText = `${text.trim()}`;
+      // Default to inline code or paragraph
+      markdown = selected.includes("`") ? selected : "`" + selected + "`";
     }
 
-    Clipboard.write(markdownText);
-    Front.showPopup("✅ Copied as Markdown:\n" + markdownText);
+    Clipboard.write(markdown);
+    Front.showPopup("✅ Markdown copied!\n" + markdown);
   });
 });
