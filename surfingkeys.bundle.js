@@ -90,6 +90,17 @@
     },
     { domain: /./, prefix: " " }
   );
+  api.mapkey("gb", "\u{1F464} Go to GitHub user profile from repo page", function() {
+    const match = window.location.href.match(
+      /^https:\/\/github\.com\/([^\/?#]+)/
+    );
+    if (match && match[1]) {
+      const user = match[1];
+      window.location.href = `https://github.com/${user}`;
+    } else {
+      api.Front.showBanner("\u274C Not on a GitHub repo page");
+    }
+  });
 
   // src/settings/theme.js
   api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {

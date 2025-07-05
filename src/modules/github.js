@@ -99,6 +99,17 @@ api.mapkey(
 );
 //w: 3╰───────────── Block End ─────────────╯
 //w: 5╭──────────── Block Start ────────────╮
+api.mapkey("gb", "👤 Go to GitHub user profile from repo page", function () {
+  const match = window.location.href.match(
+    /^https:\/\/github\.com\/([^\/?#]+)/,
+  );
+  if (match && match[1]) {
+    const user = match[1];
+    window.location.href = `https://github.com/${user}`;
+  } else {
+    api.Front.showBanner("❌ Not on a GitHub repo page");
+  }
+});
 
 //w: 5╰───────────── Block End ─────────────╯
 //w: 6╭──────────── Block Start ────────────╮
