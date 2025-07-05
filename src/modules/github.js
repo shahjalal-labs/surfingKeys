@@ -110,63 +110,54 @@ api.mapkey("gb", "👤 Go to GitHub user profile from repo page", function () {
     api.Front.showBanner("❌ Not on a GitHub repo page");
   }
 });
-/* api.mapkey(
-  "gma",
-  "👤 Go to GitHub user profile or my static profile",
-  function () {
-    const currentUrl = window.location.href;
-    const staticProfile = "https://github.com/shahjalal-labs";
 
-    if (currentUrl.startsWith("https://github.com/")) {
-      const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
-      if (
-        match &&
-        match[1] &&
-        match[1] !== "features" &&
-        match[1] !== "topics" &&
-        match[1] !== "collections"
-      ) {
-        const user = match[1];
-        window.location.href = `https://github.com/${user}`;
-      } else {
-        // On GitHub, but no username in path
-        window.location.href = staticProfile;
-      }
-    } else {
-      // Not on GitHub at all — open static profile in new tab
-      api.tabOpenLink(staticProfile);
-    }
-  },
-); */
+// == 🧭 Surfingkeys Mapping: gm - Go to GitHub user profile or Repositories tab ==
+// Behavior:
+// - 🌐 Not on GitHub → open your GitHub profile in new tab.
+// - 🏠 On GitHub generic page (features, topics, homepage, etc) → go to your GitHub profile.
+// - 📁 On GitHub repo/subpath → redirect to that user’s profile.
+// - 👤 On any GitHub user profile (yours or others) → redirect to your GitHub profile.
+// - 👤 If already on your GitHub profile → go to your repositories tab.
+
 api.mapkey(
   "gm",
-  "👤 Go to GitHub user profile or my static profile",
+  "👤 Go to GitHub user profile or repositories tab",
   function () {
     const currentUrl = window.location.href;
     const staticProfile = "https://github.com/shahjalal-labs";
+    const yourReposTab = "https://github.com/shahjalal-labs?tab=repositories";
 
-    if (currentUrl.startsWith("https://github.com/")) {
-      const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
-      if (
-        match &&
-        match[1] &&
-        !["features", "topics", "collections", ""].includes(match[1])
-      ) {
-        const isOnUserProfile = currentUrl === `https://github.com/${match[1]}`;
-        if (isOnUserProfile) {
-          // You're already on a user profile — redirect to your static profile
-          window.location.href = staticProfile;
-        } else {
-          // Not on a user profile — go to that user’s profile
-          window.location.href = `https://github.com/${match[1]}`;
-        }
+    if (!currentUrl.startsWith("https://github.com/")) {
+      // 🌐 Not on GitHub
+      api.tabOpenLink(staticProfile);
+      return;
+    }
+
+    const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
+    const currentUser = match && match[1];
+
+    if (
+      !currentUser ||
+      ["features", "topics", "collections"].includes(currentUser)
+    ) {
+      // 🏠 On GitHub homepage or generic section
+      window.location.href = staticProfile;
+      return;
+    }
+
+    const isOnProfilePage = currentUrl === `https://github.com/${currentUser}`;
+
+    if (isOnProfilePage) {
+      if (currentUser.toLowerCase() === "shahjalal-labs") {
+        // 👤 Already on your own profile
+        window.location.href = yourReposTab;
       } else {
-        // On GitHub but no valid username
+        // 👤 On someone else’s profile
         window.location.href = staticProfile;
       }
     } else {
-      // Not on GitHub at all — open your profile in new tab
-      api.tabOpenLink(staticProfile);
+      // 📁 On repo or subpath — redirect to the user's profile
+      window.location.href = `https://github.com/${currentUser}`;
     }
   },
 );
