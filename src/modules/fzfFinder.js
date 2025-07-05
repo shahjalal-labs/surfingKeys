@@ -1,4 +1,5 @@
 import Fuse from "fuse.js";
+import { injectTailwind } from "../../surfingkeys";
 
 const historyStore = [
   "open https://github.com/shahjalal-labs",
@@ -10,7 +11,7 @@ const historyStore = [
   "persistent hint click",
 ];
 
-export function openFuzzyFinder() {
+function openFuzzyFinder() {
   const container = document.createElement("div");
   container.className =
     "fixed top-[20%] left-1/2 -translate-x-1/2 bg-gray-800 text-white rounded-xl shadow-2xl z-[9999] w-[500px] max-h-[60vh] p-4 overflow-hidden";
@@ -55,7 +56,8 @@ export function openFuzzyFinder() {
     if (e.key === "Escape") container.remove();
   };
 }
-
 api.mapkey("zf", "🔍 Fuzzy search history like fzf", () => {
-  openFuzzyFinder();
+  injectTailwind(() => {
+    openFuzzyFinder(); // your fuzzy UI logic
+  });
 });

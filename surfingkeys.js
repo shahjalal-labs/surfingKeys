@@ -12,3 +12,16 @@ import "./src/modules/yank/imgYank";
 import "./src/modules/markdown/markdown";
 import "./src/modules/hoverClick/hoverClick";
 import "./src/modules/testDate";
+import "./src/modules/fzfFinder";
+
+export function injectTailwind(callback) {
+  if (window.tailwindInjected) return callback();
+
+  const twScript = document.createElement("script");
+  twScript.src = "https://cdn.tailwindcss.com";
+  twScript.onload = () => {
+    window.tailwindInjected = true;
+    callback();
+  };
+  document.head.appendChild(twScript);
+}
