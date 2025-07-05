@@ -101,6 +101,25 @@
       api.Front.showBanner("\u274C Not on a GitHub repo page");
     }
   });
+  api.mapkey(
+    "gm",
+    "\u{1F464} Go to GitHub user profile or my static profile",
+    function() {
+      const currentUrl = window.location.href;
+      const staticProfile = "https://github.com/shahjalal-labs";
+      if (currentUrl.startsWith("https://github.com/")) {
+        const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
+        if (match && match[1] && match[1] !== "features" && match[1] !== "topics" && match[1] !== "collections") {
+          const user = match[1];
+          window.location.href = `https://github.com/${user}`;
+        } else {
+          window.location.href = staticProfile;
+        }
+      } else {
+        api.tabOpenLink(staticProfile);
+      }
+    }
+  );
 
   // src/settings/theme.js
   api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {

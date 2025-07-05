@@ -110,6 +110,34 @@ api.mapkey("gb", "👤 Go to GitHub user profile from repo page", function () {
     api.Front.showBanner("❌ Not on a GitHub repo page");
   }
 });
+api.mapkey(
+  "gm",
+  "👤 Go to GitHub user profile or my static profile",
+  function () {
+    const currentUrl = window.location.href;
+    const staticProfile = "https://github.com/shahjalal-labs";
+
+    if (currentUrl.startsWith("https://github.com/")) {
+      const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
+      if (
+        match &&
+        match[1] &&
+        match[1] !== "features" &&
+        match[1] !== "topics" &&
+        match[1] !== "collections"
+      ) {
+        const user = match[1];
+        window.location.href = `https://github.com/${user}`;
+      } else {
+        // On GitHub, but no username in path
+        window.location.href = staticProfile;
+      }
+    } else {
+      // Not on GitHub at all — open static profile in new tab
+      api.tabOpenLink(staticProfile);
+    }
+  },
+);
 
 //w: 5╰───────────── Block End ─────────────╯
 //w: 6╭──────────── Block Start ────────────╮
