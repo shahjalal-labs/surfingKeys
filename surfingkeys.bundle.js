@@ -2193,4 +2193,66 @@
   api.mapkey("zf", "\u{1F50D} Fuzzy search history like fzf", () => {
     openFuzzyFinder();
   });
+  var MAX_CLIP_HISTORY = 20;
+  var clipHistory = [];
+  api.storage.get("clipHistory").then((data) => {
+    clipHistory = data.clipHistory || [];
+  });
+  function saveHistory() {
+    api.storage.set("clipHistory", clipHistory);
+  }
+  function addToHistory(text) {
+    if (!text) return;
+    clipHistory = clipHistory.filter((t) => t !== text);
+    clipHistory.unshift(text);
+    if (clipHistory.length > MAX_CLIP_HISTORY) {
+      clipHistory.pop();
+    }
+    saveHistory();
+  }
+  var originalClipboardWrite = Clipboard.write;
+  Clipboard.write = function(text) {
+    addToHistory(text);
+    return originalClipboardWrite(text);
+  };
+  mapkey("yp", "Paste from clipboard history", function() {
+    if (clipHistory.length === 0) {
+      Front.showPopup("Clipboard history is empty");
+      return;
+    }
+    Hints.create(
+      clipHistory.map((text, i) => ({
+        text,
+        key: (i + 1).toString()
+      })),
+      function(selectedText) {
+        Clipboard.write(selectedText);
+        Normal.insert(selectedText);
+        Front.showPopup("Pasted from clipboard history");
+      },
+      {
+        multipleHits: false,
+        active: true
+      }
+    );
+  });
+  var historyIndex = 0;
+  mapkey("yn", "Cycle clipboard history forward", function() {
+    if (clipHistory.length === 0) {
+      Front.showPopup("Clipboard history is empty");
+      return;
+    }
+    historyIndex = (historyIndex + 1) % clipHistory.length;
+    let text = clipHistory[historyIndex];
+    Clipboard.write(text);
+    Normal.insert(text);
+    Front.showPopup(
+      `Pasted: ${text.length > 20 ? text.slice(0, 20) + "..." : text}`
+    );
+  });
+  mapkey("yc", "Clear clipboard history", function() {
+    clipHistory = [];
+    saveHistory();
+    Front.showPopup("Clipboard history cleared");
+  });
 })();
