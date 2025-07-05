@@ -2210,25 +2210,25 @@
     }
     saveHistory();
   }
-  var originalClipboardWrite = Clipboard.write;
-  Clipboard.write = function(text) {
+  var originalClipboardWrite = api.Clipboard.write;
+  api.Clipboard.write = function(text) {
     addToHistory(text);
     return originalClipboardWrite(text);
   };
-  mapkey("yp", "Paste from clipboard history", function() {
+  api.mapkey("cep", "Paste from clipboard history", function() {
     if (clipHistory.length === 0) {
-      Front.showPopup("Clipboard history is empty");
+      api.Front.showPopup("Clipboard history is empty");
       return;
     }
-    Hints.create(
+    api.Hints.create(
       clipHistory.map((text, i) => ({
         text,
         key: (i + 1).toString()
       })),
       function(selectedText) {
-        Clipboard.write(selectedText);
-        Normal.insert(selectedText);
-        Front.showPopup("Pasted from clipboard history");
+        api.Clipboard.write(selectedText);
+        api.Normal.insert(selectedText);
+        api.Front.showPopup("Pasted from clipboard history");
       },
       {
         multipleHits: false,
@@ -2237,22 +2237,22 @@
     );
   });
   var historyIndex = 0;
-  mapkey("yn", "Cycle clipboard history forward", function() {
+  api.mapkey("cen", "Cycle clipboard history forward", function() {
     if (clipHistory.length === 0) {
-      Front.showPopup("Clipboard history is empty");
+      api.Front.showPopup("Clipboard history is empty");
       return;
     }
     historyIndex = (historyIndex + 1) % clipHistory.length;
     let text = clipHistory[historyIndex];
-    Clipboard.write(text);
-    Normal.insert(text);
-    Front.showPopup(
+    api.Clipboard.write(text);
+    api.Normal.insert(text);
+    api.Front.showPopup(
       `Pasted: ${text.length > 20 ? text.slice(0, 20) + "..." : text}`
     );
   });
-  mapkey("yc", "Clear clipboard history", function() {
+  api.mapkey("cec", "Clear clipboard history", function() {
     clipHistory = [];
     saveHistory();
-    Front.showPopup("Clipboard history cleared");
+    api.Front.showPopup("Clipboard history cleared");
   });
 })();

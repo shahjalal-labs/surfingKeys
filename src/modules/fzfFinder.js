@@ -105,25 +105,20 @@ api.mapkey("zf", "🔍 Fuzzy search history like fzf", () => {
   openFuzzyFinder();
 });
 
-// Max history size
 const MAX_CLIP_HISTORY = 20;
 
-// Load existing history or initialize
 let clipHistory = [];
 
 api.storage.get("clipHistory").then((data) => {
   clipHistory = data.clipHistory || [];
 });
 
-// Helper to save history
 function saveHistory() {
   api.storage.set("clipHistory", clipHistory);
 }
 
-// Add new item to history (most recent first, no duplicates)
 function addToHistory(text) {
   if (!text) return;
-  // Remove if already exists
   clipHistory = clipHistory.filter((t) => t !== text);
   clipHistory.unshift(text);
   if (clipHistory.length > MAX_CLIP_HISTORY) {
@@ -132,30 +127,29 @@ function addToHistory(text) {
   saveHistory();
 }
 
-// Override Clipboard.write to also add to history
-const originalClipboardWrite = Clipboard.write;
-Clipboard.write = function (text) {
+// Override Clipboard.write
+const originalClipboardWrite = api.Clipboard.write;
+api.Clipboard.write = function (text) {
   addToHistory(text);
   return originalClipboardWrite(text);
 };
 
-// Mapkey: Show popup menu of clipboard history and paste selected
-mapkey("yp", "Paste from clipboard history", function () {
+// Mapkeys with prefix 'ce' for Clipboard Enhanced features
+api.mapkey("cep", "Paste from clipboard history", function () {
   if (clipHistory.length === 0) {
-    Front.showPopup("Clipboard history is empty");
+    api.Front.showPopup("Clipboard history is empty");
     return;
   }
 
-  // Show a simple list and let user pick one
-  Hints.create(
+  api.Hints.create(
     clipHistory.map((text, i) => ({
       text,
       key: (i + 1).toString(),
     })),
     function (selectedText) {
-      Clipboard.write(selectedText);
-      Normal.insert(selectedText);
-      Front.showPopup("Pasted from clipboard history");
+      api.Clipboard.write(selectedText);
+      api.Normal.insert(selectedText);
+      api.Front.showPopup("Pasted from clipboard history");
     },
     {
       multipleHits: false,
@@ -164,25 +158,23 @@ mapkey("yp", "Paste from clipboard history", function () {
   );
 });
 
-// Mapkey: cycle forward through history and paste (you can extend to backward cycling)
 let historyIndex = 0;
-mapkey("yn", "Cycle clipboard history forward", function () {
+api.mapkey("cen", "Cycle clipboard history forward", function () {
   if (clipHistory.length === 0) {
-    Front.showPopup("Clipboard history is empty");
+    api.Front.showPopup("Clipboard history is empty");
     return;
   }
   historyIndex = (historyIndex + 1) % clipHistory.length;
   let text = clipHistory[historyIndex];
-  Clipboard.write(text);
-  Normal.insert(text);
-  Front.showPopup(
+  api.Clipboard.write(text);
+  api.Normal.insert(text);
+  api.Front.showPopup(
     `Pasted: ${text.length > 20 ? text.slice(0, 20) + "..." : text}`,
   );
 });
 
-// Mapkey: clear clipboard history
-mapkey("yc", "Clear clipboard history", function () {
+api.mapkey("cec", "Clear clipboard history", function () {
   clipHistory = [];
   saveHistory();
-  Front.showPopup("Clipboard history cleared");
+  api.Front.showPopup("Clipboard history cleared");
 });
