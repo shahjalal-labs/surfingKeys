@@ -3,6 +3,7 @@
     "build": "bun run esbuild surfingkeys.js --bundle --outfile=surfingkeys.bundle.js --format=iife"
   },
   "dependencies": {
+    "dayjs": "^1.11.13",
     "turndown": "^7.2.0"
   },
   "devDependencies": {
