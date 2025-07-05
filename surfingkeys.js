@@ -11,3 +11,4 @@ import "./src/modules/opener/islamicOpener";
 import "./src/modules/yank/imgYank";
 import "./src/modules/markdown/markdown";
 import "./src/modules/hoverClick/hoverClick";
+import "./src/modules/testDate";
