@@ -110,8 +110,8 @@ api.mapkey("gb", "👤 Go to GitHub user profile from repo page", function () {
     api.Front.showBanner("❌ Not on a GitHub repo page");
   }
 });
-api.mapkey(
-  "gm",
+/* api.mapkey(
+  "gma",
   "👤 Go to GitHub user profile or my static profile",
   function () {
     const currentUrl = window.location.href;
@@ -134,6 +134,38 @@ api.mapkey(
       }
     } else {
       // Not on GitHub at all — open static profile in new tab
+      api.tabOpenLink(staticProfile);
+    }
+  },
+); */
+api.mapkey(
+  "gm",
+  "👤 Go to GitHub user profile or my static profile",
+  function () {
+    const currentUrl = window.location.href;
+    const staticProfile = "https://github.com/shahjalal-labs";
+
+    if (currentUrl.startsWith("https://github.com/")) {
+      const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
+      if (
+        match &&
+        match[1] &&
+        !["features", "topics", "collections", ""].includes(match[1])
+      ) {
+        const isOnUserProfile = currentUrl === `https://github.com/${match[1]}`;
+        if (isOnUserProfile) {
+          // You're already on a user profile — redirect to your static profile
+          window.location.href = staticProfile;
+        } else {
+          // Not on a user profile — go to that user’s profile
+          window.location.href = `https://github.com/${match[1]}`;
+        }
+      } else {
+        // On GitHub but no valid username
+        window.location.href = staticProfile;
+      }
+    } else {
+      // Not on GitHub at all — open your profile in new tab
       api.tabOpenLink(staticProfile);
     }
   },

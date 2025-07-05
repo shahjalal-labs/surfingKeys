@@ -102,7 +102,7 @@
     }
   });
   api.mapkey(
-    "gm",
+    "gma",
     "\u{1F464} Go to GitHub user profile or my static profile",
     function() {
       const currentUrl = window.location.href;
@@ -112,6 +112,29 @@
         if (match && match[1] && match[1] !== "features" && match[1] !== "topics" && match[1] !== "collections") {
           const user = match[1];
           window.location.href = `https://github.com/${user}`;
+        } else {
+          window.location.href = staticProfile;
+        }
+      } else {
+        api.tabOpenLink(staticProfile);
+      }
+    }
+  );
+  api.mapkey(
+    "gmb",
+    "\u{1F464} Go to GitHub user profile or my static profile",
+    function() {
+      const currentUrl = window.location.href;
+      const staticProfile = "https://github.com/shahjalal-labs";
+      if (currentUrl.startsWith("https://github.com/")) {
+        const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
+        if (match && match[1] && !["features", "topics", "collections", ""].includes(match[1])) {
+          const isOnUserProfile = currentUrl === `https://github.com/${match[1]}`;
+          if (isOnUserProfile) {
+            window.location.href = staticProfile;
+          } else {
+            window.location.href = `https://github.com/${match[1]}`;
+          }
         } else {
           window.location.href = staticProfile;
         }
