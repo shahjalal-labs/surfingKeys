@@ -512,38 +512,52 @@
   });
 
   // src/modules/opener/aiOpener.js
-  api.mapkey("sc", "Open ChatGPT chk", function() {
+  api.mapkey("oac", "Open ChatGPT chk", function() {
     let newTab = window.open("https://chatgpt.com/", "_blank");
     console.log(newTab, ".surfingkeys.js", 240);
     setInterval(() => {
       console.log(`hellow`);
     }, 2e3);
   });
-  api.mapkey("ax", "perplexity ai", function() {
+  api.mapkey("oap", "perplexity ai", function() {
     if (window.location.hostname.includes("perplexity")) {
       window.location.href = "https://www.perplexity.ai/";
     } else {
       window.open("https://www.perplexity.ai/", "_blank");
     }
   });
-  api.mapkey("gh", "gemini ai", function() {
+  api.mapkey("oag", "gemini ai", function() {
     if (window.location.hostname.includes("gemini")) {
       window.location.href = "https://gemini.google.com/app";
     } else {
       window.open("https://gemini.google.com/app", "_blank");
     }
   });
-  api.mapkey("ah", "Deep ai", function() {
+  api.mapkey("oad", "Deep ai", function() {
     window.open("https://deepai.org/dashboard/images", "_blank");
   });
-  api.mapkey("al", "Open claude ai", function() {
+  api.mapkey("oas", "Open deepseek", function() {
+    if (window.location.hostname.includes("deepseek")) {
+      window.location.href = "https://chat.deepseek.com";
+    } else {
+      window.open("https://chat.deepseek.com/", "_blank");
+    }
+  });
+  api.mapkey("oaq", "Open claude ai", function() {
     window.open("https://claude.ai/new");
   });
-  api.mapkey("am", "Chk claude", function() {
+  api.mapkey("oak", "Chk claude", function() {
     if (window.location.hostname.includes("claude.ai")) {
       window.location.href = "/new";
     } else {
       window.open("https://claude.ai/new", "_blank");
+    }
+  });
+  api.mapkey("oag", "open grok ai", function() {
+    if (window.location.hostname.includes("grok")) {
+      window.location.href = "https://grok.com/";
+    } else {
+      window.open("https://grok.com/", "_blank");
     }
   });
 

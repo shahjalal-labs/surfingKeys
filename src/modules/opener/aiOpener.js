@@ -31,6 +31,13 @@ api.mapkey("oag", "gemini ai", function () {
 api.mapkey("oad", "Deep ai", function () {
   window.open("https://deepai.org/dashboard/images", "_blank");
 });
+api.mapkey("oas", "Open deepseek", function () {
+  if (window.location.hostname.includes("deepseek")) {
+    window.location.href = "https://chat.deepseek.com";
+  } else {
+    window.open("https://chat.deepseek.com/", "_blank");
+  }
+});
 
 //t: open  claude ai
 api.mapkey("oaq", "Open claude ai", function () {
@@ -44,18 +51,10 @@ api.mapkey("oak", "Chk claude", function () {
   }
 });
 
-api.mapkey("oak", "Chk claude", function () {
-  if (window.location.hostname.includes("claude.ai")) {
-    window.location.href = "/new";
+api.mapkey("oag", "open grok ai", function () {
+  if (window.location.hostname.includes("grok")) {
+    window.location.href = "https://grok.com/";
   } else {
-    window.open("https://claude.ai/new", "_blank");
-  }
-});
-
-api.mapkey("oak", "Chk claude", function () {
-  if (window.location.hostname.includes("claude.ai")) {
-    window.location.href = "/new";
-  } else {
-    window.open("https://claude.ai/new", "_blank");
+    window.open("https://grok.com/", "_blank");
   }
 });
