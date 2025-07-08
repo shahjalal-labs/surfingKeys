@@ -18,7 +18,7 @@ api.mapkey("oap", "perplexity ai", function () {
 
 //w: opening gemini ai
 
-api.mapkey("oag", "gemini ai", function () {
+api.mapkey("oaj", "gemini ai", function () {
   if (window.location.hostname.includes("gemini")) {
     window.location.href = "https://gemini.google.com/app";
   } else {
