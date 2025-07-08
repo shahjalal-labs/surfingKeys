@@ -1,4 +1,4 @@
-api.mapkey("sc", "Open ChatGPT chk", function () {
+api.mapkey("oac", "Open ChatGPT chk", function () {
   let newTab = window.open("https://chatgpt.com/", "_blank"); // Open ChatGPT in a new tab
   console.log(newTab, ".surfingkeys.js", 240);
   setInterval(() => {
@@ -8,7 +8,7 @@ api.mapkey("sc", "Open ChatGPT chk", function () {
 
 //w: opening perplexity ai ai
 
-api.mapkey("ax", "perplexity ai", function () {
+api.mapkey("oap", "perplexity ai", function () {
   if (window.location.hostname.includes("perplexity")) {
     window.location.href = "https://www.perplexity.ai/";
   } else {
@@ -18,7 +18,7 @@ api.mapkey("ax", "perplexity ai", function () {
 
 //w: opening gemini ai
 
-api.mapkey("gh", "gemini ai", function () {
+api.mapkey("oag", "gemini ai", function () {
   if (window.location.hostname.includes("gemini")) {
     window.location.href = "https://gemini.google.com/app";
   } else {
@@ -28,15 +28,31 @@ api.mapkey("gh", "gemini ai", function () {
 
 //
 //t:  open deep  ai
-api.mapkey("ah", "Deep ai", function () {
+api.mapkey("oad", "Deep ai", function () {
   window.open("https://deepai.org/dashboard/images", "_blank");
 });
 
 //t: open  claude ai
-api.mapkey("al", "Open claude ai", function () {
+api.mapkey("oaq", "Open claude ai", function () {
   window.open("https://claude.ai/new");
 });
-api.mapkey("am", "Chk claude", function () {
+api.mapkey("oak", "Chk claude", function () {
+  if (window.location.hostname.includes("claude.ai")) {
+    window.location.href = "/new";
+  } else {
+    window.open("https://claude.ai/new", "_blank");
+  }
+});
+
+api.mapkey("oak", "Chk claude", function () {
+  if (window.location.hostname.includes("claude.ai")) {
+    window.location.href = "/new";
+  } else {
+    window.open("https://claude.ai/new", "_blank");
+  }
+});
+
+api.mapkey("oak", "Chk claude", function () {
   if (window.location.hostname.includes("claude.ai")) {
     window.location.href = "/new";
   } else {
