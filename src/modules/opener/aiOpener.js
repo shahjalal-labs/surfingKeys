@@ -58,3 +58,11 @@ api.mapkey("oag", "open grok ai", function () {
     window.open("https://grok.com/", "_blank");
   }
 });
+
+api.mapkey("oaa", "open google audio", function () {
+  if (window.location.hostname.includes("aistudio")) {
+    window.location.href = "https://aistudio.google.com/live";
+  } else {
+    window.open("https://aistudio.google.com/live", "_blank");
+  }
+});

@@ -34,8 +34,8 @@ api.mapkey("ocd", "open daisyUI", function () {
 
 api.mapkey("ocl", "open localhost", function () {
   if (window.location.hostname.includes("localhost")) {
-    window.location.href = "http://localhost:5173/";
-  } else {
     window.open("http://localhost:5174/", "_blank");
+  } else {
+    window.open("http://localhost:5173/", "_blank");
   }
 });

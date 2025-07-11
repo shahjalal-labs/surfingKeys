@@ -560,6 +560,13 @@
       window.open("https://grok.com/", "_blank");
     }
   });
+  api.mapkey("oaa", "open google audio", function() {
+    if (window.location.hostname.includes("aistudio")) {
+      window.location.href = "https://aistudio.google.com/live";
+    } else {
+      window.open("https://aistudio.google.com/live", "_blank");
+    }
+  });
 
   // src/modules/opener/webDevOpener.js
   api.mapkey("ocm", "open mongodb", function() {
@@ -591,9 +598,9 @@
   });
   api.mapkey("ocl", "open localhost", function() {
     if (window.location.hostname.includes("localhost")) {
-      window.location.href = "http://localhost:5173/";
-    } else {
       window.open("http://localhost:5174/", "_blank");
+    } else {
+      window.open("http://localhost:5173/", "_blank");
     }
   });
 
