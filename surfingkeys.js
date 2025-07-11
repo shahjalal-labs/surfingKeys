@@ -5,6 +5,7 @@ import "./src/settings/settings";
 import "./src/modules/opener/opener";
 import "./src/modules/opener/aiOpener";
 import "./src/modules/opener/mernOpener";
+import "./src/modules/opener/webDevOpener";
 import "./src/modules/opener/socialOpener";
 import "./src/modules/opener/phOpener";
 import "./src/modules/opener/islamicOpener";

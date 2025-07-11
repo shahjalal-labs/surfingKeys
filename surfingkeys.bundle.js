@@ -561,19 +561,40 @@
     }
   });
 
-  // src/modules/opener/mernOpener.js
-  api.mapkey("cd", "daisy ui", function() {
-    if (window.location.hostname.includes("daisy")) {
+  // src/modules/opener/webDevOpener.js
+  api.mapkey("ocm", "open mongodb", function() {
+    if (window.location.hostname.includes("mongodb")) {
+      window.location.href = "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0";
+    } else {
+      window.open(
+        "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0",
+        "_blank"
+      );
+    }
+  });
+  api.mapkey("oct", "open tailwind vite ", function() {
+    if (window.location.hostname.includes("tailwindcss")) {
+      window.location.href = "https://tailwindcss.com/docs/installation/using-vite";
+    } else {
+      window.open(
+        "https://tailwindcss.com/docs/installation/using-vite",
+        "_blank"
+      );
+    }
+  });
+  api.mapkey("ocd", "open daisyUI", function() {
+    if (window.location.hostname.includes("daisyui")) {
       window.location.href = "https://daisyui.com/docs/install/vite/";
     } else {
       window.open("https://daisyui.com/docs/install/vite/", "_blank");
     }
   });
-  api.mapkey("at", "tailwind css v4 installation", function() {
-    window.open("https://tailwindcss.com/docs/installation/using-vite", "_blank");
-  });
-  api.mapkey("sl", "localhost", function() {
-    window.open("http://localhost:5173/", "_blank");
+  api.mapkey("ocl", "open localhost", function() {
+    if (window.location.hostname.includes("localhost")) {
+      window.location.href = "http://localhost:5173/";
+    } else {
+      window.open("http://localhost:5174/", "_blank");
+    }
   });
 
   // src/modules/opener/socialOpener.js
