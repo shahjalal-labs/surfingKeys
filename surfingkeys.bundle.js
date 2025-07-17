@@ -2250,17 +2250,27 @@
   api.mapkey("ord", "open GDrive Resource", openGDrive);
   var gdriveFolders = {
     work: "https://drive.google.com/drive/u/0/folders/WORK_FOLDER_ID",
-    study: "https://drive.google.com/drive/u/0/folders/STUDY_FOLDER_ID"
+    study: "https://drive.google.com/drive/u/0/folders/STUDY_FOLDER_ID",
+    personal: "https://drive.google.com/drive/u/0/folders/PERSONAL_FOLDER_ID"
   };
-  api.mapkey("org", "Open GDrive folder by name", () => {
-    const folderKey = window.prompt("Enter folder name (e.g., work, study):");
-    if (!folderKey) return;
-    const url = gdriveFolders[folderKey.trim()];
-    if (url) {
-      window.open(url, "_blank");
-      api.Front.showBanner(`\u{1F4C2} Opening "${folderKey}" folder`, 3e3);
-    } else {
-      api.Front.showBanner("\u274C Folder not found", 3e3);
-    }
+  api.mapkey("org", "\u{1F4C2} Open a Google Drive folder from list", function() {
+    const folderList = Object.entries(gdriveFolders).map(([name, url]) => {
+      return {
+        title: name,
+        url
+      };
+    });
+    api.Front.openOmnibar({
+      type: "UserURLs",
+      extra: folderList,
+      callback: function(selected) {
+        if (selected && selected.url) {
+          window.open(selected.url, "_blank");
+          api.Front.showBanner(`\u2705 Opened "${selected.title}"`);
+        } else {
+          api.Front.showBanner("\u274C Nothing selected");
+        }
+      }
+    });
   });
 })();
