@@ -14,3 +14,4 @@ import "./src/modules/markdown/markdown";
 import "./src/modules/hoverClick/hoverClick";
 import "./src/modules/testDate";
 import "./src/modules/fzfFinder";
+import "./src/modules/opener/resourceOpener";

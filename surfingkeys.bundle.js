@@ -2235,4 +2235,14 @@
   api.mapkey("zf", "\u{1F50D} Fuzzy search history like fzf", () => {
     openFuzzyFinder();
   });
+
+  // src/modules/opener/resourceOpener.js
+  function openGDrive() {
+    if (window.location.hostname.includes("linkedin")) {
+      window.location.href = "https://www.linkedin.com/in/shahjalal-mern/";
+    } else {
+      window.open("https://www.linkedin.com/in/shahjalal-mern/", "_blank");
+    }
+  }
+  api.mapkey("ord", "open GDrive Resource", openGDrive);
 })();
