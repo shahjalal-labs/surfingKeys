@@ -11,9 +11,10 @@ const openGDrive = () => {
 };
 api.mapkey("ord", "open GDrive Resource", openGDrive);
 
+const baseUrl = "https://drive.google.com/drive/u/0/folders/";
 const gdriveFolders = {
-  nid: "https://drive.google.com/drive/u/0/folders/WORK_FOLDER_ID",
-  study: "https://drive.google.com/drive/u/0/folders/STUDY_FOLDER_ID",
+  dorkaryKagoj: baseUrl + "10WgJY2dLqB4DulSuXvDpVK9c0G_ZOSIz",
+  career: baseUrl + "path",
 };
 
 api.mapkey("org", "📂 Open GDrive folder by partial name", () => {

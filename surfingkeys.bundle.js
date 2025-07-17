@@ -2248,8 +2248,9 @@
     }
   };
   api.mapkey("ord", "open GDrive Resource", openGDrive);
+  var baseUrl = "https://drive.google.com/drive/u/0/folders/";
   var gdriveFolders = {
-    work: "https://drive.google.com/drive/u/0/folders/WORK_FOLDER_ID",
+    dorkaryKagoj: baseUrl + "10WgJY2dLqB4DulSuXvDpVK9c0G_ZOSIz",
     study: "https://drive.google.com/drive/u/0/folders/STUDY_FOLDER_ID"
   };
   api.mapkey("org", "\u{1F4C2} Open GDrive folder by partial name", () => {
