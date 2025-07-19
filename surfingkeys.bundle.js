@@ -605,28 +605,35 @@
   });
 
   // src/modules/opener/socialOpener.js
-  api.mapkey("sf", "Open Facebook", function() {
+  api.mapkey("osx", "open twitter @shahjalal_labs", function() {
+    if (window.location.hostname.includes("discord")) {
+      window.location.href = "https://x.com/shahjalal_labs ";
+    } else {
+      window.open("https://x.com/shahjalal_labs ", "_blank");
+    }
+  });
+  api.mapkey("osf", "Open Facebook", function() {
     window.open("https://www.facebook.com", "_blank");
   });
-  api.mapkey("sa", "email inbox opening", function() {
+  api.mapkey("ose", "email inbox opening", function() {
     window.open("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox", "_blank");
   });
-  api.mapkey("sm", "whatsApp", function() {
+  api.mapkey("osw", "whatsApp", function() {
     window.open("https://web.whatsapp.com/", "_blank");
   });
-  api.mapkey("co", "open linkedin", function() {
+  api.mapkey("osl", "open linkedin", function() {
     if (window.location.hostname.includes("linkedin")) {
       window.location.href = "https://www.linkedin.com/in/shahjalal-mern/";
     } else {
       window.open("https://www.linkedin.com/in/shahjalal-mern/", "_blank");
     }
   });
-  api.mapkey("and", "open ejp discord sesssion announcement", function() {
+  api.mapkey("osd", "open ejp discord sesssion announcement", function() {
     if (window.location.hostname.includes("discord")) {
-      window.location.href = "https://discord.com/channels/1386609361345843211/1386636865842708550";
+      window.location.href = "https://discord.com/channels/1391805056957026364/1391809512100462592";
     } else {
       window.open(
-        "https://discord.com/channels/1386609361345843211/1386636865842708550",
+        "https://discord.com/channels/1391805056957026364/1391809512100462592",
         "_blank"
       );
     }
@@ -2251,7 +2258,7 @@
   var baseUrl = "https://drive.google.com/drive/u/0/folders/";
   var gdriveFolders = {
     dorkaryKagoj: baseUrl + "10WgJY2dLqB4DulSuXvDpVK9c0G_ZOSIz",
-    study: "https://drive.google.com/drive/u/0/folders/STUDY_FOLDER_ID"
+    career: baseUrl + "path"
   };
   api.mapkey("org", "\u{1F4C2} Open GDrive folder by partial name", () => {
     const input = window.prompt("Enter folder name (e.g., work, stu):");
