@@ -606,7 +606,7 @@
 
   // src/modules/opener/socialOpener.js
   api.mapkey("oux", "open twitter @shahjalal_labs", function() {
-    if (window.location.hostname.includes("discord")) {
+    if (window.location.hostname.includes("x.com")) {
       window.location.href = "https://x.com/shahjalal_labs ";
     } else {
       window.open("https://x.com/shahjalal_labs ", "_blank");
