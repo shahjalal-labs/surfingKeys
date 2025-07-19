@@ -1,3 +1,14 @@
+api.mapkey("osx", "open twitter @shahjalal_labs", function () {
+  if (window.location.hostname.includes("discord")) {
+    window.location.href =
+      "https://discord.com/channels/1386609361345843211/1386636865842708550";
+  } else {
+    window.open(
+      "https://discord.com/channels/1386609361345843211/1386636865842708550",
+      "_blank",
+    );
+  }
+});
 //t: facebook
 api.mapkey("sf", "Open Facebook", function () {
   window.open("https://www.facebook.com", "_blank");
