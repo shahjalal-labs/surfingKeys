@@ -2255,6 +2255,14 @@
     }
   };
   api.mapkey("ord", "open GDrive Resource", openGDrive);
+  var openImgbb = () => {
+    if (window.location.hostname.includes("imgbb")) {
+      window.location.href = "https://md-shahjalal.imgbb.com/";
+    } else {
+      window.open("https://md-shahjalal.imgbb.com/", "_blank");
+    }
+  };
+  api.mapkey("ori", "open imgbb Resource", openImgbb);
   var baseUrl = "https://drive.google.com/drive/u/0/folders/";
   var gdriveFolders = {
     dorkaryKagoj: baseUrl + "10WgJY2dLqB4DulSuXvDpVK9c0G_ZOSIz",
