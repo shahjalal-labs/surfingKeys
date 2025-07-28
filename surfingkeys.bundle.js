@@ -2256,7 +2256,7 @@
   };
   api.mapkey("ord", "open GDrive Resource", openGDrive);
   var openImgbb = () => {
-    if (window.location.hostname.includes("imgbb")) {
+    if (window.location.hostname.includes("imgbb") || window.location.hostname.includes("ibb")) {
       window.location.href = "https://md-shahjalal.imgbb.com/";
     } else {
       window.open("https://md-shahjalal.imgbb.com/", "_blank");
