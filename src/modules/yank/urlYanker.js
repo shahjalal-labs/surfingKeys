@@ -33,3 +33,27 @@ mapkey("ag,", "Open root URL in new tab", () => {
   const root = window.location.origin;
   window.open(root, "_blank");
 });
+
+function goToWithClipboard(n = 0) {
+  const { origin, pathname } = window.location;
+  const parts = pathname.split("/").filter(Boolean);
+
+  const base = parts.slice(0, n).join("/"); // First `n` path segments
+
+  // Read from clipboard, clean slashes
+  Clipboard.read(function (clip) {
+    if (!clip) return;
+
+    const cleanedClip = clip.replace(/^\/|\/$/g, ""); // Remove starting/trailing slash
+    const fullPath = [base, cleanedClip].filter(Boolean).join("/");
+
+    const finalUrl = `${origin}/${fullPath}`;
+    window.location.href = finalUrl;
+  });
+}
+
+// ap → go to root + clipboard
+mapkey("ap,", "Go to root + clipboard path", () => goToWithClipboard(0));
+mapkey("ap1", "Go to 1st path + clipboard path", () => goToWithClipboard(1));
+mapkey("ap2", "Go to 2nd path + clipboard path", () => goToWithClipboard(2));
+mapkey("ap3", "Go to 3rd path + clipboard path", () => goToWithClipboard(3));
