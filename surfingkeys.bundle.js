@@ -724,59 +724,6 @@
     );
   });
 
-  // src/modules/yank/imgYank.js
-  api.mapkey("ci", "\u{1F5BC}\uFE0F Copy image URL under cursor or focused image", () => {
-    const img = document.querySelector("img:hover") || document.activeElement;
-    if (img && img.tagName === "IMG") {
-      const url = img.src;
-      if (url) {
-        api.Clipboard.write(url);
-      }
-    }
-  });
-  var copyLoopActive = false;
-  api.mapkey(
-    "cl",
-    "\u{1F501} Copy multiple image URLs with hints loop",
-    function startCopyLoop() {
-      copyLoopActive = true;
-      const copyImageWithHints = () => {
-        if (!copyLoopActive) return;
-        api.Hints.create("img[src]", function(el) {
-          api.Clipboard.write(el.src);
-          setTimeout(copyImageWithHints, 300);
-        });
-      };
-      copyImageWithHints();
-    }
-  );
-  api.mapkey("cj", "\u{1F4F7} Copy image URL using hints", function() {
-    api.Hints.create("img[src]", function(el) {
-      api.Clipboard.write(el.src);
-    });
-  });
-  api.mapkey("cm", "\u{1F4C4} Copy image as Markdown", function() {
-    api.Hints.create("img[src]", function(el) {
-      const alt = el.alt || "image";
-      const markdown = `![${alt}](${el.src})`;
-      api.Clipboard.write(markdown);
-      api.Front.showPopup("\u2705 Copied as Markdown!");
-    });
-  });
-  api.mapkey("cy", "Copy multiple image URLs and open tabs", () => {
-    api.Hints.create(
-      "img[src]",
-      (el) => {
-        api.Clipboard.write(el.src);
-        api.tabOpenLink(el.src);
-      },
-      { multipleHits: true }
-    );
-  });
-  api.mapkey("gI", "#7View image in new tab", function() {
-    api.Hints.create("img", (i) => api.tabOpenLink(i.src));
-  });
-
   // src/modules/hoverClick/hoverClick.js
   api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
     api.Hints.create(
@@ -2263,25 +2210,6 @@
     }
   };
   api.mapkey("ori", "open imgbb Resource", openImgbb);
-  var baseUrl = "https://drive.google.com/drive/u/0/folders/";
-  var gdriveFolders = {
-    dorkaryKagoj: baseUrl + "10WgJY2dLqB4DulSuXvDpVK9c0G_ZOSIz",
-    career: baseUrl + "path"
-  };
-  api.mapkey("org", "\u{1F4C2} Open GDrive folder by partial name", () => {
-    const input = window.prompt("Enter folder name (e.g., work, stu):");
-    if (!input) return;
-    const normalizedInput = input.trim().toLowerCase();
-    const matchedKey = Object.keys(gdriveFolders).find(
-      (key) => key.toLowerCase().startsWith(normalizedInput)
-    );
-    if (matchedKey) {
-      window.open(gdriveFolders[matchedKey], "_blank");
-      api.Front.showBanner(`\u2705 Opened "${matchedKey}" folder`);
-    } else {
-      api.Front.showBanner("\u274C Folder not found", 3e3);
-    }
-  });
 
   // src/modules/yank/urlYanker.js
   var { mapkey, Clipboard } = api;
