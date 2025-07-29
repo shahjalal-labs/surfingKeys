@@ -1,34 +1,34 @@
-// Utility to copy URL path parts
+const { mapkey, Clipboard } = api;
 
-const { mapkey } = api;
 function copyUrlParts(n) {
   const { origin, pathname } = window.location;
-  const parts = pathname.split("/").filter(Boolean); // remove empty strings
+  const parts = pathname.split("/").filter(Boolean); // ['dashboard', 'manage-profile']
+
   let toCopy = "";
 
   if (n === 0) {
-    toCopy = origin;
+    toCopy = origin; // Only the root URL
+  } else if (parts.length === 0) {
+    return;
   } else {
+    // Only join the last `n` parts of the path
     const sliced = parts.slice(-n);
-    toCopy = sliced.join("/");
+    toCopy = sliced.join("/"); // Don't include origin
   }
 
-  if (toCopy) {
-    Clipboard.write(toCopy);
-    Front.showPopup(`Copied: ${toCopy}`);
-  } else {
-    Front.showPopup("Nothing to copy");
-  }
+  Clipboard.write(toCopy);
 }
 
-// Map gc0 to gc4
+// ag0 => Copy root domain only
 mapkey("ag0", "Copy root URL", () => copyUrlParts(0));
-mapkey("ag1", "Copy last 1 segment of URL path", () => copyUrlParts(1));
-mapkey("ag2", "Copy last 2 segments of URL path", () => copyUrlParts(2));
-mapkey("ag3", "Copy last 3 segments of URL path", () => copyUrlParts(3));
-mapkey("ag4", "Copy last 4 segments of URL path", () => copyUrlParts(4));
 
-// Open root in new tab
+// ag1 ~ ag4 => Copy last n parts of path (without origin)
+mapkey("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
+mapkey("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
+mapkey("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
+mapkey("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
+
+// ag, => Open root in new tab
 mapkey("ag,", "Open root URL in new tab", () => {
   const root = window.location.origin;
   window.open(root, "_blank");
