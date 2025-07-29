@@ -82,15 +82,6 @@ function appendClipboardToPath(n = 0) {
       // Build final URL without double origin
       const finalUrl = new URL(newPath, origin).href;
 
-      // Debug info
-      console.debug("URL Manipulation Debug:");
-      console.debug("- Original URL:", window.location.href);
-      console.debug("- Base segments:", base);
-      console.debug("- Clipboard content:", clipContent);
-      console.debug("- Cleaned base:", cleanBase);
-      console.debug("- Cleaned clip:", cleanClip);
-      console.debug("- Constructed URL:", finalUrl);
-
       // Navigate
       api.Front.showBanner(`↗️ Redirecting to: ${finalUrl}`);
       window.location.href = finalUrl;
@@ -106,7 +97,7 @@ api.mapkey("ap,", "Append clipboard to root path", () =>
   appendClipboardToPath(0),
 );
 
-for (let i = 1; i <= 9; i++) {
+for (let i = 1; i <= 3; i++) {
   api.mapkey(`ap${i}`, `Append clipboard to first ${i} path segments`, () =>
     appendClipboardToPath(i),
   );
@@ -130,4 +121,44 @@ api.mapkey("aph", "Show URL manipulator help", () => {
       <p>Handles URLs in clipboard, relative paths, and special characters</p>
     </div>
   `);
+});
+
+// ----//------
+// src/modules/imgCopyDirect.js
+api.mapkey("aci", "📋 Copy image to clipboard (direct file)", () => {
+  api.Hints.create("img[src]", async (imgElement) => {
+    try {
+      // Fetch the image as a blob
+      const response = await fetch(imgElement.src);
+      const blob = await response.blob();
+
+      // Create clipboard item
+      const clipboardItem = new ClipboardItem({ [blob.type]: blob });
+      await navigator.clipboard.write([clipboardItem]);
+
+      api.Front.showBanner("✅ Image copied to clipboard!");
+    } catch (error) {
+      console.error("Image copy failed:", error);
+      api.Front.showBanner("❌ Failed to copy image");
+    }
+  });
+});
+
+// Bonus: Multi-select images (shift + click)
+api.mapkey("acy", "📋 Copy multiple images", () => {
+  api.Hints.create(
+    "img[src]",
+    async (imgElement) => {
+      try {
+        const response = await fetch(imgElement.src);
+        const blob = await response.blob();
+        const clipboardItem = new ClipboardItem({ [blob.type]: blob });
+        await navigator.clipboard.write([clipboardItem]);
+        api.Front.showBanner(`✅ Copied: ${imgElement.src}`);
+      } catch (error) {
+        api.Front.showBanner("❌ Failed to copy image");
+      }
+    },
+    { multipleHits: true },
+  ); // Allows selecting multiple images
 });

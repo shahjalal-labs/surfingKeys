@@ -677,7 +677,7 @@
   api.mapkey("ae", "Conceptual Level1 Batch 10", function() {
     window.open("https://web.programming-hero.com/conceptual-session", "_blank");
   });
-  api.mapkey("ac", "Conceptual Level1 Batch 11", function() {
+  api.mapkey("acd", "Conceptual Level1 Batch 11", function() {
     window.open("https://web.programming-hero.com/conceptual-session", "_blank");
   });
   api.mapkey("sr", "redux", function() {
@@ -2335,13 +2335,6 @@
         const cleanClip = normalize(clipPath);
         const newPath = [cleanBase, cleanClip].filter((p) => p.length > 0).join("/");
         const finalUrl = new URL(newPath, origin).href;
-        console.debug("URL Manipulation Debug:");
-        console.debug("- Original URL:", window.location.href);
-        console.debug("- Base segments:", base);
-        console.debug("- Clipboard content:", clipContent);
-        console.debug("- Cleaned base:", cleanBase);
-        console.debug("- Cleaned clip:", cleanClip);
-        console.debug("- Constructed URL:", finalUrl);
         api.Front.showBanner(`\u2197\uFE0F Redirecting to: ${finalUrl}`);
         window.location.href = finalUrl;
       });
@@ -2355,7 +2348,7 @@
     "Append clipboard to root path",
     () => appendClipboardToPath(0)
   );
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 1; i <= 3; i++) {
     api.mapkey(
       `ap${i}`,
       `Append clipboard to first ${i} path segments`,
@@ -2379,5 +2372,36 @@
       <p>Handles URLs in clipboard, relative paths, and special characters</p>
     </div>
   `);
+  });
+  api.mapkey("aci", "\u{1F4CB} Copy image to clipboard (direct file)", () => {
+    api.Hints.create("img[src]", async (imgElement) => {
+      try {
+        const response = await fetch(imgElement.src);
+        const blob = await response.blob();
+        const clipboardItem = new ClipboardItem({ [blob.type]: blob });
+        await navigator.clipboard.write([clipboardItem]);
+        api.Front.showBanner("\u2705 Image copied to clipboard!");
+      } catch (error) {
+        console.error("Image copy failed:", error);
+        api.Front.showBanner("\u274C Failed to copy image");
+      }
+    });
+  });
+  api.mapkey("acy", "\u{1F4CB} Copy multiple images", () => {
+    api.Hints.create(
+      "img[src]",
+      async (imgElement) => {
+        try {
+          const response = await fetch(imgElement.src);
+          const blob = await response.blob();
+          const clipboardItem = new ClipboardItem({ [blob.type]: blob });
+          await navigator.clipboard.write([clipboardItem]);
+          api.Front.showBanner(`\u2705 Copied: ${imgElement.src}`);
+        } catch (error) {
+          api.Front.showBanner("\u274C Failed to copy image");
+        }
+      },
+      { multipleHits: true }
+    );
   });
 })();
