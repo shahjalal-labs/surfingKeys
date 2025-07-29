@@ -30,7 +30,8 @@
 │   │   │   └── webDevOpener.js
 │   │   ├── testDate.js
 │   │   └── yank
-│   │       └── imgYank.js
+│   │       ├── imgYank.js
+│   │       └── urlYanker.js
 │   └── settings
 │       ├── settings.js
 │       └── theme.js
@@ -38,6 +39,6 @@
 ├── surfingkeys.bundle.js
 └── surfingkeys.js
 
-10 directories, 26 files
+10 directories, 27 files
 
 ```
