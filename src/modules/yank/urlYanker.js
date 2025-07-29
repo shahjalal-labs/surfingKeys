@@ -34,29 +34,58 @@ mapkey("ag,", "Open root URL in new tab", () => {
   window.open(root, "_blank");
 });
 
-function goToWithClipboard(n = 0) {
-  const { origin, pathname } = window.location;
-  const parts = pathname.split("/").filter(Boolean);
-  const base = parts.slice(0, n).join("/");
+// src/modules/urlManipulator.js
+function appendClipboardToPath(n = 0) {
+  try {
+    const { origin, pathname } = window.location;
+    const parts = pathname.split("/").filter(Boolean);
+    const base = n > 0 ? parts.slice(0, n).join("/") : "";
 
-  Clipboard.read(function (clip) {
-    const str = String(clip || "").trim();
+    Clipboard.read((clip) => {
+      // Handle clipboard type safety
+      let clipContent = "";
+      if (typeof clip === "string") {
+        clipContent = clip;
+      } else if (clip && typeof clip.data === "string") {
+        clipContent = clip.data;
+      } else {
+        throw new Error("Clipboard content is not a string");
+      }
 
-    if (!str) {
-      console.warn("Clipboard is empty.");
-      return;
-    }
+      // Clean and normalize paths
+      const cleanClip = clipContent
+        .replace(/^\/+|\/+$/g, "") // Trim leading/trailing slashes
+        .replace(/\/{2,}/g, "/"); // Remove duplicate slashes
 
-    const cleanedClip = str.replace(/^\/|\/$/g, ""); // remove leading/trailing slashes
-    const fullPath = [base, cleanedClip].filter(Boolean).join("/");
-    const finalUrl = `${origin}/${fullPath}`;
+      // Construct new URL
+      const newPath = base ? `${base}/${cleanClip}` : cleanClip;
+      const finalUrl = `${origin}/${newPath}`.replace(/\/{2,}/g, "/");
 
-    window.location.href = finalUrl;
-  });
+      // Debug info
+      console.debug("URL Manipulation Debug:");
+      console.debug("- Original URL:", window.location.href);
+      console.debug("- Base segments:", base);
+      console.debug("- Clipboard content:", clipContent);
+      console.debug("- Cleaned clipboard:", cleanClip);
+      console.debug("- Constructed URL:", finalUrl);
+
+      // Navigate
+      api.Front.showBanner(`↗️ Redirecting to: ${finalUrl}`);
+      window.location.href = finalUrl;
+    });
+  } catch (error) {
+    console.error("URL Manipulation Error:", error);
+    api.Front.showBanner(`❌ Error: ${error.message}`);
+  }
 }
 
-// ap → go to root + clipboard
-mapkey("ap,", "Go to root + clipboard path", () => goToWithClipboard(0));
-mapkey("ap1", "Go to 1st path + clipboard path", () => goToWithClipboard(1));
-mapkey("ap2", "Go to 2nd path + clipboard path", () => goToWithClipboard(2));
-mapkey("ap3", "Go to 3rd path + clipboard path", () => goToWithClipboard(3));
+// Create mappings ap, to ap9
+api.mapkey("ap,", "Append clipboard to root path", () =>
+  appendClipboardToPath(0),
+);
+
+for (let i = 1; i <= 9; i++) {
+  api.mapkey(`ap${i}`, `Append clipboard to first ${i} path segments`, () =>
+    appendClipboardToPath(i),
+  );
+}

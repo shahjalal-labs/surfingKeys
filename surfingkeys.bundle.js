@@ -2308,24 +2308,47 @@
     const root = window.location.origin;
     window.open(root, "_blank");
   });
-  function goToWithClipboard(n = 0) {
-    const { origin, pathname } = window.location;
-    const parts = pathname.split("/").filter(Boolean);
-    const base = parts.slice(0, n).join("/");
-    Clipboard.read(function(clip) {
-      const str = String(clip || "").trim();
-      if (!str) {
-        console.warn("Clipboard is empty.");
-        return;
-      }
-      const cleanedClip = str.replace(/^\/|\/$/g, "");
-      const fullPath = [base, cleanedClip].filter(Boolean).join("/");
-      const finalUrl = `${origin}/${fullPath}`;
-      window.location.href = finalUrl;
-    });
+  function appendClipboardToPath(n = 0) {
+    try {
+      const { origin, pathname } = window.location;
+      const parts = pathname.split("/").filter(Boolean);
+      const base = n > 0 ? parts.slice(0, n).join("/") : "";
+      Clipboard.read((clip) => {
+        let clipContent = "";
+        if (typeof clip === "string") {
+          clipContent = clip;
+        } else if (clip && typeof clip.data === "string") {
+          clipContent = clip.data;
+        } else {
+          throw new Error("Clipboard content is not a string");
+        }
+        const cleanClip = clipContent.replace(/^\/+|\/+$/g, "").replace(/\/{2,}/g, "/");
+        const newPath = base ? `${base}/${cleanClip}` : cleanClip;
+        const finalUrl = `${origin}/${newPath}`.replace(/\/{2,}/g, "/");
+        console.debug("URL Manipulation Debug:");
+        console.debug("- Original URL:", window.location.href);
+        console.debug("- Base segments:", base);
+        console.debug("- Clipboard content:", clipContent);
+        console.debug("- Cleaned clipboard:", cleanClip);
+        console.debug("- Constructed URL:", finalUrl);
+        api.Front.showBanner(`\u2197\uFE0F Redirecting to: ${finalUrl}`);
+        window.location.href = finalUrl;
+      });
+    } catch (error) {
+      console.error("URL Manipulation Error:", error);
+      api.Front.showBanner(`\u274C Error: ${error.message}`);
+    }
   }
-  mapkey("ap,", "Go to root + clipboard path", () => goToWithClipboard(0));
-  mapkey("ap1", "Go to 1st path + clipboard path", () => goToWithClipboard(1));
-  mapkey("ap2", "Go to 2nd path + clipboard path", () => goToWithClipboard(2));
-  mapkey("ap3", "Go to 3rd path + clipboard path", () => goToWithClipboard(3));
+  api.mapkey(
+    "ap,",
+    "Append clipboard to root path",
+    () => appendClipboardToPath(0)
+  );
+  for (let i = 1; i <= 9; i++) {
+    api.mapkey(
+      `ap${i}`,
+      `Append clipboard to first ${i} path segments`,
+      () => appendClipboardToPath(i)
+    );
+  }
 })();
