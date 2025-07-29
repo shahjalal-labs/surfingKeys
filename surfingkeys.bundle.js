@@ -2373,35 +2373,4 @@
     </div>
   `);
   });
-  api.mapkey("aci", "\u{1F4CB} Copy image to clipboard (direct file)", () => {
-    api.Hints.create("img[src]", async (imgElement) => {
-      try {
-        const response = await fetch(imgElement.src);
-        const blob = await response.blob();
-        const clipboardItem = new ClipboardItem({ [blob.type]: blob });
-        await navigator.clipboard.write([clipboardItem]);
-        api.Front.showBanner("\u2705 Image copied to clipboard!");
-      } catch (error) {
-        console.error("Image copy failed:", error);
-        api.Front.showBanner("\u274C Failed to copy image");
-      }
-    });
-  });
-  api.mapkey("acy", "\u{1F4CB} Copy multiple images", () => {
-    api.Hints.create(
-      "img[src]",
-      async (imgElement) => {
-        try {
-          const response = await fetch(imgElement.src);
-          const blob = await response.blob();
-          const clipboardItem = new ClipboardItem({ [blob.type]: blob });
-          await navigator.clipboard.write([clipboardItem]);
-          api.Front.showBanner(`\u2705 Copied: ${imgElement.src}`);
-        } catch (error) {
-          api.Front.showBanner("\u274C Failed to copy image");
-        }
-      },
-      { multipleHits: true }
-    );
-  });
 })();
