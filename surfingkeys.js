@@ -15,3 +15,4 @@ import "./src/modules/hoverClick/hoverClick";
 import "./src/modules/testDate";
 import "./src/modules/fzfFinder";
 import "./src/modules/opener/resourceOpener";
+import "./src/modules/yank/urlYanker";
