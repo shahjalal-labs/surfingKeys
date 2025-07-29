@@ -28,11 +28,9 @@
 │   │   │   ├── resourceOpener.js
 │   │   │   ├── socialOpener.js
 │   │   │   └── webDevOpener.js
-│   │   ├── refractorModulesPrompt.md
 │   │   ├── testDate.js
 │   │   └── yank
 │   │       └── imgYank.js
-│   ├── refractorSrcPrompt.md
 │   └── settings
 │       ├── settings.js
 │       └── theme.js
@@ -40,6 +38,6 @@
 ├── surfingkeys.bundle.js
 └── surfingkeys.js
 
-10 directories, 28 files
+10 directories, 26 files
 
 ```

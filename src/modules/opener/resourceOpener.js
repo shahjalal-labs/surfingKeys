@@ -11,18 +11,6 @@ const openGDrive = () => {
   }
 };
 api.mapkey("ord", "open GDrive Resource", openGDrive);
-
-/* const openImgbb = () => {
-  const path = "imgbb" || "ibb";
-  if (window.location.hostname.includes(path)) {
-    window.location.href = "https://md-shahjalal.imgbb.com/";
-  } else {
-    window.open("https://md-shahjalal.imgbb.com/", "_blank");
-  }
-};
-api.mapkey("ori", "open imgbb Resource", openImgbb);
- */
-
 const openImgbb = () => {
   if (
     window.location.hostname.includes("imgbb") ||
