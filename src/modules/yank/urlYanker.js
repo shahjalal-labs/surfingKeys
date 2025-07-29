@@ -38,35 +38,57 @@ mapkey("ag,", "Open root URL in new tab", () => {
 function appendClipboardToPath(n = 0) {
   try {
     const { origin, pathname } = window.location;
-    const parts = pathname.split("/").filter(Boolean);
-    const base = n > 0 ? parts.slice(0, n).join("/") : "";
+
+    // Extract and clean path segments
+    const segments = pathname.split("/").filter(Boolean);
+    const base = n > 0 ? segments.slice(0, n).join("/") : "";
 
     Clipboard.read((clip) => {
-      // Handle clipboard type safety
+      // Robust type handling
       let clipContent = "";
       if (typeof clip === "string") {
         clipContent = clip;
-      } else if (clip && typeof clip.data === "string") {
-        clipContent = clip.data;
+      } else if (clip?.data) {
+        clipContent = String(clip.data);
       } else {
         throw new Error("Clipboard content is not a string");
       }
 
-      // Clean and normalize paths
-      const cleanClip = clipContent
-        .replace(/^\/+|\/+$/g, "") // Trim leading/trailing slashes
-        .replace(/\/{2,}/g, "/"); // Remove duplicate slashes
+      // Extract path from clipboard if it contains a full URL
+      let clipPath = clipContent;
+      try {
+        if (clipContent.includes("://")) {
+          const url = new URL(clipContent);
+          clipPath = url.pathname + url.search + url.hash;
+        }
+      } catch (e) {
+        // Not a valid URL, use as-is
+      }
 
-      // Construct new URL
-      const newPath = base ? `${base}/${cleanClip}` : cleanClip;
-      const finalUrl = `${origin}/${newPath}`.replace(/\/{2,}/g, "/");
+      // Normalize all paths
+      const normalize = (path) =>
+        path
+          .replace(/^\/+|\/+$/g, "") // Trim slashes
+          .replace(/\/{2,}/g, "/"); // Remove duplicate slashes
+
+      const cleanBase = normalize(base);
+      const cleanClip = normalize(clipPath);
+
+      // Construct final path
+      const newPath = [cleanBase, cleanClip]
+        .filter((p) => p.length > 0)
+        .join("/");
+
+      // Build final URL without double origin
+      const finalUrl = new URL(newPath, origin).href;
 
       // Debug info
       console.debug("URL Manipulation Debug:");
       console.debug("- Original URL:", window.location.href);
       console.debug("- Base segments:", base);
       console.debug("- Clipboard content:", clipContent);
-      console.debug("- Cleaned clipboard:", cleanClip);
+      console.debug("- Cleaned base:", cleanBase);
+      console.debug("- Cleaned clip:", cleanClip);
       console.debug("- Constructed URL:", finalUrl);
 
       // Navigate
@@ -89,3 +111,23 @@ for (let i = 1; i <= 9; i++) {
     appendClipboardToPath(i),
   );
 }
+
+// Add help documentation
+api.mapkey("aph", "Show URL manipulator help", () => {
+  api.Front.showPopup(`
+    <div style="padding:15px;font-family:system-ui;max-width:500px">
+      <h3>URL Path Manipulator Help</h3>
+      <p><strong>ap,</strong>: Append clipboard to domain root</p>
+      <p><strong>ap1-ap9</strong>: Append after N path segments</p>
+      <p><strong>Examples</strong>:</p>
+      <ul>
+        <li>URL: <code>http://localhost:5173/dashboard/tourist</code></li>
+        <li>Clipboard: <code>manage-profile</code></li>
+        <li><code>ap,</code> → <code>http://localhost:5173/manage-profile</code></li>
+        <li><code>ap1</code> → <code>http://localhost:5173/dashboard/manage-profile</code></li>
+        <li><code>ap2</code> → <code>http://localhost:5173/dashboard/tourist/manage-profile</code></li>
+      </ul>
+      <p>Handles URLs in clipboard, relative paths, and special characters</p>
+    </div>
+  `);
+});

@@ -2311,25 +2311,36 @@
   function appendClipboardToPath(n = 0) {
     try {
       const { origin, pathname } = window.location;
-      const parts = pathname.split("/").filter(Boolean);
-      const base = n > 0 ? parts.slice(0, n).join("/") : "";
+      const segments = pathname.split("/").filter(Boolean);
+      const base = n > 0 ? segments.slice(0, n).join("/") : "";
       Clipboard.read((clip) => {
         let clipContent = "";
         if (typeof clip === "string") {
           clipContent = clip;
-        } else if (clip && typeof clip.data === "string") {
-          clipContent = clip.data;
+        } else if (clip?.data) {
+          clipContent = String(clip.data);
         } else {
           throw new Error("Clipboard content is not a string");
         }
-        const cleanClip = clipContent.replace(/^\/+|\/+$/g, "").replace(/\/{2,}/g, "/");
-        const newPath = base ? `${base}/${cleanClip}` : cleanClip;
-        const finalUrl = `${origin}/${newPath}`.replace(/\/{2,}/g, "/");
+        let clipPath = clipContent;
+        try {
+          if (clipContent.includes("://")) {
+            const url = new URL(clipContent);
+            clipPath = url.pathname + url.search + url.hash;
+          }
+        } catch (e) {
+        }
+        const normalize = (path) => path.replace(/^\/+|\/+$/g, "").replace(/\/{2,}/g, "/");
+        const cleanBase = normalize(base);
+        const cleanClip = normalize(clipPath);
+        const newPath = [cleanBase, cleanClip].filter((p) => p.length > 0).join("/");
+        const finalUrl = new URL(newPath, origin).href;
         console.debug("URL Manipulation Debug:");
         console.debug("- Original URL:", window.location.href);
         console.debug("- Base segments:", base);
         console.debug("- Clipboard content:", clipContent);
-        console.debug("- Cleaned clipboard:", cleanClip);
+        console.debug("- Cleaned base:", cleanBase);
+        console.debug("- Cleaned clip:", cleanClip);
         console.debug("- Constructed URL:", finalUrl);
         api.Front.showBanner(`\u2197\uFE0F Redirecting to: ${finalUrl}`);
         window.location.href = finalUrl;
@@ -2351,4 +2362,22 @@
       () => appendClipboardToPath(i)
     );
   }
+  api.mapkey("aph", "Show URL manipulator help", () => {
+    api.Front.showPopup(`
+    <div style="padding:15px;font-family:system-ui;max-width:500px">
+      <h3>URL Path Manipulator Help</h3>
+      <p><strong>ap,</strong>: Append clipboard to domain root</p>
+      <p><strong>ap1-ap9</strong>: Append after N path segments</p>
+      <p><strong>Examples</strong>:</p>
+      <ul>
+        <li>URL: <code>http://localhost:5173/dashboard/tourist</code></li>
+        <li>Clipboard: <code>manage-profile</code></li>
+        <li><code>ap,</code> \u2192 <code>http://localhost:5173/manage-profile</code></li>
+        <li><code>ap1</code> \u2192 <code>http://localhost:5173/dashboard/manage-profile</code></li>
+        <li><code>ap2</code> \u2192 <code>http://localhost:5173/dashboard/tourist/manage-profile</code></li>
+      </ul>
+      <p>Handles URLs in clipboard, relative paths, and special characters</p>
+    </div>
+  `);
+  });
 })();
