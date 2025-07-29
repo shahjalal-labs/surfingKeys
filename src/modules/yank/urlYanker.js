@@ -37,17 +37,20 @@ mapkey("ag,", "Open root URL in new tab", () => {
 function goToWithClipboard(n = 0) {
   const { origin, pathname } = window.location;
   const parts = pathname.split("/").filter(Boolean);
+  const base = parts.slice(0, n).join("/");
 
-  const base = parts.slice(0, n).join("/"); // First `n` path segments
-
-  // Read from clipboard, clean slashes
   Clipboard.read(function (clip) {
-    if (!clip) return;
+    const str = String(clip || "").trim();
 
-    const cleanedClip = clip.replace(/^\/|\/$/g, ""); // Remove starting/trailing slash
+    if (!str) {
+      console.warn("Clipboard is empty.");
+      return;
+    }
+
+    const cleanedClip = str.replace(/^\/|\/$/g, ""); // remove leading/trailing slashes
     const fullPath = [base, cleanedClip].filter(Boolean).join("/");
-
     const finalUrl = `${origin}/${fullPath}`;
+
     window.location.href = finalUrl;
   });
 }

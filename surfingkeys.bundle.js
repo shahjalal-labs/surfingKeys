@@ -2313,8 +2313,12 @@
     const parts = pathname.split("/").filter(Boolean);
     const base = parts.slice(0, n).join("/");
     Clipboard.read(function(clip) {
-      if (!clip) return;
-      const cleanedClip = clip.replace(/^\/|\/$/g, "");
+      const str = String(clip || "").trim();
+      if (!str) {
+        console.warn("Clipboard is empty.");
+        return;
+      }
+      const cleanedClip = str.replace(/^\/|\/$/g, "");
       const fullPath = [base, cleanedClip].filter(Boolean).join("/");
       const finalUrl = `${origin}/${fullPath}`;
       window.location.href = finalUrl;
