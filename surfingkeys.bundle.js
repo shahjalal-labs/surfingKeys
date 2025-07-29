@@ -2354,4 +2354,22 @@
     </div>
   `);
   });
+
+  // surfingkeys.js
+  settings.defaultLLMProvider = "deepseek";
+  settings.llm = {
+    deepseek: {
+      apiBaseUrl: "https://api.deepseek.com",
+      apiKey: "sk-56bf47a563244841b72f29af22044533",
+      model: "deepseek-chat"
+    }
+  };
+  api.mapkey("A", "#8Open DeepSeek Chat with role", function() {
+    api.Front.openOmnibar({
+      type: "LLMChat",
+      extra: {
+        system: "You are a Linux and browser automation assistant. Reply clearly and concisely, assuming user uses Arch, CLI, and Neovim."
+      }
+    });
+  });
 })();
