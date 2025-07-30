@@ -17,14 +17,13 @@ import "./src/modules/fzfFinder.js";
 import "./src/modules/opener/resourceOpener.js";
 import "./src/modules/yank/urlYanker.js";
 
-// sk-56bf47a563244841b72f29af22044533
 //
 settings.defaultLLMProvider = "deepseek";
 
 settings.llm = {
   deepseek: {
     apiBaseUrl: "https://api.deepseek.com",
-    apiKey: "sk-56bf47a563244841b72f29af22044533",
+    apiKey: "check the env with name DEEPSEEK",
     model: "deepseek-chat",
   },
 };

@@ -21,9 +21,9 @@ api.mapkey("ouw", "whatsApp", function () {
 // p: open zoom session
 api.mapkey("oul", "open linkedin", function () {
   if (window.location.hostname.includes("linkedin")) {
-    window.location.href = "https://www.linkedin.com/in/shahjalal-mern/";
+    window.location.href = "https://www.linkedin.com/in/shahjalal-labs/";
   } else {
-    window.open("https://www.linkedin.com/in/shahjalal-mern/", "_blank");
+    window.open("https://www.linkedin.com/in/shahjalal-labs/", "_blank");
   }
 });
 // p: open discord session announcement
@@ -45,5 +45,14 @@ api.mapkey("anz", "open ejp discord sesssion announcement", function () {
     window.location.href = "https://www.zoom.us/join";
   } else {
     window.open("https://www.zoom.us/profile", "_blank");
+  }
+});
+
+//t: open youtube @shahjalal-labs
+api.mapkey("ouy", "open yt @shahjalal-labs", function () {
+  if (window.location.hostname.includes("youtube")) {
+    window.location.href = "https://www.youtube.com/@shahjalal-labs";
+  } else {
+    window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
   }
 });
