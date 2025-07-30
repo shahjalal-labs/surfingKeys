@@ -623,9 +623,9 @@
   });
   api.mapkey("oul", "open linkedin", function() {
     if (window.location.hostname.includes("linkedin")) {
-      window.location.href = "https://www.linkedin.com/in/shahjalal-mern/";
+      window.location.href = "https://www.linkedin.com/in/shahjalal-labs/";
     } else {
-      window.open("https://www.linkedin.com/in/shahjalal-mern/", "_blank");
+      window.open("https://www.linkedin.com/in/shahjalal-labs/", "_blank");
     }
   });
   api.mapkey("oud", "open ejp discord sesssion announcement", function() {
@@ -643,6 +643,13 @@
       window.location.href = "https://www.zoom.us/join";
     } else {
       window.open("https://www.zoom.us/profile", "_blank");
+    }
+  });
+  api.mapkey("ouy", "open yt @shahjalal-labs", function() {
+    if (window.location.hostname.includes("youtube")) {
+      window.location.href = "https://www.youtube.com/@shahjalal-labs";
+    } else {
+      window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
     }
   });
 
@@ -2360,7 +2367,7 @@
   settings.llm = {
     deepseek: {
       apiBaseUrl: "https://api.deepseek.com",
-      apiKey: "sk-56bf47a563244841b72f29af22044533",
+      apiKey: "check the env with name DEEPSEEK",
       model: "deepseek-chat"
     }
   };
