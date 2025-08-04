@@ -3,6 +3,7 @@ api.mapkey("ouc", "open gContacts", function () {
   if (window.location.hostname.includes("contacts")) {
     window.location.href = "https://contacts.google.com/new";
   } else {
+    window.location.href = "https://contacts.google.com/";
     window.open("https://contacts.google.com/new", "_blank");
   }
 });
