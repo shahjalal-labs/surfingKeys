@@ -1,3 +1,12 @@
+// p: open discord session announcement
+api.mapkey("ouc", "open gContacts", function () {
+  if (window.location.hostname.includes("contacts")) {
+    window.location.href = "https://contacts.google.com/new";
+  } else {
+    window.open("https://contacts.google.com/new", "_blank");
+  }
+});
+
 api.mapkey("oux", "open twitter @shahjalal_labs", function () {
   if (window.location.hostname.includes("x.com")) {
     window.location.href = "https://x.com/shahjalal_labs ";
