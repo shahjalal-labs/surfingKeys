@@ -2372,7 +2372,7 @@
     window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
   });
   api.mapkey("phs", "SCIC", function() {
-    if (window.location.hostname.includes("announcements")) {
+    if (window.location.pathname.includes("/groups/scic11/announcements")) {
       window.location.href = "https://www.facebook.com/groups/scic11/";
     } else {
       window.open(
