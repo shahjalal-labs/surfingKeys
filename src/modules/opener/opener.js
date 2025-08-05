@@ -12,12 +12,6 @@ api.mapkey("ay", "youtube opening", function () {
 });
 //
 //
-//t: Open Quran
-//
-api.mapkey("sq", "Open Quran", function () {
-  window.open("https://quran.com", "_blank");
-});
-
 //t:Open blank page
 api.mapkey("sb", "Open blank page", function () {
   window.open("https://blank.page/", "_blank");

@@ -14,3 +14,9 @@ api.mapkey("sj", "Open Wedding Nasheed", function () {
     "_blank",
   );
 });
+
+//t: Open Quran
+//
+api.mapkey("sq", "Open Quran", function () {
+  window.open("https://quran.com", "_blank");
+});

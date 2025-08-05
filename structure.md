@@ -4,6 +4,7 @@
 .
 ├── bun.lock
 ├── package.json
+├── random.md
 ├── readmeGenerate.md
 ├── README.md
 ├── src
@@ -24,6 +25,11 @@
 │   │   │   ├── islamicOpener.js
 │   │   │   ├── mernOpener.js
 │   │   │   ├── opener.js
+│   │   │   ├── PH
+│   │   │   │   ├── PhHelp
+│   │   │   │   │   └── phHelp.js
+│   │   │   │   └── PhWeb
+│   │   │   │       └── phWeb.js
 │   │   │   ├── phOpener.js
 │   │   │   ├── resourceOpener.js
 │   │   │   ├── socialOpener.js
@@ -39,6 +45,6 @@
 ├── surfingkeys.bundle.js
 └── surfingkeys.js
 
-10 directories, 27 files
+13 directories, 30 files
 
 ```
