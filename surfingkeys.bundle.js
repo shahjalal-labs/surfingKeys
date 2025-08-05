@@ -504,9 +504,6 @@
   api.mapkey("ay", "youtube opening", function() {
     window.open("https://www.youtube.com/", "_blank");
   });
-  api.mapkey("sq", "Open Quran", function() {
-    window.open("https://quran.com", "_blank");
-  });
   api.mapkey("sb", "Open blank page", function() {
     window.open("https://blank.page/", "_blank");
   });
@@ -609,6 +606,7 @@
     if (window.location.hostname.includes("contacts")) {
       window.location.href = "https://contacts.google.com/new";
     } else {
+      window.location.href = "https://contacts.google.com/";
       window.open("https://contacts.google.com/new", "_blank");
     }
   });
@@ -667,14 +665,8 @@
       "_blank"
     );
   });
-  api.mapkey("pa,", "HELP DESK", function() {
+  api.mapkey("pwh", "HELP DESK", function() {
     window.open("https://helpdesk.programming-hero.com/", "_blank");
-  });
-  api.mapkey("sn", "PH b11 github repositories", function() {
-    window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
-  });
-  api.mapkey("s1", "fbLevel1", function() {
-    window.open("https://www.facebook.com/groups/programmingHero", "_blank");
   });
   api.mapkey("si", "L2B4Web", function() {
     window.open(
@@ -706,28 +698,22 @@
       "_blank"
     );
   });
-  api.mapkey("s2", "fbLevel2", function() {
-    window.open("https://www.facebook.com/groups/phapollo4", "_blank");
-  });
   api.mapkey("s4", "L2B4 typescript module 2", function() {
     window.open(
       "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing"
     );
   });
-  api.mapkey("ai", "Level1 Batch 11", function() {
+  api.mapkey("pwj", "Level1 Batch 11", function() {
     window.open(
       "https://web.programming-hero.com/web-11/video/web-11-15-9-module-summary-legal-system-practice-task-",
       "_blank"
     );
   });
-  api.mapkey("ak", "outline level1 batch 11", function() {
+  api.mapkey("pwo", "outline level1 batch 11", function() {
     window.open(
       "https://web.programming-hero.com/675439d776a088463223e16d/course-outline",
       "_blank"
     );
-  });
-  api.mapkey("aj", "fb  Level1 Batch 11 support group", function() {
-    window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
   });
 
   // src/modules/opener/islamicOpener.js
@@ -736,6 +722,9 @@
       "https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds",
       "_blank"
     );
+  });
+  api.mapkey("sq", "Open Quran", function() {
+    window.open("https://quran.com", "_blank");
   });
 
   // src/modules/yank/imgYank.js
@@ -2367,6 +2356,30 @@
       <p>Handles URLs in clipboard, relative paths, and special characters</p>
     </div>
   `);
+  });
+
+  // src/modules/opener/PH/PhHelp/phHelp.js
+  api.mapkey("phg", "PH b11 github repositories", function() {
+    window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
+  });
+  api.mapkey("phc", "fbLevel1", function() {
+    window.open("https://www.facebook.com/groups/programmingHero", "_blank");
+  });
+  api.mapkey("ph2", "fbLevel2", function() {
+    window.open("https://www.facebook.com/groups/phapollo4", "_blank");
+  });
+  api.mapkey("phf", "fb  Level1 Batch 11 support group", function() {
+    window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
+  });
+  api.mapkey("phs", "SCIC", function() {
+    if (window.location.hostname.includes("announcements")) {
+      window.location.href = "https://www.facebook.com/groups/scic11/";
+    } else {
+      window.open(
+        "https://www.facebook.com/groups/scic11/announcements",
+        "_blank"
+      );
+    }
   });
 
   // surfingkeys.js
