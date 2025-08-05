@@ -16,6 +16,8 @@ import "./src/modules/testDate.js";
 import "./src/modules/fzfFinder.js";
 import "./src/modules/opener/resourceOpener.js";
 import "./src/modules/yank/urlYanker.js";
+import "./src/modules/opener/PH/PhHelp/phHelp.js";
+import "./src/modules/opener/PH/PhWeb/phWeb.js";
 
 //
 settings.defaultLLMProvider = "deepseek";
