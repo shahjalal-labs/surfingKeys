@@ -2373,6 +2373,7 @@
   });
   api.mapkey("phs", "SCIC", function() {
     if (window.location.pathname.includes("/groups/scic11/announcements")) {
+      console.log(window.location.pathname, "pathname");
       window.location.href = "https://www.facebook.com/groups/scic11/";
     } else {
       window.open(
