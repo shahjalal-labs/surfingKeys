@@ -66,11 +66,5 @@ api.mapkey("pwj", "Level1 Batch 11", function () {
   );
 });
 //
-//p: outline level1 batch 11
-api.mapkey("pwo", "outline level1 batch 11", function () {
-  window.open(
-    "https://web.programming-hero.com/675439d776a088463223e16d/course-outline",
-    "_blank",
-  );
-});
+
 //
