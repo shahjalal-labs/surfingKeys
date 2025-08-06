@@ -2391,7 +2391,7 @@
   });
   api.mapkey("pwo", "outline SCIC", function() {
     window.open(
-      "https://web.programming-hero.com/675439d776a088463223e16d/course-outline",
+      "https://web.programming-hero.com/688f7b564965ce7350b23f35/course-outline",
       "_blank"
     );
   });
