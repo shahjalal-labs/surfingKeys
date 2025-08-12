@@ -2714,7 +2714,7 @@
   api.map("td", "yt");
   api.map("th", "<<");
   api.map("gt", "t");
-  api.map("tr", ">>");
+  api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
 
   // surfingkeys.js

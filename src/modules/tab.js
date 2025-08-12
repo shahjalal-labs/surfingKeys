@@ -67,5 +67,5 @@ api.map("th", "<<");
   api.Normal.feedkeys(">>");
 }); */
 api.map("gt", "t");
-api.map("tr", ">>");
+api.map("tl", ">>");
 console.log("🚀 Console error-free tab navigation loaded!");
