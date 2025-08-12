@@ -2689,31 +2689,6 @@
   });
 
   // src/modules/tab.js
-  api.mapkey("tj", "\u{1F53C} Jump to first tab", function() {
-    api.RUNTIME("focusTab", { tabId: "first" });
-  });
-  api.mapkey("tk", "\u{1F53D} Jump to last tab", function() {
-    api.RUNTIME("focusTab", { tabId: "last" });
-  });
-  api.mapkey("th", "\u25C0\uFE0F Jump to previous tab", function() {
-    api.RUNTIME("previousTab");
-  });
-  api.mapkey("tl", "\u25B6\uFE0F Jump to next tab", function() {
-    api.RUNTIME("nextTab");
-  });
-  api.mapkey("tm", "\u{1F3AF} Jump to middle tab", function() {
-    api.RUNTIME("getTabs", {}, (response) => {
-      const tabs = response.tabs;
-      const middleIndex = Math.floor(tabs.length / 2);
-      const middleTab = tabs[middleIndex];
-      if (middleTab) {
-        api.RUNTIME("focusTab", { tabId: middleTab.id });
-        api.Front.showBanner(
-          `\u{1F3AF} Jumped to middle tab (${middleIndex + 1}/${tabs.length})`
-        );
-      }
-    });
-  });
   for (let i = 1; i <= 9; i++) {
     api.mapkey(`t${i}`, `\u{1F522} Jump to tab ${i}`, function() {
       api.RUNTIME("getTabs", {}, (response) => {
