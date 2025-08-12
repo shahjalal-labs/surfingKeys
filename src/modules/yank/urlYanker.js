@@ -122,3 +122,46 @@ api.mapkey("aph", "Show URL manipulator help", () => {
     </div>
   `);
 });
+
+// Replace current URL with clipboard content
+api.mapkey("ar", "🔄 Replace current URL with clipboard content", function () {
+  api.Clipboard.read((clipContent) => {
+    try {
+      // Handle different clipboard content types
+      let url = "";
+      if (typeof clipContent === "string") {
+        url = clipContent;
+      } else if (clipContent?.data) {
+        url = String(clipContent.data);
+      } else {
+        throw new Error("Clipboard content is not a valid string");
+      }
+
+      // Clean and validate the URL
+      url = url.trim();
+
+      if (!url) {
+        throw new Error("Clipboard is empty");
+      }
+
+      // Add protocol if missing (assume https for non-localhost)
+      if (!url.match(/^https?:\/\//)) {
+        if (url.includes("localhost") || url.match(/^\d+\.\d+\.\d+\.\d+/)) {
+          url = `http://${url}`;
+        } else {
+          url = `https://${url}`;
+        }
+      }
+
+      // Validate URL format
+      new URL(url); // This will throw if invalid
+
+      // Show banner and navigate
+      api.Front.showBanner(`🔄 Replacing URL with: ${url}`);
+      window.location.href = url;
+    } catch (error) {
+      console.error("URL Replace Error:", error);
+      api.Front.showBanner(`❌ Error: ${error.message}`);
+    }
+  });
+});

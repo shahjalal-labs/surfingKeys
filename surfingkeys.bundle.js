@@ -2351,6 +2351,37 @@
     </div>
   `);
   });
+  api.mapkey("ar", "\u{1F504} Replace current URL with clipboard content", function() {
+    api.Clipboard.read((clipContent) => {
+      try {
+        let url = "";
+        if (typeof clipContent === "string") {
+          url = clipContent;
+        } else if (clipContent?.data) {
+          url = String(clipContent.data);
+        } else {
+          throw new Error("Clipboard content is not a valid string");
+        }
+        url = url.trim();
+        if (!url) {
+          throw new Error("Clipboard is empty");
+        }
+        if (!url.match(/^https?:\/\//)) {
+          if (url.includes("localhost") || url.match(/^\d+\.\d+\.\d+\.\d+/)) {
+            url = `http://${url}`;
+          } else {
+            url = `https://${url}`;
+          }
+        }
+        new URL(url);
+        api.Front.showBanner(`\u{1F504} Replacing URL with: ${url}`);
+        window.location.href = url;
+      } catch (error) {
+        console.error("URL Replace Error:", error);
+        api.Front.showBanner(`\u274C Error: ${error.message}`);
+      }
+    });
+  });
 
   // src/modules/opener/PH/PhHelp/phHelp.js
   api.mapkey("phg", "PH b11 github repositories", function() {
