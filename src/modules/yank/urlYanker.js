@@ -157,11 +157,11 @@ api.mapkey("ar", "🔄 Replace current URL with clipboard content", function () 
       new URL(url); // This will throw if invalid
 
       // Show banner and navigate
-      api.Front.showBanner(`🔄 Replacing URL with: ${url}`);
+      // api.Front.showBanner(`🔄 Replacing URL with: ${url}`);
       window.location.href = url;
     } catch (error) {
       console.error("URL Replace Error:", error);
-      api.Front.showBanner(`❌ Error: ${error.message}`);
+      // api.Front.showBanner(`❌ Error: ${error.message}`);
     }
   });
 });
@@ -363,26 +363,3 @@ api.mapkey("zt", "⚡ Fuzzy tab switcher", function () {
     renderTabs(tabs);
   });
 });
-
-// ===== 3. SMART CLIPBOARD HISTORY =====
-let clipboardHistory = JSON.parse(
-  localStorage.getItem("sk-clipboard-history") || "[]",
-);
-
-// Override clipboard write to save history
-const originalClipboardWrite = api.Clipboard.write;
-api.Clipboard.write = function (text) {
-  // Add to history
-  clipboardHistory.unshift(text);
-  // Keep only last 50 items
-  clipboardHistory = clipboardHistory.slice(0, 50);
-  // Remove duplicates
-  clipboardHistory = [...new Set(clipboardHistory)];
-  localStorage.setItem(
-    "sk-clipboard-history",
-    JSON.stringify(clipboardHistory),
-  );
-
-  // Call original function
-  return originalClipboardWrite.call(this, text);
-};
