@@ -2689,23 +2689,60 @@
   });
 
   // src/modules/tab.js
+  api.mapkey("tj", "\u{1F53C} Jump to first tab", function() {
+    api.Normal.feedkeys("g0");
+    api.Front.showBanner("\u{1F53C} First tab");
+  });
+  api.mapkey("tk", "\u{1F53D} Jump to last tab", function() {
+    api.Normal.feedkeys("g$");
+    api.Front.showBanner("\u{1F53D} Last tab");
+  });
+  api.mapkey("th", "\u25C0\uFE0F Jump to previous tab", function() {
+    api.Normal.feedkeys("E");
+    api.Front.showBanner("\u25C0\uFE0F Previous tab");
+  });
+  api.mapkey("tl", "\u25B6\uFE0F Jump to next tab", function() {
+    api.Normal.feedkeys("R");
+    api.Front.showBanner("\u25B6\uFE0F Next tab");
+  });
+  api.mapkey("tm", "\u{1F3AF} Jump to middle tab", function() {
+    api.RUNTIME("getTabs", { queryInfo: { currentWindow: true } }, (response) => {
+      if (response.tabs && response.tabs.length > 0) {
+        const middleIndex = Math.floor(response.tabs.length / 2) + 1;
+        api.Normal.feedkeys(middleIndex + "gt");
+        api.Front.showBanner(
+          `\u{1F3AF} Middle tab (${middleIndex}/${response.tabs.length})`
+        );
+      }
+    });
+  });
   for (let i = 1; i <= 9; i++) {
     api.mapkey(`t${i}`, `\u{1F522} Jump to tab ${i}`, function() {
-      api.RUNTIME("getTabs", {}, (response) => {
-        const tabs = response.tabs;
-        if (tabs[i - 1]) {
-          api.RUNTIME("focusTab", { tabId: tabs[i - 1].id });
-          api.Front.showBanner(`\u{1F522} Jumped to tab ${i}`);
-        } else {
-          api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
-        }
-      });
+      api.Normal.feedkeys(i + "gt");
+      api.Front.showBanner(`\u{1F522} Tab ${i}`);
     });
   }
-  api.mapkey("tp", "\u{1F504} Jump to previous active tab", function() {
-    api.RUNTIME("focusTab", { tabId: "previous" });
+  api.mapkey("tp", "\u{1F504} Jump to previous tab", function() {
+    api.Normal.feedkeys("<Alt-s>");
+    api.Front.showBanner("\u{1F504} Previous active tab");
   });
-  console.log("\u{1F680} Tab navigation shortcuts loaded!");
+  api.mapkey("tc", "\u274C Close tab and go to previous", function() {
+    api.Normal.feedkeys("x");
+    api.Front.showBanner("\u274C Tab closed");
+  });
+  api.mapkey("td", "\u{1F4C4} Duplicate current tab", function() {
+    api.Normal.feedkeys("yt");
+    api.Front.showBanner("\u{1F4C4} Tab duplicated");
+  });
+  api.mapkey("t<", "\u25C0\uFE0F Move tab left", function() {
+    api.Normal.feedkeys("<<");
+    api.Front.showBanner("\u25C0\uFE0F Tab moved left");
+  });
+  api.mapkey("t>", "\u25B6\uFE0F Move tab right", function() {
+    api.Normal.feedkeys(">>");
+    api.Front.showBanner("\u25B6\uFE0F Tab moved right");
+  });
+  console.log("\u{1F680} Console error-free tab navigation loaded!");
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
