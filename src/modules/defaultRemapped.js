@@ -1,6 +1,6 @@
 api.map("gt", "t");
 api.map("w", "d");
-api.map("t", "T");
+api.map("tt", "T");
 api.map("ao", ";di");
 api.map("su", ";U");
 api.map("C-1", "g0");
@@ -22,4 +22,5 @@ api.map("Ctrl+d", "<Ctrl-f>");
 // an example to remove mapkey `Ctrl-i`
 api.unmap("<ctrl-i>");
 api.unmap("p");
+api.unmap("t");
 api.map(",", "<Ctrl-6>");

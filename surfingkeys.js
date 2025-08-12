@@ -18,6 +18,7 @@ import "./src/modules/opener/resourceOpener.js";
 import "./src/modules/yank/urlYanker.js";
 import "./src/modules/opener/PH/PhHelp/phHelp.js";
 import "./src/modules/opener/PH/PhWeb/phWeb.js";
+import "./src/modules/tab.js";
 
 //
 settings.defaultLLMProvider = "deepseek";

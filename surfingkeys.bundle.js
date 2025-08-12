@@ -308,7 +308,7 @@
   // src/modules/defaultRemapped.js
   api.map("gt", "t");
   api.map("w", "d");
-  api.map("t", "T");
+  api.map("tt", "T");
   api.map("ao", ";di");
   api.map("su", ";U");
   api.map("C-1", "g0");
@@ -325,6 +325,7 @@
   api.map("Ctrl+d", "<Ctrl-f>");
   api.unmap("<ctrl-i>");
   api.unmap("p");
+  api.unmap("t");
   api.map(",", "<Ctrl-6>");
 
   // src/modules/github.js
@@ -2642,181 +2643,6 @@
       api.Front.showBanner(`\u{1F50D} Element info copied to clipboard`);
     });
   });
-  api.mapkey("zs1", "\u{1F4DC} Smooth scroll to percentage", function() {
-    const percent = prompt("Enter percentage (0-100):");
-    if (percent !== null && !isNaN(percent)) {
-      const target = document.documentElement.scrollHeight * percent / 100;
-      window.scrollTo({ top: target, behavior: "smooth" });
-      api.Front.showBanner(`\u{1F4DC} Scrolled to ${percent}%`);
-    }
-  });
-  var quickActions = [
-    { key: "r", name: "Reload page", action: () => location.reload() },
-    {
-      key: "c",
-      name: "Copy URL",
-      action: () => api.Clipboard.write(location.href)
-    },
-    {
-      key: "t",
-      name: "Copy title",
-      action: () => api.Clipboard.write(document.title)
-    },
-    {
-      key: "s",
-      name: "Screenshot",
-      action: () => api.Front.showBanner("\u{1F4F8} Screenshot feature needs implementation")
-    },
-    {
-      key: "f",
-      name: "Toggle fullscreen",
-      action: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()
-    },
-    { key: "p", name: "Print page", action: () => window.print() }
-  ];
-  api.mapkey("zq", "\u26A1 Quick actions menu", function() {
-    api.Front.showPopup(`
-    <div style="padding:20px;font-family:JetBrains Mono,monospace;background:#0f172a;color:#e2e8f0;border-radius:12px;min-width:300px">
-      <h3 style="margin:0 0 16px 0;color:#60a5fa">\u26A1 Quick Actions</h3>
-      ${quickActions.map((a) => `<div style="margin:8px 0;font-size:14px"><kbd>${a.key}</kbd> ${a.name}</div>`).join("")}
-      <div style="margin-top:16px;font-size:12px;opacity:0.7">Press any key or click outside to close</div>
-    </div>
-  `);
-  });
-  api.mapkey("zd", "\u{1F310} Domain jumper", function() {
-    const domains = [
-      "localhost:3000",
-      "localhost:5173",
-      "localhost:8080",
-      "github.com",
-      "stackoverflow.com",
-      "dev.to",
-      "youtube.com",
-      "chatgpt.com",
-      "claude.ai"
-    ];
-    const currentDomain = location.hostname + (location.port ? ":" + location.port : "");
-    const otherDomains = domains.filter((d) => d !== currentDomain);
-    if (otherDomains.length === 0) return;
-    const container = document.createElement("div");
-    Object.assign(container.style, {
-      position: "fixed",
-      top: "25%",
-      left: "50%",
-      transform: "translateX(-50%)",
-      backgroundColor: "#0f172a",
-      color: "#e2e8f0",
-      borderRadius: "12px",
-      boxShadow: "0 15px 40px rgba(0,0,0,0.6)",
-      zIndex: "10000",
-      padding: "20px",
-      fontFamily: "JetBrains Mono, monospace"
-    });
-    const title = document.createElement("h3");
-    title.textContent = "\u{1F310} Jump to Domain";
-    title.style.margin = "0 0 16px 0";
-    title.style.color = "#60a5fa";
-    otherDomains.forEach((domain, idx) => {
-      const div = document.createElement("div");
-      Object.assign(div.style, {
-        padding: "10px 16px",
-        margin: "4px 0",
-        borderRadius: "6px",
-        backgroundColor: "#1e293b",
-        cursor: "pointer",
-        fontSize: "14px",
-        border: "1px solid #334155",
-        transition: "all 0.15s ease"
-      });
-      div.textContent = `${idx + 1}. ${domain}`;
-      div.onmouseenter = () => div.style.backgroundColor = "#3b82f6";
-      div.onmouseleave = () => div.style.backgroundColor = "#1e293b";
-      div.onclick = () => {
-        const protocol = domain.includes("localhost") ? "http://" : "https://";
-        window.open(protocol + domain, "_blank");
-        container.remove();
-      };
-      container.appendChild(div);
-    });
-    container.appendChild(title);
-    document.body.appendChild(container);
-    setTimeout(() => container.remove(), 5e3);
-  });
-  var searchEngines = {
-    g: { name: "Google", url: "https://google.com/search?q=" },
-    s: { name: "Stack Overflow", url: "https://stackoverflow.com/search?q=" },
-    gh: { name: "GitHub", url: "https://github.com/search?q=" },
-    npm: { name: "NPM", url: "https://npmjs.com/search?q=" },
-    mdn: { name: "MDN", url: "https://developer.mozilla.org/en-US/search?q=" },
-    y: { name: "YouTube", url: "https://youtube.com/results?search_query=" }
-  };
-  api.mapkey("zz", "\u{1F50D} Multi-engine search", function() {
-    const query = prompt("\u{1F50D} Enter search query:");
-    if (!query) return;
-    const container = document.createElement("div");
-    Object.assign(container.style, {
-      position: "fixed",
-      top: "20%",
-      right: "20px",
-      zIndex: "10000",
-      backgroundColor: "#1a1a1a",
-      color: "#ffffff",
-      padding: "16px",
-      borderRadius: "8px",
-      fontFamily: "JetBrains Mono, monospace",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
-    });
-    const title = document.createElement("div");
-    title.textContent = `\u{1F50D} Search: "${query}"`;
-    title.style.marginBottom = "12px";
-    title.style.fontWeight = "bold";
-    Object.entries(searchEngines).forEach(([key, engine]) => {
-      const link = document.createElement("a");
-      link.href = engine.url + encodeURIComponent(query);
-      link.target = "_blank";
-      link.textContent = `${key}: ${engine.name}`;
-      link.style.display = "block";
-      link.style.color = "#60a5fa";
-      link.style.textDecoration = "none";
-      link.style.padding = "4px 0";
-      link.style.fontSize = "14px";
-      link.onmouseenter = () => link.style.backgroundColor = "#333";
-      link.onmouseleave = () => link.style.backgroundColor = "transparent";
-      container.appendChild(link);
-    });
-    container.appendChild(title);
-    document.body.appendChild(container);
-    setTimeout(() => container.remove(), 8e3);
-  });
-  api.mapkey("ze", "\u{1F4DD} Extract all text content", function() {
-    const extractors = {
-      headings: () => Array.from(document.querySelectorAll("h1,h2,h3,h4,h5,h6")).map(
-        (h) => h.textContent.trim()
-      ),
-      links: () => Array.from(document.querySelectorAll("a[href]")).map(
-        (a) => `${a.textContent.trim()} (${a.href})`
-      ),
-      emails: () => document.body.innerText.match(
-        /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g
-      ) || [],
-      phones: () => document.body.innerText.match(
-        /(\+\d{1,3}[- ]?)?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}/g
-      ) || [],
-      all: () => document.body.innerText.replace(/\s+/g, " ").trim()
-    };
-    const type = prompt(
-      "Extract type:\n1. headings\n2. links\n3. emails\n4. phones\n5. all\n\nEnter choice:"
-    );
-    const types = ["headings", "links", "emails", "phones", "all"];
-    const selectedType = types[parseInt(type) - 1] || "all";
-    const extracted = extractors[selectedType]();
-    const result = Array.isArray(extracted) ? extracted.join("\n") : extracted;
-    api.Clipboard.write(result);
-    api.Front.showBanner(
-      `\u{1F4DD} Extracted ${selectedType} (${result.split("\n").length} items)`
-    );
-  });
-  console.log("\u{1F680} 10x Speed Boost Features Loaded Successfully!");
 
   // src/modules/opener/PH/PhHelp/phHelp.js
   api.mapkey("phg", "PH b11 github repositories", function() {
@@ -2861,6 +2687,50 @@
       "_blank"
     );
   });
+
+  // src/modules/tab.js
+  api.mapkey("tj", "\u{1F53C} Jump to first tab", function() {
+    api.RUNTIME("focusTab", { tabId: "first" });
+  });
+  api.mapkey("tk", "\u{1F53D} Jump to last tab", function() {
+    api.RUNTIME("focusTab", { tabId: "last" });
+  });
+  api.mapkey("th", "\u25C0\uFE0F Jump to previous tab", function() {
+    api.RUNTIME("previousTab");
+  });
+  api.mapkey("tl", "\u25B6\uFE0F Jump to next tab", function() {
+    api.RUNTIME("nextTab");
+  });
+  api.mapkey("tm", "\u{1F3AF} Jump to middle tab", function() {
+    api.RUNTIME("getTabs", {}, (response) => {
+      const tabs = response.tabs;
+      const middleIndex = Math.floor(tabs.length / 2);
+      const middleTab = tabs[middleIndex];
+      if (middleTab) {
+        api.RUNTIME("focusTab", { tabId: middleTab.id });
+        api.Front.showBanner(
+          `\u{1F3AF} Jumped to middle tab (${middleIndex + 1}/${tabs.length})`
+        );
+      }
+    });
+  });
+  for (let i = 1; i <= 9; i++) {
+    api.mapkey(`t${i}`, `\u{1F522} Jump to tab ${i}`, function() {
+      api.RUNTIME("getTabs", {}, (response) => {
+        const tabs = response.tabs;
+        if (tabs[i - 1]) {
+          api.RUNTIME("focusTab", { tabId: tabs[i - 1].id });
+          api.Front.showBanner(`\u{1F522} Jumped to tab ${i}`);
+        } else {
+          api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
+        }
+      });
+    });
+  }
+  api.mapkey("tp", "\u{1F504} Jump to previous active tab", function() {
+    api.RUNTIME("focusTab", { tabId: "previous" });
+  });
+  console.log("\u{1F680} Tab navigation shortcuts loaded!");
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
