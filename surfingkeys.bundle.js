@@ -2581,6 +2581,7 @@
   });
 
   // src/modules/tab.js
+  var { mapkey: mapkey2, RUNTIME } = api;
   api.map("tj", "g0");
   api.map("tk", "g$");
   api.map("th", "E");
@@ -2608,6 +2609,23 @@
   api.map("gt", "t");
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
+  mapkey2("sxx", "Close all tabs from same host", function() {
+    RUNTIME("getTabs", null, function(tabs) {
+      RUNTIME("getCurrentTab", null, function(currentTab) {
+        const currentHost = new URL(currentTab.url).hostname;
+        const sameHostTabs = tabs.filter((tab) => {
+          try {
+            return new URL(tab.url).hostname === currentHost;
+          } catch (e) {
+            return false;
+          }
+        });
+        sameHostTabs.forEach((tab) => {
+          RUNTIME("removeTab", { tabId: tab.id });
+        });
+      });
+    });
+  });
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";

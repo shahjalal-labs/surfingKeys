@@ -1,5 +1,6 @@
 // 🚀 SUPER FAST TAB NAVIGATION - CONSOLE ERROR FREE
 
+const { mapkey, RUNTIME } = api;
 // tj - Jump to FIRST tab
 /* api.mapkey("tj", "🔼 Jump to first tab", function () {
   // Use SurfingKeys' built-in tab navigation
@@ -69,3 +70,21 @@ api.map("th", "<<");
 api.map("gt", "t");
 api.map("tl", ">>");
 console.log("🚀 Console error-free tab navigation loaded!");
+
+mapkey("sxx", "Close all tabs from same host", function () {
+  RUNTIME("getTabs", null, function (tabs) {
+    RUNTIME("getCurrentTab", null, function (currentTab) {
+      const currentHost = new URL(currentTab.url).hostname;
+      const sameHostTabs = tabs.filter((tab) => {
+        try {
+          return new URL(tab.url).hostname === currentHost;
+        } catch (e) {
+          return false;
+        }
+      });
+      sameHostTabs.forEach((tab) => {
+        RUNTIME("removeTab", { tabId: tab.id });
+      });
+    });
+  });
+});
