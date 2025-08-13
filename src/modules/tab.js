@@ -71,7 +71,7 @@ api.map("gt", "t");
 api.map("tl", ">>");
 console.log("🚀 Console error-free tab navigation loaded!");
 
-mapkey("sxx", "Close all tabs from same host", function () {
+/* mapkey("sxx", "Close all tabs from same host", function () {
   RUNTIME("getTabs", null, function (tabs) {
     RUNTIME("getCurrentTab", null, function (currentTab) {
       const currentHost = new URL(currentTab.url).hostname;
@@ -86,5 +86,15 @@ mapkey("sxx", "Close all tabs from same host", function () {
         RUNTIME("removeTab", { tabId: tab.id });
       });
     });
+  });
+}); */
+
+mapkey("sxx", "Close all tabs from same host", function () {
+  RUNTIME("getTabs", {}, function (response) {
+    const currentHost = new URL(window.location.href).hostname;
+
+    response.tabs
+      .filter((tab) => new URL(tab.url).hostname === currentHost)
+      .forEach((tab) => RUNTIME("closeTab", { id: tab.id }));
   });
 });

@@ -2610,20 +2610,9 @@
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
   mapkey2("sxx", "Close all tabs from same host", function() {
-    RUNTIME("getTabs", null, function(tabs) {
-      RUNTIME("getCurrentTab", null, function(currentTab) {
-        const currentHost = new URL(currentTab.url).hostname;
-        const sameHostTabs = tabs.filter((tab) => {
-          try {
-            return new URL(tab.url).hostname === currentHost;
-          } catch (e) {
-            return false;
-          }
-        });
-        sameHostTabs.forEach((tab) => {
-          RUNTIME("removeTab", { tabId: tab.id });
-        });
-      });
+    RUNTIME("getTabs", {}, function(response) {
+      const currentHost = new URL(window.location.href).hostname;
+      response.tabs.filter((tab) => new URL(tab.url).hostname === currentHost).forEach((tab) => RUNTIME("closeTab", { id: tab.id }));
     });
   });
 
