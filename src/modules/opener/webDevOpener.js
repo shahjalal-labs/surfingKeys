@@ -39,3 +39,11 @@ api.mapkey("ocl", "open localhost", function () {
     window.open("http://localhost:5173/", "_blank");
   }
 });
+
+api.mapkey("ocn", "open nextjs Docs", function () {
+  if (window.location.hostname.includes("nextjs.org")) {
+    window.location.href = "https://nextjs.org/docs";
+  } else {
+    window.open("https://nextjs.org/docs", "_blank");
+  }
+});
