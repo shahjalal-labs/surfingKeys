@@ -25,6 +25,7 @@ const openImgbb = () => {
 api.mapkey("ori", "open imgbb Resource", openImgbb);
 
 // https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628
+// https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0
 const openJpSheet = () => {
   if (window.location.hostname.includes("docs")) {
     window.location.href =
@@ -36,4 +37,17 @@ const openJpSheet = () => {
     );
   }
 };
-api.mapkey("ors", "open Jp Sheet", openJpSheet);
+api.mapkey("orm", "open Jp Sheet", openJpSheet);
+
+const openJpMasumVaiSheet = () => {
+  if (window.location.hostname.includes("docs")) {
+    window.location.href =
+      "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0";
+  } else {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0",
+      "_blank",
+    );
+  }
+};
+api.mapkey("ors", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
