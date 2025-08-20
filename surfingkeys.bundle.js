@@ -2278,7 +2278,7 @@
       );
     }
   };
-  api.mapkey("orm", "open Jp Sheet", openJpSheet);
+  api.mapkey("ors", "open Jp Sheet", openJpSheet);
   var openJpMasumVaiSheet = () => {
     if (window.location.hostname.includes("docs")) {
       window.location.href = "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0";
@@ -2289,7 +2289,7 @@
       );
     }
   };
-  api.mapkey("ors", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+  api.mapkey("orm", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
 
   // src/modules/yank/urlYanker.js
   var { mapkey, Clipboard } = api;

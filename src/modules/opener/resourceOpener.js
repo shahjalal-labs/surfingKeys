@@ -37,7 +37,7 @@ const openJpSheet = () => {
     );
   }
 };
-api.mapkey("orm", "open Jp Sheet", openJpSheet);
+api.mapkey("ors", "open Jp Sheet", openJpSheet);
 
 const openJpMasumVaiSheet = () => {
   if (window.location.hostname.includes("docs")) {
@@ -50,4 +50,4 @@ const openJpMasumVaiSheet = () => {
     );
   }
 };
-api.mapkey("ors", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+api.mapkey("orm", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
