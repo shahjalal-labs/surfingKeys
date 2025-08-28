@@ -66,3 +66,13 @@ api.mapkey("ouy", "open yt @shahjalal-labs", function () {
     window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
   }
 });
+//w: ╭──────────── Block Start ────────────╮
+//t: open portfolio shahjalal-labs
+api.mapkey("oup", "open portfolio shahjalal-labs", function () {
+  if (window.location.hostname.includes("shahjalal-labs.surge.sh")) {
+    window.location.href = "https://shahjalal-labs.surge.sh";
+  } else {
+    window.open("https://shahjalal-labs.surge.sh", "_blank");
+  }
+});
+//w: ╰───────────── Block End ─────────────╯

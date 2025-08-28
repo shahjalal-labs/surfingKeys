@@ -1,11 +1,13 @@
-// https://md-shahjalal.imgbb.com/
+//w: ╭──────────── Block Start ────────────╮
+//w: ╰───────────── Block End ─────────────╯
+
 const openGDrive = () => {
   if (window.location.hostname.includes("drive")) {
     window.location.href =
-      "https://drive.google.com/drive/u/0/folders/1FD0nX0xdN64zZX_LgV_bZvz7b7Yq30J4";
+      "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp";
   } else {
     window.open(
-      "https://drive.google.com/drive/u/0/folders/1FD0nX0xdN64zZX_LgV_bZvz7b7Yq30J4",
+      "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp",
       "_blank",
     );
   }
@@ -24,8 +26,6 @@ const openImgbb = () => {
 };
 api.mapkey("ori", "open imgbb Resource", openImgbb);
 
-// https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628
-// https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0
 const openJpSheet = () => {
   if (window.location.hostname.includes("docs")) {
     window.location.href =
