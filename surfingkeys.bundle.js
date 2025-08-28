@@ -665,6 +665,23 @@
       window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
     }
   });
+  api.mapkey("oup", "open portfolio shahjalal-labs", function() {
+    if (window.location.hostname.includes("shahjalal-labs.surge.sh")) {
+      window.location.href = "https://shahjalal-labs.surge.sh";
+    } else {
+      window.open("https://shahjalal-labs.surge.sh", "_blank");
+    }
+  });
+  api.mapkey("our", "open resume root", function() {
+    if (window.location.hostname.includes("drive.google.com")) {
+      window.location.href = "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view";
+    } else {
+      window.open(
+        "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
+        "_blank"
+      );
+    }
+  });
 
   // src/modules/opener/phOpener.js
   api.mapkey("pso", "scribble l1b10", () => {
@@ -2251,10 +2268,10 @@
   // src/modules/opener/resourceOpener.js
   var openGDrive = () => {
     if (window.location.hostname.includes("drive")) {
-      window.location.href = "https://drive.google.com/drive/u/0/folders/1FD0nX0xdN64zZX_LgV_bZvz7b7Yq30J4";
+      window.location.href = "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp";
     } else {
       window.open(
-        "https://drive.google.com/drive/u/0/folders/1FD0nX0xdN64zZX_LgV_bZvz7b7Yq30J4",
+        "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp",
         "_blank"
       );
     }

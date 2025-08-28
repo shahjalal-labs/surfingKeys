@@ -76,3 +76,18 @@ api.mapkey("oup", "open portfolio shahjalal-labs", function () {
   }
 });
 //w: ╰───────────── Block End ─────────────╯
+//
+//w: ╭──────────── Block Start ────────────╮
+//t: open resume  shahjalal-labs
+api.mapkey("our", "open resume root", function () {
+  if (window.location.hostname.includes("drive.google.com")) {
+    window.location.href =
+      "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view";
+  } else {
+    window.open(
+      "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
+      "_blank",
+    );
+  }
+});
+//w: ╰───────────── Block End ─────────────╯
