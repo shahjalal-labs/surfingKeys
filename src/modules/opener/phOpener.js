@@ -68,3 +68,23 @@ api.mapkey("pwj", "Level1 Batch 11", function () {
 //
 
 //
+
+//w: ╭──────────── Block Start ────────────╮
+//t: open ph podcast
+api.mapkey("php", "open ph podcast", function () {
+  if (
+    window.location.hostname.includes("youtube.com") &&
+    window.location.pathname
+      .toLowerCase()
+      .includes("@ProgrammingHeroCommunity/podcasts")
+  ) {
+    window.location.href =
+      "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts";
+  } else {
+    window.open(
+      "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts",
+      "_blank",
+    );
+  }
+});
+//w: ╰───────────── Block End ─────────────╯

@@ -734,6 +734,16 @@
       "_blank"
     );
   });
+  api.mapkey("php", "open ph podcast", function() {
+    if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@ProgrammingHeroCommunity/podcasts")) {
+      window.location.href = "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts";
+    } else {
+      window.open(
+        "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts",
+        "_blank"
+      );
+    }
+  });
 
   // src/modules/opener/islamicOpener.js
   api.mapkey("sj", "Open Wedding Nasheed", function() {
