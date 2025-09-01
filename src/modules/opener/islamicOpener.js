@@ -24,7 +24,10 @@ api.mapkey("opq", "Open Quran", function () {
 //w: ╭──────────── Block Start ────────────╮
 //t: open shariyah solution ahmadullah
 api.mapkey("ops", "open shariyah solution ahmadullah", function () {
-  if (window.location.hostname.includes("drive.google.com")) {
+  if (
+    window.location.hostname.includes("youtube.com") &&
+    window.location.pathname.toLowerCase().includes("@sheikhahmadullahofficial")
+  ) {
     window.location.href =
       "https://www.youtube.com/@sheikhahmadullahofficial/streams";
   } else {

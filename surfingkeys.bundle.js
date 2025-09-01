@@ -742,8 +742,18 @@
       "_blank"
     );
   });
-  api.mapkey("sq", "Open Quran", function() {
+  api.mapkey("opq", "Open Quran", function() {
     window.open("https://quran.com", "_blank");
+  });
+  api.mapkey("ops", "open shariyah solution ahmadullah", function() {
+    if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@sheikhahmadullahofficial")) {
+      window.location.href = "https://www.youtube.com/@sheikhahmadullahofficial/streams";
+    } else {
+      window.open(
+        "https://www.youtube.com/@sheikhahmadullahofficial/streams",
+        "_blank"
+      );
+    }
   });
 
   // src/modules/yank/imgYank.js
