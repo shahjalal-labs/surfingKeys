@@ -1,3 +1,6 @@
+//w: ╭──────────── Block Start ────────────╮
+//w: ╰───────────── Block End ─────────────╯
+
 //t: ph scribble l1b10
 api.mapkey("pso", "scribble l1b10", () => {
   window.open(
