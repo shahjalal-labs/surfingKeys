@@ -1,3 +1,6 @@
+//w: ╭──────────── Block Start ────────────╮
+//w: ╰───────────── Block End ─────────────╯
+
 // p: open discord session announcement
 api.mapkey("ouc", "open gContacts", function () {
   if (window.location.hostname.includes("contacts")) {

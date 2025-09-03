@@ -1,3 +1,8 @@
+//w: ╭──────────── Block Start ────────────╮
+//w: ╰───────────── Block End ─────────────╯
+
+//
+//w: ╭──────────── Block Start ────────────╮
 api.mapkey("ocm", "open mongodb", function () {
   if (window.location.hostname.includes("mongodb")) {
     window.location.href =
@@ -9,7 +14,10 @@ api.mapkey("ocm", "open mongodb", function () {
     );
   }
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//
+//w: ╭──────────── Block Start ────────────╮
 api.mapkey("oct", "open tailwind vite ", function () {
   if (window.location.hostname.includes("tailwindcss")) {
     window.location.href =
@@ -21,7 +29,10 @@ api.mapkey("oct", "open tailwind vite ", function () {
     );
   }
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//
+//w: ╭──────────── Block Start ────────────╮
 api.mapkey("ocd", "open daisyUI", function () {
   if (window.location.hostname.includes("daisyui")) {
     window.location.href = "https://daisyui.com/docs/install/vite/";
@@ -29,9 +40,11 @@ api.mapkey("ocd", "open daisyUI", function () {
     window.open("https://daisyui.com/docs/install/vite/", "_blank");
   }
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//
+//w: ╭──────────── Block Start ────────────╮
 //t:localhost
-
 api.mapkey("ocl", "open localhost", function () {
   if (window.location.hostname.includes("localhost")) {
     window.open("http://localhost:5174/", "_blank");
@@ -39,7 +52,10 @@ api.mapkey("ocl", "open localhost", function () {
     window.open("http://localhost:5173/", "_blank");
   }
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//
+//w: ╭──────────── Block Start ────────────╮
 api.mapkey("ocn", "open nextjs Docs", function () {
   if (window.location.hostname.includes("nextjs.org")) {
     window.location.href = "https://nextjs.org/docs";
@@ -47,3 +63,4 @@ api.mapkey("ocn", "open nextjs Docs", function () {
     window.open("https://nextjs.org/docs", "_blank");
   }
 });
+//w: ╰───────────── Block End ─────────────╯
