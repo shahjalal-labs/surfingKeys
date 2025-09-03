@@ -2327,6 +2327,7 @@
     }
   };
   api.mapkey("orm", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+  api.mapkey("ork", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
 
   // src/modules/yank/urlYanker.js
   var { mapkey, Clipboard } = api;

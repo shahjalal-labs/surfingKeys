@@ -1,6 +1,7 @@
 //w: ╭──────────── Block Start ────────────╮
 //w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 const openGDrive = () => {
   if (window.location.hostname.includes("drive")) {
     window.location.href =
@@ -13,7 +14,9 @@ const openGDrive = () => {
   }
 };
 api.mapkey("ord", "open GDrive Resource", openGDrive);
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 const openImgbb = () => {
   if (
     window.location.hostname.includes("imgbb") ||
@@ -26,6 +29,9 @@ const openImgbb = () => {
 };
 api.mapkey("ori", "open imgbb Resource", openImgbb);
 
+//w: ╰───────────── Block End ─────────────╯
+
+//w: ╭──────────── Block Start ────────────╮
 const openJpSheet = () => {
   if (window.location.hostname.includes("docs")) {
     window.location.href =
@@ -38,7 +44,9 @@ const openJpSheet = () => {
   }
 };
 api.mapkey("ors", "open Jp Sheet", openJpSheet);
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 const openJpMasumVaiSheet = () => {
   if (window.location.hostname.includes("docs")) {
     window.location.href =
@@ -51,3 +59,20 @@ const openJpMasumVaiSheet = () => {
   }
 };
 api.mapkey("orm", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+
+//w: ╰───────────── Block End ─────────────╯
+
+//w: ╭──────────── Block Start ────────────╮
+const openJpMahinVaiSheet = () => {
+  if (window.location.hostname.includes("docs")) {
+    window.location.href =
+      "https://docs.google.com/spreadsheets/d/1d9wPS0-rstt0TY23AR1LP4SpCQfULYHItmUZZoI5Ww4/edit?gid=0#gid=0";
+  } else {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/1d9wPS0-rstt0TY23AR1LP4SpCQfULYHItmUZZoI5Ww4/edit?gid=0#gid=0",
+      "_blank",
+    );
+  }
+};
+api.mapkey("ork", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+//w: ╰───────────── Block End ─────────────╯
