@@ -1,6 +1,7 @@
 //w: ╭──────────── Block Start ────────────╮
 //w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //t: ph scribble l1b10
 api.mapkey("pso", "scribble l1b10", () => {
   window.open(
@@ -8,11 +9,15 @@ api.mapkey("pso", "scribble l1b10", () => {
     "_blank",
   );
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 api.mapkey("pwh", "HELP DESK", function () {
   window.open("https://helpdesk.programming-hero.com/", "_blank");
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //t:L2B4Web
 api.mapkey("si", "L2B4Web", function () {
   window.open(
@@ -20,7 +25,9 @@ api.mapkey("si", "L2B4Web", function () {
     "_blank",
   );
 });
-//
+//w: ╰───────────── Block End ─────────────╯
+
+//w: ╭──────────── Block Start ────────────╮
 //t: outline L2B4 https://web.programming-hero.com/web-11/video/web-11-0-1-welcome-message
 api.mapkey("sk", "outline L2B4", function () {
   window.open(
@@ -28,17 +35,23 @@ api.mapkey("sk", "outline L2B4", function () {
     "_blank",
   );
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //p: coceptual level1 batch 10
 api.mapkey("ae", "Conceptual Level1 Batch 10", function () {
   window.open("https://web.programming-hero.com/conceptual-session", "_blank");
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //p: coceptual level1 batch 11
 api.mapkey("acd", "Conceptual Level1 Batch 11", function () {
   window.open("https://web.programming-hero.com/conceptual-session", "_blank");
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //t:redux
 api.mapkey("sr", "redux", function () {
   window.open(
@@ -46,7 +59,9 @@ api.mapkey("sr", "redux", function () {
     "_blank",
   );
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //t: pre requisite
 api.mapkey("sp", "pre requisite level2", function () {
   window.open(
@@ -54,13 +69,18 @@ api.mapkey("sp", "pre requisite level2", function () {
     "_blank",
   );
 });
+//w: ╰───────────── Block End ─────────────╯
 
+//w: ╭──────────── Block Start ────────────╮
 //t:L2B4
 api.mapkey("s4", "L2B4 typescript module 2", function () {
   window.open(
     "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing",
   );
 });
+//w: ╰───────────── Block End ─────────────╯
+
+//w: ╭──────────── Block Start ────────────╮
 //p: level1 batch 11
 api.mapkey("pwj", "Level1 Batch 11", function () {
   window.open(
@@ -68,9 +88,7 @@ api.mapkey("pwj", "Level1 Batch 11", function () {
     "_blank",
   );
 });
-//
-
-//
+//w: ╰───────────── Block End ─────────────╯
 
 //w: ╭──────────── Block Start ────────────╮
 //t: open ph podcast
