@@ -682,6 +682,16 @@
       );
     }
   });
+  api.mapkey("oum", "open fm", function() {
+    if (window.location.hostname.includes("drive.google.com")) {
+      window.location.href = "https://www.facebook.com/messages/e2ee/t/1302214917770136";
+    } else {
+      window.open(
+        "https://www.facebook.com/messages/e2ee/t/1302214917770136",
+        "_blank"
+      );
+    }
+  });
 
   // src/modules/opener/phOpener.js
   api.mapkey("pso", "scribble l1b10", () => {
