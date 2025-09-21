@@ -178,23 +178,19 @@ api.mapkey(
   }
 }); */
 
-api.mapkey("gz", "github ruhulamin-programming vai", function () {
-  const targetUrl = "https://github.com/ruhulamin-programming";
+api.mapkey("gz", "GitHub toggle profile <-> repositories", function () {
+  const baseUrl = "https://github.com/ruhulamin-programming";
+  const repoUrl = baseUrl + "?tab=repositories";
 
-  if (
-    window.location.hostname === "github.com" &&
-    window.location.href !== targetUrl
-  ) {
-    // Already on GitHub but not at the target page → go there
-    window.location.href =
-      "https://github.com/ruhulamin-programming?tab=repositories";
-  } else if (window.location.href === targetUrl) {
-    // Already at the exact page → do nothing
-    // window.location.href = "https://github.com/ruhulamin-programming";
-    return;
+  if (window.location.href.startsWith(repoUrl)) {
+    // On repositories page → switch to profile
+    window.location.href = baseUrl;
+  } else if (window.location.href.startsWith(baseUrl)) {
+    // On profile (or subpage under profile) → switch to repositories
+    window.location.href = repoUrl;
   } else {
-    // Not on GitHub → open in new tab
-    window.open(targetUrl, "_blank");
+    // Anywhere else → open repositories in a new tab
+    window.open(repoUrl, "_blank");
   }
 });
 
