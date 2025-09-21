@@ -164,6 +164,19 @@ api.mapkey(
 
 //w: 5╰───────────── Block End ─────────────╯
 //w: 6╭──────────── Block Start ────────────╮
+//w: opening perplexity ai ai
+
+api.mapkey("gz", "github ruhulamin-programming vai", function () {
+  if (window.location.hostname.includes("github.com")) {
+    window.location.href =
+      "https://github.com/ruhulamin-programming?tab=repositories";
+  } else {
+    window.open(
+      "https://github.com/ruhulamin-programming?tab=repositories",
+      "_blank",
+    );
+  }
+});
 
 //w: 6╰───────────── Block End ─────────────╯
 //w: 7╭──────────── Block Start ────────────╮

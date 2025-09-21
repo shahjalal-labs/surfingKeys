@@ -437,6 +437,16 @@
       }
     }
   );
+  api.mapkey("gz", "github ruhulamin-programming vai", function() {
+    if (window.location.hostname.includes("github.com")) {
+      window.location.href = "https://github.com/ruhulamin-programming?tab=repositories";
+    } else {
+      window.open(
+        "https://github.com/ruhulamin-programming?tab=repositories",
+        "_blank"
+      );
+    }
+  });
 
   // src/settings/theme.js
   api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {
