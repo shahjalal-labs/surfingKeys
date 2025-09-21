@@ -164,7 +164,7 @@ api.mapkey(
 
 //w: 5╰───────────── Block End ─────────────╯
 //w: 6╭──────────── Block Start ────────────╮
-//w: opening perplexity ai ai
+//w: opening github ruhulamin-programming vai
 
 api.mapkey("gz", "github ruhulamin-programming vai", function () {
   if (window.location.hostname.includes("github.com")) {
@@ -175,6 +175,24 @@ api.mapkey("gz", "github ruhulamin-programming vai", function () {
       "https://github.com/ruhulamin-programming?tab=repositories",
       "_blank",
     );
+  }
+});
+
+api.mapkey("gz", "github ruhulamin-programming vai", function () {
+  const targetUrl = "https://github.com/ruhulamin-programming";
+
+  if (
+    window.location.hostname === "github.com" &&
+    window.location.href !== targetUrl
+  ) {
+    // Already on GitHub but not at the target page → go there
+    window.location.href = targetUrl;
+  } else if (window.location.href === targetUrl) {
+    // Already at the exact page → do nothing
+    return;
+  } else {
+    // Not on GitHub → open in new tab
+    window.open(targetUrl, "_blank");
   }
 });
 
