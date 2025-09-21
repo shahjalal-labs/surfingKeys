@@ -1,26 +1,5 @@
-You are a **senior full-stack developer**.
-
-## 📌 Task
-
-You are given a real-world code module located at:
-
-```
-/run/media/sj/developer/surfingKeys/src/modules
-```
-
-Refactor the entire codebase **without modifying any UI or changing behavior**. Instead, improve it using:
-
-- ✅ Clear separation of concerns
-- ✅ Consistent, semantic naming conventions
-- ✅ Modular architecture (hooks, services, utils, components)
-- ✅ Scalable file/folder structure
-- ✅ Industry-standard project layout and architecture
-- ✅ Readable, testable, production-grade code
-- ✅ 100% behavior and API compatibility
-
-👉 Output the refactored code to a new folder: `modules_refactored`
-
 Also return a `.sh` script that will:
+
 - Create that folder
 - Write all refactored files
 - Run `git add` and `git commit` with message: `refactor: added improved modules version`
@@ -109,6 +88,7 @@ Also return a `.sh` script that will:
 ## 📄 Module Files & Contents
 
 ### `defaultRemapped.js`
+
 ```javascript
 api.map("gt", "t");
 api.map("w", "d");
@@ -138,6 +118,7 @@ api.map(",", "<Ctrl-6>");
 ```
 
 ### `fzfFinder.js`
+
 ```javascript
 import Fuse from "fuse.js";
 
@@ -248,6 +229,7 @@ api.mapkey("zf", "🔍 Fuzzy search history like fzf", () => {
 ```
 
 ### `github.js`
+
 ```javascript
 // ╭──────────── Block Start ────────────╮
 // ╰───────────── Block End ─────────────╯
@@ -475,6 +457,7 @@ api.mapkey(
 ```
 
 ### `hoverClick/hoverClick.js`
+
 ```javascript
 //t: 🔁 Persistent smart click loop that detects and clicks both semantic and styled custom clickable elements across page navigations.
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
@@ -526,11 +509,13 @@ api.mapkey("of", "#8Open URL in incognito window", function () {
 ```
 
 ### `markdown/markdown.js`
+
 ```javascript
 
 ```
 
 ### `opener/aiOpener.js`
+
 ```javascript
 api.mapkey("oac", "Open ChatGPT chk", function () {
   let newTab = window.open("https://chatgpt.com/", "_blank"); // Open ChatGPT in a new tab
@@ -603,6 +588,7 @@ api.mapkey("oaa", "open google audio", function () {
 ```
 
 ### `opener/islamicOpener.js`
+
 ```javascript
 //t: isami music playlist
 //
@@ -629,11 +615,13 @@ api.mapkey("sq", "Open Quran", function () {
 ```
 
 ### `opener/mernOpener.js`
+
 ```javascript
 //w: opening daisy ui
 ```
 
 ### `opener/opener.js`
+
 ```javascript
 //t: opening dotfiles
 api.mapkey("ad", "Dotfiles", function () {
@@ -656,6 +644,7 @@ api.mapkey("sb", "Open blank page", function () {
 ```
 
 ### `opener/PH/PhHelp/phHelp.js`
+
 ```javascript
 api.mapkey("phg", "PH b11 github repositories", function () {
   window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
@@ -691,6 +680,7 @@ api.mapkey("phs", "SCIC", function () {
 ```
 
 ### `opener/PH/PhWeb/phWeb.js`
+
 ```javascript
 api.mapkey("pws", "SCIC", function () {
   if (window.location.pathname.includes("/groups/scic11/announcements")) {
@@ -716,6 +706,7 @@ api.mapkey("pwo", "outline SCIC", function () {
 ```
 
 ### `opener/phOpener.js`
+
 ```javascript
 //t: ph scribble l1b10
 api.mapkey("pso", "scribble l1b10", () => {
@@ -790,6 +781,7 @@ api.mapkey("pwj", "Level1 Batch 11", function () {
 ```
 
 ### `opener/resourceOpener.js`
+
 ```javascript
 // https://md-shahjalal.imgbb.com/
 const openGDrive = () => {
@@ -819,6 +811,7 @@ api.mapkey("ori", "open imgbb Resource", openImgbb);
 ```
 
 ### `opener/socialOpener.js`
+
 ```javascript
 // p: open discord session announcement
 api.mapkey("ouc", "open gContacts", function () {
@@ -891,6 +884,7 @@ api.mapkey("ouy", "open yt @shahjalal-labs", function () {
 ```
 
 ### `opener/webDevOpener.js`
+
 ```javascript
 api.mapkey("ocm", "open mongodb", function () {
   if (window.location.hostname.includes("mongodb")) {
@@ -936,6 +930,7 @@ api.mapkey("ocl", "open localhost", function () {
 ```
 
 ### `testDate.js`
+
 ```javascript
 // src/modules/testDate.js
 import dayjs from "dayjs";
@@ -949,6 +944,7 @@ api.mapkey("g,", "🕒 Show current date", showCurrentDate);
 ```
 
 ### `yank/imgYank.js`
+
 ```javascript
 //t: 🖼️ Copy image URL under cursor or focused image
 api.mapkey("ci", "🖼️ Copy image URL under cursor or focused image", () => {
@@ -1022,6 +1018,7 @@ api.mapkey("gI", "#7View image in new tab", function () {
 ```
 
 ### `yank/urlYanker.js`
+
 ```javascript
 const { mapkey, Clipboard } = api;
 
