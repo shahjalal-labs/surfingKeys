@@ -1,4 +1,4 @@
-Also return a `.sh` script that will:
+return a `.sh` script that will:
 
 - Create that folder
 - Write all refactored files
