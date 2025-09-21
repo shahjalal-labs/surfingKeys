@@ -166,7 +166,7 @@ api.mapkey(
 //w: 6╭──────────── Block Start ────────────╮
 //w: opening github ruhulamin-programming vai
 
-api.mapkey("gz", "github ruhulamin-programming vai", function () {
+/* api.mapkey("gz", "github ruhulamin-programming vai", function () {
   if (window.location.hostname.includes("github.com")) {
     window.location.href =
       "https://github.com/ruhulamin-programming?tab=repositories";
@@ -176,7 +176,7 @@ api.mapkey("gz", "github ruhulamin-programming vai", function () {
       "_blank",
     );
   }
-});
+}); */
 
 api.mapkey("gz", "github ruhulamin-programming vai", function () {
   const targetUrl = "https://github.com/ruhulamin-programming";
@@ -186,9 +186,11 @@ api.mapkey("gz", "github ruhulamin-programming vai", function () {
     window.location.href !== targetUrl
   ) {
     // Already on GitHub but not at the target page → go there
-    window.location.href = targetUrl;
+    window.location.href =
+      "https://github.com/ruhulamin-programming?tab=repositories";
   } else if (window.location.href === targetUrl) {
     // Already at the exact page → do nothing
+    // window.location.href = "https://github.com/ruhulamin-programming";
     return;
   } else {
     // Not on GitHub → open in new tab
