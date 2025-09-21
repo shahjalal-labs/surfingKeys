@@ -5,308 +5,555 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-  };
+  var __commonJS = (cb, mod) =>
+    function __require() {
+      return (
+        mod ||
+          (0, cb[__getOwnPropNames(cb)[0]])(
+            (mod = { exports: {} }).exports,
+            mod,
+          ),
+        mod.exports
+      );
+    };
   var __copyProps = (to, from, except, desc) => {
-    if (from && typeof from === "object" || typeof from === "function") {
+    if ((from && typeof from === "object") || typeof from === "function") {
       for (let key of __getOwnPropNames(from))
         if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+          __defProp(to, key, {
+            get: () => from[key],
+            enumerable:
+              !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
+          });
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-    // If the importer is in node compatibility mode or this is not an ESM
-    // file that has been converted to a CommonJS file using a Babel-
-    // compatible transform (i.e. "__esModule" has not been set), then set
-    // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-    mod
-  ));
+  var __toESM = (mod, isNodeMode, target) => (
+    (target = mod != null ? __create(__getProtoOf(mod)) : {}),
+    __copyProps(
+      // If the importer is in node compatibility mode or this is not an ESM
+      // file that has been converted to a CommonJS file using a Babel-
+      // compatible transform (i.e. "__esModule" has not been set), then set
+      // "default" to the CommonJS "module.exports" for node compatibility.
+      isNodeMode || !mod || !mod.__esModule
+        ? __defProp(target, "default", { value: mod, enumerable: true })
+        : target,
+      mod,
+    )
+  );
 
   // node_modules/dayjs/dayjs.min.js
   var require_dayjs_min = __commonJS({
     "node_modules/dayjs/dayjs.min.js"(exports, module) {
-      !function(t, e) {
-        "object" == typeof exports && "undefined" != typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define(e) : (t = "undefined" != typeof globalThis ? globalThis : t || self).dayjs = e();
-      }(exports, function() {
+      !(function (t, e) {
+        "object" == typeof exports && "undefined" != typeof module
+          ? (module.exports = e())
+          : "function" == typeof define && define.amd
+            ? define(e)
+            : ((t =
+                "undefined" != typeof globalThis
+                  ? globalThis
+                  : t || self).dayjs = e());
+      })(exports, function () {
         "use strict";
-        var t = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", c = "month", f = "quarter", h = "year", d = "date", l = "Invalid Date", $ = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t2) {
-          var e2 = ["th", "st", "nd", "rd"], n2 = t2 % 100;
-          return "[" + t2 + (e2[(n2 - 20) % 10] || e2[n2] || e2[0]) + "]";
-        } }, m = function(t2, e2, n2) {
-          var r2 = String(t2);
-          return !r2 || r2.length >= e2 ? t2 : "" + Array(e2 + 1 - r2.length).join(n2) + t2;
-        }, v = { s: m, z: function(t2) {
-          var e2 = -t2.utcOffset(), n2 = Math.abs(e2), r2 = Math.floor(n2 / 60), i2 = n2 % 60;
-          return (e2 <= 0 ? "+" : "-") + m(r2, 2, "0") + ":" + m(i2, 2, "0");
-        }, m: function t2(e2, n2) {
-          if (e2.date() < n2.date()) return -t2(n2, e2);
-          var r2 = 12 * (n2.year() - e2.year()) + (n2.month() - e2.month()), i2 = e2.clone().add(r2, c), s2 = n2 - i2 < 0, u2 = e2.clone().add(r2 + (s2 ? -1 : 1), c);
-          return +(-(r2 + (n2 - i2) / (s2 ? i2 - u2 : u2 - i2)) || 0);
-        }, a: function(t2) {
-          return t2 < 0 ? Math.ceil(t2) || 0 : Math.floor(t2);
-        }, p: function(t2) {
-          return { M: c, y: h, w: o, d: a, D: d, h: u, m: s, s: i, ms: r, Q: f }[t2] || String(t2 || "").toLowerCase().replace(/s$/, "");
-        }, u: function(t2) {
-          return void 0 === t2;
-        } }, g = "en", D = {};
+        var t = 1e3,
+          e = 6e4,
+          n = 36e5,
+          r = "millisecond",
+          i = "second",
+          s = "minute",
+          u = "hour",
+          a = "day",
+          o = "week",
+          c = "month",
+          f = "quarter",
+          h = "year",
+          d = "date",
+          l = "Invalid Date",
+          $ =
+            /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,
+          y =
+            /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,
+          M = {
+            name: "en",
+            weekdays:
+              "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split(
+                "_",
+              ),
+            months:
+              "January_February_March_April_May_June_July_August_September_October_November_December".split(
+                "_",
+              ),
+            ordinal: function (t2) {
+              var e2 = ["th", "st", "nd", "rd"],
+                n2 = t2 % 100;
+              return "[" + t2 + (e2[(n2 - 20) % 10] || e2[n2] || e2[0]) + "]";
+            },
+          },
+          m = function (t2, e2, n2) {
+            var r2 = String(t2);
+            return !r2 || r2.length >= e2
+              ? t2
+              : "" + Array(e2 + 1 - r2.length).join(n2) + t2;
+          },
+          v = {
+            s: m,
+            z: function (t2) {
+              var e2 = -t2.utcOffset(),
+                n2 = Math.abs(e2),
+                r2 = Math.floor(n2 / 60),
+                i2 = n2 % 60;
+              return (
+                (e2 <= 0 ? "+" : "-") + m(r2, 2, "0") + ":" + m(i2, 2, "0")
+              );
+            },
+            m: function t2(e2, n2) {
+              if (e2.date() < n2.date()) return -t2(n2, e2);
+              var r2 = 12 * (n2.year() - e2.year()) + (n2.month() - e2.month()),
+                i2 = e2.clone().add(r2, c),
+                s2 = n2 - i2 < 0,
+                u2 = e2.clone().add(r2 + (s2 ? -1 : 1), c);
+              return +(-(r2 + (n2 - i2) / (s2 ? i2 - u2 : u2 - i2)) || 0);
+            },
+            a: function (t2) {
+              return t2 < 0 ? Math.ceil(t2) || 0 : Math.floor(t2);
+            },
+            p: function (t2) {
+              return (
+                { M: c, y: h, w: o, d: a, D: d, h: u, m: s, s: i, ms: r, Q: f }[
+                  t2
+                ] ||
+                String(t2 || "")
+                  .toLowerCase()
+                  .replace(/s$/, "")
+              );
+            },
+            u: function (t2) {
+              return void 0 === t2;
+            },
+          },
+          g = "en",
+          D = {};
         D[g] = M;
-        var p = "$isDayjsObject", S = function(t2) {
-          return t2 instanceof _ || !(!t2 || !t2[p]);
-        }, w = function t2(e2, n2, r2) {
-          var i2;
-          if (!e2) return g;
-          if ("string" == typeof e2) {
-            var s2 = e2.toLowerCase();
-            D[s2] && (i2 = s2), n2 && (D[s2] = n2, i2 = s2);
-            var u2 = e2.split("-");
-            if (!i2 && u2.length > 1) return t2(u2[0]);
-          } else {
-            var a2 = e2.name;
-            D[a2] = e2, i2 = a2;
-          }
-          return !r2 && i2 && (g = i2), i2 || !r2 && g;
-        }, O = function(t2, e2) {
-          if (S(t2)) return t2.clone();
-          var n2 = "object" == typeof e2 ? e2 : {};
-          return n2.date = t2, n2.args = arguments, new _(n2);
-        }, b = v;
-        b.l = w, b.i = S, b.w = function(t2, e2) {
-          return O(t2, { locale: e2.$L, utc: e2.$u, x: e2.$x, $offset: e2.$offset });
-        };
-        var _ = function() {
-          function M2(t2) {
-            this.$L = w(t2.locale, null, true), this.parse(t2), this.$x = this.$x || t2.x || {}, this[p] = true;
-          }
-          var m2 = M2.prototype;
-          return m2.parse = function(t2) {
-            this.$d = function(t3) {
-              var e2 = t3.date, n2 = t3.utc;
-              if (null === e2) return /* @__PURE__ */ new Date(NaN);
-              if (b.u(e2)) return /* @__PURE__ */ new Date();
-              if (e2 instanceof Date) return new Date(e2);
-              if ("string" == typeof e2 && !/Z$/i.test(e2)) {
-                var r2 = e2.match($);
-                if (r2) {
-                  var i2 = r2[2] - 1 || 0, s2 = (r2[7] || "0").substring(0, 3);
-                  return n2 ? new Date(Date.UTC(r2[1], i2, r2[3] || 1, r2[4] || 0, r2[5] || 0, r2[6] || 0, s2)) : new Date(r2[1], i2, r2[3] || 1, r2[4] || 0, r2[5] || 0, r2[6] || 0, s2);
-                }
-              }
-              return new Date(e2);
-            }(t2), this.init();
-          }, m2.init = function() {
-            var t2 = this.$d;
-            this.$y = t2.getFullYear(), this.$M = t2.getMonth(), this.$D = t2.getDate(), this.$W = t2.getDay(), this.$H = t2.getHours(), this.$m = t2.getMinutes(), this.$s = t2.getSeconds(), this.$ms = t2.getMilliseconds();
-          }, m2.$utils = function() {
-            return b;
-          }, m2.isValid = function() {
-            return !(this.$d.toString() === l);
-          }, m2.isSame = function(t2, e2) {
-            var n2 = O(t2);
-            return this.startOf(e2) <= n2 && n2 <= this.endOf(e2);
-          }, m2.isAfter = function(t2, e2) {
-            return O(t2) < this.startOf(e2);
-          }, m2.isBefore = function(t2, e2) {
-            return this.endOf(e2) < O(t2);
-          }, m2.$g = function(t2, e2, n2) {
-            return b.u(t2) ? this[e2] : this.set(n2, t2);
-          }, m2.unix = function() {
-            return Math.floor(this.valueOf() / 1e3);
-          }, m2.valueOf = function() {
-            return this.$d.getTime();
-          }, m2.startOf = function(t2, e2) {
-            var n2 = this, r2 = !!b.u(e2) || e2, f2 = b.p(t2), l2 = function(t3, e3) {
-              var i2 = b.w(n2.$u ? Date.UTC(n2.$y, e3, t3) : new Date(n2.$y, e3, t3), n2);
-              return r2 ? i2 : i2.endOf(a);
-            }, $2 = function(t3, e3) {
-              return b.w(n2.toDate()[t3].apply(n2.toDate("s"), (r2 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e3)), n2);
-            }, y2 = this.$W, M3 = this.$M, m3 = this.$D, v2 = "set" + (this.$u ? "UTC" : "");
-            switch (f2) {
-              case h:
-                return r2 ? l2(1, 0) : l2(31, 11);
-              case c:
-                return r2 ? l2(1, M3) : l2(0, M3 + 1);
-              case o:
-                var g2 = this.$locale().weekStart || 0, D2 = (y2 < g2 ? y2 + 7 : y2) - g2;
-                return l2(r2 ? m3 - D2 : m3 + (6 - D2), M3);
-              case a:
-              case d:
-                return $2(v2 + "Hours", 0);
-              case u:
-                return $2(v2 + "Minutes", 1);
-              case s:
-                return $2(v2 + "Seconds", 2);
-              case i:
-                return $2(v2 + "Milliseconds", 3);
-              default:
-                return this.clone();
+        var p = "$isDayjsObject",
+          S = function (t2) {
+            return t2 instanceof _ || !(!t2 || !t2[p]);
+          },
+          w = function t2(e2, n2, r2) {
+            var i2;
+            if (!e2) return g;
+            if ("string" == typeof e2) {
+              var s2 = e2.toLowerCase();
+              (D[s2] && (i2 = s2), n2 && ((D[s2] = n2), (i2 = s2)));
+              var u2 = e2.split("-");
+              if (!i2 && u2.length > 1) return t2(u2[0]);
+            } else {
+              var a2 = e2.name;
+              ((D[a2] = e2), (i2 = a2));
             }
-          }, m2.endOf = function(t2) {
-            return this.startOf(t2, false);
-          }, m2.$set = function(t2, e2) {
-            var n2, o2 = b.p(t2), f2 = "set" + (this.$u ? "UTC" : ""), l2 = (n2 = {}, n2[a] = f2 + "Date", n2[d] = f2 + "Date", n2[c] = f2 + "Month", n2[h] = f2 + "FullYear", n2[u] = f2 + "Hours", n2[s] = f2 + "Minutes", n2[i] = f2 + "Seconds", n2[r] = f2 + "Milliseconds", n2)[o2], $2 = o2 === a ? this.$D + (e2 - this.$W) : e2;
-            if (o2 === c || o2 === h) {
-              var y2 = this.clone().set(d, 1);
-              y2.$d[l2]($2), y2.init(), this.$d = y2.set(d, Math.min(this.$D, y2.daysInMonth())).$d;
-            } else l2 && this.$d[l2]($2);
-            return this.init(), this;
-          }, m2.set = function(t2, e2) {
-            return this.clone().$set(t2, e2);
-          }, m2.get = function(t2) {
-            return this[b.p(t2)]();
-          }, m2.add = function(r2, f2) {
-            var d2, l2 = this;
-            r2 = Number(r2);
-            var $2 = b.p(f2), y2 = function(t2) {
-              var e2 = O(l2);
-              return b.w(e2.date(e2.date() + Math.round(t2 * r2)), l2);
-            };
-            if ($2 === c) return this.set(c, this.$M + r2);
-            if ($2 === h) return this.set(h, this.$y + r2);
-            if ($2 === a) return y2(1);
-            if ($2 === o) return y2(7);
-            var M3 = (d2 = {}, d2[s] = e, d2[u] = n, d2[i] = t, d2)[$2] || 1, m3 = this.$d.getTime() + r2 * M3;
-            return b.w(m3, this);
-          }, m2.subtract = function(t2, e2) {
-            return this.add(-1 * t2, e2);
-          }, m2.format = function(t2) {
-            var e2 = this, n2 = this.$locale();
-            if (!this.isValid()) return n2.invalidDate || l;
-            var r2 = t2 || "YYYY-MM-DDTHH:mm:ssZ", i2 = b.z(this), s2 = this.$H, u2 = this.$m, a2 = this.$M, o2 = n2.weekdays, c2 = n2.months, f2 = n2.meridiem, h2 = function(t3, n3, i3, s3) {
-              return t3 && (t3[n3] || t3(e2, r2)) || i3[n3].slice(0, s3);
-            }, d2 = function(t3) {
-              return b.s(s2 % 12 || 12, t3, "0");
-            }, $2 = f2 || function(t3, e3, n3) {
-              var r3 = t3 < 12 ? "AM" : "PM";
-              return n3 ? r3.toLowerCase() : r3;
-            };
-            return r2.replace(y, function(t3, r3) {
-              return r3 || function(t4) {
-                switch (t4) {
-                  case "YY":
-                    return String(e2.$y).slice(-2);
-                  case "YYYY":
-                    return b.s(e2.$y, 4, "0");
-                  case "M":
-                    return a2 + 1;
-                  case "MM":
-                    return b.s(a2 + 1, 2, "0");
-                  case "MMM":
-                    return h2(n2.monthsShort, a2, c2, 3);
-                  case "MMMM":
-                    return h2(c2, a2);
-                  case "D":
-                    return e2.$D;
-                  case "DD":
-                    return b.s(e2.$D, 2, "0");
-                  case "d":
-                    return String(e2.$W);
-                  case "dd":
-                    return h2(n2.weekdaysMin, e2.$W, o2, 2);
-                  case "ddd":
-                    return h2(n2.weekdaysShort, e2.$W, o2, 3);
-                  case "dddd":
-                    return o2[e2.$W];
-                  case "H":
-                    return String(s2);
-                  case "HH":
-                    return b.s(s2, 2, "0");
-                  case "h":
-                    return d2(1);
-                  case "hh":
-                    return d2(2);
-                  case "a":
-                    return $2(s2, u2, true);
-                  case "A":
-                    return $2(s2, u2, false);
-                  case "m":
-                    return String(u2);
-                  case "mm":
-                    return b.s(u2, 2, "0");
-                  case "s":
-                    return String(e2.$s);
-                  case "ss":
-                    return b.s(e2.$s, 2, "0");
-                  case "SSS":
-                    return b.s(e2.$ms, 3, "0");
-                  case "Z":
-                    return i2;
-                }
-                return null;
-              }(t3) || i2.replace(":", "");
+            return (!r2 && i2 && (g = i2), i2 || (!r2 && g));
+          },
+          O = function (t2, e2) {
+            if (S(t2)) return t2.clone();
+            var n2 = "object" == typeof e2 ? e2 : {};
+            return ((n2.date = t2), (n2.args = arguments), new _(n2));
+          },
+          b = v;
+        ((b.l = w),
+          (b.i = S),
+          (b.w = function (t2, e2) {
+            return O(t2, {
+              locale: e2.$L,
+              utc: e2.$u,
+              x: e2.$x,
+              $offset: e2.$offset,
             });
-          }, m2.utcOffset = function() {
-            return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
-          }, m2.diff = function(r2, d2, l2) {
-            var $2, y2 = this, M3 = b.p(d2), m3 = O(r2), v2 = (m3.utcOffset() - this.utcOffset()) * e, g2 = this - m3, D2 = function() {
-              return b.m(y2, m3);
-            };
-            switch (M3) {
-              case h:
-                $2 = D2() / 12;
-                break;
-              case c:
-                $2 = D2();
-                break;
-              case f:
-                $2 = D2() / 3;
-                break;
-              case o:
-                $2 = (g2 - v2) / 6048e5;
-                break;
-              case a:
-                $2 = (g2 - v2) / 864e5;
-                break;
-              case u:
-                $2 = g2 / n;
-                break;
-              case s:
-                $2 = g2 / e;
-                break;
-              case i:
-                $2 = g2 / t;
-                break;
-              default:
-                $2 = g2;
+          }));
+        var _ = (function () {
+            function M2(t2) {
+              ((this.$L = w(t2.locale, null, true)),
+                this.parse(t2),
+                (this.$x = this.$x || t2.x || {}),
+                (this[p] = true));
             }
-            return l2 ? $2 : b.a($2);
-          }, m2.daysInMonth = function() {
-            return this.endOf(c).$D;
-          }, m2.$locale = function() {
-            return D[this.$L];
-          }, m2.locale = function(t2, e2) {
-            if (!t2) return this.$L;
-            var n2 = this.clone(), r2 = w(t2, e2, true);
-            return r2 && (n2.$L = r2), n2;
-          }, m2.clone = function() {
-            return b.w(this.$d, this);
-          }, m2.toDate = function() {
-            return new Date(this.valueOf());
-          }, m2.toJSON = function() {
-            return this.isValid() ? this.toISOString() : null;
-          }, m2.toISOString = function() {
-            return this.$d.toISOString();
-          }, m2.toString = function() {
-            return this.$d.toUTCString();
-          }, M2;
-        }(), k = _.prototype;
-        return O.prototype = k, [["$ms", r], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", c], ["$y", h], ["$D", d]].forEach(function(t2) {
-          k[t2[1]] = function(e2) {
-            return this.$g(e2, t2[0], t2[1]);
-          };
-        }), O.extend = function(t2, e2) {
-          return t2.$i || (t2(e2, _, O), t2.$i = true), O;
-        }, O.locale = w, O.isDayjs = S, O.unix = function(t2) {
-          return O(1e3 * t2);
-        }, O.en = D[g], O.Ls = D, O.p = {}, O;
+            var m2 = M2.prototype;
+            return (
+              (m2.parse = function (t2) {
+                ((this.$d = (function (t3) {
+                  var e2 = t3.date,
+                    n2 = t3.utc;
+                  if (null === e2) return /* @__PURE__ */ new Date(NaN);
+                  if (b.u(e2)) return /* @__PURE__ */ new Date();
+                  if (e2 instanceof Date) return new Date(e2);
+                  if ("string" == typeof e2 && !/Z$/i.test(e2)) {
+                    var r2 = e2.match($);
+                    if (r2) {
+                      var i2 = r2[2] - 1 || 0,
+                        s2 = (r2[7] || "0").substring(0, 3);
+                      return n2
+                        ? new Date(
+                            Date.UTC(
+                              r2[1],
+                              i2,
+                              r2[3] || 1,
+                              r2[4] || 0,
+                              r2[5] || 0,
+                              r2[6] || 0,
+                              s2,
+                            ),
+                          )
+                        : new Date(
+                            r2[1],
+                            i2,
+                            r2[3] || 1,
+                            r2[4] || 0,
+                            r2[5] || 0,
+                            r2[6] || 0,
+                            s2,
+                          );
+                    }
+                  }
+                  return new Date(e2);
+                })(t2)),
+                  this.init());
+              }),
+              (m2.init = function () {
+                var t2 = this.$d;
+                ((this.$y = t2.getFullYear()),
+                  (this.$M = t2.getMonth()),
+                  (this.$D = t2.getDate()),
+                  (this.$W = t2.getDay()),
+                  (this.$H = t2.getHours()),
+                  (this.$m = t2.getMinutes()),
+                  (this.$s = t2.getSeconds()),
+                  (this.$ms = t2.getMilliseconds()));
+              }),
+              (m2.$utils = function () {
+                return b;
+              }),
+              (m2.isValid = function () {
+                return !(this.$d.toString() === l);
+              }),
+              (m2.isSame = function (t2, e2) {
+                var n2 = O(t2);
+                return this.startOf(e2) <= n2 && n2 <= this.endOf(e2);
+              }),
+              (m2.isAfter = function (t2, e2) {
+                return O(t2) < this.startOf(e2);
+              }),
+              (m2.isBefore = function (t2, e2) {
+                return this.endOf(e2) < O(t2);
+              }),
+              (m2.$g = function (t2, e2, n2) {
+                return b.u(t2) ? this[e2] : this.set(n2, t2);
+              }),
+              (m2.unix = function () {
+                return Math.floor(this.valueOf() / 1e3);
+              }),
+              (m2.valueOf = function () {
+                return this.$d.getTime();
+              }),
+              (m2.startOf = function (t2, e2) {
+                var n2 = this,
+                  r2 = !!b.u(e2) || e2,
+                  f2 = b.p(t2),
+                  l2 = function (t3, e3) {
+                    var i2 = b.w(
+                      n2.$u ? Date.UTC(n2.$y, e3, t3) : new Date(n2.$y, e3, t3),
+                      n2,
+                    );
+                    return r2 ? i2 : i2.endOf(a);
+                  },
+                  $2 = function (t3, e3) {
+                    return b.w(
+                      n2
+                        .toDate()
+                        [
+                          t3
+                        ].apply(n2.toDate("s"), (r2 ? [0, 0, 0, 0] : [23, 59,
+                                59, 999]).slice(e3)),
+                      n2,
+                    );
+                  },
+                  y2 = this.$W,
+                  M3 = this.$M,
+                  m3 = this.$D,
+                  v2 = "set" + (this.$u ? "UTC" : "");
+                switch (f2) {
+                  case h:
+                    return r2 ? l2(1, 0) : l2(31, 11);
+                  case c:
+                    return r2 ? l2(1, M3) : l2(0, M3 + 1);
+                  case o:
+                    var g2 = this.$locale().weekStart || 0,
+                      D2 = (y2 < g2 ? y2 + 7 : y2) - g2;
+                    return l2(r2 ? m3 - D2 : m3 + (6 - D2), M3);
+                  case a:
+                  case d:
+                    return $2(v2 + "Hours", 0);
+                  case u:
+                    return $2(v2 + "Minutes", 1);
+                  case s:
+                    return $2(v2 + "Seconds", 2);
+                  case i:
+                    return $2(v2 + "Milliseconds", 3);
+                  default:
+                    return this.clone();
+                }
+              }),
+              (m2.endOf = function (t2) {
+                return this.startOf(t2, false);
+              }),
+              (m2.$set = function (t2, e2) {
+                var n2,
+                  o2 = b.p(t2),
+                  f2 = "set" + (this.$u ? "UTC" : ""),
+                  l2 = ((n2 = {}),
+                  (n2[a] = f2 + "Date"),
+                  (n2[d] = f2 + "Date"),
+                  (n2[c] = f2 + "Month"),
+                  (n2[h] = f2 + "FullYear"),
+                  (n2[u] = f2 + "Hours"),
+                  (n2[s] = f2 + "Minutes"),
+                  (n2[i] = f2 + "Seconds"),
+                  (n2[r] = f2 + "Milliseconds"),
+                  n2)[o2],
+                  $2 = o2 === a ? this.$D + (e2 - this.$W) : e2;
+                if (o2 === c || o2 === h) {
+                  var y2 = this.clone().set(d, 1);
+                  (y2.$d[l2]($2),
+                    y2.init(),
+                    (this.$d = y2.set(
+                      d,
+                      Math.min(this.$D, y2.daysInMonth()),
+                    ).$d));
+                } else l2 && this.$d[l2]($2);
+                return (this.init(), this);
+              }),
+              (m2.set = function (t2, e2) {
+                return this.clone().$set(t2, e2);
+              }),
+              (m2.get = function (t2) {
+                return this[b.p(t2)]();
+              }),
+              (m2.add = function (r2, f2) {
+                var d2,
+                  l2 = this;
+                r2 = Number(r2);
+                var $2 = b.p(f2),
+                  y2 = function (t2) {
+                    var e2 = O(l2);
+                    return b.w(e2.date(e2.date() + Math.round(t2 * r2)), l2);
+                  };
+                if ($2 === c) return this.set(c, this.$M + r2);
+                if ($2 === h) return this.set(h, this.$y + r2);
+                if ($2 === a) return y2(1);
+                if ($2 === o) return y2(7);
+                var M3 =
+                    ((d2 = {}), (d2[s] = e), (d2[u] = n), (d2[i] = t), d2)[
+                      $2
+                    ] || 1,
+                  m3 = this.$d.getTime() + r2 * M3;
+                return b.w(m3, this);
+              }),
+              (m2.subtract = function (t2, e2) {
+                return this.add(-1 * t2, e2);
+              }),
+              (m2.format = function (t2) {
+                var e2 = this,
+                  n2 = this.$locale();
+                if (!this.isValid()) return n2.invalidDate || l;
+                var r2 = t2 || "YYYY-MM-DDTHH:mm:ssZ",
+                  i2 = b.z(this),
+                  s2 = this.$H,
+                  u2 = this.$m,
+                  a2 = this.$M,
+                  o2 = n2.weekdays,
+                  c2 = n2.months,
+                  f2 = n2.meridiem,
+                  h2 = function (t3, n3, i3, s3) {
+                    return (
+                      (t3 && (t3[n3] || t3(e2, r2))) || i3[n3].slice(0, s3)
+                    );
+                  },
+                  d2 = function (t3) {
+                    return b.s(s2 % 12 || 12, t3, "0");
+                  },
+                  $2 =
+                    f2 ||
+                    function (t3, e3, n3) {
+                      var r3 = t3 < 12 ? "AM" : "PM";
+                      return n3 ? r3.toLowerCase() : r3;
+                    };
+                return r2.replace(y, function (t3, r3) {
+                  return (
+                    r3 ||
+                    (function (t4) {
+                      switch (t4) {
+                        case "YY":
+                          return String(e2.$y).slice(-2);
+                        case "YYYY":
+                          return b.s(e2.$y, 4, "0");
+                        case "M":
+                          return a2 + 1;
+                        case "MM":
+                          return b.s(a2 + 1, 2, "0");
+                        case "MMM":
+                          return h2(n2.monthsShort, a2, c2, 3);
+                        case "MMMM":
+                          return h2(c2, a2);
+                        case "D":
+                          return e2.$D;
+                        case "DD":
+                          return b.s(e2.$D, 2, "0");
+                        case "d":
+                          return String(e2.$W);
+                        case "dd":
+                          return h2(n2.weekdaysMin, e2.$W, o2, 2);
+                        case "ddd":
+                          return h2(n2.weekdaysShort, e2.$W, o2, 3);
+                        case "dddd":
+                          return o2[e2.$W];
+                        case "H":
+                          return String(s2);
+                        case "HH":
+                          return b.s(s2, 2, "0");
+                        case "h":
+                          return d2(1);
+                        case "hh":
+                          return d2(2);
+                        case "a":
+                          return $2(s2, u2, true);
+                        case "A":
+                          return $2(s2, u2, false);
+                        case "m":
+                          return String(u2);
+                        case "mm":
+                          return b.s(u2, 2, "0");
+                        case "s":
+                          return String(e2.$s);
+                        case "ss":
+                          return b.s(e2.$s, 2, "0");
+                        case "SSS":
+                          return b.s(e2.$ms, 3, "0");
+                        case "Z":
+                          return i2;
+                      }
+                      return null;
+                    })(t3) ||
+                    i2.replace(":", "")
+                  );
+                });
+              }),
+              (m2.utcOffset = function () {
+                return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+              }),
+              (m2.diff = function (r2, d2, l2) {
+                var $2,
+                  y2 = this,
+                  M3 = b.p(d2),
+                  m3 = O(r2),
+                  v2 = (m3.utcOffset() - this.utcOffset()) * e,
+                  g2 = this - m3,
+                  D2 = function () {
+                    return b.m(y2, m3);
+                  };
+                switch (M3) {
+                  case h:
+                    $2 = D2() / 12;
+                    break;
+                  case c:
+                    $2 = D2();
+                    break;
+                  case f:
+                    $2 = D2() / 3;
+                    break;
+                  case o:
+                    $2 = (g2 - v2) / 6048e5;
+                    break;
+                  case a:
+                    $2 = (g2 - v2) / 864e5;
+                    break;
+                  case u:
+                    $2 = g2 / n;
+                    break;
+                  case s:
+                    $2 = g2 / e;
+                    break;
+                  case i:
+                    $2 = g2 / t;
+                    break;
+                  default:
+                    $2 = g2;
+                }
+                return l2 ? $2 : b.a($2);
+              }),
+              (m2.daysInMonth = function () {
+                return this.endOf(c).$D;
+              }),
+              (m2.$locale = function () {
+                return D[this.$L];
+              }),
+              (m2.locale = function (t2, e2) {
+                if (!t2) return this.$L;
+                var n2 = this.clone(),
+                  r2 = w(t2, e2, true);
+                return (r2 && (n2.$L = r2), n2);
+              }),
+              (m2.clone = function () {
+                return b.w(this.$d, this);
+              }),
+              (m2.toDate = function () {
+                return new Date(this.valueOf());
+              }),
+              (m2.toJSON = function () {
+                return this.isValid() ? this.toISOString() : null;
+              }),
+              (m2.toISOString = function () {
+                return this.$d.toISOString();
+              }),
+              (m2.toString = function () {
+                return this.$d.toUTCString();
+              }),
+              M2
+            );
+          })(),
+          k = _.prototype;
+        return (
+          (O.prototype = k),
+          [
+            ["$ms", r],
+            ["$s", i],
+            ["$m", s],
+            ["$H", u],
+            ["$W", a],
+            ["$M", c],
+            ["$y", h],
+            ["$D", d],
+          ].forEach(function (t2) {
+            k[t2[1]] = function (e2) {
+              return this.$g(e2, t2[0], t2[1]);
+            };
+          }),
+          (O.extend = function (t2, e2) {
+            return (t2.$i || (t2(e2, _, O), (t2.$i = true)), O);
+          }),
+          (O.locale = w),
+          (O.isDayjs = S),
+          (O.unix = function (t2) {
+            return O(1e3 * t2);
+          }),
+          (O.en = D[g]),
+          (O.Ls = D),
+          (O.p = {}),
+          O
+        );
       });
-    }
+    },
   });
 
   // src/modules/defaultRemapped.js
-  api.map("gt", "t");
+  // api.map("gt", "t");
   api.map("w", "d");
   api.map("tt", "T");
   api.map("ao", ";di");
@@ -329,13 +576,13 @@
   api.map(",", "<Ctrl-6>");
 
   // src/modules/github.js
-  api.mapkey("gr", "Repository Github", function() {
+  api.mapkey("gr", "Repository Github", function () {
     window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
   });
-  api.mapkey("gn", "new repo github", function() {
+  api.mapkey("gn", "new repo github", function () {
     window.open("https://github.com/new", "_blank");
   });
-  api.mapkey("ga", "\u{1F4CB} Smart GitHub Repo Copier", async function() {
+  api.mapkey("ga", "\u{1F4CB} Smart GitHub Repo Copier", async function () {
     const url = window.location.href;
     const extractUserRepo = (href) => {
       const match = href.match(/^\/([^/]+)\/([^/]+)/);
@@ -345,15 +592,18 @@
       let clickLoopActive = true;
       const runHintLoop = () => {
         if (!clickLoopActive) return;
-        api.Hints.create('a[href*="/"][itemprop="name codeRepository"]', (el) => {
-          const user = location.pathname.split("/")[1];
-          const repo = el.innerText.trim();
-          if (user && repo) {
-            api.Clipboard.write(`${user}/${repo}`);
-            api.Front.showBanner(`\u2705 Copied: ${user}/${repo}`);
-          }
-          setTimeout(runHintLoop, 200);
-        });
+        api.Hints.create(
+          'a[href*="/"][itemprop="name codeRepository"]',
+          (el) => {
+            const user = location.pathname.split("/")[1];
+            const repo = el.innerText.trim();
+            if (user && repo) {
+              api.Clipboard.write(`${user}/${repo}`);
+              api.Front.showBanner(`\u2705 Copied: ${user}/${repo}`);
+            }
+            setTimeout(runHintLoop, 200);
+          },
+        );
       };
       runHintLoop();
       api.mapkey("<Esc>", "\u274C Stop GitHub Repo Copier loop", () => {
@@ -372,13 +622,15 @@
         api.Front.showBanner(`\u{1F511} Copied SSH: ${ssh}`);
       });
     } else {
-      api.Front.showBanner("\u26A0\uFE0F Not on a GitHub repo or repositories page");
+      api.Front.showBanner(
+        "\u26A0\uFE0F Not on a GitHub repo or repositories page",
+      );
     }
   });
   api.mapkey(
     "gl",
     "Copy GitHub username/repo",
-    function() {
+    function () {
       const url = window.location.href;
       if (!url.includes("github.com")) {
         api.Front.showBanner("Not a GitHub page");
@@ -395,23 +647,27 @@
         api.Front.showBanner("Not a repo URL");
       }
     },
-    { domain: /./, prefix: " " }
+    { domain: /./, prefix: " " },
   );
-  api.mapkey("gb", "\u{1F464} Go to GitHub user profile from repo page", function() {
-    const match = window.location.href.match(
-      /^https:\/\/github\.com\/([^\/?#]+)/
-    );
-    if (match && match[1]) {
-      const user = match[1];
-      window.location.href = `https://github.com/${user}`;
-    } else {
-      api.Front.showBanner("\u274C Not on a GitHub repo page");
-    }
-  });
+  api.mapkey(
+    "gb",
+    "\u{1F464} Go to GitHub user profile from repo page",
+    function () {
+      const match = window.location.href.match(
+        /^https:\/\/github\.com\/([^\/?#]+)/,
+      );
+      if (match && match[1]) {
+        const user = match[1];
+        window.location.href = `https://github.com/${user}`;
+      } else {
+        api.Front.showBanner("\u274C Not on a GitHub repo page");
+      }
+    },
+  );
   api.mapkey(
     "gm",
     "\u{1F464} Go to GitHub user profile or repositories tab",
-    function() {
+    function () {
       const currentUrl = window.location.href;
       const staticProfile = "https://github.com/shahjalal-labs";
       const yourReposTab = "https://github.com/shahjalal-labs?tab=repositories";
@@ -421,11 +677,15 @@
       }
       const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
       const currentUser = match && match[1];
-      if (!currentUser || ["features", "topics", "collections"].includes(currentUser)) {
+      if (
+        !currentUser ||
+        ["features", "topics", "collections"].includes(currentUser)
+      ) {
         window.location.href = staticProfile;
         return;
       }
-      const isOnProfilePage = currentUrl === `https://github.com/${currentUser}`;
+      const isOnProfilePage =
+        currentUrl === `https://github.com/${currentUser}`;
       if (isOnProfilePage) {
         if (currentUser.toLowerCase() === "shahjalal-labs") {
           window.location.href = yourReposTab;
@@ -435,11 +695,11 @@
       } else {
         window.location.href = `https://github.com/${currentUser}`;
       }
-    }
+    },
   );
 
   // src/settings/theme.js
-  api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {
+  api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function () {
     if (!document.getElementById("__sk_darkmode")) {
       const style = document.createElement("style");
       style.id = "__sk_darkmode";
@@ -496,69 +756,69 @@
   settings.startToShowEmoji = 1;
 
   // src/modules/opener/opener.js
-  api.mapkey("ad", "Dotfiles", function() {
+  api.mapkey("ad", "Dotfiles", function () {
     window.open(
       "https://github.com/shahjalal-labs/allDotfilesBackupEndeavourOs",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("ay", "youtube opening", function() {
+  api.mapkey("ay", "youtube opening", function () {
     window.open("https://www.youtube.com/", "_blank");
   });
-  api.mapkey("sb", "Open blank page", function() {
+  api.mapkey("sb", "Open blank page", function () {
     window.open("https://blank.page/", "_blank");
   });
 
   // src/modules/opener/aiOpener.js
-  api.mapkey("oac", "Open ChatGPT chk", function() {
+  api.mapkey("oac", "Open ChatGPT chk", function () {
     let newTab = window.open("https://chatgpt.com/", "_blank");
     console.log(newTab, ".surfingkeys.js", 240);
     setInterval(() => {
       console.log(`hellow`);
     }, 2e3);
   });
-  api.mapkey("oap", "perplexity ai", function() {
+  api.mapkey("oap", "perplexity ai", function () {
     if (window.location.hostname.includes("perplexity")) {
       window.location.href = "https://www.perplexity.ai/";
     } else {
       window.open("https://www.perplexity.ai/", "_blank");
     }
   });
-  api.mapkey("oaj", "gemini ai", function() {
+  api.mapkey("oaj", "gemini ai", function () {
     if (window.location.hostname.includes("gemini")) {
       window.location.href = "https://gemini.google.com/app";
     } else {
       window.open("https://gemini.google.com/app", "_blank");
     }
   });
-  api.mapkey("oad", "Deep ai", function() {
+  api.mapkey("oad", "Deep ai", function () {
     window.open("https://deepai.org/dashboard/images", "_blank");
   });
-  api.mapkey("oas", "Open deepseek", function() {
+  api.mapkey("oas", "Open deepseek", function () {
     if (window.location.hostname.includes("deepseek")) {
       window.location.href = "https://chat.deepseek.com";
     } else {
       window.open("https://chat.deepseek.com/", "_blank");
     }
   });
-  api.mapkey("oaq", "Open claude ai", function() {
+  api.mapkey("oaq", "Open claude ai", function () {
     window.open("https://claude.ai/new");
   });
-  api.mapkey("oak", "Chk claude", function() {
+  api.mapkey("oak", "Chk claude", function () {
     if (window.location.hostname.includes("claude.ai")) {
       window.location.href = "/new";
     } else {
       window.open("https://claude.ai/new", "_blank");
     }
   });
-  api.mapkey("oag", "open grok ai", function() {
+  api.mapkey("oag", "open grok ai", function () {
     if (window.location.hostname.includes("grok")) {
       window.location.href = "https://grok.com/";
     } else {
       window.open("https://grok.com/", "_blank");
     }
   });
-  api.mapkey("oaa", "open google audio", function() {
+  api.mapkey("oaa", "open google audio", function () {
     if (window.location.hostname.includes("aistudio")) {
       window.location.href = "https://aistudio.google.com/live";
     } else {
@@ -567,41 +827,43 @@
   });
 
   // src/modules/opener/webDevOpener.js
-  api.mapkey("ocm", "open mongodb", function() {
+  api.mapkey("ocm", "open mongodb", function () {
     if (window.location.hostname.includes("mongodb")) {
-      window.location.href = "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0";
+      window.location.href =
+        "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0";
     } else {
       window.open(
         "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0",
-        "_blank"
+        "_blank",
       );
     }
   });
-  api.mapkey("oct", "open tailwind vite ", function() {
+  api.mapkey("oct", "open tailwind vite ", function () {
     if (window.location.hostname.includes("tailwindcss")) {
-      window.location.href = "https://tailwindcss.com/docs/installation/using-vite";
+      window.location.href =
+        "https://tailwindcss.com/docs/installation/using-vite";
     } else {
       window.open(
         "https://tailwindcss.com/docs/installation/using-vite",
-        "_blank"
+        "_blank",
       );
     }
   });
-  api.mapkey("ocd", "open daisyUI", function() {
+  api.mapkey("ocd", "open daisyUI", function () {
     if (window.location.hostname.includes("daisyui")) {
       window.location.href = "https://daisyui.com/docs/install/vite/";
     } else {
       window.open("https://daisyui.com/docs/install/vite/", "_blank");
     }
   });
-  api.mapkey("ocl", "open localhost", function() {
+  api.mapkey("ocl", "open localhost", function () {
     if (window.location.hostname.includes("localhost")) {
       window.open("http://localhost:5174/", "_blank");
     } else {
       window.open("http://localhost:5173/", "_blank");
     }
   });
-  api.mapkey("ocn", "open nextjs Docs", function() {
+  api.mapkey("ocn", "open nextjs Docs", function () {
     if (window.location.hostname.includes("nextjs.org")) {
       window.location.href = "https://nextjs.org/docs";
     } else {
@@ -610,7 +872,7 @@
   });
 
   // src/modules/opener/socialOpener.js
-  api.mapkey("ouc", "open gContacts", function() {
+  api.mapkey("ouc", "open gContacts", function () {
     if (window.location.hostname.includes("contacts")) {
       window.location.href = "https://contacts.google.com/new";
     } else {
@@ -618,77 +880,83 @@
       window.open("https://contacts.google.com/new", "_blank");
     }
   });
-  api.mapkey("oux", "open twitter @shahjalal_labs", function() {
+  api.mapkey("oux", "open twitter @shahjalal_labs", function () {
     if (window.location.hostname.includes("x.com")) {
       window.location.href = "https://x.com/shahjalal_labs ";
     } else {
       window.open("https://x.com/shahjalal_labs ", "_blank");
     }
   });
-  api.mapkey("ouf", "Open Facebook", function() {
+  api.mapkey("ouf", "Open Facebook", function () {
     window.open("https://www.facebook.com", "_blank");
   });
-  api.mapkey("oue", "email inbox opening", function() {
-    window.open("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox", "_blank");
+  api.mapkey("oue", "email inbox opening", function () {
+    window.open(
+      "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox",
+      "_blank",
+    );
   });
-  api.mapkey("ouw", "whatsApp", function() {
+  api.mapkey("ouw", "whatsApp", function () {
     window.open("https://web.whatsapp.com/", "_blank");
   });
-  api.mapkey("oul", "open linkedin", function() {
+  api.mapkey("oul", "open linkedin", function () {
     if (window.location.hostname.includes("linkedin")) {
       window.location.href = "https://www.linkedin.com/in/shahjalal-labs/";
     } else {
       window.open("https://www.linkedin.com/in/shahjalal-labs/", "_blank");
     }
   });
-  api.mapkey("oud", "open ejp discord sesssion announcement", function() {
+  api.mapkey("oud", "open ejp discord sesssion announcement", function () {
     if (window.location.hostname.includes("discord")) {
-      window.location.href = "https://discord.com/channels/1391805056957026364/1391809512100462592";
+      window.location.href =
+        "https://discord.com/channels/1391805056957026364/1391809512100462592";
     } else {
       window.open(
         "https://discord.com/channels/1391805056957026364/1391809512100462592",
-        "_blank"
+        "_blank",
       );
     }
   });
-  api.mapkey("anz", "open ejp discord sesssion announcement", function() {
+  api.mapkey("anz", "open ejp discord sesssion announcement", function () {
     if (window.location.hostname.includes("zoom")) {
       window.location.href = "https://www.zoom.us/join";
     } else {
       window.open("https://www.zoom.us/profile", "_blank");
     }
   });
-  api.mapkey("ouy", "open yt @shahjalal-labs", function() {
+  api.mapkey("ouy", "open yt @shahjalal-labs", function () {
     if (window.location.hostname.includes("youtube")) {
       window.location.href = "https://www.youtube.com/@shahjalal-labs";
     } else {
       window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
     }
   });
-  api.mapkey("oup", "open portfolio shahjalal-labs", function() {
+  api.mapkey("oup", "open portfolio shahjalal-labs", function () {
     if (window.location.hostname.includes("shahjalal-labs.surge.sh")) {
       window.location.href = "https://shahjalal-labs.surge.sh";
     } else {
       window.open("https://shahjalal-labs.surge.sh", "_blank");
     }
   });
-  api.mapkey("our", "open resume root", function() {
+  api.mapkey("our", "open resume root", function () {
     if (window.location.hostname.includes("drive.google.com")) {
-      window.location.href = "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view";
+      window.location.href =
+        "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view";
     } else {
       window.open(
         "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
-        "_blank"
+        "_blank",
       );
     }
   });
-  api.mapkey("oum", "open fm", function() {
+  api.mapkey("oum", "open fm", function () {
     if (window.location.hostname.includes("drive.google.com")) {
-      window.location.href = "https://www.facebook.com/messages/e2ee/t/1302214917770136";
+      window.location.href =
+        "https://www.facebook.com/messages/e2ee/t/1302214917770136";
     } else {
       window.open(
         "https://www.facebook.com/messages/e2ee/t/1302214917770136",
-        "_blank"
+        "_blank",
       );
     }
   });
@@ -697,95 +965,117 @@
   api.mapkey("pso", "scribble l1b10", () => {
     window.open(
       "https://web.programming-hero.com/update-1/video/update-1-42-1-scribbles-cafe-project-overview-and-tailwind-setup",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("pwh", "HELP DESK", function() {
+  api.mapkey("pwh", "HELP DESK", function () {
     window.open("https://helpdesk.programming-hero.com/", "_blank");
   });
-  api.mapkey("si", "L2B4Web", function() {
+  api.mapkey("si", "L2B4Web", function () {
     window.open(
       "https://web.programming-hero.com/level2-batch-4-frontend-track/video/level2-batch-4-frontend-track-36-11-displaying-blogs-and-handling-loading-with-rtk-query-module-summary",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("sk", "outline L2B4", function() {
+  api.mapkey("sk", "outline L2B4", function () {
     window.open(
       "https://web.programming-hero.com/676fa61320dff5186afcd780/course-outline",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("ae", "Conceptual Level1 Batch 10", function() {
-    window.open("https://web.programming-hero.com/conceptual-session", "_blank");
+  api.mapkey("ae", "Conceptual Level1 Batch 10", function () {
+    window.open(
+      "https://web.programming-hero.com/conceptual-session",
+      "_blank",
+    );
   });
-  api.mapkey("acd", "Conceptual Level1 Batch 11", function() {
-    window.open("https://web.programming-hero.com/conceptual-session", "_blank");
+  api.mapkey("acd", "Conceptual Level1 Batch 11", function () {
+    window.open(
+      "https://web.programming-hero.com/conceptual-session",
+      "_blank",
+    );
   });
-  api.mapkey("sr", "redux", function() {
+  api.mapkey("sr", "redux", function () {
     window.open(
       "https://web.programming-hero.com/level2-batch-1/video/level2-batch-1-21-1-project-initialization-and-redux-store-setup-recap",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("sp", "pre requisite level2", function() {
+  api.mapkey("sp", "pre requisite level2", function () {
     window.open(
       "https://web.programming-hero.com/next-level-prerequisites-batch4/video/next-level-prerequisites-batch4-45-8-active-route-loading-spinner-uselocation-usenavigation",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("s4", "L2B4 typescript module 2", function() {
+  api.mapkey("s4", "L2B4 typescript module 2", function () {
     window.open(
-      "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing"
+      "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing",
     );
   });
-  api.mapkey("pwj", "Level1 Batch 11", function() {
+  api.mapkey("pwj", "Level1 Batch 11", function () {
     window.open(
       "https://web.programming-hero.com/web-11/video/web-11-15-9-module-summary-legal-system-practice-task-",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("php", "open ph podcast", function() {
-    if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@ProgrammingHeroCommunity/podcasts")) {
-      window.location.href = "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts";
+  api.mapkey("php", "open ph podcast", function () {
+    if (
+      window.location.hostname.includes("youtube.com") &&
+      window.location.pathname
+        .toLowerCase()
+        .includes("@ProgrammingHeroCommunity/podcasts")
+    ) {
+      window.location.href =
+        "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts";
     } else {
       window.open(
         "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts",
-        "_blank"
+        "_blank",
       );
     }
   });
 
   // src/modules/opener/islamicOpener.js
-  api.mapkey("sj", "Open Wedding Nasheed", function() {
+  api.mapkey("sj", "Open Wedding Nasheed", function () {
     window.open(
       "https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds",
-      "_blank"
+      "_blank",
     );
   });
-  api.mapkey("opq", "Open Quran", function() {
+  api.mapkey("opq", "Open Quran", function () {
     window.open("https://quran.com", "_blank");
   });
-  api.mapkey("ops", "open shariyah solution ahmadullah", function() {
-    if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@sheikhahmadullahofficial")) {
-      window.location.href = "https://www.youtube.com/@sheikhahmadullahofficial/streams";
+  api.mapkey("ops", "open shariyah solution ahmadullah", function () {
+    if (
+      window.location.hostname.includes("youtube.com") &&
+      window.location.pathname
+        .toLowerCase()
+        .includes("@sheikhahmadullahofficial")
+    ) {
+      window.location.href =
+        "https://www.youtube.com/@sheikhahmadullahofficial/streams";
     } else {
       window.open(
         "https://www.youtube.com/@sheikhahmadullahofficial/streams",
-        "_blank"
+        "_blank",
       );
     }
   });
 
   // src/modules/yank/imgYank.js
-  api.mapkey("ci", "\u{1F5BC}\uFE0F Copy image URL under cursor or focused image", () => {
-    const img = document.querySelector("img:hover") || document.activeElement;
-    if (img && img.tagName === "IMG") {
-      const url = img.src;
-      if (url) {
-        api.Clipboard.write(url);
+  api.mapkey(
+    "ci",
+    "\u{1F5BC}\uFE0F Copy image URL under cursor or focused image",
+    () => {
+      const img = document.querySelector("img:hover") || document.activeElement;
+      if (img && img.tagName === "IMG") {
+        const url = img.src;
+        if (url) {
+          api.Clipboard.write(url);
+        }
       }
-    }
-  });
+    },
+  );
   var copyLoopActive = false;
   api.mapkey(
     "cl",
@@ -794,21 +1084,21 @@
       copyLoopActive = true;
       const copyImageWithHints = () => {
         if (!copyLoopActive) return;
-        api.Hints.create("img[src]", function(el) {
+        api.Hints.create("img[src]", function (el) {
           api.Clipboard.write(el.src);
           setTimeout(copyImageWithHints, 300);
         });
       };
       copyImageWithHints();
-    }
+    },
   );
-  api.mapkey("cj", "\u{1F4F7} Copy image URL using hints", function() {
-    api.Hints.create("img[src]", function(el) {
+  api.mapkey("cj", "\u{1F4F7} Copy image URL using hints", function () {
+    api.Hints.create("img[src]", function (el) {
       api.Clipboard.write(el.src);
     });
   });
-  api.mapkey("cm", "\u{1F4C4} Copy image as Markdown", function() {
-    api.Hints.create("img[src]", function(el) {
+  api.mapkey("cm", "\u{1F4C4} Copy image as Markdown", function () {
+    api.Hints.create("img[src]", function (el) {
       const alt = el.alt || "image";
       const markdown = `![${alt}](${el.src})`;
       api.Clipboard.write(markdown);
@@ -822,37 +1112,45 @@
         api.Clipboard.write(el.src);
         api.tabOpenLink(el.src);
       },
-      { multipleHits: true }
+      { multipleHits: true },
     );
   });
-  api.mapkey("gI", "#7View image in new tab", function() {
+  api.mapkey("gI", "#7View image in new tab", function () {
     api.Hints.create("img", (i) => api.tabOpenLink(i.src));
   });
 
   // src/modules/hoverClick/hoverClick.js
-  api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
-    api.Hints.create(
-      "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
-      // { tabbed: true },
-      function(el) {
-        el.click();
-        setTimeout(() => {
-          repeatClickHints();
-        }, 200);
-      }
-    );
-  });
-  api.mapkey("ch", "\u{1F5B1}\uFE0F Smart hover using hints", function() {
-    api.Hints.create("*", function(el) {
+  api.mapkey(
+    "cb",
+    "\u{1F501} Persistent click hints",
+    function repeatClickHints() {
+      api.Hints.create(
+        "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
+        // { tabbed: true },
+        function (el) {
+          el.click();
+          setTimeout(() => {
+            repeatClickHints();
+          }, 200);
+        },
+      );
+    },
+  );
+  api.mapkey("ch", "\u{1F5B1}\uFE0F Smart hover using hints", function () {
+    api.Hints.create("*", function (el) {
       ["mouseover", "mouseenter", "focus"].forEach((type) => {
         el.dispatchEvent(
-          new MouseEvent(type, { bubbles: true, cancelable: true, view: window })
+          new MouseEvent(type, {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+          }),
         );
       });
     });
   });
-  api.mapkey("ca", "\u{1F50D} Reveal hidden elements using hints", function() {
-    api.Hints.create("*", function(el) {
+  api.mapkey("ca", "\u{1F50D} Reveal hidden elements using hints", function () {
+    api.Hints.create("*", function (el) {
       el.style.display = "block";
       el.style.visibility = "visible";
       el.style.opacity = "1";
@@ -860,10 +1158,10 @@
       api.Front.showPopup("\u2705 Revealed element: " + el.tagName);
     });
   });
-  api.mapkey("of", "#8Open URL in incognito window", function() {
-    api.Hints.create("*[href]", function(element) {
+  api.mapkey("of", "#8Open URL in incognito window", function () {
+    api.Hints.create("*[href]", function (element) {
       api?.RUNTIME("openIncognito", {
-        url: element.href
+        url: element.href,
       });
     });
   });
@@ -878,7 +1176,9 @@
 
   // node_modules/fuse.js/dist/fuse.mjs
   function isArray(value) {
-    return !Array.isArray ? getTag(value) === "[object Array]" : Array.isArray(value);
+    return !Array.isArray
+      ? getTag(value) === "[object Array]"
+      : Array.isArray(value);
   }
   var INFINITY = 1 / 0;
   function baseToString(value) {
@@ -898,7 +1198,11 @@
     return typeof value === "number";
   }
   function isBoolean(value) {
-    return value === true || value === false || isObjectLike(value) && getTag(value) == "[object Boolean]";
+    return (
+      value === true ||
+      value === false ||
+      (isObjectLike(value) && getTag(value) == "[object Boolean]")
+    );
   }
   function isObject(value) {
     return typeof value === "object";
@@ -913,13 +1217,20 @@
     return !value.trim().length;
   }
   function getTag(value) {
-    return value == null ? value === void 0 ? "[object Undefined]" : "[object Null]" : Object.prototype.toString.call(value);
+    return value == null
+      ? value === void 0
+        ? "[object Undefined]"
+        : "[object Null]"
+      : Object.prototype.toString.call(value);
   }
   var INCORRECT_INDEX_TYPE = "Incorrect 'index' type";
-  var LOGICAL_SEARCH_INVALID_QUERY_FOR_KEY = (key) => `Invalid value for key ${key}`;
-  var PATTERN_LENGTH_TOO_LARGE = (max) => `Pattern length exceeds max of ${max}.`;
+  var LOGICAL_SEARCH_INVALID_QUERY_FOR_KEY = (key) =>
+    `Invalid value for key ${key}`;
+  var PATTERN_LENGTH_TOO_LARGE = (max) =>
+    `Pattern length exceeds max of ${max}.`;
   var MISSING_KEY_PROPERTY = (name) => `Missing ${name} property in key`;
-  var INVALID_KEY_WEIGHT_VALUE = (key) => `Property 'weight' in key '${key}' must be a positive integer`;
+  var INVALID_KEY_WEIGHT_VALUE = (key) =>
+    `Property 'weight' in key '${key}' must be a positive integer`;
   var hasOwn = Object.prototype.hasOwnProperty;
   var KeyStore = class {
     constructor(keys) {
@@ -995,7 +1306,10 @@
         if (!isDefined(value)) {
           return;
         }
-        if (index === path2.length - 1 && (isString(value) || isNumber(value) || isBoolean(value))) {
+        if (
+          index === path2.length - 1 &&
+          (isString(value) || isNumber(value) || isBoolean(value))
+        ) {
           list.push(toString(value));
         } else if (isArray(value)) {
           arr = true;
@@ -1019,7 +1333,7 @@
     // a perfect match has already been located in the string.
     findAllMatches: false,
     // Minimum number of characters that must be matched before a result is considered a match
-    minMatchCharLength: 1
+    minMatchCharLength: 1,
   };
   var BasicOptions = {
     // When `true`, the algorithm continues searching to the end of the input even if a perfect
@@ -1034,7 +1348,14 @@
     // Whether to sort the result list, by score
     shouldSort: true,
     // Default sort function: sort by ascending score, ascending index
-    sortFn: (a, b) => a.score === b.score ? a.idx < b.idx ? -1 : 1 : a.score < b.score ? -1 : 1
+    sortFn: (a, b) =>
+      a.score === b.score
+        ? a.idx < b.idx
+          ? -1
+          : 1
+        : a.score < b.score
+          ? -1
+          : 1,
   };
   var FuzzyOptions = {
     // Approximately where in the text is the pattern expected to be found?
@@ -1047,7 +1368,7 @@
     // would score as a complete mismatch. A distance of '0' requires the match be at
     // the exact location specified, a threshold of '1000' would require a perfect match
     // to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.
-    distance: 100
+    distance: 100,
   };
   var AdvancedOptions = {
     // When `true`, it enables the use of unix-like search commands
@@ -1064,13 +1385,13 @@
     // More info: https://fusejs.io/concepts/scoring-theory.html#field-length-norm
     ignoreFieldNorm: false,
     // The weight to determine how much field length norm effects scoring.
-    fieldNormWeight: 1
+    fieldNormWeight: 1,
   };
   var Config = {
     ...BasicOptions,
     ...MatchOptions,
     ...FuzzyOptions,
-    ...AdvancedOptions
+    ...AdvancedOptions,
   };
   var SPACE = /[^ ]+/g;
   function norm(weight = 1, mantissa = 3) {
@@ -1089,13 +1410,13 @@
       },
       clear() {
         cache.clear();
-      }
+      },
     };
   }
   var FuseIndex = class {
     constructor({
       getFn = Config.getFn,
-      fieldNormWeight = Config.fieldNormWeight
+      fieldNormWeight = Config.fieldNormWeight,
     } = {}) {
       this.norm = norm(fieldNormWeight, 3);
       this.getFn = getFn;
@@ -1160,7 +1481,7 @@
       let record = {
         v: doc,
         i: docIndex,
-        n: this.norm.get(doc)
+        n: this.norm.get(doc),
       };
       this.records.push(record);
     }
@@ -1183,23 +1504,23 @@
               let subRecord = {
                 v: value2,
                 i: nestedArrIndex,
-                n: this.norm.get(value2)
+                n: this.norm.get(value2),
               };
               subRecords.push(subRecord);
             } else if (isArray(value2)) {
               value2.forEach((item, k) => {
                 stack.push({
                   nestedArrIndex: k,
-                  value: item
+                  value: item,
                 });
               });
-            } else ;
+            } else;
           }
           record.$[keyIndex] = subRecords;
         } else if (isString(value) && !isBlank(value)) {
           let subRecord = {
             v: value,
-            n: this.norm.get(value)
+            n: this.norm.get(value),
           };
           record.$[keyIndex] = subRecord;
         }
@@ -1209,31 +1530,41 @@
     toJSON() {
       return {
         keys: this.keys,
-        records: this.records
+        records: this.records,
       };
     }
   };
-  function createIndex(keys, docs, { getFn = Config.getFn, fieldNormWeight = Config.fieldNormWeight } = {}) {
+  function createIndex(
+    keys,
+    docs,
+    { getFn = Config.getFn, fieldNormWeight = Config.fieldNormWeight } = {},
+  ) {
     const myIndex = new FuseIndex({ getFn, fieldNormWeight });
     myIndex.setKeys(keys.map(createKey));
     myIndex.setSources(docs);
     myIndex.create();
     return myIndex;
   }
-  function parseIndex(data, { getFn = Config.getFn, fieldNormWeight = Config.fieldNormWeight } = {}) {
+  function parseIndex(
+    data,
+    { getFn = Config.getFn, fieldNormWeight = Config.fieldNormWeight } = {},
+  ) {
     const { keys, records } = data;
     const myIndex = new FuseIndex({ getFn, fieldNormWeight });
     myIndex.setKeys(keys);
     myIndex.setIndexRecords(records);
     return myIndex;
   }
-  function computeScore$1(pattern, {
-    errors = 0,
-    currentLocation = 0,
-    expectedLocation = 0,
-    distance = Config.distance,
-    ignoreLocation = Config.ignoreLocation
-  } = {}) {
+  function computeScore$1(
+    pattern,
+    {
+      errors = 0,
+      currentLocation = 0,
+      expectedLocation = 0,
+      distance = Config.distance,
+      ignoreLocation = Config.ignoreLocation,
+    } = {},
+  ) {
     const accuracy = errors / pattern.length;
     if (ignoreLocation) {
       return accuracy;
@@ -1244,7 +1575,10 @@
     }
     return accuracy + proximity / distance;
   }
-  function convertMaskToIndices(matchmask = [], minMatchCharLength = Config.minMatchCharLength) {
+  function convertMaskToIndices(
+    matchmask = [],
+    minMatchCharLength = Config.minMatchCharLength,
+  ) {
     let indices = [];
     let start = -1;
     let end = -1;
@@ -1267,15 +1601,20 @@
     return indices;
   }
   var MAX_BITS = 32;
-  function search(text, pattern, patternAlphabet, {
-    location: location2 = Config.location,
-    distance = Config.distance,
-    threshold = Config.threshold,
-    findAllMatches = Config.findAllMatches,
-    minMatchCharLength = Config.minMatchCharLength,
-    includeMatches = Config.includeMatches,
-    ignoreLocation = Config.ignoreLocation
-  } = {}) {
+  function search(
+    text,
+    pattern,
+    patternAlphabet,
+    {
+      location: location2 = Config.location,
+      distance = Config.distance,
+      threshold = Config.threshold,
+      findAllMatches = Config.findAllMatches,
+      minMatchCharLength = Config.minMatchCharLength,
+      includeMatches = Config.includeMatches,
+      ignoreLocation = Config.ignoreLocation,
+    } = {},
+  ) {
     if (pattern.length > MAX_BITS) {
       throw new Error(PATTERN_LENGTH_TOO_LARGE(MAX_BITS));
     }
@@ -1292,7 +1631,7 @@
         currentLocation: index,
         expectedLocation,
         distance,
-        ignoreLocation
+        ignoreLocation,
       });
       currentThreshold = Math.min(score, currentThreshold);
       bestLocation = index + patternLen;
@@ -1308,7 +1647,7 @@
     let lastBitArr = [];
     let finalScore = 1;
     let binMax = patternLen + textLen;
-    const mask = 1 << patternLen - 1;
+    const mask = 1 << (patternLen - 1);
     for (let i = 0; i < patternLen; i += 1) {
       let binMin = 0;
       let binMid = binMax;
@@ -1318,7 +1657,7 @@
           currentLocation: expectedLocation + binMid,
           expectedLocation,
           distance,
-          ignoreLocation
+          ignoreLocation,
         });
         if (score2 <= currentThreshold) {
           binMin = binMid;
@@ -1329,7 +1668,9 @@
       }
       binMax = binMid;
       let start = Math.max(1, expectedLocation - binMid + 1);
-      let finish = findAllMatches ? textLen : Math.min(expectedLocation + binMid, textLen) + patternLen;
+      let finish = findAllMatches
+        ? textLen
+        : Math.min(expectedLocation + binMid, textLen) + patternLen;
       let bitArr = Array(finish + 2);
       bitArr[finish + 1] = (1 << i) - 1;
       for (let j = finish; j >= start; j -= 1) {
@@ -1338,9 +1679,10 @@
         if (computeMatches) {
           matchMask[currentLocation] = +!!charMatch;
         }
-        bitArr[j] = (bitArr[j + 1] << 1 | 1) & charMatch;
+        bitArr[j] = ((bitArr[j + 1] << 1) | 1) & charMatch;
         if (i) {
-          bitArr[j] |= (lastBitArr[j + 1] | lastBitArr[j]) << 1 | 1 | lastBitArr[j + 1];
+          bitArr[j] |=
+            ((lastBitArr[j + 1] | lastBitArr[j]) << 1) | 1 | lastBitArr[j + 1];
         }
         if (bitArr[j] & mask) {
           finalScore = computeScore$1(pattern, {
@@ -1348,7 +1690,7 @@
             currentLocation,
             expectedLocation,
             distance,
-            ignoreLocation
+            ignoreLocation,
           });
           if (finalScore <= currentThreshold) {
             currentThreshold = finalScore;
@@ -1365,7 +1707,7 @@
         currentLocation: expectedLocation,
         expectedLocation,
         distance,
-        ignoreLocation
+        ignoreLocation,
       });
       if (score > currentThreshold) {
         break;
@@ -1375,7 +1717,7 @@
     const result = {
       isMatch: bestLocation >= 0,
       // Count exact matches (those with a score of 0) to be "almost" exact
-      score: Math.max(1e-3, finalScore)
+      score: Math.max(1e-3, finalScore),
     };
     if (computeMatches) {
       const indices = convertMaskToIndices(matchMask, minMatchCharLength);
@@ -1391,23 +1733,34 @@
     let mask = {};
     for (let i = 0, len = pattern.length; i < len; i += 1) {
       const char = pattern.charAt(i);
-      mask[char] = (mask[char] || 0) | 1 << len - i - 1;
+      mask[char] = (mask[char] || 0) | (1 << (len - i - 1));
     }
     return mask;
   }
-  var stripDiacritics = String.prototype.normalize ? (str) => str.normalize("NFD").replace(/[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]/g, "") : (str) => str;
+  var stripDiacritics = String.prototype.normalize
+    ? (str) =>
+        str
+          .normalize("NFD")
+          .replace(
+            /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]/g,
+            "",
+          )
+    : (str) => str;
   var BitapSearch = class {
-    constructor(pattern, {
-      location: location2 = Config.location,
-      threshold = Config.threshold,
-      distance = Config.distance,
-      includeMatches = Config.includeMatches,
-      findAllMatches = Config.findAllMatches,
-      minMatchCharLength = Config.minMatchCharLength,
-      isCaseSensitive = Config.isCaseSensitive,
-      ignoreDiacritics = Config.ignoreDiacritics,
-      ignoreLocation = Config.ignoreLocation
-    } = {}) {
+    constructor(
+      pattern,
+      {
+        location: location2 = Config.location,
+        threshold = Config.threshold,
+        distance = Config.distance,
+        includeMatches = Config.includeMatches,
+        findAllMatches = Config.findAllMatches,
+        minMatchCharLength = Config.minMatchCharLength,
+        isCaseSensitive = Config.isCaseSensitive,
+        ignoreDiacritics = Config.ignoreDiacritics,
+        ignoreLocation = Config.ignoreLocation,
+      } = {},
+    ) {
       this.options = {
         location: location2,
         threshold,
@@ -1417,7 +1770,7 @@
         minMatchCharLength,
         isCaseSensitive,
         ignoreDiacritics,
-        ignoreLocation
+        ignoreLocation,
       };
       pattern = isCaseSensitive ? pattern : pattern.toLowerCase();
       pattern = ignoreDiacritics ? stripDiacritics(pattern) : pattern;
@@ -1430,7 +1783,7 @@
         this.chunks.push({
           pattern: pattern2,
           alphabet: createPatternAlphabet(pattern2),
-          startIndex
+          startIndex,
         });
       };
       const len = this.pattern.length;
@@ -1451,13 +1804,14 @@
       }
     }
     searchIn(text) {
-      const { isCaseSensitive, ignoreDiacritics, includeMatches } = this.options;
+      const { isCaseSensitive, ignoreDiacritics, includeMatches } =
+        this.options;
       text = isCaseSensitive ? text : text.toLowerCase();
       text = ignoreDiacritics ? stripDiacritics(text) : text;
       if (this.pattern === text) {
         let result2 = {
           isMatch: true,
-          score: 0
+          score: 0,
         };
         if (includeMatches) {
           result2.indices = [[0, text.length - 1]];
@@ -1470,7 +1824,7 @@
         threshold,
         findAllMatches,
         minMatchCharLength,
-        ignoreLocation
+        ignoreLocation,
       } = this.options;
       let allIndices = [];
       let totalScore = 0;
@@ -1483,7 +1837,7 @@
           findAllMatches,
           minMatchCharLength,
           includeMatches,
-          ignoreLocation
+          ignoreLocation,
         });
         if (isMatch) {
           hasMatches = true;
@@ -1495,7 +1849,7 @@
       });
       let result = {
         isMatch: hasMatches,
-        score: hasMatches ? totalScore / this.chunks.length : 1
+        score: hasMatches ? totalScore / this.chunks.length : 1,
       };
       if (hasMatches && includeMatches) {
         result.indices = allIndices;
@@ -1513,8 +1867,7 @@
     static isSingleMatch(pattern) {
       return getMatch(pattern, this.singleRegex);
     }
-    search() {
-    }
+    search() {}
   };
   function getMatch(pattern, exp) {
     const matches = pattern.match(exp);
@@ -1538,7 +1891,7 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices: [0, this.pattern.length - 1]
+        indices: [0, this.pattern.length - 1],
       };
     }
   };
@@ -1561,7 +1914,7 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices: [0, text.length - 1]
+        indices: [0, text.length - 1],
       };
     }
   };
@@ -1583,7 +1936,7 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices: [0, this.pattern.length - 1]
+        indices: [0, this.pattern.length - 1],
       };
     }
   };
@@ -1605,7 +1958,7 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices: [0, text.length - 1]
+        indices: [0, text.length - 1],
       };
     }
   };
@@ -1627,7 +1980,7 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices: [text.length - this.pattern.length, text.length - 1]
+        indices: [text.length - this.pattern.length, text.length - 1],
       };
     }
   };
@@ -1649,22 +2002,25 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices: [0, text.length - 1]
+        indices: [0, text.length - 1],
       };
     }
   };
   var FuzzyMatch = class extends BaseMatch {
-    constructor(pattern, {
-      location: location2 = Config.location,
-      threshold = Config.threshold,
-      distance = Config.distance,
-      includeMatches = Config.includeMatches,
-      findAllMatches = Config.findAllMatches,
-      minMatchCharLength = Config.minMatchCharLength,
-      isCaseSensitive = Config.isCaseSensitive,
-      ignoreDiacritics = Config.ignoreDiacritics,
-      ignoreLocation = Config.ignoreLocation
-    } = {}) {
+    constructor(
+      pattern,
+      {
+        location: location2 = Config.location,
+        threshold = Config.threshold,
+        distance = Config.distance,
+        includeMatches = Config.includeMatches,
+        findAllMatches = Config.findAllMatches,
+        minMatchCharLength = Config.minMatchCharLength,
+        isCaseSensitive = Config.isCaseSensitive,
+        ignoreDiacritics = Config.ignoreDiacritics,
+        ignoreLocation = Config.ignoreLocation,
+      } = {},
+    ) {
       super(pattern);
       this._bitapSearch = new BitapSearch(pattern, {
         location: location2,
@@ -1675,7 +2031,7 @@
         minMatchCharLength,
         isCaseSensitive,
         ignoreDiacritics,
-        ignoreLocation
+        ignoreLocation,
       });
     }
     static get type() {
@@ -1717,7 +2073,7 @@
       return {
         isMatch,
         score: isMatch ? 0 : 1,
-        indices
+        indices,
       };
     }
   };
@@ -1729,14 +2085,17 @@
     InverseSuffixExactMatch,
     SuffixExactMatch,
     InverseExactMatch,
-    FuzzyMatch
+    FuzzyMatch,
   ];
   var searchersLen = searchers.length;
   var SPACE_RE = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
   var OR_TOKEN = "|";
   function parseQuery(pattern, options = {}) {
     return pattern.split(OR_TOKEN).map((item) => {
-      let query = item.trim().split(SPACE_RE).filter((item2) => item2 && !!item2.trim());
+      let query = item
+        .trim()
+        .split(SPACE_RE)
+        .filter((item2) => item2 && !!item2.trim());
       let results = [];
       for (let i = 0, len = query.length; i < len; i += 1) {
         const queryItem = query[i];
@@ -1766,19 +2125,25 @@
       return results;
     });
   }
-  var MultiMatchSet = /* @__PURE__ */ new Set([FuzzyMatch.type, IncludeMatch.type]);
+  var MultiMatchSet = /* @__PURE__ */ new Set([
+    FuzzyMatch.type,
+    IncludeMatch.type,
+  ]);
   var ExtendedSearch = class {
-    constructor(pattern, {
-      isCaseSensitive = Config.isCaseSensitive,
-      ignoreDiacritics = Config.ignoreDiacritics,
-      includeMatches = Config.includeMatches,
-      minMatchCharLength = Config.minMatchCharLength,
-      ignoreLocation = Config.ignoreLocation,
-      findAllMatches = Config.findAllMatches,
-      location: location2 = Config.location,
-      threshold = Config.threshold,
-      distance = Config.distance
-    } = {}) {
+    constructor(
+      pattern,
+      {
+        isCaseSensitive = Config.isCaseSensitive,
+        ignoreDiacritics = Config.ignoreDiacritics,
+        includeMatches = Config.includeMatches,
+        minMatchCharLength = Config.minMatchCharLength,
+        ignoreLocation = Config.ignoreLocation,
+        findAllMatches = Config.findAllMatches,
+        location: location2 = Config.location,
+        threshold = Config.threshold,
+        distance = Config.distance,
+      } = {},
+    ) {
       this.query = null;
       this.options = {
         isCaseSensitive,
@@ -1789,7 +2154,7 @@
         ignoreLocation,
         location: location2,
         threshold,
-        distance
+        distance,
       };
       pattern = isCaseSensitive ? pattern : pattern.toLowerCase();
       pattern = ignoreDiacritics ? stripDiacritics(pattern) : pattern;
@@ -1804,10 +2169,11 @@
       if (!query) {
         return {
           isMatch: false,
-          score: 1
+          score: 1,
         };
       }
-      const { includeMatches, isCaseSensitive, ignoreDiacritics } = this.options;
+      const { includeMatches, isCaseSensitive, ignoreDiacritics } =
+        this.options;
       text = isCaseSensitive ? text : text.toLowerCase();
       text = ignoreDiacritics ? stripDiacritics(text) : text;
       let numMatches = 0;
@@ -1841,7 +2207,7 @@
         if (numMatches) {
           let result = {
             isMatch: true,
-            score: totalScore / numMatches
+            score: totalScore / numMatches,
           };
           if (includeMatches) {
             result.indices = allIndices;
@@ -1851,7 +2217,7 @@
       }
       return {
         isMatch: false,
-        score: 1
+        score: 1,
       };
     }
   };
@@ -1870,19 +2236,21 @@
   }
   var LogicalOperator = {
     AND: "$and",
-    OR: "$or"
+    OR: "$or",
   };
   var KeyType = {
     PATH: "$path",
-    PATTERN: "$val"
+    PATTERN: "$val",
   };
-  var isExpression = (query) => !!(query[LogicalOperator.AND] || query[LogicalOperator.OR]);
+  var isExpression = (query) =>
+    !!(query[LogicalOperator.AND] || query[LogicalOperator.OR]);
   var isPath = (query) => !!query[KeyType.PATH];
-  var isLeaf = (query) => !isArray(query) && isObject(query) && !isExpression(query);
+  var isLeaf = (query) =>
+    !isArray(query) && isObject(query) && !isExpression(query);
   var convertToExplicit = (query) => ({
     [LogicalOperator.AND]: Object.keys(query).map((key) => ({
-      [key]: query[key]
-    }))
+      [key]: query[key],
+    })),
   });
   function parse(query, options, { auto = true } = {}) {
     const next = (query2) => {
@@ -1899,7 +2267,7 @@
         }
         const obj = {
           keyId: createKeyId(key),
-          pattern
+          pattern,
         };
         if (auto) {
           obj.searcher = createSearcher(pattern, options);
@@ -1908,7 +2276,7 @@
       }
       let node = {
         children: [],
-        operator: keys[0]
+        operator: keys[0],
       };
       keys.forEach((key) => {
         const value = query2[key];
@@ -1932,7 +2300,7 @@
         const weight = key ? key.weight : null;
         totalScore *= Math.pow(
           score === 0 && weight ? Number.EPSILON : score,
-          (weight || 1) * (ignoreFieldNorm ? 1 : norm2)
+          (weight || 1) * (ignoreFieldNorm ? 1 : norm2),
         );
       });
       result.score = totalScore;
@@ -1951,7 +2319,7 @@
       const { indices, value } = match;
       let obj = {
         indices,
-        value
+        value,
       };
       if (match.key) {
         obj.key = match.key.src;
@@ -1965,10 +2333,14 @@
   function transformScore(result, data) {
     data.score = result.score;
   }
-  function format(results, docs, {
-    includeMatches = Config.includeMatches,
-    includeScore = Config.includeScore
-  } = {}) {
+  function format(
+    results,
+    docs,
+    {
+      includeMatches = Config.includeMatches,
+      includeScore = Config.includeScore,
+    } = {},
+  ) {
     const transformers = [];
     if (includeMatches) transformers.push(transformMatches);
     if (includeScore) transformers.push(transformScore);
@@ -1976,7 +2348,7 @@
       const { idx } = result;
       const data = {
         item: docs[idx],
-        refIndex: idx
+        refIndex: idx,
       };
       if (transformers.length) {
         transformers.forEach((transformer) => {
@@ -2000,10 +2372,12 @@
       if (index && !(index instanceof FuseIndex)) {
         throw new Error(INCORRECT_INDEX_TYPE);
       }
-      this._myIndex = index || createIndex(this.options.keys, this._docs, {
-        getFn: this.options.getFn,
-        fieldNormWeight: this.options.fieldNormWeight
-      });
+      this._myIndex =
+        index ||
+        createIndex(this.options.keys, this._docs, {
+          getFn: this.options.getFn,
+          fieldNormWeight: this.options.fieldNormWeight,
+        });
     }
     add(doc) {
       if (!isDefined(doc)) {
@@ -2038,9 +2412,13 @@
         includeScore,
         shouldSort,
         sortFn,
-        ignoreFieldNorm
+        ignoreFieldNorm,
       } = this.options;
-      let results = isString(query) ? isString(this._docs[0]) ? this._searchStringList(query) : this._searchObjectList(query) : this._searchLogical(query);
+      let results = isString(query)
+        ? isString(this._docs[0])
+          ? this._searchStringList(query)
+          : this._searchObjectList(query)
+        : this._searchLogical(query);
       computeScore(results, { ignoreFieldNorm });
       if (shouldSort) {
         results.sort(sortFn);
@@ -2050,7 +2428,7 @@
       }
       return format(results, this._docs, {
         includeMatches,
-        includeScore
+        includeScore,
       });
     }
     _searchStringList(query) {
@@ -2066,7 +2444,7 @@
           results.push({
             item: text,
             idx,
-            matches: [{ score, value: text, norm: norm2, indices }]
+            matches: [{ score, value: text, norm: norm2, indices }],
           });
         }
       });
@@ -2080,15 +2458,15 @@
           const matches = this._findMatches({
             key: this._keyStore.get(keyId),
             value: this._myIndex.getValueForItemAtKeyId(item, keyId),
-            searcher
+            searcher,
           });
           if (matches && matches.length) {
             return [
               {
                 idx,
                 item,
-                matches
-              }
+                matches,
+              },
             ];
           }
           return [];
@@ -2138,15 +2516,15 @@
             ...this._findMatches({
               key,
               value: item[keyIndex],
-              searcher
-            })
+              searcher,
+            }),
           );
         });
         if (matches.length) {
           results.push({
             idx,
             item,
-            matches
+            matches,
           });
         }
       });
@@ -2170,7 +2548,7 @@
               value: text,
               idx,
               norm: norm2,
-              indices
+              indices,
             });
           }
         });
@@ -2203,7 +2581,7 @@
     "evaluate Surfingkeys UI",
     "jump to GitHub user profile",
     "highlight text in markdown format",
-    "persistent hint click"
+    "persistent hint click",
   ];
   function openFuzzyFinder() {
     const container = document.createElement("div");
@@ -2223,7 +2601,8 @@
       maxHeight: "60vh",
       padding: "16px",
       overflow: "hidden",
-      fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      fontFamily:
+        "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
     });
     const input = document.createElement("input");
     Object.assign(input.style, {
@@ -2238,7 +2617,7 @@
       // border-gray-600
       outline: "none",
       fontSize: "14px",
-      boxSizing: "border-box"
+      boxSizing: "border-box",
     });
     input.placeholder = "\u{1F50D} Fuzzy Search History...";
     const resultsContainer = document.createElement("div");
@@ -2247,7 +2626,7 @@
       maxHeight: "40vh",
       display: "flex",
       flexDirection: "column",
-      gap: "6px"
+      gap: "6px",
     });
     container.appendChild(input);
     container.appendChild(resultsContainer);
@@ -2266,7 +2645,7 @@
           borderRadius: "6px",
           cursor: "pointer",
           fontSize: "13px",
-          userSelect: "none"
+          userSelect: "none",
         });
         div.textContent = r.item;
         div.tabIndex = idx;
@@ -2298,17 +2677,21 @@
   // src/modules/opener/resourceOpener.js
   var openGDrive = () => {
     if (window.location.hostname.includes("drive")) {
-      window.location.href = "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp";
+      window.location.href =
+        "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp";
     } else {
       window.open(
         "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp",
-        "_blank"
+        "_blank",
       );
     }
   };
   api.mapkey("ord", "open GDrive Resource", openGDrive);
   var openImgbb = () => {
-    if (window.location.hostname.includes("imgbb") || window.location.hostname.includes("ibb")) {
+    if (
+      window.location.hostname.includes("imgbb") ||
+      window.location.hostname.includes("ibb")
+    ) {
       window.location.href = "https://md-shahjalal.imgbb.com/";
     } else {
       window.open("https://md-shahjalal.imgbb.com/", "_blank");
@@ -2317,22 +2700,24 @@
   api.mapkey("ori", "open imgbb Resource", openImgbb);
   var openJpSheet = () => {
     if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628";
+      window.location.href =
+        "https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628";
     } else {
       window.open(
         "https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628",
-        "_blank"
+        "_blank",
       );
     }
   };
   api.mapkey("ors", "open Jp Sheet", openJpSheet);
   var openJpMasumVaiSheet = () => {
     if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0";
+      window.location.href =
+        "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0";
     } else {
       window.open(
         "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0",
-        "_blank"
+        "_blank",
       );
     }
   };
@@ -2384,12 +2769,14 @@
             const url = new URL(clipContent);
             clipPath = url.pathname + url.search + url.hash;
           }
-        } catch (e) {
-        }
-        const normalize = (path) => path.replace(/^\/+|\/+$/g, "").replace(/\/{2,}/g, "/");
+        } catch (e) {}
+        const normalize = (path) =>
+          path.replace(/^\/+|\/+$/g, "").replace(/\/{2,}/g, "/");
         const cleanBase = normalize(base);
         const cleanClip = normalize(clipPath);
-        const newPath = [cleanBase, cleanClip].filter((p) => p.length > 0).join("/");
+        const newPath = [cleanBase, cleanClip]
+          .filter((p) => p.length > 0)
+          .join("/");
         const finalUrl = new URL(newPath, origin).href;
         api.Front.showBanner(`\u2197\uFE0F Redirecting to: ${finalUrl}`);
         window.location.href = finalUrl;
@@ -2399,16 +2786,12 @@
       api.Front.showBanner(`\u274C Error: ${error.message}`);
     }
   }
-  api.mapkey(
-    "ap,",
-    "Append clipboard to root path",
-    () => appendClipboardToPath(0)
+  api.mapkey("ap,", "Append clipboard to root path", () =>
+    appendClipboardToPath(0),
   );
   for (let i = 1; i <= 3; i++) {
-    api.mapkey(
-      `ap${i}`,
-      `Append clipboard to first ${i} path segments`,
-      () => appendClipboardToPath(i)
+    api.mapkey(`ap${i}`, `Append clipboard to first ${i} path segments`, () =>
+      appendClipboardToPath(i),
     );
   }
   api.mapkey("aph", "Show URL manipulator help", () => {
@@ -2429,43 +2812,47 @@
     </div>
   `);
   });
-  api.mapkey("ar", "\u{1F504} Replace current URL with clipboard content", function() {
-    api.Clipboard.read((clipContent) => {
-      try {
-        let url = "";
-        if (typeof clipContent === "string") {
-          url = clipContent;
-        } else if (clipContent?.data) {
-          url = String(clipContent.data);
-        } else {
-          throw new Error("Clipboard content is not a valid string");
-        }
-        url = url.trim();
-        if (!url) {
-          throw new Error("Clipboard is empty");
-        }
-        if (!url.match(/^https?:\/\//)) {
-          if (url.includes("localhost") || url.match(/^\d+\.\d+\.\d+\.\d+/)) {
-            url = `http://${url}`;
+  api.mapkey(
+    "ar",
+    "\u{1F504} Replace current URL with clipboard content",
+    function () {
+      api.Clipboard.read((clipContent) => {
+        try {
+          let url = "";
+          if (typeof clipContent === "string") {
+            url = clipContent;
+          } else if (clipContent?.data) {
+            url = String(clipContent.data);
           } else {
-            url = `https://${url}`;
+            throw new Error("Clipboard content is not a valid string");
           }
+          url = url.trim();
+          if (!url) {
+            throw new Error("Clipboard is empty");
+          }
+          if (!url.match(/^https?:\/\//)) {
+            if (url.includes("localhost") || url.match(/^\d+\.\d+\.\d+\.\d+/)) {
+              url = `http://${url}`;
+            } else {
+              url = `https://${url}`;
+            }
+          }
+          new URL(url);
+          window.location.href = url;
+        } catch (error) {
+          console.error("URL Replace Error:", error);
         }
-        new URL(url);
-        window.location.href = url;
-      } catch (error) {
-        console.error("URL Replace Error:", error);
-      }
-    });
-  });
+      });
+    },
+  );
   var formData = {
     email: "your@email.com",
     name: "Your Name",
     phone: "123-456-7890",
     github: "https://github.com/shahjalal-labs",
-    linkedin: "https://linkedin.com/in/shahjalal-labs"
+    linkedin: "https://linkedin.com/in/shahjalal-labs",
   };
-  api.mapkey("zf", "\u26A1 Auto-fill form fields", function() {
+  api.mapkey("zf", "\u26A1 Auto-fill form fields", function () {
     const inputs = document.querySelectorAll("input, textarea, select");
     let filled = 0;
     inputs.forEach((input) => {
@@ -2473,13 +2860,25 @@
       const name = input.name?.toLowerCase();
       const id = input.id?.toLowerCase();
       const placeholder = input.placeholder?.toLowerCase();
-      if (type === "email" || name?.includes("email") || id?.includes("email")) {
+      if (
+        type === "email" ||
+        name?.includes("email") ||
+        id?.includes("email")
+      ) {
         input.value = formData.email;
         filled++;
-      } else if (name?.includes("name") || id?.includes("name") || placeholder?.includes("name")) {
+      } else if (
+        name?.includes("name") ||
+        id?.includes("name") ||
+        placeholder?.includes("name")
+      ) {
         input.value = formData.name;
         filled++;
-      } else if (type === "tel" || name?.includes("phone") || id?.includes("phone")) {
+      } else if (
+        type === "tel" ||
+        name?.includes("phone") ||
+        id?.includes("phone")
+      ) {
         input.value = formData.phone;
         filled++;
       }
@@ -2488,7 +2887,7 @@
     });
     api.Front.showBanner(`\u26A1 Auto-filled ${filled} fields`);
   });
-  api.mapkey("zt", "\u26A1 Fuzzy tab switcher", function() {
+  api.mapkey("zt", "\u26A1 Fuzzy tab switcher", function () {
     api.RUNTIME("getTabs", {}, (response) => {
       const tabs = response.tabs;
       const container = document.createElement("div");
@@ -2508,7 +2907,7 @@
         padding: "20px",
         overflow: "hidden",
         fontFamily: "JetBrains Mono, monospace",
-        border: "1px solid #334155"
+        border: "1px solid #334155",
       });
       const input = document.createElement("input");
       Object.assign(input.style, {
@@ -2522,7 +2921,7 @@
         outline: "none",
         fontSize: "16px",
         boxSizing: "border-box",
-        fontFamily: "JetBrains Mono, monospace"
+        fontFamily: "JetBrains Mono, monospace",
       });
       input.placeholder = "\u{1F50D} Search tabs...";
       const resultsList = document.createElement("div");
@@ -2531,7 +2930,7 @@
         maxHeight: "50vh",
         display: "flex",
         flexDirection: "column",
-        gap: "4px"
+        gap: "4px",
       });
       let selectedIndex = 0;
       const renderTabs = (searchTabs) => {
@@ -2548,10 +2947,12 @@
             alignItems: "center",
             gap: "12px",
             fontSize: "14px",
-            transition: "all 0.15s ease"
+            transition: "all 0.15s ease",
           });
           const favicon = document.createElement("img");
-          favicon.src = tab.favIconUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3C/svg%3E";
+          favicon.src =
+            tab.favIconUrl ||
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3C/svg%3E";
           favicon.style.width = "16px";
           favicon.style.height = "16px";
           const title = document.createElement("span");
@@ -2574,7 +2975,9 @@
       const filterTabs = (query) => {
         if (!query) return tabs;
         return tabs.filter(
-          (tab) => tab.title.toLowerCase().includes(query.toLowerCase()) || tab.url.toLowerCase().includes(query.toLowerCase())
+          (tab) =>
+            tab.title.toLowerCase().includes(query.toLowerCase()) ||
+            tab.url.toLowerCase().includes(query.toLowerCase()),
         );
       };
       input.oninput = (e) => {
@@ -2588,7 +2991,7 @@
           e.preventDefault();
           selectedIndex = Math.min(
             selectedIndex + 1,
-            Math.min(filtered.length - 1, 14)
+            Math.min(filtered.length - 1, 14),
           );
           renderTabs(filtered);
         } else if (e.key === "ArrowUp") {
@@ -2614,46 +3017,50 @@
   });
 
   // src/modules/opener/PH/PhHelp/phHelp.js
-  api.mapkey("phg", "PH b11 github repositories", function() {
-    window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
+  api.mapkey("phg", "PH b11 github repositories", function () {
+    window.open(
+      "https://github.com/ProgrammingHero1?tab=repositories",
+      "_blank",
+    );
   });
-  api.mapkey("phc", "fbLevel1", function() {
+  api.mapkey("phc", "fbLevel1", function () {
     window.open("https://www.facebook.com/groups/programmingHero", "_blank");
   });
-  api.mapkey("ph2", "fbLevel2", function() {
+  api.mapkey("ph2", "fbLevel2", function () {
     window.open("https://www.facebook.com/groups/phapollo4", "_blank");
   });
-  api.mapkey("phf", "fb  Level1 Batch 11 support group", function() {
+  api.mapkey("phf", "fb  Level1 Batch 11 support group", function () {
     window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
   });
-  api.mapkey("phs", "SCIC", function() {
+  api.mapkey("phs", "SCIC", function () {
     if (window.location.pathname.includes("/groups/scic11/announcements")) {
       console.log(window.location.pathname, "pathname");
       window.location.href = "https://www.facebook.com/groups/scic11/";
     } else {
       window.open(
         "https://www.facebook.com/groups/scic11/announcements",
-        "_blank"
+        "_blank",
       );
     }
   });
 
   // src/modules/opener/PH/PhWeb/phWeb.js
-  api.mapkey("pws", "SCIC", function() {
+  api.mapkey("pws", "SCIC", function () {
     if (window.location.pathname.includes("/groups/scic11/announcements")) {
       console.log(window.location.pathname, "pathname");
-      window.location.href = "https://web.programming-hero.com/scic-11/video/scic-11-0-2-tips-to-get-the-best-out-of-scic";
+      window.location.href =
+        "https://web.programming-hero.com/scic-11/video/scic-11-0-2-tips-to-get-the-best-out-of-scic";
     } else {
       window.open(
         "https://web.programming-hero.com/scic-11/video/scic-11-0-2-tips-to-get-the-best-out-of-scic",
-        "_blank"
+        "_blank",
       );
     }
   });
-  api.mapkey("pwo", "outline SCIC", function() {
+  api.mapkey("pwo", "outline SCIC", function () {
     window.open(
       "https://web.programming-hero.com/688f7b564965ce7350b23f35/course-outline",
-      "_blank"
+      "_blank",
     );
   });
 
@@ -2663,7 +3070,7 @@
   api.map("tk", "g$");
   api.map("th", "E");
   for (let i = 1; i <= 9; i++) {
-    api.mapkey(`t${i}`, `\u{1F522} Jump to tab ${i}`, function() {
+    api.mapkey(`t${i}`, `\u{1F522} Jump to tab ${i}`, function () {
       api.RUNTIME(
         "getTabs",
         { queryInfo: { currentWindow: true } },
@@ -2676,21 +3083,21 @@
           } else {
             api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
           }
-        }
+        },
       );
     });
   }
   api.map("tc", "x");
   api.map("td", "yt");
   api.map("th", "<<");
-  api.map("gt", "t");
+  // api.map("gt", "t");
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
-  mapkey2("sxx", "Close all tabs from same host", function() {
-    chrome.tabs.query({}, function(tabs) {
+  mapkey2("sxx", "Close all tabs from same host", function () {
+    chrome.tabs.query({}, function (tabs) {
       chrome.tabs.query(
         { active: true, currentWindow: true },
-        function(activeTabs) {
+        function (activeTabs) {
           const currentTab = activeTabs[0];
           const currentHost = new URL(currentTab.url).hostname;
           const sameHostTabs = tabs.filter((tab) => {
@@ -2701,7 +3108,7 @@
             }
           });
           sameHostTabs.forEach((tab) => chrome.tabs.remove(tab.id));
-        }
+        },
       );
     });
   });
@@ -2712,15 +3119,16 @@
     deepseek: {
       apiBaseUrl: "https://api.deepseek.com",
       apiKey: "check the env with name DEEPSEEK",
-      model: "deepseek-chat"
-    }
+      model: "deepseek-chat",
+    },
   };
-  api.mapkey("A", "#8Open DeepSeek Chat with role", function() {
+  api.mapkey("A", "#8Open DeepSeek Chat with role", function () {
     api.Front.openOmnibar({
       type: "LLMChat",
       extra: {
-        system: "You are a Linux and browser automation assistant. Reply clearly and concisely, assuming user uses Arch, CLI, and Neovim."
-      }
+        system:
+          "You are a Linux and browser automation assistant. Reply clearly and concisely, assuming user uses Arch, CLI, and Neovim.",
+      },
     });
   });
 })();

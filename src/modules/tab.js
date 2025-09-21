@@ -67,7 +67,7 @@ api.map("th", "<<");
 /* api.mapkey("tr", "▶️ Move tab right", function () {
   api.Normal.feedkeys(">>");
 }); */
-api.map("gt", "t");
+// api.map("gt", "t");
 api.map("tl", ">>");
 console.log("🚀 Console error-free tab navigation loaded!");
 
