@@ -692,14 +692,11 @@
       );
     }
   });
-  api.mapkey("oum", "open fm", function() {
-    if (window.location.hostname.includes("drive.google.com")) {
-      window.location.href = "https://www.facebook.com/messages/e2ee/t/1302214917770136";
+  api.mapkey("out", "open ms team live", function() {
+    if (window.location.hostname.includes("teams.live.com")) {
+      window.location.href = "https://teams.live.com/v2/";
     } else {
-      window.open(
-        "https://www.facebook.com/messages/e2ee/t/1302214917770136",
-        "_blank"
-      );
+      window.open("https://teams.live.com/v2/", "_blank");
     }
   });
 
