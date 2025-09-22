@@ -2346,6 +2346,14 @@
   };
   api.mapkey("orm", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
   api.mapkey("ork", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+  var openPeopleDesk = () => {
+    if (window.location.hostname.includes("app.peopledesk.io")) {
+      window.location.href = "https://app.peopledesk.io/dashboard/employee";
+    } else {
+      window.open("https://app.peopledesk.io/dashboard/employee", "_blank");
+    }
+  };
+  api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
 
   // src/modules/yank/urlYanker.js
   var { mapkey, Clipboard } = api;

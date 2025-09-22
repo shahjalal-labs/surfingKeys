@@ -76,3 +76,15 @@ const openJpMahinVaiSheet = () => {
 };
 api.mapkey("ork", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
 //w: ╰───────────── Block End ─────────────╯
+//
+
+//w: ╭──────────── Block Start ────────────╮
+const openPeopleDesk = () => {
+  if (window.location.hostname.includes("app.peopledesk.io")) {
+    window.location.href = "https://app.peopledesk.io/dashboard/employee";
+  } else {
+    window.open("https://app.peopledesk.io/dashboard/employee", "_blank");
+  }
+};
+api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
+//w: ╰───────────── Block End ─────────────╯
