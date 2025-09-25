@@ -2615,10 +2615,10 @@
       window.open(repoUrl, "_blank");
     }
   });
-  api.mapkey("gn", "new repo github", function() {
+  api.mapkey("grn", "create new github repo", function() {
     window.open("https://github.com/new", "_blank");
   });
-  api.mapkey("ga", "\u{1F4CB} Smart GitHub Repo Copier", async function() {
+  api.mapkey("gyu", "\u{1F4CB} Smart GitHub Repo Copier", async function() {
     const url = window.location.href;
     const extractUserRepo = (href) => {
       const match = href.match(/^\/([^/]+)\/([^/]+)/);
@@ -2659,7 +2659,7 @@
     }
   });
   api.mapkey(
-    "gl",
+    "gyr",
     "Copy GitHub username/repo",
     function() {
       const url = window.location.href;
@@ -2680,7 +2680,7 @@
     },
     { domain: /./, prefix: " " }
   );
-  api.mapkey("gb", "\u{1F464} Go to GitHub user profile from repo page", function() {
+  api.mapkey("grp", "\u{1F464} Go to GitHub user profile from repo page", function() {
     const match = window.location.href.match(
       /^https:\/\/github\.com\/([^\/?#]+)/
     );
