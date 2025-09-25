@@ -1,4 +1,5 @@
 //w: ╭──────────── Block Start ────────────╮
+
 //w: ╰───────────── Block End ─────────────╯
 //w: 1╭──────────── Block Start ────────────╮
 //t: github repository page opening
@@ -8,6 +9,26 @@ api.mapkey("gro", "Repository Github", function () {
 
 //t:  new repo for github
 
+//w: ╭──────────── Block Start ────────────╮
+//t: github repository page opening
+
+api.mapkey("grr", "github Ruhul vai ", function () {
+  const baseUrl = "https://github.com/ruhulamin-programming";
+  const repoUrl = baseUrl + "?tab=repositories";
+
+  if (window.location.href.startsWith(repoUrl)) {
+    // On repositories page → switch to profile
+    window.location.href = baseUrl;
+  } else if (window.location.href.startsWith(baseUrl)) {
+    // On profile (or subpage under profile) → switch to repositories
+    window.location.href = repoUrl;
+  } else {
+    // Anywhere else → open repositories in a new tab
+    window.open(repoUrl, "_blank");
+  }
+});
+
+//w: ╰───────────── Block End ─────────────╯
 api.mapkey("gn", "new repo github", function () {
   window.open("https://github.com/new", "_blank");
 });
@@ -177,22 +198,6 @@ api.mapkey(
     );
   }
 }); */
-
-api.mapkey("gz", "GitHub toggle profile <-> repositories", function () {
-  const baseUrl = "https://github.com/ruhulamin-programming";
-  const repoUrl = baseUrl + "?tab=repositories";
-
-  if (window.location.href.startsWith(repoUrl)) {
-    // On repositories page → switch to profile
-    window.location.href = baseUrl;
-  } else if (window.location.href.startsWith(baseUrl)) {
-    // On profile (or subpage under profile) → switch to repositories
-    window.location.href = repoUrl;
-  } else {
-    // Anywhere else → open repositories in a new tab
-    window.open(repoUrl, "_blank");
-  }
-});
 
 //w: 6╰───────────── Block End ─────────────╯
 //w: 7╭──────────── Block Start ────────────╮
