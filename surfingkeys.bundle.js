@@ -2601,11 +2601,22 @@
   });
 
   // src/modules/github/github.js
-  api.mapkey("gro", "Repository Github", function() {
+  api.mapkey("gro", "Github own Repositories", function() {
     window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
   });
   api.mapkey("grr", "github Ruhul vai ", function() {
     const baseUrl = "https://github.com/ruhulamin-programming";
+    const repoUrl = baseUrl + "?tab=repositories";
+    if (window.location.href.startsWith(repoUrl)) {
+      window.location.href = baseUrl;
+    } else if (window.location.href.startsWith(baseUrl)) {
+      window.location.href = repoUrl;
+    } else {
+      window.open(repoUrl, "_blank");
+    }
+  });
+  api.mapkey("grm", "github Mirhasankhan vai", function() {
+    const baseUrl = "https://github.com/Mirhasankhan";
     const repoUrl = baseUrl + "?tab=repositories";
     if (window.location.href.startsWith(repoUrl)) {
       window.location.href = baseUrl;

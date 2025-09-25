@@ -1,15 +1,15 @@
-//w: ╭──────────── Block Start ────────────╮
+//w: (start)╭──────────── Block Start ────────────╮
 
-//w: ╰───────────── Block End ─────────────╯
+//w: (end)  ╰───────────── Block End ─────────────╯
 //w: 1╭──────────── Block Start ────────────╮
 //t: github repository page opening
-api.mapkey("gro", "Repository Github", function () {
+api.mapkey("gro", "Github own Repositories", function () {
   window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
 });
 
 //t:  new repo for github
 
-//w: ╭──────────── Block Start ────────────╮
+//w: (start)╭──────────── github Ruhul vai  ────────────╮
 //t: github repository page opening
 
 api.mapkey("grr", "github Ruhul vai ", function () {
@@ -27,8 +27,28 @@ api.mapkey("grr", "github Ruhul vai ", function () {
     window.open(repoUrl, "_blank");
   }
 });
+//w: (end)╰───────────── github Ruhul vai  ─────────────╯
 
-//w: ╰───────────── Block End ─────────────╯
+//
+//w: (start)╭──────────── github Mirhasankhan vai ────────────╮
+api.mapkey("grm", "github Mirhasankhan vai", function () {
+  const baseUrl = "https://github.com/Mirhasankhan";
+  const repoUrl = baseUrl + "?tab=repositories";
+
+  if (window.location.href.startsWith(repoUrl)) {
+    // On repositories page → switch to profile
+    window.location.href = baseUrl;
+  } else if (window.location.href.startsWith(baseUrl)) {
+    // On profile (or subpage under profile) → switch to repositories
+    window.location.href = repoUrl;
+  } else {
+    // Anywhere else → open repositories in a new tab
+    window.open(repoUrl, "_blank");
+  }
+});
+//w: (end)╰───────────── github Mirhasankhan vai ─────────────╯
+//
+
 api.mapkey("grn", "create new github repo", function () {
   window.open("https://github.com/new", "_blank");
 });
