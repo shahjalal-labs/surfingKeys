@@ -2,7 +2,7 @@
 //w: ╰───────────── Block End ─────────────╯
 //w: 1╭──────────── Block Start ────────────╮
 //t: github repository page opening
-api.mapkey("gr", "Repository Github", function () {
+api.mapkey("gro", "Repository Github", function () {
   window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
 });
 

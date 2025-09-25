@@ -1,5 +1,5 @@
 import "./src/modules/defaultRemapped.js";
-import "./src/modules/github.js";
+// import "./src/modules/github.js";
 import "./src/settings/theme.js";
 import "./src/settings/settings.js";
 import "./src/modules/opener/opener.js";
@@ -19,6 +19,7 @@ import "./src/modules/yank/urlYanker.js";
 import "./src/modules/opener/PH/PhHelp/phHelp.js";
 import "./src/modules/opener/PH/PhWeb/phWeb.js";
 import "./src/modules/tab.js";
+import "./src/modules/github/github.js";
 
 //
 settings.defaultLLMProvider = "deepseek";
