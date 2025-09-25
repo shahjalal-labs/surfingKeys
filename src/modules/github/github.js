@@ -29,7 +29,7 @@ api.mapkey("grr", "github Ruhul vai ", function () {
 });
 
 //w: ╰───────────── Block End ─────────────╯
-api.mapkey("gn", "new repo github", function () {
+api.mapkey("grn", "create new github repo", function () {
   window.open("https://github.com/new", "_blank");
 });
 //w: 1╰───────────── Block End ─────────────╯
