@@ -36,7 +36,7 @@ api.mapkey("grn", "create new github repo", function () {
 
 //w: 2╭──────────── Block Start ────────────╮
 // t: 📋 Smart GitHub Repo Copier
-api.mapkey("ga", "📋 Smart GitHub Repo Copier", async function () {
+api.mapkey("gyu", "📋 Smart GitHub Repo Copier", async function () {
   const url = window.location.href;
 
   // Helper to extract user/repo from href
@@ -97,7 +97,7 @@ api.mapkey("ga", "📋 Smart GitHub Repo Copier", async function () {
 //w: 3╭──────────── Block Start ────────────╮
 //t: copy github username/repo like shahjalal-labs/nvim
 api.mapkey(
-  "gl",
+  "gyr",
   "Copy GitHub username/repo",
   function () {
     const url = window.location.href;
@@ -120,7 +120,7 @@ api.mapkey(
 );
 //w: 3╰───────────── Block End ─────────────╯
 //w: 5╭──────────── Block Start ────────────╮
-api.mapkey("gb", "👤 Go to GitHub user profile from repo page", function () {
+api.mapkey("grp", "👤 Go to GitHub user profile from repo page", function () {
   const match = window.location.href.match(
     /^https:\/\/github\.com\/([^\/?#]+)/,
   );
