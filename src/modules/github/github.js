@@ -49,10 +49,11 @@ api.mapkey("grm", "github Mirhasankhan vai", function () {
 //w: (end)╰───────────── github Mirhasankhan vai ─────────────╯
 //
 
+//w: (start)╭──────────── create new github repo────────────╮
 api.mapkey("grn", "create new github repo", function () {
   window.open("https://github.com/new", "_blank");
 });
-//w: 1╰───────────── Block End ─────────────╯
+//w: (end)  ╰───────────── create new github repo───────────╯
 
 //w: 2╭──────────── Block Start ────────────╮
 // t: 📋 Smart GitHub Repo Copier

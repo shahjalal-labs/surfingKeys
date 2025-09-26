@@ -459,12 +459,9 @@
   // src/modules/opener/webDevOpener.js
   api.mapkey("ocm", "open mongodb", function() {
     if (window.location.hostname.includes("mongodb")) {
-      window.location.href = "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0";
+      window.location.href = "cloud.mongodb.com";
     } else {
-      window.open(
-        "https://cloud.mongodb.com/v2/68216ab8964d5b3dffeb6a42#/overview?connectCluster=Cluster0",
-        "_blank"
-      );
+      window.open("cloud.mongodb.com", "_blank");
     }
   });
   api.mapkey("oct", "open tailwind vite ", function() {
