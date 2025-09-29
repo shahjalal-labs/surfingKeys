@@ -459,9 +459,9 @@
   // src/modules/opener/webDevOpener.js
   api.mapkey("ocm", "open mongodb", function() {
     if (window.location.hostname.includes("mongodb")) {
-      window.location.href = "cloud.mongodb.com";
+      window.location.href = "https://cloud.mongodb.com";
     } else {
-      window.open("cloud.mongodb.com", "_blank");
+      window.open("https://cloud.mongodb.com", "_blank");
     }
   });
   api.mapkey("oct", "open tailwind vite ", function() {
@@ -2230,6 +2230,17 @@
     }
   };
   api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
+  var openTeamUnitySheets = () => {
+    if (window.location.hostname.includes("docs")) {
+      window.location.href = "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=105570979#gid=105570979";
+    } else {
+      window.open(
+        "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=105570979#gid=105570979",
+        "_blank"
+      );
+    }
+  };
+  api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
 
   // src/modules/yank/urlYanker.js
   var { mapkey, Clipboard } = api;

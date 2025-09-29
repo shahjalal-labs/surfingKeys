@@ -5,9 +5,9 @@
 //w: ╭──────────── Block Start ────────────╮
 api.mapkey("ocm", "open mongodb", function () {
   if (window.location.hostname.includes("mongodb")) {
-    window.location.href = "cloud.mongodb.com";
+    window.location.href = "https://cloud.mongodb.com";
   } else {
-    window.open("cloud.mongodb.com", "_blank");
+    window.open("https://cloud.mongodb.com", "_blank");
   }
 });
 //w: ╰───────────── Block End ─────────────╯

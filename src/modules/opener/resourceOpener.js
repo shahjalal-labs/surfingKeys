@@ -88,3 +88,19 @@ const openPeopleDesk = () => {
 };
 api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
 //w: ╰───────────── Block End ─────────────╯
+//
+
+//w: ╭──────────── Block Start ────────────╮
+const openTeamUnitySheets = () => {
+  if (window.location.hostname.includes("docs")) {
+    window.location.href =
+      "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=105570979#gid=105570979";
+  } else {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=105570979#gid=105570979",
+      "_blank",
+    );
+  }
+};
+api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
+//w: ╰───────────── Block End ─────────────╯
