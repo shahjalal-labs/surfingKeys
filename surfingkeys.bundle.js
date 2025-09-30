@@ -2607,6 +2607,10 @@
       );
     });
   });
+  api.map("txh", "gxt");
+  api.map("txl", "gxT");
+  api.map("txH", "gx0");
+  api.map("txL", "gx$");
 
   // src/modules/github/github.js
   api.mapkey("gro", "Github own Repositories", function() {

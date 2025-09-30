@@ -90,3 +90,15 @@ mapkey("sxx", "Close all tabs from same host", function () {
     );
   });
 });
+
+//close single tab on left
+api.map("txh", "gxt");
+
+//close single tab on right
+api.map("txl", "gxT");
+
+//close all tabs on left
+api.map("txH", "gx0");
+
+//close all tabs on right
+api.map("txL", "gx$");
