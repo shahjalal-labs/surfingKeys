@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        sjIntel - ChatGPT Stealth UI
 // @namespace   sjIntel
-// @description Transform ChatGPT into sjIntel with night theme and right sidebar
-// @version     1.0
+// @description Transform ChatGPT into sjIntel with night theme (safe layout)
+// @version     1.1
 // @match       https://chatgpt.com/*
 // @grant       none
 // ==/UserScript==
@@ -25,13 +25,8 @@ function createSJIntelUI() {
             border-bottom: 1px solid #2a2a4a !important;
         }
 
-        /* ChatGPT -> sjIntel text replacement */
-        * {
-            font-family: 'Segoe UI', system-ui, sans-serif !important;
-        }
-
-        /* Main Chat Area */
-        .flex-1.overflow-hidden {
+        /* Main Chat Area - Safe styling */
+        main, [class*="flex-1"] {
             background: rgba(15, 15, 30, 0.8) !important;
             border-radius: 16px !important;
             margin: 8px !important;
@@ -46,17 +41,16 @@ function createSJIntelUI() {
             margin: 12px 0 !important;
             border: 1px solid #3a3a6a !important;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-            position: relative !important;
         }
 
         /* User message bubbles */
-        .text-base:has([data-message-author-role="user"]) {
+        [data-message-author-role="user"] .text-base {
             background: linear-gradient(135deg, #2a2a5a 0%, #3a3a7a 100%) !important;
             border: 1px solid #4a4a8a !important;
         }
 
-        /* Input Area */
-        textarea, .flex-col > div:last-child {
+        /* Input Area - Fixed */
+        form textarea, [data-testid*="textarea"] {
             background: rgba(20, 20, 40, 0.9) !important;
             color: #ffffff !important;
             border: 1px solid #3a3a6a !important;
@@ -64,27 +58,47 @@ function createSJIntelUI() {
             padding: 16px 20px !important;
             font-size: 14px !important;
             backdrop-filter: blur(10px) !important;
+            resize: vertical !important;
         }
 
-        textarea:focus {
+        form textarea:focus, [data-testid*="textarea"]:focus {
             border-color: #646cff !important;
             box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2) !important;
             outline: none !important;
         }
 
-        /* Buttons */
-        button {
+        /* Send button */
+        button[data-testid*="send"] {
             background: linear-gradient(135deg, #646cff 0%, #747bff 100%) !important;
             border: none !important;
             border-radius: 12px !important;
             color: white !important;
-            padding: 10px 20px !important;
             transition: all 0.3s ease !important;
         }
 
-        button:hover {
+        button[data-testid*="send"]:hover {
             transform: translateY(-2px) !important;
             box-shadow: 0 8px 25px rgba(100, 108, 255, 0.4) !important;
+        }
+
+        /* Sidebar - Safe styling (only colors, no layout changes) */
+        nav, [class*="sidebar"], [class*="Nav"] {
+            background: rgba(10, 10, 20, 0.9) !important;
+            backdrop-filter: blur(15px) !important;
+            border-right: 1px solid #2a2a4a !important;
+        }
+
+        /* Sidebar items */
+        nav a, [class*="Nav"] a, [class*="nav"] a {
+            background: transparent !important;
+            border-radius: 10px !important;
+            margin: 4px 8px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        nav a:hover, [class*="Nav"] a:hover {
+            background: rgba(100, 108, 255, 0.1) !important;
+            transform: translateX(4px) !important;
         }
 
         /* Code Blocks */
@@ -95,26 +109,19 @@ function createSJIntelUI() {
             color: #f8f8f2 !important;
         }
 
-        /* Copy Code -> Yank Button */
+        /* Copy/Yank button */
         button:has(> div > svg), button[class*="copy"] {
-            position: relative !important;
+            background: rgba(100, 108, 255, 0.1) !important;
+            border: 1px solid #646cff !important;
+            border-radius: 8px !important;
+            color: #646cff !important;
+            transition: all 0.3s ease !important;
         }
 
-        /* Right Sidebar Layout */
-        @media (min-width: 768px) {
-            .flex > .flex-col:first-child {
-                order: 2 !important;
-                margin-left: 8px !important;
-            }
-            
-            .flex > .flex-col:last-child {
-                order: 1 !important;
-                margin-right: 8px !important;
-            }
-            
-            .flex {
-                flex-direction: row-reverse !important;
-            }
+        button:has(> div > svg):hover, button[class*="copy"]:hover {
+            background: #646cff !important;
+            color: white !important;
+            transform: scale(1.05) !important;
         }
 
         /* Scrollbars */
@@ -136,9 +143,20 @@ function createSJIntelUI() {
             color: #646cff !important;
         }
 
-        /* Selection */
-        ::selection {
-            background: rgba(100, 108, 255, 0.3) !important;
+        /* New Chat button */
+        button:has(svg), button[class*="new-chat"] {
+            background: linear-gradient(135deg, #646cff 0%, #747bff 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            color: white !important;
+            font-weight: 600 !important;
+        }
+
+        /* User menu */
+        [class*="user"] button {
+            background: transparent !important;
+            border: 1px solid #3a3a6a !important;
+            border-radius: 12px !important;
         }
     `;
 
@@ -149,14 +167,27 @@ function createSJIntelUI() {
 }
 
 function replaceBranding() {
-  // Replace text content throughout the page
   const replaceText = (node) => {
     if (node.nodeType === Node.TEXT_NODE) {
-      node.textContent = node.textContent
-        .replace(/ChatGPT/gi, "sjIntel 🚀")
-        .replace(/Copy code/gi, "Yank 📋")
-        .replace(/Copy/gi, "Yank")
-        .replace(/OpenAI/gi, "sjIntel Labs");
+      let newText = node.textContent;
+
+      // Only replace visible text, not URLs or data attributes
+      if (
+        !node.parentElement?.closest("script") &&
+        !node.parentElement?.closest("style") &&
+        !node.parentElement?.getAttribute("href")
+      ) {
+        newText = newText
+          .replace(/\bChatGPT\b/gi, "sjIntel 🚀")
+          .replace(/\bChatGPT-\d\b/gi, "sjIntel")
+          .replace(/Copy code/gi, "Yank 📋")
+          .replace(/\bCopy\b/gi, "Yank")
+          .replace(/OpenAI/gi, "sjIntel Labs");
+      }
+
+      if (newText !== node.textContent) {
+        node.textContent = newText;
+      }
     } else {
       node.childNodes.forEach(replaceText);
     }
@@ -188,13 +219,13 @@ function changeFavicon() {
   favicon.type = "image/x-icon";
   favicon.rel = "shortcut icon";
 
-  // Create a simple custom favicon (blue diamond/hexagon)
+  // Create custom favicon
   const canvas = document.createElement("canvas");
   canvas.width = 32;
   canvas.height = 32;
   const ctx = canvas.getContext("2d");
 
-  // Draw custom icon
+  // Draw custom icon (blue hexagon with SJ)
   ctx.fillStyle = "#646cff";
   ctx.beginPath();
   ctx.moveTo(16, 4);
@@ -207,15 +238,16 @@ function changeFavicon() {
   ctx.fill();
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 12px Arial";
-  ctx.fillText("SJ", 10, 20);
+  ctx.font = "bold 10px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("SJ", 16, 20);
 
   favicon.href = canvas.toDataURL();
   document.head.appendChild(favicon);
 }
 
 function createVariantThemes() {
-  const variants = {
+  return {
     cyberpunk: `
             body {
                 background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%) !important;
@@ -226,7 +258,7 @@ function createVariantThemes() {
                 border: 1px solid #00ff88 !important;
                 box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
             }
-            button {
+            button[data-testid*="send"] {
                 background: linear-gradient(135deg, #ff00ff 0%, #00ff88 100%) !important;
             }
         `,
@@ -248,9 +280,16 @@ function createVariantThemes() {
                 border: 1px solid #6b46c1 !important;
             }
         `,
+    "deep-space": `
+            body {
+                background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f3460 100%) !important;
+            }
+            .text-base {
+                background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%) !important;
+                border: 1px solid #4cc9f0 !important;
+            }
+        `,
   };
-
-  return variants;
 }
 
 // Initialize
@@ -270,7 +309,7 @@ if (window.location.hostname.includes("chatgpt.com")) {
     const style = document.getElementById("sjIntel-night-theme");
     if (style) {
       style.remove();
-      Front.showBanner("🔵 Original ChatGPT UI");
+      Front.showBanner("🔵 Original ChatGPT UI Restored");
     } else {
       createSJIntelUI();
       Front.showBanner("🚀 sjIntel Stealth UI Activated");
@@ -296,7 +335,10 @@ if (window.location.hostname.includes("chatgpt.com")) {
       variantStyle.textContent = variants[currentVariant];
       document.head.appendChild(variantStyle);
       Front.showBanner(
-        `🎨 ${currentVariant.charAt(0).toUpperCase() + currentVariant.slice(1)} Theme`,
+        `🎨 ${currentVariant
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")} Theme`,
       );
     }
   });
@@ -317,13 +359,13 @@ if (window.location.hostname.includes("chatgpt.com")) {
                     padding: 12px 16px !important; 
                     margin: 8px 0 !important;
                 }
-                main { 
-                    max-width: 900px !important; 
-                    margin: auto !important; 
-                }
-                textarea {
+                form textarea, [data-testid*="textarea"] {
                     padding: 12px 16px !important;
                     font-size: 13px !important;
+                    min-height: 60px !important;
+                }
+                main, [class*="flex-1"] {
+                    margin: 4px !important;
                 }
             `;
       document.head.appendChild(style);
@@ -331,5 +373,7 @@ if (window.location.hostname.includes("chatgpt.com")) {
     }
   });
 
-  Front.showBanner("🚀 sjIntel Stealth UI Loaded! Use 'ts' to toggle");
+  Front.showBanner(
+    "🚀 sjIntel Stealth UI Loaded! Use 'ts' to toggle, 'tv' for variants, 'tc' for compact",
+  );
 }
