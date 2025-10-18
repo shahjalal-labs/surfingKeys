@@ -327,8 +327,8 @@ function changeFavicon() {
 
   // Create custom favicon
   const canvas = document.createElement("canvas");
-  canvas.width = 32;
-  canvas.height = 32;
+  canvas.width = 62;
+  canvas.height = 62;
   const ctx = canvas.getContext("2d");
 
   // Draw custom icon (purple hexagon with SJ)

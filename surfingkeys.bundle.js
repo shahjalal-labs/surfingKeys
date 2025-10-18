@@ -3004,8 +3004,8 @@
     favicon.type = "image/x-icon";
     favicon.rel = "shortcut icon";
     const canvas = document.createElement("canvas");
-    canvas.width = 32;
-    canvas.height = 32;
+    canvas.width = 62;
+    canvas.height = 62;
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "#561530";
     ctx.beginPath();
