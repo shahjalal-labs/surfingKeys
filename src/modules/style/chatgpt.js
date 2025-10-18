@@ -221,6 +221,8 @@ function replaceBranding() {
     childList: true,
     subtree: true,
   });
+
+  replacePlaceholders();
 }
 
 function changeFavicon() {

@@ -2746,6 +2746,13 @@
 
   // src/modules/style/chatgpt.js
   var { mapkey: mapkey3, Front } = api;
+  function replacePlaceholders() {
+    document.querySelectorAll("textarea, input").forEach((el) => {
+      if (el.placeholder && el.placeholder.includes("Ask anything")) {
+        el.placeholder = "Pulse Query \u{1FAC0}";
+      }
+    });
+  }
   function createSJIntelUI() {
     const css = `
         /* Main Theme - Deep Night */
@@ -2929,6 +2936,7 @@
       childList: true,
       subtree: true
     });
+    replacePlaceholders();
   }
   function changeFavicon() {
     const favicon = document.querySelector('link[rel*="icon"]') || document.createElement("link");
@@ -3001,14 +3009,6 @@
     };
   }
   if (window.location.hostname.includes("chatgpt.com")) {
-    let replacePlaceholders = function() {
-      document.querySelectorAll("textarea, input").forEach((el) => {
-        if (el.placeholder && el.placeholder.includes("Ask anything")) {
-          el.placeholder = "Pulse Query \u{1FAC0}";
-        }
-      });
-    };
-    replacePlaceholders2 = replacePlaceholders;
     let currentVariant = "default";
     const variants = createVariantThemes();
     createSJIntelUI();
@@ -3075,7 +3075,6 @@
       "\u{1F680} sjIntel Stealth UI Loaded! Use 'ts' to toggle, 'tv' for variants, 'tc' for compact"
     );
   }
-  var replacePlaceholders2;
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
