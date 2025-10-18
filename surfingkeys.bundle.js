@@ -2746,6 +2746,108 @@
 
   // src/modules/style/chatgpt.js
   var { mapkey: mapkey3, Front } = api;
+  function initFaviconReplacement() {
+    let faviconObserver;
+    let customFaviconUrl;
+    function createCustomFavicon() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#561530";
+      ctx.beginPath();
+      ctx.moveTo(16, 4);
+      ctx.lineTo(24, 10);
+      ctx.lineTo(24, 22);
+      ctx.lineTo(16, 28);
+      ctx.lineTo(8, 22);
+      ctx.lineTo(8, 10);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 10px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("SJ", 16, 20);
+      return canvas.toDataURL();
+    }
+    function replaceFavicon() {
+      const favicons = document.querySelectorAll('link[rel*="icon"]');
+      customFaviconUrl = customFaviconUrl || createCustomFavicon();
+      favicons.forEach((favicon) => {
+        if (!favicon.hasAttribute("data-original-href")) {
+          favicon.setAttribute("data-original-href", favicon.href);
+        }
+        if (favicon.href !== customFaviconUrl) {
+          favicon.href = customFaviconUrl;
+        }
+      });
+      if (favicons.length === 0) {
+        const newFavicon = document.createElement("link");
+        newFavicon.rel = "icon";
+        newFavicon.type = "image/x-icon";
+        newFavicon.href = customFaviconUrl;
+        document.head.appendChild(newFavicon);
+      }
+    }
+    function setupFaviconObserver() {
+      if (faviconObserver) faviconObserver.disconnect();
+      faviconObserver = new MutationObserver((mutations) => {
+        let faviconChanged = false;
+        mutations.forEach((mutation) => {
+          if (mutation.type === "childList") {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "LINK" && node.getAttribute("rel")?.includes("icon")) {
+                faviconChanged = true;
+              }
+            });
+          }
+          if (mutation.type === "attributes" && mutation.target.tagName === "LINK" && mutation.target.getAttribute("rel")?.includes("icon") && (mutation.attributeName === "href" || mutation.attributeName === "rel")) {
+            faviconChanged = true;
+          }
+        });
+        if (faviconChanged) {
+          setTimeout(replaceFavicon, 100);
+        }
+      });
+      faviconObserver.observe(document.head, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["href", "rel"]
+      });
+    }
+    function overrideDOMMethods() {
+      const originalSetAttribute = Element.prototype.setAttribute;
+      const originalAppendChild = Node.prototype.appendChild;
+      const originalInsertBefore = Node.prototype.insertBefore;
+      Element.prototype.setAttribute = function(name, value) {
+        if (this.tagName === "LINK" && name === "href" && this.getAttribute("rel")?.includes("icon") && !value.includes("data:image")) {
+          value = customFaviconUrl || createCustomFavicon();
+        }
+        return originalSetAttribute.call(this, name, value);
+      };
+      Node.prototype.appendChild = function(node) {
+        if (node && node.tagName === "LINK" && node.getAttribute("rel")?.includes("icon")) {
+          node.setAttribute("href", customFaviconUrl || createCustomFavicon());
+        }
+        return originalAppendChild.call(this, node);
+      };
+      Node.prototype.insertBefore = function(newNode, referenceNode) {
+        if (newNode && newNode.tagName === "LINK" && newNode.getAttribute("rel")?.includes("icon")) {
+          newNode.setAttribute("href", customFaviconUrl || createCustomFavicon());
+        }
+        return originalInsertBefore.call(this, newNode, referenceNode);
+      };
+    }
+    replaceFavicon();
+    setupFaviconObserver();
+    overrideDOMMethods();
+    const interval = setInterval(replaceFavicon, 3e3);
+    return () => {
+      if (faviconObserver) faviconObserver.disconnect();
+      clearInterval(interval);
+    };
+  }
   function initPlaceholderReplacement() {
     let placeholderObserver;
     let isReplacing = false;
@@ -2999,31 +3101,6 @@
       subtree: true
     });
   }
-  function changeFavicon() {
-    const favicon = document.querySelector('link[rel*="icon"]') || document.createElement("link");
-    favicon.type = "image/x-icon";
-    favicon.rel = "shortcut icon";
-    const canvas = document.createElement("canvas");
-    canvas.width = 32;
-    canvas.height = 32;
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#561530";
-    ctx.beginPath();
-    ctx.moveTo(16, 4);
-    ctx.lineTo(24, 10);
-    ctx.lineTo(24, 22);
-    ctx.lineTo(16, 28);
-    ctx.lineTo(8, 22);
-    ctx.lineTo(8, 10);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 10px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText("SJ", 16, 20);
-    favicon.href = canvas.toDataURL();
-    document.head.appendChild(favicon);
-  }
   function createVariantThemes() {
     return {
       cyberpunk: `
@@ -3073,19 +3150,22 @@
     let currentVariant = "default";
     const variants = createVariantThemes();
     let cleanupPlaceholders;
+    let cleanupFavicon;
     createSJPulseUI();
     replaceBranding();
-    changeFavicon();
+    cleanupFavicon = initFaviconReplacement();
     cleanupPlaceholders = initPlaceholderReplacement();
     mapkey3("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
       const style = document.getElementById("sjPulse-night-theme");
       if (style) {
         style.remove();
         if (cleanupPlaceholders) cleanupPlaceholders();
+        if (cleanupFavicon) cleanupFavicon();
         Front.showBanner("\u{1F535} Original ChatGPT UI Restored");
       } else {
         createSJPulseUI();
         cleanupPlaceholders = initPlaceholderReplacement();
+        cleanupFavicon = initFaviconReplacement();
         Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
