@@ -2922,7 +2922,7 @@
     /* Main Theme - Deep Night */
     body {
       background: linear-gradient(135deg, #0c0c1a 0%, #1a1a2e 50%, #16213e 100%) !important;
-      color: #e6edf3 !important;
+      color: #A7B49E !important;
       font-family: 'Segoe UI', system-ui, sans-serif !important;
     }
 
@@ -2949,18 +2949,20 @@
       margin: 12px 0 !important;
       border: 1px solid #3a3a6a !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+      color: #A7B49E !important;
     }
 
     /* User message bubbles */
     [data-message-author-role="user"] .text-base {
       background: linear-gradient(135deg, #2a2a5a 0%, #3a3a7a 100%) !important;
       border: 1px solid #4a4a8a !important;
+      color: #A7B49E !important;
     }
 
     /* Input Area - Fixed */
     form textarea, [data-testid*="textarea"] {
       background: rgba(20, 20, 40, 0.9) !important;
-      color: #ffffff !important;
+      color: #A7B49E !important;
       border: 1px solid #3a3a6a !important;
       border-radius: 20px !important;
       padding: 16px 20px !important;
@@ -3002,6 +3004,7 @@
       border-radius: 10px !important;
       margin: 4px 8px !important;
       transition: all 0.3s ease !important;
+      color: #A7B49E !important;
     }
 
     nav a:hover, [class*="Nav"] a:hover {
@@ -3014,7 +3017,7 @@
       background: #1a1a2e !important;
       border: 1px solid #2a2a4a !important;
       border-radius: 12px !important;
-      color: #f8f8f2 !important;
+      color: #A7B49E !important;
     }
 
     /* Copy/Yank button */
@@ -3065,6 +3068,23 @@
       background: transparent !important;
       border: 1px solid #3a3a6a !important;
       border-radius: 12px !important;
+      color: #A7B49E !important;
+    }
+
+    /* Additional text elements */
+    h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
+      color: #A7B49E !important;
+    }
+
+    /* Input text */
+    input, select, option {
+      color: #A7B49E !important;
+    }
+
+    /* Placeholder text */
+    ::placeholder {
+      color: #A7B49E !important;
+      opacity: 0.7 !important;
     }
   `;
     const style = document.createElement("style");
@@ -3106,42 +3126,61 @@
       cyberpunk: `
       body {
         background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%) !important;
-        color: #00ff88 !important;
+        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #1a0033 0%, #330066 100%) !important;
         border: 1px solid #00ff88 !important;
         box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
+        color: #A7B49E !important;
       }
       button[data-testid*="send"] {
         background: linear-gradient(135deg, #ff00ff 0%, #00ff88 100%) !important;
+      }
+      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
+        color: #A7B49E !important;
       }
     `,
       "midnight-blue": `
       body {
         background: linear-gradient(135deg, #0f1a2b 0%, #1e3a5f 100%) !important;
+        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #1e3a5f 0%, #2e4a7f 100%) !important;
         border: 1px solid #3a5f8f !important;
+        color: #A7B49E !important;
+      }
+      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
+        color: #A7B49E !important;
       }
     `,
       amethyst: `
       body {
         background: linear-gradient(135deg, #1a102b 0%, #3a1f5f 100%) !important;
+        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #2a1f4f 0%, #4a2f7f 100%) !important;
         border: 1px solid #6b46c1 !important;
+        color: #A7B49E !important;
+      }
+      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
+        color: #A7B49E !important;
       }
     `,
       "deep-space": `
       body {
         background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f3460 100%) !important;
+        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%) !important;
         border: 1px solid #4cc9f0 !important;
+        color: #A7B49E !important;
+      }
+      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
+        color: #A7B49E !important;
       }
     `
     };
