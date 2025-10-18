@@ -9,6 +9,16 @@
 
 const { mapkey, Front } = api;
 
+// Add this function
+function replacePlaceholders() {
+  document.querySelectorAll("textarea, input").forEach((el) => {
+    if (el.placeholder && el.placeholder.includes("Ask anything")) {
+      el.placeholder = "Pulse Query 🫀";
+    }
+  });
+}
+
+// Then call it in your replaceBranding function and in the observer
 function createSJIntelUI() {
   const css = `
         /* Main Theme - Deep Night */
@@ -178,11 +188,12 @@ function replaceBranding() {
         !node.parentElement?.getAttribute("href")
       ) {
         newText = newText
-          .replace(/\bChatGPT\b/gi, "sjIntel 🚀")
-          .replace(/\bChatGPT-\d\b/gi, "sjIntel")
+          .replace(/\bChatGPT\b/gi, "SJ Pulse 🚀")
+          .replace(/\bChatGPT-\d\b/gi, "SJ Pulse")
           .replace(/Copy code/gi, "Yank 📋")
           .replace(/\bCopy\b/gi, "Yank")
-          .replace(/OpenAI/gi, "sjIntel Labs");
+          .replace(/\bAsk anything\b/gi, "Pulse Query 🫀?");
+        // .replace(/OpenAI/gi, "sjIntel Labs");
       }
 
       if (newText !== node.textContent) {
@@ -226,7 +237,7 @@ function changeFavicon() {
   const ctx = canvas.getContext("2d");
 
   // Draw custom icon (blue hexagon with SJ)
-  ctx.fillStyle = "#646cff";
+  ctx.fillStyle = "#561530";
   ctx.beginPath();
   ctx.moveTo(16, 4);
   ctx.lineTo(24, 10);

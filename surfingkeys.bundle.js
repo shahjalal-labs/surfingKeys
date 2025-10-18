@@ -2906,7 +2906,7 @@
       if (node.nodeType === Node.TEXT_NODE) {
         let newText = node.textContent;
         if (!node.parentElement?.closest("script") && !node.parentElement?.closest("style") && !node.parentElement?.getAttribute("href")) {
-          newText = newText.replace(/\bChatGPT\b/gi, "sjIntel \u{1F680}").replace(/\bChatGPT-\d\b/gi, "sjIntel").replace(/Copy code/gi, "Yank \u{1F4CB}").replace(/\bCopy\b/gi, "Yank").replace(/OpenAI/gi, "sjIntel Labs");
+          newText = newText.replace(/\bChatGPT\b/gi, "SJ Pulse \u{1F680}").replace(/\bChatGPT-\d\b/gi, "SJ Pulse").replace(/Copy code/gi, "Yank \u{1F4CB}").replace(/\bCopy\b/gi, "Yank").replace(/\bAsk anything\b/gi, "Pulse Query \u{1FAC0}?");
         }
         if (newText !== node.textContent) {
           node.textContent = newText;
@@ -2938,7 +2938,7 @@
     canvas.width = 32;
     canvas.height = 32;
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#646cff";
+    ctx.fillStyle = "#561530";
     ctx.beginPath();
     ctx.moveTo(16, 4);
     ctx.lineTo(24, 10);
@@ -3001,6 +3001,14 @@
     };
   }
   if (window.location.hostname.includes("chatgpt.com")) {
+    let replacePlaceholders = function() {
+      document.querySelectorAll("textarea, input").forEach((el) => {
+        if (el.placeholder && el.placeholder.includes("Ask anything")) {
+          el.placeholder = "Pulse Query \u{1FAC0}";
+        }
+      });
+    };
+    replacePlaceholders2 = replacePlaceholders;
     let currentVariant = "default";
     const variants = createVariantThemes();
     createSJIntelUI();
@@ -3067,6 +3075,7 @@
       "\u{1F680} sjIntel Stealth UI Loaded! Use 'ts' to toggle, 'tv' for variants, 'tc' for compact"
     );
   }
+  var replacePlaceholders2;
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
