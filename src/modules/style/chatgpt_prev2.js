@@ -1,174 +1,15 @@
+//
+
 // ==UserScript==
 // @name        SJ Pulse - ChatGPT Stealth UI
 // @namespace   SJ Pulse
 // @description Transform ChatGPT into SJ Pulse with night theme (safe layout)
-// @version     1.3
+// @version     1.2
 // @match       https://chatgpt.com/*
 // @grant       none
 // ==/UserScript==
 
 const { mapkey, Front } = api;
-
-// Enhanced favicon replacement with persistent monitoring
-function initFaviconReplacement() {
-  let faviconObserver;
-  let customFaviconUrl;
-
-  // Create custom favicon once
-  function createCustomFavicon() {
-    const canvas = document.createElement("canvas");
-    canvas.width = 32;
-    canvas.height = 32;
-    const ctx = canvas.getContext("2d");
-
-    // Draw custom icon (purple hexagon with SJ)
-    ctx.fillStyle = "#561530";
-    ctx.beginPath();
-    ctx.moveTo(16, 4);
-    ctx.lineTo(24, 10);
-    ctx.lineTo(24, 22);
-    ctx.lineTo(16, 28);
-    ctx.lineTo(8, 22);
-    ctx.lineTo(8, 10);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 10px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText("SJ", 16, 20);
-
-    return canvas.toDataURL();
-  }
-
-  function replaceFavicon() {
-    const favicons = document.querySelectorAll('link[rel*="icon"]');
-    customFaviconUrl = customFaviconUrl || createCustomFavicon();
-
-    favicons.forEach((favicon) => {
-      // Store original href to prevent loops
-      if (!favicon.hasAttribute("data-original-href")) {
-        favicon.setAttribute("data-original-href", favicon.href);
-      }
-
-      // Only replace if it's not already our custom favicon
-      if (favicon.href !== customFaviconUrl) {
-        favicon.href = customFaviconUrl;
-      }
-    });
-
-    // Also set the favicon dynamically if it doesn't exist
-    if (favicons.length === 0) {
-      const newFavicon = document.createElement("link");
-      newFavicon.rel = "icon";
-      newFavicon.type = "image/x-icon";
-      newFavicon.href = customFaviconUrl;
-      document.head.appendChild(newFavicon);
-    }
-  }
-
-  // Set up observer to catch favicon changes
-  function setupFaviconObserver() {
-    if (faviconObserver) faviconObserver.disconnect();
-
-    faviconObserver = new MutationObserver((mutations) => {
-      let faviconChanged = false;
-
-      mutations.forEach((mutation) => {
-        // Check for added nodes
-        if (mutation.type === "childList") {
-          mutation.addedNodes.forEach((node) => {
-            if (
-              node.nodeType === Node.ELEMENT_NODE &&
-              node.tagName === "LINK" &&
-              node.getAttribute("rel")?.includes("icon")
-            ) {
-              faviconChanged = true;
-            }
-          });
-        }
-
-        // Check for attribute changes on existing favicons
-        if (
-          mutation.type === "attributes" &&
-          mutation.target.tagName === "LINK" &&
-          mutation.target.getAttribute("rel")?.includes("icon") &&
-          (mutation.attributeName === "href" ||
-            mutation.attributeName === "rel")
-        ) {
-          faviconChanged = true;
-        }
-      });
-
-      if (faviconChanged) {
-        setTimeout(replaceFavicon, 100);
-      }
-    });
-
-    // Observe the entire head for changes
-    faviconObserver.observe(document.head, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["href", "rel"],
-    });
-  }
-
-  // More aggressive approach: also override the DOM methods
-  function overrideDOMMethods() {
-    const originalSetAttribute = Element.prototype.setAttribute;
-    const originalAppendChild = Node.prototype.appendChild;
-    const originalInsertBefore = Node.prototype.insertBefore;
-
-    Element.prototype.setAttribute = function (name, value) {
-      if (
-        this.tagName === "LINK" &&
-        name === "href" &&
-        this.getAttribute("rel")?.includes("icon") &&
-        !value.includes("data:image")
-      ) {
-        value = customFaviconUrl || createCustomFavicon();
-      }
-      return originalSetAttribute.call(this, name, value);
-    };
-
-    Node.prototype.appendChild = function (node) {
-      if (
-        node &&
-        node.tagName === "LINK" &&
-        node.getAttribute("rel")?.includes("icon")
-      ) {
-        node.setAttribute("href", customFaviconUrl || createCustomFavicon());
-      }
-      return originalAppendChild.call(this, node);
-    };
-
-    Node.prototype.insertBefore = function (newNode, referenceNode) {
-      if (
-        newNode &&
-        newNode.tagName === "LINK" &&
-        newNode.getAttribute("rel")?.includes("icon")
-      ) {
-        newNode.setAttribute("href", customFaviconUrl || createCustomFavicon());
-      }
-      return originalInsertBefore.call(this, newNode, referenceNode);
-    };
-  }
-
-  // Initialize
-  replaceFavicon();
-  setupFaviconObserver();
-  overrideDOMMethods();
-
-  // Also run periodically as a fallback
-  const interval = setInterval(replaceFavicon, 3000);
-
-  // Cleanup function
-  return () => {
-    if (faviconObserver) faviconObserver.disconnect();
-    clearInterval(interval);
-  };
-}
 
 // Enhanced placeholder replacement with persistent observer
 function initPlaceholderReplacement() {
@@ -274,7 +115,6 @@ function initPlaceholderReplacement() {
   };
 }
 
-// Rest of your existing functions remain the same...
 function createSJPulseUI() {
   const css = `
     /* Main Theme - Deep Night */
@@ -478,6 +318,40 @@ function replaceBranding() {
   });
 }
 
+function changeFavicon() {
+  const favicon =
+    document.querySelector('link[rel*="icon"]') ||
+    document.createElement("link");
+  favicon.type = "image/x-icon";
+  favicon.rel = "shortcut icon";
+
+  // Create custom favicon
+  const canvas = document.createElement("canvas");
+  canvas.width = 32;
+  canvas.height = 32;
+  const ctx = canvas.getContext("2d");
+
+  // Draw custom icon (purple hexagon with SJ)
+  ctx.fillStyle = "#561530";
+  ctx.beginPath();
+  ctx.moveTo(16, 4);
+  ctx.lineTo(24, 10);
+  ctx.lineTo(24, 22);
+  ctx.lineTo(16, 28);
+  ctx.lineTo(8, 22);
+  ctx.lineTo(8, 10);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 10px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("SJ", 16, 20);
+
+  favicon.href = canvas.toDataURL();
+  document.head.appendChild(favicon);
+}
+
 function createVariantThemes() {
   return {
     cyberpunk: `
@@ -529,12 +403,11 @@ if (window.location.hostname.includes("chatgpt.com")) {
   let currentVariant = "default";
   const variants = createVariantThemes();
   let cleanupPlaceholders;
-  let cleanupFavicon;
 
   // Apply main theme
   createSJPulseUI();
   replaceBranding();
-  cleanupFavicon = initFaviconReplacement();
+  changeFavicon();
   cleanupPlaceholders = initPlaceholderReplacement();
 
   // --- Toggle System ---
@@ -545,12 +418,10 @@ if (window.location.hostname.includes("chatgpt.com")) {
     if (style) {
       style.remove();
       if (cleanupPlaceholders) cleanupPlaceholders();
-      if (cleanupFavicon) cleanupFavicon();
       Front.showBanner("🔵 Original ChatGPT UI Restored");
     } else {
       createSJPulseUI();
       cleanupPlaceholders = initPlaceholderReplacement();
-      cleanupFavicon = initFaviconReplacement();
       Front.showBanner("🚀 SJ Pulse Stealth UI Activated");
     }
   });
