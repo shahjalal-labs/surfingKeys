@@ -2746,108 +2746,6 @@
 
   // src/modules/style/chatgpt.js
   var { mapkey: mapkey3, Front } = api;
-  function initFaviconReplacement() {
-    let faviconObserver;
-    let customFaviconUrl;
-    function createCustomFavicon() {
-      const canvas = document.createElement("canvas");
-      canvas.width = 32;
-      canvas.height = 32;
-      const ctx = canvas.getContext("2d");
-      ctx.fillStyle = "#561530";
-      ctx.beginPath();
-      ctx.moveTo(16, 4);
-      ctx.lineTo(24, 10);
-      ctx.lineTo(24, 22);
-      ctx.lineTo(16, 28);
-      ctx.lineTo(8, 22);
-      ctx.lineTo(8, 10);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 10px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText("SJ", 16, 20);
-      return canvas.toDataURL();
-    }
-    function replaceFavicon() {
-      const favicons = document.querySelectorAll('link[rel*="icon"]');
-      customFaviconUrl = customFaviconUrl || createCustomFavicon();
-      favicons.forEach((favicon) => {
-        if (!favicon.hasAttribute("data-original-href")) {
-          favicon.setAttribute("data-original-href", favicon.href);
-        }
-        if (favicon.href !== customFaviconUrl) {
-          favicon.href = customFaviconUrl;
-        }
-      });
-      if (favicons.length === 0) {
-        const newFavicon = document.createElement("link");
-        newFavicon.rel = "icon";
-        newFavicon.type = "image/x-icon";
-        newFavicon.href = customFaviconUrl;
-        document.head.appendChild(newFavicon);
-      }
-    }
-    function setupFaviconObserver() {
-      if (faviconObserver) faviconObserver.disconnect();
-      faviconObserver = new MutationObserver((mutations) => {
-        let faviconChanged = false;
-        mutations.forEach((mutation) => {
-          if (mutation.type === "childList") {
-            mutation.addedNodes.forEach((node) => {
-              if (node.nodeType === Node.ELEMENT_NODE && node.tagName === "LINK" && node.getAttribute("rel")?.includes("icon")) {
-                faviconChanged = true;
-              }
-            });
-          }
-          if (mutation.type === "attributes" && mutation.target.tagName === "LINK" && mutation.target.getAttribute("rel")?.includes("icon") && (mutation.attributeName === "href" || mutation.attributeName === "rel")) {
-            faviconChanged = true;
-          }
-        });
-        if (faviconChanged) {
-          setTimeout(replaceFavicon, 100);
-        }
-      });
-      faviconObserver.observe(document.head, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["href", "rel"]
-      });
-    }
-    function overrideDOMMethods() {
-      const originalSetAttribute = Element.prototype.setAttribute;
-      const originalAppendChild = Node.prototype.appendChild;
-      const originalInsertBefore = Node.prototype.insertBefore;
-      Element.prototype.setAttribute = function(name, value) {
-        if (this.tagName === "LINK" && name === "href" && this.getAttribute("rel")?.includes("icon") && !value.includes("data:image")) {
-          value = customFaviconUrl || createCustomFavicon();
-        }
-        return originalSetAttribute.call(this, name, value);
-      };
-      Node.prototype.appendChild = function(node) {
-        if (node && node.tagName === "LINK" && node.getAttribute("rel")?.includes("icon")) {
-          node.setAttribute("href", customFaviconUrl || createCustomFavicon());
-        }
-        return originalAppendChild.call(this, node);
-      };
-      Node.prototype.insertBefore = function(newNode, referenceNode) {
-        if (newNode && newNode.tagName === "LINK" && newNode.getAttribute("rel")?.includes("icon")) {
-          newNode.setAttribute("href", customFaviconUrl || createCustomFavicon());
-        }
-        return originalInsertBefore.call(this, newNode, referenceNode);
-      };
-    }
-    replaceFavicon();
-    setupFaviconObserver();
-    overrideDOMMethods();
-    const interval = setInterval(replaceFavicon, 3e3);
-    return () => {
-      if (faviconObserver) faviconObserver.disconnect();
-      clearInterval(interval);
-    };
-  }
   function initPlaceholderReplacement() {
     let placeholderObserver;
     let isReplacing = false;
@@ -2922,7 +2820,7 @@
     /* Main Theme - Deep Night */
     body {
       background: linear-gradient(135deg, #0c0c1a 0%, #1a1a2e 50%, #16213e 100%) !important;
-      color: #A7B49E !important;
+      color: #e6edf3 !important;
       font-family: 'Segoe UI', system-ui, sans-serif !important;
     }
 
@@ -2949,20 +2847,18 @@
       margin: 12px 0 !important;
       border: 1px solid #3a3a6a !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-      color: #A7B49E !important;
     }
 
     /* User message bubbles */
     [data-message-author-role="user"] .text-base {
       background: linear-gradient(135deg, #2a2a5a 0%, #3a3a7a 100%) !important;
       border: 1px solid #4a4a8a !important;
-      color: #A7B49E !important;
     }
 
     /* Input Area - Fixed */
     form textarea, [data-testid*="textarea"] {
       background: rgba(20, 20, 40, 0.9) !important;
-      color: #A7B49E !important;
+      color: #ffffff !important;
       border: 1px solid #3a3a6a !important;
       border-radius: 20px !important;
       padding: 16px 20px !important;
@@ -3004,7 +2900,6 @@
       border-radius: 10px !important;
       margin: 4px 8px !important;
       transition: all 0.3s ease !important;
-      color: #A7B49E !important;
     }
 
     nav a:hover, [class*="Nav"] a:hover {
@@ -3017,7 +2912,7 @@
       background: #1a1a2e !important;
       border: 1px solid #2a2a4a !important;
       border-radius: 12px !important;
-      color: #A7B49E !important;
+      color: #f8f8f2 !important;
     }
 
     /* Copy/Yank button */
@@ -3068,23 +2963,6 @@
       background: transparent !important;
       border: 1px solid #3a3a6a !important;
       border-radius: 12px !important;
-      color: #A7B49E !important;
-    }
-
-    /* Additional text elements */
-    h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-      color: #A7B49E !important;
-    }
-
-    /* Input text */
-    input, select, option {
-      color: #A7B49E !important;
-    }
-
-    /* Placeholder text */
-    ::placeholder {
-      color: #A7B49E !important;
-      opacity: 0.7 !important;
     }
   `;
     const style = document.createElement("style");
@@ -3121,66 +2999,72 @@
       subtree: true
     });
   }
+  function changeFavicon() {
+    const favicon = document.querySelector('link[rel*="icon"]') || document.createElement("link");
+    favicon.type = "image/x-icon";
+    favicon.rel = "shortcut icon";
+    const canvas = document.createElement("canvas");
+    canvas.width = 32;
+    canvas.height = 32;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#561530";
+    ctx.beginPath();
+    ctx.moveTo(16, 4);
+    ctx.lineTo(24, 10);
+    ctx.lineTo(24, 22);
+    ctx.lineTo(16, 28);
+    ctx.lineTo(8, 22);
+    ctx.lineTo(8, 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 10px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText("SJ", 16, 20);
+    favicon.href = canvas.toDataURL();
+    document.head.appendChild(favicon);
+  }
   function createVariantThemes() {
     return {
       cyberpunk: `
       body {
         background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%) !important;
-        color: #A7B49E !important;
+        color: #00ff88 !important;
       }
       .text-base {
         background: linear-gradient(135deg, #1a0033 0%, #330066 100%) !important;
         border: 1px solid #00ff88 !important;
         box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
-        color: #A7B49E !important;
       }
       button[data-testid*="send"] {
         background: linear-gradient(135deg, #ff00ff 0%, #00ff88 100%) !important;
-      }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
       }
     `,
       "midnight-blue": `
       body {
         background: linear-gradient(135deg, #0f1a2b 0%, #1e3a5f 100%) !important;
-        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #1e3a5f 0%, #2e4a7f 100%) !important;
         border: 1px solid #3a5f8f !important;
-        color: #A7B49E !important;
-      }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
       }
     `,
       amethyst: `
       body {
         background: linear-gradient(135deg, #1a102b 0%, #3a1f5f 100%) !important;
-        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #2a1f4f 0%, #4a2f7f 100%) !important;
         border: 1px solid #6b46c1 !important;
-        color: #A7B49E !important;
-      }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
       }
     `,
       "deep-space": `
       body {
         background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f3460 100%) !important;
-        color: #A7B49E !important;
       }
       .text-base {
         background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%) !important;
         border: 1px solid #4cc9f0 !important;
-        color: #A7B49E !important;
-      }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
       }
     `
     };
@@ -3189,22 +3073,19 @@
     let currentVariant = "default";
     const variants = createVariantThemes();
     let cleanupPlaceholders;
-    let cleanupFavicon;
     createSJPulseUI();
     replaceBranding();
-    cleanupFavicon = initFaviconReplacement();
+    changeFavicon();
     cleanupPlaceholders = initPlaceholderReplacement();
     mapkey3("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
       const style = document.getElementById("sjPulse-night-theme");
       if (style) {
         style.remove();
         if (cleanupPlaceholders) cleanupPlaceholders();
-        if (cleanupFavicon) cleanupFavicon();
         Front.showBanner("\u{1F535} Original ChatGPT UI Restored");
       } else {
         createSJPulseUI();
         cleanupPlaceholders = initPlaceholderReplacement();
-        cleanupFavicon = initFaviconReplacement();
         Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
