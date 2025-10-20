@@ -3266,56 +3266,100 @@
         styleTag = document.createElement("style");
         styleTag.id = styleId;
         styleTag.textContent = `
-        /* Main container */
+        /* Smooth background tone */
+        body, html {
+          background: #0f1115 !important;
+          color: #d8dee9 !important;
+        }
+
+        /* Result blocks \u2014 compact, clean, subtle accent */
         #search .g {
-          background: #1e1e1e !important;
-          color: #ddd !important;
-          border: 1px solid #333;
-          border-radius: 10px;
-          margin: 15px 0;
-          padding: 15px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-          transition: all 0.2s ease;
+          background: rgba(32, 34, 38, 0.9) !important;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 8px;
+          padding: 12px 16px;
+          margin: 10px 0;
+          transition: transform 0.12s ease, box-shadow 0.15s ease;
         }
         #search .g:hover {
-          transform: scale(1.01);
-          border-color: #444;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          border-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* Titles */
+        /* Title link \u2014 subtle glow with accent */
         #search .g h3 {
-          color: #88c0d0 !important;
-          font-size: 1.2em;
-          margin-bottom: 5px;
+          color: #8be9fd !important;
+          font-weight: 600;
+          font-size: 1.05rem;
+          margin-bottom: 3px;
+          text-shadow: 0 0 8px rgba(139, 233, 253, 0.15);
         }
 
-        /* URLs */
+        /* URL / cite \u2014 modern muted green */
         #search .g cite {
-          color: #a3be8c !important;
-          font-size: 0.9em;
+          color: #50fa7b !important;
+          font-size: 0.85rem;
+          opacity: 0.9;
         }
 
-        /* Snippets */
+        /* Description / snippet */
         #search .g .VwiC3b {
-          color: #ccc !important;
-          font-size: 0.95em;
-          line-height: 1.5;
+          color: #e5e9f0 !important;
+          font-size: 0.93rem;
+          line-height: 1.45;
         }
 
-        /* Background fix */
-        body, html {
-          background-color: #111 !important;
+        /* Remove clutter / gray lines */
+        .ULSxyf, .kvH3mc, .v5yQqb, .GHDvEf, .RzdJxc { display: none !important; }
+
+        /* Slight separator lines for flow */
+        #search .g:not(:last-child) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Vibrant accent on hover for links */
+        a:hover h3 {
+          color: #ff79c6 !important;
+          text-shadow: 0 0 10px rgba(255, 121, 198, 0.2);
+        }
+
+        /* \u201CPeople also ask\u201D and similar */
+        .related-question-pair {
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 6px;
+          padding: 8px 10px;
         }
       `;
         document.head.appendChild(styleTag);
       }
-      Front3.showBanner("\u2728 EyeCandy Google UI enabled!");
+      Front3.showBanner("\u{1F308} EyeCandy: Modern Compact UI enabled!");
     }
     googleUICustom = !googleUICustom;
   }
   if (/google\.com\/search/.test(window.location.href)) {
+    window.addEventListener("load", () => toggleGoogleUI());
     mapkey4("<Space>g", "Toggle Google EyeCandy UI", toggleGoogleUI);
   }
+
+  // src/modules/style/reload.js
+  var { mapkey: mapkey5, RUNTIME: RUNTIME2, Front: Front4 } = api;
+  mapkey5("<Space>rl", "Reload all tabs from current \u2192 right", () => {
+    RUNTIME2("getTabs", null, function(tabs) {
+      RUNTIME2("getCurrentTab", null, function(current) {
+        let found = false;
+        tabs.forEach((tab) => {
+          if (tab.id === current.id) found = true;
+          if (found) {
+            RUNTIME2("reloadTab", { tabId: tab.id });
+          }
+        });
+        Front4.showBanner(
+          `\u{1F504} Reloaded tabs from ${current.index + 1}/${tabs.length}`
+        );
+      });
+    });
+  });
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
