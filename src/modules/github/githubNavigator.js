@@ -1,6 +1,5 @@
 //
 
-error;
 // GitHub-specific mappings for SurfingKeys
 api.map(";A", "Open repository Actions page", () => {
   window.location.href =

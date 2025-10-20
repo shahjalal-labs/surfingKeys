@@ -2744,8 +2744,119 @@
     }
   );
 
+  // src/modules/github/githubNavigator.js
+  api.map(";A", "Open repository Actions page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/actions";
+  });
+  api.map(";C", "Open repository Commits page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/commits";
+  });
+  api.map(";I", "Open repository Issues page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/issues";
+  });
+  api.map(";N", "Open notifications page", () => {
+    window.location.href = "https://github.com/notifications";
+  });
+  api.map(";P", "Open repository Pull Requests page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/pulls";
+  });
+  api.map(";R", "Open Repository page", () => {
+    const pathParts = window.location.pathname.split("/").slice(1, 3);
+    window.location.href = window.location.origin + "/" + pathParts.join("/");
+  });
+  api.map(";S", "Open repository Settings page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/settings";
+  });
+  api.map(";W", "Open repository Wiki page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/wiki";
+  });
+  api.map(";X", "Open repository Security page", () => {
+    window.location.href = window.location.origin + window.location.pathname + "/security";
+  });
+  api.map(";O", "Open repository Owners profile page", () => {
+    const owner = window.location.pathname.split("/")[1];
+    window.location.href = window.location.origin + "/" + owner;
+  });
+  api.map(";M", "Open your profile page", () => {
+    const userLink = document.querySelector(
+      'header [data-ga-click*="user avatar"]'
+    );
+    if (userLink) {
+      window.location.href = userLink.href;
+    }
+  });
+  api.map(";a", "View Repository", () => {
+    Front.showContent("Repository view - implement based on context");
+  });
+  api.map(";u", "View User", () => {
+    Front.showContent("User view - implement based on context");
+  });
+  api.map(";yy", "Copy Project Path", () => {
+    const path = window.location.pathname.slice(1);
+    api.Clipboard.write(path);
+    Front.showBanner("Copied: " + path);
+  });
+  api.map(";Y", "Copy Project Path with domain", () => {
+    const fullPath = window.location.origin + window.location.pathname;
+    api.Clipboard.write(fullPath);
+    Front.showBanner("Copied: " + fullPath);
+  });
+  api.map(";D", "Open in github.dev (new tab)", () => {
+    const devUrl = "https://github.dev" + window.location.pathname;
+    window.open(devUrl, "_blank");
+  });
+  api.map(";dd", "Open in github.dev", () => {
+    const devUrl = "https://github.dev" + window.location.pathname;
+    window.location.href = devUrl;
+  });
+  api.map(";G", "View on SourceGraph", () => {
+    const sgUrl = "https://sourcegraph.com/github.com" + window.location.pathname;
+    window.location.href = sgUrl;
+  });
+  api.map(";r", "View live raw version of file", () => {
+    if (window.location.pathname.includes("/blob/")) {
+      const rawUrl = window.location.href.replace("/blob/", "/raw/");
+      window.location.href = rawUrl;
+    }
+  });
+  api.map(";yr", "Copy raw link to file", () => {
+    if (window.location.pathname.includes("/blob/")) {
+      const rawUrl = window.location.href.replace("/blob/", "/raw/");
+      api.Clipboard.write(rawUrl);
+      Front.showBanner("Copied raw URL: " + rawUrl);
+    }
+  });
+  api.map(";yf", "Copy link to file", () => {
+    api.Clipboard.write(window.location.href);
+    Front.showBanner("Copied file URL: " + window.location.href);
+  });
+  api.map("gu", "Go up one path level", () => {
+    const path = window.location.pathname;
+    const newPath = path.split("/").slice(0, -1).join("/") || "/";
+    window.location.href = window.location.origin + newPath;
+  });
+  api.map(";s", "Toggle Star", () => {
+    const starButton = document.querySelector('[aria-label^="Star"]');
+    if (starButton) {
+      starButton.click();
+    }
+  });
+  api.map(";l", "Toggle repo language stats", () => {
+    const langStats = document.querySelector(".repository-lang-stats-graph");
+    if (langStats) {
+      langStats.style.display = langStats.style.display === "none" ? "block" : "none";
+    }
+  });
+  api.map(";gcp", "Open clipboard string as file path in repo", async () => {
+    const clipboardText = await api.Clipboard.read();
+    if (clipboardText) {
+      const baseRepoUrl = window.location.origin + window.location.pathname.split("/").slice(0, 3).join("/");
+      window.location.href = baseRepoUrl + "/blob/main/" + clipboardText;
+    }
+  });
+
   // src/modules/style/chatgpt.js
-  var { mapkey: mapkey3, Front } = api;
+  var { mapkey: mapkey3, Front: Front2 } = api;
   function initPlaceholderReplacement() {
     let placeholderObserver;
     let isReplacing = false;
@@ -3082,11 +3193,11 @@
       if (style) {
         style.remove();
         if (cleanupPlaceholders) cleanupPlaceholders();
-        Front.showBanner("\u{1F535} Original ChatGPT UI Restored");
+        Front2.showBanner("\u{1F535} Original ChatGPT UI Restored");
       } else {
         createSJPulseUI();
         cleanupPlaceholders = initPlaceholderReplacement();
-        Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
+        Front2.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
     mapkey3("tv", "Cycle theme variants", () => {
@@ -3096,14 +3207,14 @@
       document.getElementById("sjPulse-variant")?.remove();
       if (nextIndex === 0) {
         currentVariant = "default";
-        Front.showBanner("\u{1F319} Default Night Theme");
+        Front2.showBanner("\u{1F319} Default Night Theme");
       } else {
         currentVariant = variantNames[nextIndex - 1];
         const variantStyle = document.createElement("style");
         variantStyle.id = "sjPulse-variant";
         variantStyle.textContent = variants[currentVariant];
         document.head.appendChild(variantStyle);
-        Front.showBanner(
+        Front2.showBanner(
           `\u{1F3A8} ${currentVariant.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Theme`
         );
       }
@@ -3113,7 +3224,7 @@
       let style = document.getElementById(styleId);
       if (style) {
         style.remove();
-        Front.showBanner("\u{1F4CF} Normal Layout");
+        Front2.showBanner("\u{1F4CF} Normal Layout");
       } else {
         style = document.createElement("style");
         style.id = styleId;
@@ -3133,10 +3244,10 @@
         }
       `;
         document.head.appendChild(style);
-        Front.showBanner("\u{1F4D0} Compact Layout");
+        Front2.showBanner("\u{1F4D0} Compact Layout");
       }
     });
-    Front.showBanner(
+    Front2.showBanner(
       "\u{1F680} SJ Pulse Stealth UI Loaded! Use 'ts' to toggle, 'tv' for variants, 'tc' for compact"
     );
   }
