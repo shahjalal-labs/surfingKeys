@@ -3342,25 +3342,6 @@
     mapkey4("<Space>g", "Toggle Google EyeCandy UI", toggleGoogleUI);
   }
 
-  // src/modules/style/reload.js
-  var { mapkey: mapkey5, RUNTIME: RUNTIME2, Front: Front4 } = api;
-  mapkey5("<Space>rl", "Reload all tabs from current \u2192 right", () => {
-    RUNTIME2("getTabs", null, function(tabs) {
-      RUNTIME2("getCurrentTab", null, function(current) {
-        let found = false;
-        tabs.forEach((tab) => {
-          if (tab.id === current.id) found = true;
-          if (found) {
-            RUNTIME2("reloadTab", { tabId: tab.id });
-          }
-        });
-        Front4.showBanner(
-          `\u{1F504} Reloaded tabs from ${current.index + 1}/${tabs.length}`
-        );
-      });
-    });
-  });
-
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
   settings.llm = {
