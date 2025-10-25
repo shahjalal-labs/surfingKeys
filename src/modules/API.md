@@ -851,6 +851,6 @@ RUNTIME("getTabs", { queryInfo: { currentWindow: true } }, (response) => {
 [109]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 [110]: https://github.com/brookhong/Surfingkeys/wiki/Register-inline-query
 [111]: https://developer.mozilla.org/docs/Web/API/Element
-[112]: https://github.com/ajaxorg/ace/blob/ec450c03b51aba3724cf90bb133708078d1f3de6/lib/ace/keyboard/vim.js#L927-L1099
+[112]: https://github.com/ajaxorg/ace/blob/ec450c03b51aba3724cf90bb133708078d1f3de6/lib/ace/eyboard/vim.js#L927-L1099
 
-[SurfingKeys] Error found in settings(https://docs.google.com/document/d/1snFuTQppEN8GSMj5bIj3mkDlAdYy4fiNEoS_Q3FRXB8/edit?tab=t.0): TypeError: e.test is not a function content.js:1:136593
+[SurfingKeys] Error found in settings(https://docs.google.com/document/d/1snFuTQppEN8GSMj5bIj3mDlAdYy4fiNEoS_Q3FRXB8/edit?tab=t.0): TypeError: e.test is not a function content.js:1:136593

@@ -39,7 +39,7 @@
 │   │   │   └── webDevOpener.js
 │   │   ├── style
 │   │   │   ├── chatgpt.js
-│   │   │   ├── chatgpt_prev3.js
+│   │   │   ├── chatgpt_prev.js
 │   │   │   ├── deepseek.js
 │   │   │   └── google.js
 │   │   ├── tab.js
