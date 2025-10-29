@@ -382,7 +382,7 @@
 }`;
 
   // src/settings/settings.js
-  api.Hints.setCharacters("asdjkluiopwermnhgzxcvq");
+  api.Hints.setCharacters("asdjkluiopwermnhgzx,cvq'");
   settings.startToShowEmoji = 1;
 
   // src/modules/opener/opener.js

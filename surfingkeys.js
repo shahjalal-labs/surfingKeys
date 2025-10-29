@@ -21,8 +21,9 @@ import "./src/modules/opener/PH/PhWeb/phWeb.js";
 import "./src/modules/tab.js";
 import "./src/modules/github/github.js";
 import "./src/modules/github/githubNavigator.js";
-import "./src/modules/style/chatgpt.js";
+// import "./src/modules/style/chatgpt.js";
 // import "./src/modules/style/google.js";
+//
 // import "./src/modules/style/deepseek.js";
 
 //
