@@ -495,6 +495,13 @@
       window.open("https://nextjs.org/docs", "_blank");
     }
   });
+  api.mapkey("ocf", "Fiverr Message Rewriter", function() {
+    if (window.location.hostname.includes("relevance-phi.vercel.app")) {
+      window.location.href = "https://relevance-phi.vercel.app/";
+    } else {
+      window.open("https://relevance-phi.vercel.app/", "_blank");
+    }
+  });
 
   // src/modules/opener/socialOpener.js
   api.mapkey("ouc", "open gContacts", function() {

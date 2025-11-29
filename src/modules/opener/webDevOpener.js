@@ -60,3 +60,14 @@ api.mapkey("ocn", "open nextjs Docs", function () {
   }
 });
 //w: ╰───────────── Block End ─────────────╯
+//
+
+//w: (start)╭──────────── Fiverr Message Rewriter ────────────╮
+api.mapkey("ocf", "Fiverr Message Rewriter", function () {
+  if (window.location.hostname.includes("relevance-phi.vercel.app")) {
+    window.location.href = "https://relevance-phi.vercel.app/";
+  } else {
+    window.open("https://relevance-phi.vercel.app/", "_blank");
+  }
+});
+//w: (end)  ╰──────────── Fiverr Message Rewriter ────────────╯
