@@ -95,3 +95,22 @@ pending button is given for better and easy navigation. This button is only visi
 # There wasnt a notification when you sent a message or when you posted an activity on the map.
 
 for activity notification, by default it notify if it occurs under 20 km range by default. user can change it from settings. For freind request it's working fine, some times emulator can miss but real device never miss
+
+```
+Hello there, hope you’re doing well.
+
+Thank you for sharing your thoughts — we completely understand your concern about adding new elements that aren’t in the existing apps. The Pending button was introduced purely to improve navigation and usability.
+
+This button only appears when the user actually has pending join requests. If there are none, it remains hidden, so it does not add any extra clutter. Its goal is to give creators a direct, quick way to manage requests without having to rely only on push notifications, which can sometimes be missed or dismissed.
+
+Regarding notifications:
+
+Friend request notifications are working as expected. In rare cases, emulators may not display them consistently, but on real devices they are reliable.
+
+Activity notifications are triggered by default for activities within a 20 km. This range can be adjusted in Settings based on personal preference.
+
+
+The Pending button is meant to complement notifications, not replace them — giving users both an alert and an easy in-app shortcut to take immediate action. This combination creates a smoother experience and ensures important requests are not overlooked.
+
+We truly appreciate your feedback and are always working to balance simplicity with practical usability to provide the best possible experience.
+```
