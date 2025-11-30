@@ -342,7 +342,6 @@
       api.Front.showBanner("\u{1F31E} Dark mode OFF");
     }
   }
-  inverse();
   settings.theme = `
 .sk_theme {
     font-family: "Input Sans Condensed", Charcoal, sans-serif;
@@ -387,102 +386,47 @@
       const style = document.createElement("style");
       style.id = "__sk_darkmode";
       style.innerHTML = `
-      html {
-        background: #0f0f0f !important;
-        color: #e0e0e0 !important;
+      html, body {
+        background: #000000 !important;
+        color: #ffffff !important;
       }
       
-      body {
-        background: #0f0f0f !important;
-        color: #e0e0e0 !important;
-        transition: all 0.3s ease !important;
+      * {
+        background: #000000 !important;
+        color: #ffffff !important;
+        border-color: #444444 !important;
       }
       
-      /* Main content areas */
-      div, section, article, main, header, footer {
-        background: #1a1a1a !important;
-        color: #e0e0e0 !important;
-      }
-      
-      /* Cards and elevated elements */
-      .card, [class*="card"], [class*="box"], .panel, .container {
-        background: #2a2a2a !important;
-        border-color: #404040 !important;
-      }
-      
-      /* Text elements */
-      h1, h2, h3, h4, h5, h6, p, span, li, td, div {
-        color: #e0e0e0 !important;
-      }
-      
-      /* Links */
-      a {
-        color: #7eb6ff !important;
-      }
-      
-      a:hover {
-        color: #a3cfff !important;
+      /* Keep images normal */
+      img, video, canvas, svg {
+        filter: none !important;
+        background: transparent !important;
       }
       
       /* Input fields */
       input, textarea, select {
-        background: #2a2a2a !important;
-        color: #e0e0e0 !important;
-        border-color: #404040 !important;
+        background: #222222 !important;
+        color: #ffffff !important;
+        border: 1px solid #444444 !important;
       }
       
       /* Buttons */
       button, [role="button"], [type="button"], [type="submit"] {
-        background: #3a3a3a !important;
-        color: #e0e0e0 !important;
-        border-color: #505050 !important;
+        background: #333333 !important;
+        color: #ffffff !important;
+        border: 1px solid #555555 !important;
       }
       
-      /* Images - slightly reduce brightness for comfort */
-      img, video {
-        filter: brightness(0.85) !important;
-        transition: filter 0.3s ease !important;
-      }
-      
-      /* Code blocks and preformatted text */
-      code, pre {
-        background: #2a2a2a !important;
-        color: #e0e0e0 !important;
-      }
-      
-      /* Tables */
-      table {
-        background: #1a1a1a !important;
-      }
-      
-      th, td {
-        background: #2a2a2a !important;
-        border-color: #404040 !important;
-      }
-      
-      /* Scrollbar styling */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: #1a1a1a;
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background: #404040;
-        border-radius: 4px;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: #505050;
+      /* Links */
+      a {
+        color: #88ccff !important;
       }
     `;
       document.head.appendChild(style);
-      api.Front.showBanner("\u{1F319} Modern Dark Mode ON");
+      api.Front.showBanner("\u{1F319} Dark Mode ON");
     } else {
       document.getElementById("__sk_darkmode").remove();
-      api.Front.showBanner("\u2600\uFE0F Modern Dark Mode OFF");
+      api.Front.showBanner("\u2600\uFE0F Dark Mode OFF");
     }
   }
   api.mapkey("c.", "\u{1F312} Toggle dark mode (CSS inversion)", enableDarkMode);
