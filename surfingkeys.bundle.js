@@ -329,18 +329,7 @@
   api.map(",", "<Ctrl-6>");
 
   // src/settings/theme.js
-  api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", function() {
-    if (!document.getElementById("__sk_darkmode")) {
-      const style = document.createElement("style");
-      style.id = "__sk_darkmode";
-      style.innerHTML = `html { filter: invert(0.92) hue-rotate(180deg); background: #111 !important; } img, video { filter: invert(1) hue-rotate(180deg) !important; }`;
-      document.head.appendChild(style);
-      api.Front.showBanner("\u{1F31A} Dark mode ON");
-    } else {
-      document.getElementById("__sk_darkmode").remove();
-      api.Front.showBanner("\u{1F31E} Dark mode OFF");
-    }
-  });
+  api.mapkey("ck", "\u{1F312} Toggle dark mode (CSS inversion)", inverse);
   function inverse() {
     if (!document.getElementById("__sk_darkmode")) {
       const style = document.createElement("style");
@@ -393,6 +382,110 @@
     background: #1e1e2e; /* Base */
     color: #cdd6f4; /* Text */
 }`;
+  function enableDarkMode() {
+    if (!document.getElementById("__sk_darkmode")) {
+      const style = document.createElement("style");
+      style.id = "__sk_darkmode";
+      style.innerHTML = `
+      html {
+        background: #0f0f0f !important;
+        color: #e0e0e0 !important;
+      }
+      
+      body {
+        background: #0f0f0f !important;
+        color: #e0e0e0 !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      /* Main content areas */
+      div, section, article, main, header, footer {
+        background: #1a1a1a !important;
+        color: #e0e0e0 !important;
+      }
+      
+      /* Cards and elevated elements */
+      .card, [class*="card"], [class*="box"], .panel, .container {
+        background: #2a2a2a !important;
+        border-color: #404040 !important;
+      }
+      
+      /* Text elements */
+      h1, h2, h3, h4, h5, h6, p, span, li, td, div {
+        color: #e0e0e0 !important;
+      }
+      
+      /* Links */
+      a {
+        color: #7eb6ff !important;
+      }
+      
+      a:hover {
+        color: #a3cfff !important;
+      }
+      
+      /* Input fields */
+      input, textarea, select {
+        background: #2a2a2a !important;
+        color: #e0e0e0 !important;
+        border-color: #404040 !important;
+      }
+      
+      /* Buttons */
+      button, [role="button"], [type="button"], [type="submit"] {
+        background: #3a3a3a !important;
+        color: #e0e0e0 !important;
+        border-color: #505050 !important;
+      }
+      
+      /* Images - slightly reduce brightness for comfort */
+      img, video {
+        filter: brightness(0.85) !important;
+        transition: filter 0.3s ease !important;
+      }
+      
+      /* Code blocks and preformatted text */
+      code, pre {
+        background: #2a2a2a !important;
+        color: #e0e0e0 !important;
+      }
+      
+      /* Tables */
+      table {
+        background: #1a1a1a !important;
+      }
+      
+      th, td {
+        background: #2a2a2a !important;
+        border-color: #404040 !important;
+      }
+      
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #404040;
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #505050;
+      }
+    `;
+      document.head.appendChild(style);
+      api.Front.showBanner("\u{1F319} Modern Dark Mode ON");
+    } else {
+      document.getElementById("__sk_darkmode").remove();
+      api.Front.showBanner("\u2600\uFE0F Modern Dark Mode OFF");
+    }
+  }
+  api.mapkey("c.", "\u{1F312} Toggle dark mode (CSS inversion)", enableDarkMode);
 
   // src/settings/settings.js
   api.Hints.setCharacters("asdjkluiopwermnhgzx,cvq'");
