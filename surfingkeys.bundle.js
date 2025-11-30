@@ -341,6 +341,19 @@
       api.Front.showBanner("\u{1F31E} Dark mode OFF");
     }
   });
+  function inverse() {
+    if (!document.getElementById("__sk_darkmode")) {
+      const style = document.createElement("style");
+      style.id = "__sk_darkmode";
+      style.innerHTML = `html { filter: invert(0.92) hue-rotate(180deg); background: #111 !important; } img, video { filter: invert(1) hue-rotate(180deg) !important; }`;
+      document.head.appendChild(style);
+      api.Front.showBanner("\u{1F31A} Dark mode ON");
+    } else {
+      document.getElementById("__sk_darkmode").remove();
+      api.Front.showBanner("\u{1F31E} Dark mode OFF");
+    }
+  }
+  inverse();
   settings.theme = `
 .sk_theme {
     font-family: "Input Sans Condensed", Charcoal, sans-serif;

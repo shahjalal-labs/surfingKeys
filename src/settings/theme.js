@@ -1,3 +1,5 @@
+//
+//w: (start)╭──────────── Toggle dark mode ────────────╮
 // t: toggle dark mode (CSS inversion)
 api.mapkey("ck", "🌒 Toggle dark mode (CSS inversion)", function () {
   if (!document.getElementById("__sk_darkmode")) {
@@ -11,7 +13,26 @@ api.mapkey("ck", "🌒 Toggle dark mode (CSS inversion)", function () {
     api.Front.showBanner("🌞 Dark mode OFF");
   }
 });
+
+function inverse() {
+  if (!document.getElementById("__sk_darkmode")) {
+    const style = document.createElement("style");
+    style.id = "__sk_darkmode";
+    style.innerHTML = `html { filter: invert(0.92) hue-rotate(180deg); background: #111 !important; } img, video { filter: invert(1) hue-rotate(180deg) !important; }`;
+    document.head.appendChild(style);
+    api.Front.showBanner("🌚 Dark mode ON");
+  } else {
+    document.getElementById("__sk_darkmode").remove();
+    api.Front.showBanner("🌞 Dark mode OFF");
+  }
+}
+
+inverse();
+//w: (end)  ╰──────────── Toggle dark mode ────────────╯
+//
+//
 //w: 25/11/2024 12:51 PM Mon GMT+6 Sharifpur, Gazipur, Dhaka
+//w: (start)╭────────────  settings.theme ────────────╮
 settings.theme = `
 .sk_theme {
     font-family: "Input Sans Condensed", Charcoal, sans-serif;
@@ -51,3 +72,4 @@ settings.theme = `
     background: #1e1e2e; /* Base */
     color: #cdd6f4; /* Text */
 }`;
+//w: (end)  ╰────────────  settings.theme ────────────╯
