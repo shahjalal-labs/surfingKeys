@@ -381,55 +381,6 @@
     background: #1e1e2e; /* Base */
     color: #cdd6f4; /* Text */
 }`;
-  function enableDarkMode() {
-    if (!document.getElementById("__sk_darkmode")) {
-      const style = document.createElement("style");
-      style.id = "__sk_darkmode";
-      style.innerHTML = `
-      html, body {
-        background: #000000 !important;
-        color: #ffffff !important;
-      }
-      
-      * {
-        background: #000000 !important;
-        color: #ffffff !important;
-        border-color: #444444 !important;
-      }
-      
-      /* Keep images normal */
-      img, video, canvas, svg {
-        filter: none !important;
-        background: transparent !important;
-      }
-      
-      /* Input fields */
-      input, textarea, select {
-        background: #222222 !important;
-        color: #ffffff !important;
-        border: 1px solid #444444 !important;
-      }
-      
-      /* Buttons */
-      button, [role="button"], [type="button"], [type="submit"] {
-        background: #333333 !important;
-        color: #ffffff !important;
-        border: 1px solid #555555 !important;
-      }
-      
-      /* Links */
-      a {
-        color: #88ccff !important;
-      }
-    `;
-      document.head.appendChild(style);
-      api.Front.showBanner("\u{1F319} Dark Mode ON");
-    } else {
-      document.getElementById("__sk_darkmode").remove();
-      api.Front.showBanner("\u2600\uFE0F Dark Mode OFF");
-    }
-  }
-  api.mapkey("c.", "\u{1F312} Toggle dark mode (CSS inversion)", enableDarkMode);
 
   // src/settings/settings.js
   api.Hints.setCharacters("asdjkluiopwermnhgzx,cvq'");
@@ -2289,10 +2240,10 @@
   api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
   var openTeamUnitySheets = () => {
     if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=105570979#gid=105570979";
+      window.location.href = "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=568784421#gid=568784421";
     } else {
       window.open(
-        "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=105570979#gid=105570979",
+        "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=568784421#gid=568784421",
         "_blank"
       );
     }
@@ -2800,6 +2751,18 @@
       }
     }
   );
+
+  // src/modules/opener/smtFigma/smtFigma.js
+  api.mapkey("ova", "ashmaster", function() {
+    if (window.location.hostname.includes("www.figma.com")) {
+      window.location.href = "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1";
+    } else {
+      window.open(
+        "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1",
+        "_blank"
+      );
+    }
+  });
 
   // src/modules/style/chatgpt.js
   var { mapkey: mapkey3, Front } = api;
