@@ -71,3 +71,14 @@ api.mapkey("ocf", "Fiverr Message Rewriter", function () {
   }
 });
 //w: (end)  ╰──────────── Fiverr Message Rewriter ────────────╯
+
+//w: (start)╭──────────── open temp mail ────────────╮
+api.mapkey("oce", "open temp mail", function () {
+  if (window.location.hostname.includes("tempmail.plus")) {
+    window.location.href = "https://tempmail.plus/en/#!";
+  } else {
+    window.open("https://tempmail.plus/en/#!", "_blank");
+  }
+});
+//w: (end)  ╰──────────── open temp mail ────────────╯
+//

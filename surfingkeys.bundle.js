@@ -503,6 +503,13 @@
       window.open("https://relevance-phi.vercel.app/", "_blank");
     }
   });
+  api.mapkey("oce", "open temp mail", function() {
+    if (window.location.hostname.includes("tempmail.plus")) {
+      window.location.href = "https://tempmail.plus/en/#!";
+    } else {
+      window.open("https://tempmail.plus/en/#!", "_blank");
+    }
+  });
 
   // src/modules/opener/socialOpener.js
   api.mapkey("ouc", "open gContacts", function() {
