@@ -766,6 +766,29 @@
       });
     });
   });
+  api.mapkey(
+    "tp",
+    "\u{1F3AF} Postman key/value hints",
+    function() {
+      api.Hints.create(
+        'div.key-value-cell__placeholder[tabindex="-1"], div[class*="key-value"][tabindex], .auto-suggest-group .key-value-cell__placeholder',
+        function(element) {
+          element.click();
+          element.focus();
+          const clickEvent = new MouseEvent("click", {
+            view: window,
+            bubbles: true,
+            cancelable: true
+          });
+          element.dispatchEvent(clickEvent);
+          element.dispatchEvent(new FocusEvent("focus"));
+        },
+        { multipleHits: true }
+        // Allows multiple selections
+      );
+    },
+    { domain: /postman\.com/i }
+  );
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());

@@ -45,3 +45,34 @@ api.mapkey("of", "#8Open URL in incognito window", function () {
     });
   });
 });
+
+// postman click
+
+// 🎯 Postman-specific hints for custom clickable divs
+api.mapkey(
+  "tp",
+  "🎯 Postman key/value hints",
+  function () {
+    // Target Postman's custom clickable divs
+    api.Hints.create(
+      'div.key-value-cell__placeholder[tabindex="-1"], div[class*="key-value"][tabindex], .auto-suggest-group .key-value-cell__placeholder',
+      function (element) {
+        element.click();
+        element.focus();
+
+        // Try to simulate a click event more thoroughly
+        const clickEvent = new MouseEvent("click", {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+        });
+        element.dispatchEvent(clickEvent);
+
+        // Also try focus
+        element.dispatchEvent(new FocusEvent("focus"));
+      },
+      { multipleHits: true }, // Allows multiple selections
+    );
+  },
+  { domain: /postman\.com/i },
+); // Only works on Postman
