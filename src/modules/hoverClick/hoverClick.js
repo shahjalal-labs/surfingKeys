@@ -79,41 +79,53 @@ api.mapkey(
 
 // tg for hints any clickable hints
 
-api.mapkey("tf", "🎯 Smart hints for custom elements", function () {
-  // First try: Postman-specific elements
-  const postmanElements = document.querySelectorAll(
-    'div.key-value-cell__placeholder[tabindex="-1"], ' +
-      'div[class*="key-value"][tabindex], ' +
-      'div[class*="reference__"][tabindex], ' +
-      ".auto-suggest-group div[tabindex]",
-  );
+api.mapkey("tg", "🎯 Universal custom element hints", function () {
+  // Find all potentially interactive elements
+  const allElements = document.querySelectorAll("*");
+  const interactiveElements = [];
 
-  if (postmanElements.length > 0) {
-    // Use Postman-specific elements
+  allElements.forEach((el) => {
+    // Check if element looks interactive
+    const isInteractive =
+      (el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2") ||
+      el.hasAttribute("onclick") ||
+      el.style.cursor === "pointer" ||
+      el.style.cursor === "text" ||
+      el.contentEditable === "true" ||
+      (el.className &&
+        (el.className.includes("click") ||
+          el.className.includes("input") ||
+          el.className.includes("edit") ||
+          el.className.includes("focus") ||
+          el.className.includes("select") ||
+          el.className.includes("button")));
+
+    // Also check computed styles
+    const computedStyle = window.getComputedStyle(el);
+    const looksClickable =
+      computedStyle.cursor === "pointer" || computedStyle.cursor === "text";
+
+    if (isInteractive || looksClickable) {
+      interactiveElements.push(el);
+    }
+  });
+
+  if (interactiveElements.length > 0) {
     api.Hints.create(
-      Array.from(postmanElements),
+      interactiveElements,
       function (element) {
-        element.click();
-        element.focus();
+        // Try multiple ways to activate
+        if (element.click) element.click();
+        if (element.focus) element.focus();
 
-        // Trigger keyboard events to simulate proper focus
-        setTimeout(() => {
-          element.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
-        }, 50);
+        // Trigger events
+        ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
+          element.dispatchEvent(new Event(eventType, { bubbles: true }));
+        });
       },
       { multipleHits: true },
     );
   } else {
-    // Fallback to standard clickable elements
-    api.Hints.create(
-      "a, button, input, textarea, select, " +
-        '[role="button"], [role="link"], ' +
-        "[onclick], [contenteditable], " +
-        '[tabindex]:not([tabindex="-2"])',
-      function (element) {
-        element.click();
-      },
-      { multipleHits: true },
-    );
+    api.Front.showBanner("No interactive elements found");
   }
 });

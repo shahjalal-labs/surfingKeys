@@ -789,30 +789,31 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  api.mapkey("tf", "\u{1F3AF} Smart hints for custom elements", function() {
-    const postmanElements = document.querySelectorAll(
-      'div.key-value-cell__placeholder[tabindex="-1"], div[class*="key-value"][tabindex], div[class*="reference__"][tabindex], .auto-suggest-group div[tabindex]'
-    );
-    if (postmanElements.length > 0) {
+  api.mapkey("tg", "\u{1F3AF} Universal custom element hints", function() {
+    const allElements = document.querySelectorAll("*");
+    const interactiveElements = [];
+    allElements.forEach((el) => {
+      const isInteractive = el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2" || el.hasAttribute("onclick") || el.style.cursor === "pointer" || el.style.cursor === "text" || el.contentEditable === "true" || el.className && (el.className.includes("click") || el.className.includes("input") || el.className.includes("edit") || el.className.includes("focus") || el.className.includes("select") || el.className.includes("button"));
+      const computedStyle = window.getComputedStyle(el);
+      const looksClickable = computedStyle.cursor === "pointer" || computedStyle.cursor === "text";
+      if (isInteractive || looksClickable) {
+        interactiveElements.push(el);
+      }
+    });
+    if (interactiveElements.length > 0) {
       api.Hints.create(
-        Array.from(postmanElements),
+        interactiveElements,
         function(element) {
-          element.click();
-          element.focus();
-          setTimeout(() => {
-            element.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
-          }, 50);
+          if (element.click) element.click();
+          if (element.focus) element.focus();
+          ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
+            element.dispatchEvent(new Event(eventType, { bubbles: true }));
+          });
         },
         { multipleHits: true }
       );
     } else {
-      api.Hints.create(
-        'a, button, input, textarea, select, [role="button"], [role="link"], [onclick], [contenteditable], [tabindex]:not([tabindex="-2"])',
-        function(element) {
-          element.click();
-        },
-        { multipleHits: true }
-      );
+      api.Front.showBanner("No interactive elements found");
     }
   });
 
