@@ -1,4 +1,5 @@
 //t: 🔁 Persistent smart click loop that detects and clicks both semantic and styled custom clickable elements across page navigations.
+//w: (start)╭──────────── Persistent smart click ────────────╮
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
   api.Hints.create(
     "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
@@ -13,8 +14,10 @@ api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
     },
   );
 });
+//w: (end)  ╰──────────── Persistent smart click ────────────╯
 
 //t: 🖱️ Smart hover using hints
+//w: (start)╭──────────── Smart hover using hints ────────────╮
 api.mapkey("ch", "🖱️ Smart hover using hints", function () {
   api.Hints.create("*", function (el) {
     ["mouseover", "mouseenter", "focus"].forEach((type) => {
@@ -26,8 +29,10 @@ api.mapkey("ch", "🖱️ Smart hover using hints", function () {
     // api.Front.showPopup("🟡 Hovered or focused: " + (el.alt || el.innerText || el.tagName));
   });
 });
+//w: (end)  ╰──────────── Smart hover using hints ────────────╯
 
 // t: 🔍 Reveal hidden elements using hints
+//w: (start)╭──────────── Reveal hidden elements ────────────╮
 api.mapkey("ca", "🔍 Reveal hidden elements using hints", function () {
   api.Hints.create("*", function (el) {
     el.style.display = "block";
@@ -37,17 +42,20 @@ api.mapkey("ca", "🔍 Reveal hidden elements using hints", function () {
     api.Front.showPopup("✅ Revealed element: " + el.tagName);
   });
 });
+//w: (end)  ╰──────────── Reveal hidden elements ────────────╯
 
-api.mapkey("of", "#8Open URL in incognito window", function () {
+//w: (start)╭──────────── Open URL in incognito ────────────╮
+api.mapkey("of", "Open URL in incognito window", function () {
   api.Hints.create("*[href]", function (element) {
     api?.RUNTIME("openIncognito", {
       url: element.href,
     });
   });
 });
+//w: (end)  ╰──────────── Open URL in incognito ────────────╯
 
 // postman click
-
+//w: (start)╭──────────── postman click ────────────╮
 // 🎯 Postman-specific hints for custom clickable divs
 api.mapkey(
   "tp",
@@ -75,78 +83,5 @@ api.mapkey(
     );
   },
   // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
-); // Only works on Postman
-
-// tg for hints any clickable hints
-
-api.mapkey("tg", "🎯 Universal custom element hints", function () {
-  // Find all potentially interactive elements
-  const allElements = document.querySelectorAll("*");
-  const interactiveElements = [];
-
-  allElements.forEach((el) => {
-    try {
-      // SAFELY get class name as string
-      const className =
-        typeof el.className === "string"
-          ? el.className
-          : el.className?.baseVal || // For SVG elements
-            el.getAttribute?.("class") || // Fallback to attribute
-            "";
-
-      // SAFELY get style properties
-      const styleCursor = el.style?.cursor || "";
-      const computedStyle = window.getComputedStyle(el);
-      const computedCursor = computedStyle?.cursor || "";
-
-      // Check if element looks interactive
-      const isInteractive =
-        (el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2") ||
-        el.hasAttribute("onclick") ||
-        styleCursor === "pointer" ||
-        styleCursor === "text" ||
-        el.contentEditable === "true" ||
-        (className &&
-          (className.toString().includes("click") ||
-            className.toString().includes("input") ||
-            className.toString().includes("edit") ||
-            className.toString().includes("focus") ||
-            className.toString().includes("select") ||
-            className.toString().includes("button")));
-
-      // Also check computed styles
-      const looksClickable =
-        computedCursor === "pointer" || computedCursor === "text";
-
-      if (isInteractive || looksClickable) {
-        interactiveElements.push(el);
-      }
-    } catch (e) {
-      // Silently skip problematic elements
-      console.debug("Skipping element in hint detection:", e);
-    }
-  });
-
-  if (interactiveElements.length > 0) {
-    api.Hints.create(
-      interactiveElements,
-      function (element) {
-        // Try multiple ways to activate
-        try {
-          if (element.click) element.click();
-          if (element.focus) element.focus();
-
-          // Trigger events
-          ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
-            element.dispatchEvent(new Event(eventType, { bubbles: true }));
-          });
-        } catch (e) {
-          console.debug("Error activating element:", e);
-        }
-      },
-      { multipleHits: true },
-    );
-  } else {
-    api.Front.showBanner("No interactive elements found");
-  }
-});
+);
+//w: (end)  ╰──────────── postman click ────────────╯

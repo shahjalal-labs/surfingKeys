@@ -759,7 +759,7 @@
       api.Front.showPopup("\u2705 Revealed element: " + el.tagName);
     });
   });
-  api.mapkey("of", "#8Open URL in incognito window", function() {
+  api.mapkey("of", "Open URL in incognito window", function() {
     api.Hints.create("*[href]", function(element) {
       api?.RUNTIME("openIncognito", {
         url: element.href
@@ -789,46 +789,6 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  api.mapkey("tg", "\u{1F3AF} Universal custom element hints", function() {
-    const allElements = document.querySelectorAll("*");
-    const interactiveElements = [];
-    allElements.forEach((el) => {
-      try {
-        const className = typeof el.className === "string" ? el.className : el.className?.baseVal || // For SVG elements
-        el.getAttribute?.("class") || // Fallback to attribute
-        "";
-        const styleCursor = el.style?.cursor || "";
-        const computedStyle = window.getComputedStyle(el);
-        const computedCursor = computedStyle?.cursor || "";
-        const isInteractive = el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2" || el.hasAttribute("onclick") || styleCursor === "pointer" || styleCursor === "text" || el.contentEditable === "true" || className && (className.toString().includes("click") || className.toString().includes("input") || className.toString().includes("edit") || className.toString().includes("focus") || className.toString().includes("select") || className.toString().includes("button"));
-        const looksClickable = computedCursor === "pointer" || computedCursor === "text";
-        if (isInteractive || looksClickable) {
-          interactiveElements.push(el);
-        }
-      } catch (e) {
-        console.debug("Skipping element in hint detection:", e);
-      }
-    });
-    if (interactiveElements.length > 0) {
-      api.Hints.create(
-        interactiveElements,
-        function(element) {
-          try {
-            if (element.click) element.click();
-            if (element.focus) element.focus();
-            ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
-              element.dispatchEvent(new Event(eventType, { bubbles: true }));
-            });
-          } catch (e) {
-            console.debug("Error activating element:", e);
-          }
-        },
-        { multipleHits: true }
-      );
-    } else {
-      api.Front.showBanner("No interactive elements found");
-    }
-  });
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());
