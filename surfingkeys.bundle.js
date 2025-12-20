@@ -786,9 +786,35 @@
         { multipleHits: true }
         // Allows multiple selections
       );
-    },
-    { domain: /postman\.com/i }
+    }
+    // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
+  api.mapkey("tf", "\u{1F3AF} Smart hints for custom elements", function() {
+    const postmanElements = document.querySelectorAll(
+      'div.key-value-cell__placeholder[tabindex="-1"], div[class*="key-value"][tabindex], div[class*="reference__"][tabindex], .auto-suggest-group div[tabindex]'
+    );
+    if (postmanElements.length > 0) {
+      api.Hints.create(
+        Array.from(postmanElements),
+        function(element) {
+          element.click();
+          element.focus();
+          setTimeout(() => {
+            element.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+          }, 50);
+        },
+        { multipleHits: true }
+      );
+    } else {
+      api.Hints.create(
+        'a, button, input, textarea, select, [role="button"], [role="link"], [onclick], [contenteditable], [tabindex]:not([tabindex="-2"])',
+        function(element) {
+          element.click();
+        },
+        { multipleHits: true }
+      );
+    }
+  });
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());

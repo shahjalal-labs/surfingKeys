@@ -74,5 +74,46 @@ api.mapkey(
       { multipleHits: true }, // Allows multiple selections
     );
   },
-  { domain: /postman\.com/i },
+  // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
 ); // Only works on Postman
+
+// tg for hints any clickable hints
+
+api.mapkey("tf", "🎯 Smart hints for custom elements", function () {
+  // First try: Postman-specific elements
+  const postmanElements = document.querySelectorAll(
+    'div.key-value-cell__placeholder[tabindex="-1"], ' +
+      'div[class*="key-value"][tabindex], ' +
+      'div[class*="reference__"][tabindex], ' +
+      ".auto-suggest-group div[tabindex]",
+  );
+
+  if (postmanElements.length > 0) {
+    // Use Postman-specific elements
+    api.Hints.create(
+      Array.from(postmanElements),
+      function (element) {
+        element.click();
+        element.focus();
+
+        // Trigger keyboard events to simulate proper focus
+        setTimeout(() => {
+          element.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+        }, 50);
+      },
+      { multipleHits: true },
+    );
+  } else {
+    // Fallback to standard clickable elements
+    api.Hints.create(
+      "a, button, input, textarea, select, " +
+        '[role="button"], [role="link"], ' +
+        "[onclick], [contenteditable], " +
+        '[tabindex]:not([tabindex="-2"])',
+      function (element) {
+        element.click();
+      },
+      { multipleHits: true },
+    );
+  }
+});
