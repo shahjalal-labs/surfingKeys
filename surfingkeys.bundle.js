@@ -793,22 +793,35 @@
     const allElements = document.querySelectorAll("*");
     const interactiveElements = [];
     allElements.forEach((el) => {
-      const isInteractive = el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2" || el.hasAttribute("onclick") || el.style.cursor === "pointer" || el.style.cursor === "text" || el.contentEditable === "true" || el.className && (el.className.includes("click") || el.className.includes("input") || el.className.includes("edit") || el.className.includes("focus") || el.className.includes("select") || el.className.includes("button"));
-      const computedStyle = window.getComputedStyle(el);
-      const looksClickable = computedStyle.cursor === "pointer" || computedStyle.cursor === "text";
-      if (isInteractive || looksClickable) {
-        interactiveElements.push(el);
+      try {
+        const className = typeof el.className === "string" ? el.className : el.className?.baseVal || // For SVG elements
+        el.getAttribute?.("class") || // Fallback to attribute
+        "";
+        const styleCursor = el.style?.cursor || "";
+        const computedStyle = window.getComputedStyle(el);
+        const computedCursor = computedStyle?.cursor || "";
+        const isInteractive = el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2" || el.hasAttribute("onclick") || styleCursor === "pointer" || styleCursor === "text" || el.contentEditable === "true" || className && (className.toString().includes("click") || className.toString().includes("input") || className.toString().includes("edit") || className.toString().includes("focus") || className.toString().includes("select") || className.toString().includes("button"));
+        const looksClickable = computedCursor === "pointer" || computedCursor === "text";
+        if (isInteractive || looksClickable) {
+          interactiveElements.push(el);
+        }
+      } catch (e) {
+        console.debug("Skipping element in hint detection:", e);
       }
     });
     if (interactiveElements.length > 0) {
       api.Hints.create(
         interactiveElements,
         function(element) {
-          if (element.click) element.click();
-          if (element.focus) element.focus();
-          ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
-            element.dispatchEvent(new Event(eventType, { bubbles: true }));
-          });
+          try {
+            if (element.click) element.click();
+            if (element.focus) element.focus();
+            ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
+              element.dispatchEvent(new Event(eventType, { bubbles: true }));
+            });
+          } catch (e) {
+            console.debug("Error activating element:", e);
+          }
         },
         { multipleHits: true }
       );

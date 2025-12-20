@@ -85,28 +85,45 @@ api.mapkey("tg", "🎯 Universal custom element hints", function () {
   const interactiveElements = [];
 
   allElements.forEach((el) => {
-    // Check if element looks interactive
-    const isInteractive =
-      (el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2") ||
-      el.hasAttribute("onclick") ||
-      el.style.cursor === "pointer" ||
-      el.style.cursor === "text" ||
-      el.contentEditable === "true" ||
-      (el.className &&
-        (el.className.includes("click") ||
-          el.className.includes("input") ||
-          el.className.includes("edit") ||
-          el.className.includes("focus") ||
-          el.className.includes("select") ||
-          el.className.includes("button")));
+    try {
+      // SAFELY get class name as string
+      const className =
+        typeof el.className === "string"
+          ? el.className
+          : el.className?.baseVal || // For SVG elements
+            el.getAttribute?.("class") || // Fallback to attribute
+            "";
 
-    // Also check computed styles
-    const computedStyle = window.getComputedStyle(el);
-    const looksClickable =
-      computedStyle.cursor === "pointer" || computedStyle.cursor === "text";
+      // SAFELY get style properties
+      const styleCursor = el.style?.cursor || "";
+      const computedStyle = window.getComputedStyle(el);
+      const computedCursor = computedStyle?.cursor || "";
 
-    if (isInteractive || looksClickable) {
-      interactiveElements.push(el);
+      // Check if element looks interactive
+      const isInteractive =
+        (el.hasAttribute("tabindex") && el.getAttribute("tabindex") !== "-2") ||
+        el.hasAttribute("onclick") ||
+        styleCursor === "pointer" ||
+        styleCursor === "text" ||
+        el.contentEditable === "true" ||
+        (className &&
+          (className.toString().includes("click") ||
+            className.toString().includes("input") ||
+            className.toString().includes("edit") ||
+            className.toString().includes("focus") ||
+            className.toString().includes("select") ||
+            className.toString().includes("button")));
+
+      // Also check computed styles
+      const looksClickable =
+        computedCursor === "pointer" || computedCursor === "text";
+
+      if (isInteractive || looksClickable) {
+        interactiveElements.push(el);
+      }
+    } catch (e) {
+      // Silently skip problematic elements
+      console.debug("Skipping element in hint detection:", e);
     }
   });
 
@@ -115,13 +132,17 @@ api.mapkey("tg", "🎯 Universal custom element hints", function () {
       interactiveElements,
       function (element) {
         // Try multiple ways to activate
-        if (element.click) element.click();
-        if (element.focus) element.focus();
+        try {
+          if (element.click) element.click();
+          if (element.focus) element.focus();
 
-        // Trigger events
-        ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
-          element.dispatchEvent(new Event(eventType, { bubbles: true }));
-        });
+          // Trigger events
+          ["click", "mousedown", "mouseup", "focus"].forEach((eventType) => {
+            element.dispatchEvent(new Event(eventType, { bubbles: true }));
+          });
+        } catch (e) {
+          console.debug("Error activating element:", e);
+        }
       },
       { multipleHits: true },
     );
