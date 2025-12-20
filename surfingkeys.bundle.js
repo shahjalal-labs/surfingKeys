@@ -510,6 +510,13 @@
       window.open("https://tempmail.plus/en/#!", "_blank");
     }
   });
+  api.mapkey("ocp", "open postman web", function() {
+    if (window.location.hostname.includes("www.postman.com")) {
+      window.location.href = "https://www.postman.com/workspaces";
+    } else {
+      window.open("https://www.postman.com/workspaces", "_blank");
+    }
+  });
 
   // src/modules/opener/socialOpener.js
   api.mapkey("ouc", "open gContacts", function() {

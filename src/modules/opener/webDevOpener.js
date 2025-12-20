@@ -82,3 +82,14 @@ api.mapkey("oce", "open temp mail", function () {
 });
 //w: (end)  ╰──────────── open temp mail ────────────╯
 //
+
+//w: (start)╭──────────── open postman web ────────────╮
+// open postman web
+api.mapkey("ocp", "open postman web", function () {
+  if (window.location.hostname.includes("www.postman.com")) {
+    window.location.href = "https://www.postman.com/workspaces";
+  } else {
+    window.open("https://www.postman.com/workspaces", "_blank");
+  }
+});
+//w: (end)  ╰──────────── open postman web ────────────╯
