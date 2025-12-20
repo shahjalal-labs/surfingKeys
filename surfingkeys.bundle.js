@@ -511,10 +511,13 @@
     }
   });
   api.mapkey("ocp", "open postman web", function() {
-    if (window.location.hostname.includes("www.postman.com")) {
-      window.location.href = "https://www.postman.com/workspaces";
+    if (window.location.hostname.includes("shahjalal-backend-9458759.postman.co")) {
+      window.location.href = "https://shahjalal-backend-9458759.postman.co/workspaces";
     } else {
-      window.open("https://www.postman.com/workspaces", "_blank");
+      window.open(
+        "https://shahjalal-backend-9458759.postman.co/workspaces",
+        "_blank"
+      );
     }
   });
 
