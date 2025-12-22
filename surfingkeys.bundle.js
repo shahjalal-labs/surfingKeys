@@ -3331,9 +3331,19 @@
   }
 
   // src/modules/insertMode/textPaste/textPaste.js
-  api.imapkey(",in", "Insert name: md. shahjalal", function() {
-    document.execCommand("insertText", false, "md. shahjalal");
-  });
+  var { imapkey } = api;
+  function textPaster(keys, desc, text) {
+    imapkey(keys, desc, function() {
+      document.execCommand("insertText", false, text);
+    });
+  }
+  textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
+  textPaster(",nf", "Insert Firstname: Md.", "Md. ");
+  textPaster(
+    ",eb",
+    "Insert Backend Mail: shahjalal.backend@gmail.com",
+    "shahjalal.backend@gmail.com"
+  );
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
