@@ -3340,6 +3340,12 @@
   textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
   textPaster(",nf", "Insert Firstname: Md.", "Md. ");
   textPaster(
+    ",er",
+    "insert root mail muhommodshah...",
+    "muhommodshahjalal@gmail.com"
+  );
+  textPaster(",ed", "insert mail dev.shah...", "dev.shahjalal@gmail.com");
+  textPaster(
     ",eb",
     "Insert Backend Mail: shahjalal.backend@gmail.com",
     "shahjalal.backend@gmail.com"
