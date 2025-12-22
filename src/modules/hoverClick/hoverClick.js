@@ -85,3 +85,10 @@ api.mapkey(
   // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
 );
 //w: (end)  ╰──────────── postman click ────────────╯
+//  insert name
+
+// Method 1: Simple text expansion using imapkey
+api.imapkey("iin", "Insert name: md. shahjalal", function () {
+  // This inserts text at the cursor position in any input/textarea
+  document.execCommand("insertText", false, "md. shahjalal");
+});

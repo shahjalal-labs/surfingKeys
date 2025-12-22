@@ -799,6 +799,9 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
+  api.imapkey("iin", "Insert name: md. shahjalal", function() {
+    document.execCommand("insertText", false, "md. shahjalal");
+  });
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());
