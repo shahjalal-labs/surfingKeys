@@ -20,6 +20,11 @@ textPaster(
 );
 
 textPaster(",ed", "insert mail dev.shah...", "dev.shahjalal@gmail.com");
+textPaster(
+  ",ej",
+  "insert mail javedkarim.codes...",
+  "javedkarim.codes@gmail.com",
+);
 
 //w: (start)╭──────────── insert backend mail ────────────╮
 textPaster(

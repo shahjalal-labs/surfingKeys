@@ -3330,7 +3330,7 @@
     );
   }
 
-  // src/modules/insertMode/textPaste/textPaste.js
+  // src/modules/insertMode/textExpanse/textExpanse.js
   var { imapkey } = api;
   function textPaster(keys, desc, text) {
     imapkey(keys, desc, function() {
@@ -3345,6 +3345,11 @@
     "muhommodshahjalal@gmail.com"
   );
   textPaster(",ed", "insert mail dev.shah...", "dev.shahjalal@gmail.com");
+  textPaster(
+    ",ej",
+    "insert mail javedkarim.codes...",
+    "javedkarim.codes@gmail.com"
+  );
   textPaster(
     ",eb",
     "Insert Backend Mail: shahjalal.backend@gmail.com",
