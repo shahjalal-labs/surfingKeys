@@ -799,9 +799,6 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  api.imapkey("iin", "Insert name: md. shahjalal", function() {
-    document.execCommand("insertText", false, "md. shahjalal");
-  });
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());
@@ -3332,6 +3329,11 @@
       "\u{1F680} SJ Pulse Stealth UI Loaded! Use 'ts' to toggle, 'tv' for variants, 'tc' for compact"
     );
   }
+
+  // src/modules/insertMode/textPaste/textPaste.js
+  api.imapkey(",in", "Insert name: md. shahjalal", function() {
+    document.execCommand("insertText", false, "md. shahjalal");
+  });
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
