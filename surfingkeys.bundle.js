@@ -3355,6 +3355,9 @@
     "Insert Backend Mail: shahjalal.backend@gmail.com",
     "shahjalal.backend@gmail.com"
   );
+  textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
+  textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
+  textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
 
   // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";

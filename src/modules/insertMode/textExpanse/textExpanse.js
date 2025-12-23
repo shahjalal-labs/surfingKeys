@@ -33,3 +33,9 @@ textPaster(
   "shahjalal.backend@gmail.com",
 );
 //w: (end)  ╰──────────── insert backend mail ────────────╯
+
+textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
+
+textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
+
+textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
