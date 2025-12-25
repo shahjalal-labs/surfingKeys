@@ -1,3 +1,8 @@
+// Block chatgpt.com completely
+if (location.hostname === "chatgpt.com") {
+  return;
+}
+
 const { imapkey } = api;
 
 function textPaster(keys, desc, text) {
