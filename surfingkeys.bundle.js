@@ -305,6 +305,42 @@
     }
   });
 
+  // src/modules/insertMode/textExpanse/textExpanse.js
+  var require_textExpanse = __commonJS({
+    "src/modules/insertMode/textExpanse/textExpanse.js"() {
+      if (location.hostname === "chatgpt.com") {
+        return;
+      }
+      var { imapkey } = api;
+      function textPaster(keys, desc, text) {
+        imapkey(keys, desc, function() {
+          document.execCommand("insertText", false, text);
+        });
+      }
+      textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
+      textPaster(",nf", "Insert Firstname: Md.", "Md. ");
+      textPaster(
+        ",er",
+        "insert root mail muhommodshah...",
+        "muhommodshahjalal@gmail.com"
+      );
+      textPaster(",ed", "insert mail dev.shah...", "dev.shahjalal@gmail.com");
+      textPaster(
+        ",ej",
+        "insert mail javedkarim.codes...",
+        "javedkarim.codes@gmail.com"
+      );
+      textPaster(
+        ",eb",
+        "Insert Backend Mail: shahjalal.backend@gmail.com",
+        "shahjalal.backend@gmail.com"
+      );
+      textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
+      textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
+      textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
+    }
+  });
+
   // src/modules/defaultRemapped.js
   api.map("gt", "t");
   api.map("w", "d");
@@ -3330,36 +3366,8 @@
     );
   }
 
-  // src/modules/insertMode/textExpanse/textExpanse.js
-  var { imapkey } = api;
-  function textPaster(keys, desc, text) {
-    imapkey(keys, desc, function() {
-      document.execCommand("insertText", false, text);
-    });
-  }
-  textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
-  textPaster(",nf", "Insert Firstname: Md.", "Md. ");
-  textPaster(
-    ",er",
-    "insert root mail muhommodshah...",
-    "muhommodshahjalal@gmail.com"
-  );
-  textPaster(",ed", "insert mail dev.shah...", "dev.shahjalal@gmail.com");
-  textPaster(
-    ",ej",
-    "insert mail javedkarim.codes...",
-    "javedkarim.codes@gmail.com"
-  );
-  textPaster(
-    ",eb",
-    "Insert Backend Mail: shahjalal.backend@gmail.com",
-    "shahjalal.backend@gmail.com"
-  );
-  textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
-  textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
-  textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
-
   // surfingkeys.js
+  var import_textExpanse = __toESM(require_textExpanse());
   settings.defaultLLMProvider = "deepseek";
   settings.llm = {
     deepseek: {
