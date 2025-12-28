@@ -8,7 +8,6 @@
 ├── note.md
 ├── package.json
 ├── random.md
-├── readmeGenerate.md
 ├── README.md
 ├── src
 │   ├── modules
@@ -20,6 +19,9 @@
 │   │   │   └── githubNavigator.js
 │   │   ├── hoverClick
 │   │   │   └── hoverClick.js
+│   │   ├── insertMode
+│   │   │   └── textExpanse
+│   │   │       └── textExpanse.js
 │   │   ├── markdown
 │   │   │   └── markdown.js
 │   │   ├── opener
@@ -55,7 +57,7 @@
 ├── surfingkeys.bundle.js
 └── surfingkeys.js
 
-14 directories, 37 files
+16 directories, 37 files
 ```
 
 ## 📁 src Module Tree
@@ -75,6 +77,9 @@
 │   │   └── githubNavigator.js
 │   ├── hoverClick
 │   │   └── hoverClick.js
+│   ├── insertMode
+│   │   └── textExpanse
+│   │       └── textExpanse.js
 │   ├── markdown
 │   │   └── markdown.js
 │   ├── opener
@@ -107,7 +112,7 @@
     ├── settings.js
     └── theme.js
 
-15 directories, 30 files
+17 directories, 31 files
 ```
 
 ## 📋 schema.prisma
@@ -214,6 +219,63 @@ settings.startToShowEmoji = 1;
 
 ```javascript
 
+```
+
+## 📄 modules/insertMode/textExpanse/textExpanse.js
+
+```javascript
+// Block chatgpt.com completely
+if (location.hostname === "chatgpt.com") {
+  return;
+}
+
+const { imapkey } = api;
+
+function textPaster(keys, desc, text) {
+  imapkey(keys, desc, function () {
+    document.execCommand("insertText", false, text);
+  });
+}
+
+// insert fullname
+textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
+
+// insert firstname:
+textPaster(",nf", "Insert Firstname: Md.", "Md. ");
+
+// insert root mail
+textPaster(
+  ",er",
+  "insert root mail muhommodshah...",
+  "muhommodshahjalal@gmail.com",
+);
+
+// insert mail dev.shah
+textPaster(",ed", "insert mail dev.shah...", "dev.shahjalal@gmail.com");
+
+// insert mail javedkarim.codes...
+textPaster(
+  ",ej",
+  "insert mail javedkarim.codes...",
+  "javedkarim.codes@gmail.com",
+);
+
+//w: (start)╭──────────── insert backend mail ────────────╮
+textPaster(
+  ",eb",
+  "Insert Backend Mail: shahjalal.backend@gmail.com",
+  "shahjalal.backend@gmail.com",
+);
+//w: (end)  ╰──────────── insert backend mail ────────────╯
+
+// Insert BL Phn: 01989
+textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
+
+// Insert TEL Phn: 01540
+textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
+
+// Insert Salam
+textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
 ```
 
 ## 📄 modules/opener/islamicOpener.js
@@ -2331,6 +2393,9 @@ api.mapkey(
   // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
 );
 //w: (end)  ╰──────────── postman click ────────────╯
+//  insert name
+
+
 ```
 
 ## 📄 modules/style/chatgpt_prev.js
