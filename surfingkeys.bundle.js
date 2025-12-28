@@ -429,7 +429,7 @@
       "_blank"
     );
   });
-  api.mapkey("ay", "youtube opening", function() {
+  api.mapkey("ay,", "youtube opening", function() {
     window.open("https://www.youtube.com/", "_blank");
   });
   api.mapkey("sb", "Open blank page", function() {
@@ -3368,6 +3368,260 @@
 
   // surfingkeys.js
   var import_textExpanse = __toESM(require_textExpanse());
+
+  // src/modules/yt/yt.js
+  var { mapkey: mapkey4, Front: Front2 } = api;
+  var YOUTUBE_LANGUAGES = {
+    original: {
+      code: "original",
+      name: "Original",
+      label: "\u{1F3AC} Original Language"
+    },
+    en: {
+      code: "en",
+      name: "English (USA)",
+      label: "\u{1F1FA}\u{1F1F8} English (USA)"
+    }
+  };
+  var YouTubeLanguageToggler = class {
+    constructor() {
+      this.currentLanguage = null;
+      this.isYouTube = window.location.hostname.includes("youtube.com");
+      this.observer = null;
+    }
+    // Initialize the toggler
+    init() {
+      if (!this.isYouTube) return;
+      this.detectCurrentLanguage();
+      this.setupObserver();
+      this.registerKeys();
+    }
+    // Detect current language from YouTube's settings
+    detectCurrentLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get("hl");
+      const languageButton = document.querySelector(
+        '[aria-label*="language"], [aria-label*="Language"]'
+      );
+      if (langParam === "en" || langParam === "en-US") {
+        this.currentLanguage = YOUTUBE_LANGUAGES.en;
+      } else if (languageButton) {
+        const buttonText = languageButton.textContent || languageButton.getAttribute("aria-label") || "";
+        if (buttonText.includes("English") || buttonText.includes("USA")) {
+          this.currentLanguage = YOUTUBE_LANGUAGES.en;
+        } else {
+          this.currentLanguage = YOUTUBE_LANGUAGES.original;
+        }
+      } else {
+        const htmlLang = document.documentElement.lang;
+        if (htmlLang === "en" || htmlLang === "en-US") {
+          this.currentLanguage = YOUTUBE_LANGUAGES.en;
+        } else {
+          this.currentLanguage = YOUTUBE_LANGUAGES.original;
+        }
+      }
+      Front2.showBanner(`\u{1F310} Current: ${this.currentLanguage.label}`);
+    }
+    // Toggle between languages
+    toggleLanguage() {
+      if (!this.isYouTube) {
+        Front2.showBanner("\u26A0\uFE0F This only works on YouTube");
+        return;
+      }
+      if (!this.currentLanguage) {
+        this.detectCurrentLanguage();
+      }
+      const targetLanguage = this.currentLanguage.code === "original" ? YOUTUBE_LANGUAGES.en : YOUTUBE_LANGUAGES.original;
+      this.setLanguage(targetLanguage);
+    }
+    // Set specific language
+    setLanguage(language) {
+      if (!this.isYouTube) {
+        Front2.showBanner("\u26A0\uFE0F This only works on YouTube");
+        return;
+      }
+      this.currentLanguage = language;
+      Front2.showBanner(`\u2705 Switched to: ${language.label}`);
+      this.tryLanguageChangeMethods(language);
+    }
+    // Try multiple methods to change YouTube language
+    tryLanguageChangeMethods(language) {
+      if (window.location.pathname.includes("/watch")) {
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        if (language.code === "original") {
+          params.delete("cc_load_policy");
+          params.delete("cc_lang_pref");
+        } else {
+          params.set("cc_load_policy", "1");
+          params.set("cc_lang_pref", "en");
+        }
+        url.search = params.toString();
+        window.location.href = url.toString();
+        return;
+      }
+      this.openLanguageSettings(language);
+    }
+    // Open YouTube's language settings
+    openLanguageSettings(language) {
+      const selectors = [
+        'button[aria-label*="language"]',
+        'button[aria-label*="Language"]',
+        "ytd-settings-button button",
+        "#guide-button",
+        'yt-icon-button[aria-label="Settings"]'
+      ];
+      for (const selector of selectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+          element.click();
+          setTimeout(() => this.selectLanguageInMenu(language), 300);
+          break;
+        }
+      }
+    }
+    // Select language in YouTube's menu
+    selectLanguageInMenu(language) {
+      const languageMenuItems = document.querySelectorAll(
+        "ytd-menu-popup-renderer ytd-menu-service-item-renderer, tp-yt-paper-listbox ytd-toggle-item-renderer"
+      );
+      for (const item of languageMenuItems) {
+        const text = item.textContent || item.innerText || "";
+        if (language.code === "original") {
+          if (text.includes("Original") || text.includes("Auto") || text.includes("Off")) {
+            item.click();
+            Front2.showBanner(`\u2705 Set to: ${language.label}`);
+            break;
+          }
+        } else if (language.code === "en") {
+          if (text.includes("English") || text.includes("en") || text.includes("USA")) {
+            item.click();
+            Front2.showBanner(`\u2705 Set to: ${language.label}`);
+            break;
+          }
+        }
+      }
+    }
+    // Set up mutation observer to detect language changes
+    setupObserver() {
+      this.observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === "attributes" && mutation.attributeName === "lang") {
+            this.detectCurrentLanguage();
+          }
+        });
+      });
+      this.observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["lang"]
+      });
+    }
+    // Register SurfingKeys shortcuts
+    registerKeys() {
+      mapkey4(
+        "ayy",
+        "\u{1F310} Toggle YouTube language (Original \u2194 English USA)",
+        () => {
+          this.toggleLanguage();
+        }
+      );
+      mapkey4("ayo", "\u{1F3AC} Switch to Original language", () => {
+        this.setLanguage(YOUTUBE_LANGUAGES.original);
+      });
+      mapkey4("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
+        this.setLanguage(YOUTUBE_LANGUAGES.en);
+      });
+      mapkey4("ays", "\u{1F4CA} Show current YouTube language", () => {
+        this.detectCurrentLanguage();
+      });
+    }
+    // Clean up
+    destroy() {
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
+  };
+  if (window.location.hostname.includes("youtube.com")) {
+    const languageToggler = new YouTubeLanguageToggler();
+    languageToggler.init();
+    window.ytLanguageToggler = languageToggler;
+    const indicator = document.createElement("div");
+    indicator.id = "sk-yt-language-indicator";
+    indicator.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 10000;
+    font-family: Arial, sans-serif;
+    display: none;
+  `;
+    document.body.appendChild(indicator);
+    const updateIndicator = () => {
+      const lang = languageToggler.currentLanguage;
+      if (lang) {
+        indicator.textContent = `\u{1F310} ${lang.label}`;
+        indicator.style.display = "block";
+        setTimeout(() => {
+          indicator.style.display = "none";
+        }, 3e3);
+      }
+    };
+    const originalSetLanguage = languageToggler.setLanguage.bind(languageToggler);
+    languageToggler.setLanguage = function(lang) {
+      originalSetLanguage(lang);
+      updateIndicator();
+    };
+  }
+  function toggleYouTubeCaptions() {
+    if (!window.location.hostname.includes("youtube.com")) {
+      Front2.showBanner("\u26A0\uFE0F Only works on YouTube");
+      return;
+    }
+    const captionButton = document.querySelector(
+      '.ytp-subtitles-button, [aria-label*="subtitles"], [aria-label*="Subtitles"]'
+    );
+    if (captionButton) {
+      captionButton.click();
+      Front2.showBanner("\u{1F4FA} Toggled captions");
+      return;
+    }
+    if (document.querySelector("video")) {
+      const event = new KeyboardEvent("keydown", {
+        key: "c",
+        code: "KeyC",
+        keyCode: 67,
+        bubbles: true
+      });
+      document.activeElement.dispatchEvent(event);
+      Front2.showBanner("\u{1F4FA} Toggled captions (keyboard shortcut)");
+      return;
+    }
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    if (params.get("cc_load_policy") === "1") {
+      params.delete("cc_load_policy");
+      Front2.showBanner("\u{1F3AC} Original language (captions off)");
+    } else {
+      params.set("cc_load_policy", "1");
+      params.set("cc_lang_pref", "en");
+      Front2.showBanner("\u{1F1FA}\u{1F1F8} English captions on");
+    }
+    url.search = params.toString();
+    window.location.href = url.toString();
+  }
+  mapkey4(
+    "ayt",
+    "\u{1F4FA} Toggle YouTube captions (quick method)",
+    toggleYouTubeCaptions
+  );
+
+  // surfingkeys.js
   settings.defaultLLMProvider = "deepseek";
   settings.llm = {
     deepseek: {

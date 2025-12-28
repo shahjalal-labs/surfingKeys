@@ -7,7 +7,7 @@ api.mapkey("ad", "Dotfiles", function () {
 });
 
 //
-api.mapkey("ay", "youtube opening", function () {
+api.mapkey("ay,", "youtube opening", function () {
   window.open("https://www.youtube.com/", "_blank");
 });
 //
