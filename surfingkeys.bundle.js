@@ -847,8 +847,8 @@
           element.scrollIntoView({ behavior: "smooth", block: "center" });
         }, 100);
       },
-      { multipleHits: true }
-      // Allows selecting multiple in loop if needed
+      { multipleHits: false }
+      // Hide hints after selection
     );
   });
 

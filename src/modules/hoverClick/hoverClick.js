@@ -85,9 +85,10 @@ api.mapkey(
   // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
 );
 //w: (end)  ╰──────────── postman click ────────────╯
-//  insert name
 
-// Simple version to start with
+//--- updated
+
+//w: (start)╭──────────── prisma studio click ────────────╮
 api.mapkey("ti", "🎯 Prisma Studio input/value hints", function () {
   api.Hints.create(
     'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
@@ -122,6 +123,7 @@ api.mapkey("ti", "🎯 Prisma Studio input/value hints", function () {
         element.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 100); // Adjust delay if needed (100ms should be sufficient for React to render the editor)
     },
-    // { multipleHits: true }, // Allows selecting multiple in loop if needed
+    { multipleHits: false }, // Hide hints after selection
   );
 });
+//w: (end)  ╰──────────── prisma studio click ────────────╯
