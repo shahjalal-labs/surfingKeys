@@ -820,24 +820,37 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  api.mapkey(
-    "ti",
-    "\u{1F3AF} Prisma Studio inputs",
-    function() {
-      api.Hints.create(
-        'input, textarea, select, [contenteditable="true"]',
-        function(element) {
-          element.focus();
-          element.click();
-          if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-            element.select();
+  api.mapkey("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
+    api.Hints.create(
+      'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
+      function(element) {
+        const dblClickEvent = new MouseEvent("dblclick", {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        });
+        element.dispatchEvent(dblClickEvent);
+        setTimeout(() => {
+          const innerEditable = element.querySelector(
+            'input, textarea, [contenteditable], [role="textbox"]'
+          );
+          if (innerEditable) {
+            innerEditable.focus();
+            if (innerEditable.select) {
+              innerEditable.select();
+            } else if (innerEditable.setSelectionRange) {
+              innerEditable.setSelectionRange(0, innerEditable.value.length);
+            }
+          } else {
+            element.focus();
           }
-        },
-        { multipleHits: true }
-      );
-    },
-    { domain: /localhost:5555/i }
-  );
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 100);
+      },
+      { multipleHits: true }
+      // Allows selecting multiple in loop if needed
+    );
+  });
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());

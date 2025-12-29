@@ -88,21 +88,40 @@ api.mapkey(
 //  insert name
 
 // Simple version to start with
-api.mapkey(
-  "ti",
-  "🎯 Prisma Studio inputs",
-  function () {
-    api.Hints.create(
-      'input, textarea, select, [contenteditable="true"]',
-      function (element) {
-        element.focus();
-        element.click();
-        if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-          element.select();
+api.mapkey("ti", "🎯 Prisma Studio input/value hints", function () {
+  api.Hints.create(
+    'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
+    function (element) {
+      // Simulate double-click to enter edit mode (since Prisma Studio uses double-click for inline editing)
+      const dblClickEvent = new MouseEvent("dblclick", {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      element.dispatchEvent(dblClickEvent);
+
+      // Add a small delay to allow the editor component to render
+      setTimeout(() => {
+        // Find the inner editable element (input, textarea, etc.) that appears after double-click
+        const innerEditable = element.querySelector(
+          'input, textarea, [contenteditable], [role="textbox"]',
+        );
+        if (innerEditable) {
+          innerEditable.focus();
+          // Optionally select all text for easier editing
+          if (innerEditable.select) {
+            innerEditable.select();
+          } else if (innerEditable.setSelectionRange) {
+            innerEditable.setSelectionRange(0, innerEditable.value.length);
+          }
+        } else {
+          // Fallback to focusing the cell itself
+          element.focus();
         }
-      },
-      { multipleHits: true },
-    );
-  },
-  { domain: /localhost:5555/i },
-);
+        // Scroll into view
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100); // Adjust delay if needed (100ms should be sufficient for React to render the editor)
+    },
+    // { multipleHits: true }, // Allows selecting multiple in loop if needed
+  );
+});
