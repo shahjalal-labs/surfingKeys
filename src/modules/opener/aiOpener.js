@@ -1,4 +1,5 @@
-api.mapkey("oac", "Open ChatGPT chk", function () {
+const { mapkey } = api;
+mapkey("oac", "Open ChatGPT chk", function () {
   let newTab = window.open("https://chatgpt.com/", "_blank"); // Open ChatGPT in a new tab
   console.log(newTab, ".surfingkeys.js", 240);
   setInterval(() => {
@@ -8,7 +9,17 @@ api.mapkey("oac", "Open ChatGPT chk", function () {
 
 //w: opening perplexity ai ai
 
-api.mapkey("oap", "perplexity ai", function () {
+const urlOpener = (key, desc, host, url) => {
+  mapkey(key, desc, function () {
+    if (window.location.hostname.includes(host)) {
+      window.location.href = "https://www.perplexity.ai/";
+    } else {
+      window.open("https://www.perplexity.ai/", "_blank");
+    }
+  });
+};
+
+mapkey("oap", "perplexity ai", function () {
   if (window.location.hostname.includes("perplexity")) {
     window.location.href = "https://www.perplexity.ai/";
   } else {
@@ -18,7 +29,7 @@ api.mapkey("oap", "perplexity ai", function () {
 
 //w: opening gemini ai
 
-api.mapkey("oaj", "gemini ai", function () {
+mapkey("oaj", "gemini ai", function () {
   if (window.location.hostname.includes("gemini")) {
     window.location.href = "https://gemini.google.com/app";
   } else {
@@ -28,10 +39,10 @@ api.mapkey("oaj", "gemini ai", function () {
 
 //
 //t:  open deep  ai
-api.mapkey("oad", "Deep ai", function () {
+mapkey("oad", "Deep ai", function () {
   window.open("https://deepai.org/dashboard/images", "_blank");
 });
-api.mapkey("oas", "Open deepseek", function () {
+mapkey("oas", "Open deepseek", function () {
   if (window.location.hostname.includes("deepseek")) {
     window.location.href = "https://chat.deepseek.com";
   } else {
@@ -40,10 +51,10 @@ api.mapkey("oas", "Open deepseek", function () {
 });
 
 //t: open  claude ai
-api.mapkey("oaq", "Open claude ai", function () {
+mapkey("oaq", "Open claude ai", function () {
   window.open("https://claude.ai/new");
 });
-api.mapkey("oak", "Chk claude", function () {
+mapkey("oak", "Chk claude", function () {
   if (window.location.hostname.includes("claude.ai")) {
     window.location.href = "/new";
   } else {
@@ -51,7 +62,7 @@ api.mapkey("oak", "Chk claude", function () {
   }
 });
 
-api.mapkey("oag", "open grok ai", function () {
+mapkey("oag", "open grok ai", function () {
   if (window.location.hostname.includes("grok")) {
     window.location.href = "https://grok.com/";
   } else {
@@ -59,7 +70,7 @@ api.mapkey("oag", "open grok ai", function () {
   }
 });
 
-api.mapkey("oaa", "open google audio", function () {
+mapkey("oaa", "open google audio", function () {
   if (window.location.hostname.includes("aistudio")) {
     window.location.href = "https://aistudio.google.com/live";
   } else {
