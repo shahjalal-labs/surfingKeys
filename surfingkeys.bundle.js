@@ -437,61 +437,46 @@
   });
 
   // src/modules/opener/aiOpener.js
-  api.mapkey("oac", "Open ChatGPT chk", function() {
+  var { mapkey } = api;
+  mapkey("oac", "Open ChatGPT chk", function() {
     let newTab = window.open("https://chatgpt.com/", "_blank");
     console.log(newTab, ".surfingkeys.js", 240);
     setInterval(() => {
       console.log(`hellow`);
     }, 2e3);
   });
-  api.mapkey("oap", "perplexity ai", function() {
+  var urlOpener = (key, desc, url) => {
+    mapkey(key, desc, function() {
+      const host = new URL(url).hostname;
+      if (window.location.hostname === host) {
+        window.location.href = url;
+      } else {
+        window.open(url, "_blank");
+      }
+    });
+  };
+  mapkey("oap", "perplexity ai", function() {
     if (window.location.hostname.includes("perplexity")) {
       window.location.href = "https://www.perplexity.ai/";
     } else {
       window.open("https://www.perplexity.ai/", "_blank");
     }
   });
-  api.mapkey("oaj", "gemini ai", function() {
+  mapkey("oaj", "gemini ai", function() {
     if (window.location.hostname.includes("gemini")) {
       window.location.href = "https://gemini.google.com/app";
     } else {
       window.open("https://gemini.google.com/app", "_blank");
     }
   });
-  api.mapkey("oad", "Deep ai", function() {
+  mapkey("oad", "Deep ai", function() {
     window.open("https://deepai.org/dashboard/images", "_blank");
   });
-  api.mapkey("oas", "Open deepseek", function() {
-    if (window.location.hostname.includes("deepseek")) {
-      window.location.href = "https://chat.deepseek.com";
-    } else {
-      window.open("https://chat.deepseek.com/", "_blank");
-    }
-  });
-  api.mapkey("oaq", "Open claude ai", function() {
-    window.open("https://claude.ai/new");
-  });
-  api.mapkey("oak", "Chk claude", function() {
-    if (window.location.hostname.includes("claude.ai")) {
-      window.location.href = "/new";
-    } else {
-      window.open("https://claude.ai/new", "_blank");
-    }
-  });
-  api.mapkey("oag", "open grok ai", function() {
-    if (window.location.hostname.includes("grok")) {
-      window.location.href = "https://grok.com/";
-    } else {
-      window.open("https://grok.com/", "_blank");
-    }
-  });
-  api.mapkey("oaa", "open google audio", function() {
-    if (window.location.hostname.includes("aistudio")) {
-      window.location.href = "https://aistudio.google.com/live";
-    } else {
-      window.open("https://aistudio.google.com/live", "_blank");
-    }
-  });
+  urlOpener("oas", "Open deepseek", "https://chat.deepseek.com/");
+  urlOpener("oak", "claude", "https://claude.ai/new");
+  urlOpener("oag", "open grok ai", "https://grok.com/");
+  urlOpener("oaa", "open google audio", "https://aistudio.google.com/live");
+  urlOpener("oaq", "Open github copilot", "https://github.com/copilot");
 
   // src/modules/opener/webDevOpener.js
   api.mapkey("ocm", "open mongodb", function() {
@@ -2327,7 +2312,7 @@
   api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
 
   // src/modules/yank/urlYanker.js
-  var { mapkey, Clipboard } = api;
+  var { mapkey: mapkey2, Clipboard } = api;
   function copyUrlParts(n) {
     const { origin, pathname } = window.location;
     const parts = pathname.split("/").filter(Boolean);
@@ -2342,12 +2327,12 @@
     }
     Clipboard.write(toCopy);
   }
-  mapkey("ag0", "Copy root URL", () => copyUrlParts(0));
-  mapkey("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
-  mapkey("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
-  mapkey("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
-  mapkey("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
-  mapkey("ag,", "Open root URL in new tab", () => {
+  mapkey2("ag0", "Copy root URL", () => copyUrlParts(0));
+  mapkey2("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
+  mapkey2("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
+  mapkey2("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
+  mapkey2("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
+  mapkey2("ag,", "Open root URL in new tab", () => {
     const root = window.location.origin;
     window.open(root, "_blank");
   });
@@ -2645,7 +2630,7 @@
   });
 
   // src/modules/tab.js
-  var { mapkey: mapkey2, RUNTIME } = api;
+  var { mapkey: mapkey3, RUNTIME } = api;
   api.map("tj", "g0");
   api.map("tk", "g$");
   api.map("th", "E");
@@ -2672,7 +2657,7 @@
   api.map("th", "<<");
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
-  mapkey2("sxx", "Close all tabs from same host", function() {
+  mapkey3("sxx", "Close all tabs from same host", function() {
     chrome.tabs.query({}, function(tabs) {
       chrome.tabs.query(
         { active: true, currentWindow: true },
@@ -2851,7 +2836,7 @@
   });
 
   // src/modules/style/chatgpt.js
-  var { mapkey: mapkey3, Front } = api;
+  var { mapkey: mapkey4, Front } = api;
   function initFaviconReplacement() {
     let faviconObserver;
     let customFaviconUrl;
@@ -3300,7 +3285,7 @@
     replaceBranding();
     cleanupFavicon = initFaviconReplacement();
     cleanupPlaceholders = initPlaceholderReplacement();
-    mapkey3("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
+    mapkey4("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
       const style = document.getElementById("sjPulse-night-theme");
       if (style) {
         style.remove();
@@ -3314,7 +3299,7 @@
         Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
-    mapkey3("tv", "Cycle theme variants", () => {
+    mapkey4("tv", "Cycle theme variants", () => {
       const variantNames = Object.keys(variants);
       const currentIndex = variantNames.indexOf(currentVariant);
       const nextIndex = (currentIndex + 1) % (variantNames.length + 1);
@@ -3333,7 +3318,7 @@
         );
       }
     });
-    mapkey3("tc", "Toggle compact layout", () => {
+    mapkey4("tc", "Toggle compact layout", () => {
       const styleId = "sjPulse-compact-style";
       let style = document.getElementById(styleId);
       if (style) {
@@ -3370,7 +3355,7 @@
   var import_textExpanse = __toESM(require_textExpanse());
 
   // src/modules/yt/yt.js
-  var { mapkey: mapkey4, Front: Front2 } = api;
+  var { mapkey: mapkey5, Front: Front2 } = api;
   var YOUTUBE_LANGUAGES = {
     original: {
       code: "original",
@@ -3518,20 +3503,20 @@
     }
     // Register SurfingKeys shortcuts
     registerKeys() {
-      mapkey4(
+      mapkey5(
         "ayy",
         "\u{1F310} Toggle YouTube language (Original \u2194 English USA)",
         () => {
           this.toggleLanguage();
         }
       );
-      mapkey4("ayo", "\u{1F3AC} Switch to Original language", () => {
+      mapkey5("ayo", "\u{1F3AC} Switch to Original language", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.original);
       });
-      mapkey4("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
+      mapkey5("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.en);
       });
-      mapkey4("ays", "\u{1F4CA} Show current YouTube language", () => {
+      mapkey5("ays", "\u{1F4CA} Show current YouTube language", () => {
         this.detectCurrentLanguage();
       });
     }
@@ -3615,7 +3600,7 @@
     url.search = params.toString();
     window.location.href = url.toString();
   }
-  mapkey4(
+  mapkey5(
     "ayt",
     "\u{1F4FA} Toggle YouTube captions (quick method)",
     toggleYouTubeCaptions

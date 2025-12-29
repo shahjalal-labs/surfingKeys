@@ -9,12 +9,13 @@ mapkey("oac", "Open ChatGPT chk", function () {
 
 //w: opening perplexity ai ai
 
-const urlOpener = (key, desc, host, url) => {
+const urlOpener = (key, desc, url) => {
   mapkey(key, desc, function () {
-    if (window.location.hostname.includes(host)) {
-      window.location.href = "https://www.perplexity.ai/";
+    const host = new URL(url).hostname;
+    if (window.location.hostname === host) {
+      window.location.href = url;
     } else {
-      window.open("https://www.perplexity.ai/", "_blank");
+      window.open(url, "_blank");
     }
   });
 };
@@ -42,38 +43,18 @@ mapkey("oaj", "gemini ai", function () {
 mapkey("oad", "Deep ai", function () {
   window.open("https://deepai.org/dashboard/images", "_blank");
 });
-mapkey("oas", "Open deepseek", function () {
-  if (window.location.hostname.includes("deepseek")) {
-    window.location.href = "https://chat.deepseek.com";
-  } else {
-    window.open("https://chat.deepseek.com/", "_blank");
-  }
-});
+
+// Open deepseek
+urlOpener("oas", "Open deepseek", "https://chat.deepseek.com/");
 
 //t: open  claude ai
-mapkey("oaq", "Open claude ai", function () {
-  window.open("https://claude.ai/new");
-});
-mapkey("oak", "Chk claude", function () {
-  if (window.location.hostname.includes("claude.ai")) {
-    window.location.href = "/new";
-  } else {
-    window.open("https://claude.ai/new", "_blank");
-  }
-});
+urlOpener("oak", "claude", "https://claude.ai/new");
 
-mapkey("oag", "open grok ai", function () {
-  if (window.location.hostname.includes("grok")) {
-    window.location.href = "https://grok.com/";
-  } else {
-    window.open("https://grok.com/", "_blank");
-  }
-});
+// open grok ai
+urlOpener("oag", "open grok ai", "https://grok.com/");
 
-mapkey("oaa", "open google audio", function () {
-  if (window.location.hostname.includes("aistudio")) {
-    window.location.href = "https://aistudio.google.com/live";
-  } else {
-    window.open("https://aistudio.google.com/live", "_blank");
-  }
-});
+// open google audio
+urlOpener("oaa", "open google audio", "https://aistudio.google.com/live");
+
+// github copilot
+urlOpener("oaq", "Open github copilot", "https://github.com/copilot");
