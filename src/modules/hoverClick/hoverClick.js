@@ -1,4 +1,7 @@
 //t: 🔁 Persistent smart click loop that detects and clicks both semantic and styled custom clickable elements across page navigations.
+
+// const { mapkey } = require("../../utils/utils");
+
 //w: (start)╭──────────── Persistent smart click ────────────╮
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
   api.Hints.create(
@@ -86,10 +89,8 @@ api.mapkey(
 );
 //w: (end)  ╰──────────── postman click ────────────╯
 
-//--- updated
-
 //w: (start)╭──────────── prisma studio click ────────────╮
-api.mapkey("ti", "🎯 Prisma Studio input/value hints", function () {
+mapkey("ti", "🎯 Prisma Studio input/value hints", function () {
   api.Hints.create(
     'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
     function (element) {

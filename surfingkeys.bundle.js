@@ -25,6 +25,16 @@
     mod
   ));
 
+  // src/utils/utils.js
+  var require_utils = __commonJS({
+    "src/utils/utils.js"(exports, module) {
+      var { mapkey: mapkey7 } = api;
+      module.exports = {
+        mapkey: mapkey7
+      };
+    }
+  });
+
   // node_modules/dayjs/dayjs.min.js
   var require_dayjs_min = __commonJS({
     "node_modules/dayjs/dayjs.min.js"(exports, module) {
@@ -760,6 +770,7 @@
   });
 
   // src/modules/hoverClick/hoverClick.js
+  var { mapkey: mapkey2 } = require_utils();
   api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
     api.Hints.create(
       "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
@@ -820,7 +831,7 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  api.mapkey("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
+  mapkey2("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
     api.Hints.create(
       'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
       function(element) {
@@ -2343,7 +2354,7 @@
   api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
 
   // src/modules/yank/urlYanker.js
-  var { mapkey: mapkey2, Clipboard } = api;
+  var { mapkey: mapkey3, Clipboard } = api;
   function copyUrlParts(n) {
     const { origin, pathname } = window.location;
     const parts = pathname.split("/").filter(Boolean);
@@ -2358,12 +2369,12 @@
     }
     Clipboard.write(toCopy);
   }
-  mapkey2("ag0", "Copy root URL", () => copyUrlParts(0));
-  mapkey2("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
-  mapkey2("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
-  mapkey2("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
-  mapkey2("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
-  mapkey2("ag,", "Open root URL in new tab", () => {
+  mapkey3("ag0", "Copy root URL", () => copyUrlParts(0));
+  mapkey3("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
+  mapkey3("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
+  mapkey3("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
+  mapkey3("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
+  mapkey3("ag,", "Open root URL in new tab", () => {
     const root = window.location.origin;
     window.open(root, "_blank");
   });
@@ -2661,7 +2672,7 @@
   });
 
   // src/modules/tab.js
-  var { mapkey: mapkey3, RUNTIME } = api;
+  var { mapkey: mapkey4, RUNTIME } = api;
   api.map("tj", "g0");
   api.map("tk", "g$");
   api.map("th", "E");
@@ -2688,7 +2699,7 @@
   api.map("th", "<<");
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
-  mapkey3("sxx", "Close all tabs from same host", function() {
+  mapkey4("sxx", "Close all tabs from same host", function() {
     chrome.tabs.query({}, function(tabs) {
       chrome.tabs.query(
         { active: true, currentWindow: true },
@@ -2867,7 +2878,7 @@
   });
 
   // src/modules/style/chatgpt.js
-  var { mapkey: mapkey4, Front } = api;
+  var { mapkey: mapkey5, Front } = api;
   function initFaviconReplacement() {
     let faviconObserver;
     let customFaviconUrl;
@@ -3316,7 +3327,7 @@
     replaceBranding();
     cleanupFavicon = initFaviconReplacement();
     cleanupPlaceholders = initPlaceholderReplacement();
-    mapkey4("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
+    mapkey5("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
       const style = document.getElementById("sjPulse-night-theme");
       if (style) {
         style.remove();
@@ -3330,7 +3341,7 @@
         Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
-    mapkey4("tv", "Cycle theme variants", () => {
+    mapkey5("tv", "Cycle theme variants", () => {
       const variantNames = Object.keys(variants);
       const currentIndex = variantNames.indexOf(currentVariant);
       const nextIndex = (currentIndex + 1) % (variantNames.length + 1);
@@ -3349,7 +3360,7 @@
         );
       }
     });
-    mapkey4("tc", "Toggle compact layout", () => {
+    mapkey5("tc", "Toggle compact layout", () => {
       const styleId = "sjPulse-compact-style";
       let style = document.getElementById(styleId);
       if (style) {
@@ -3386,7 +3397,7 @@
   var import_textExpanse = __toESM(require_textExpanse());
 
   // src/modules/yt/yt.js
-  var { mapkey: mapkey5, Front: Front2 } = api;
+  var { mapkey: mapkey6, Front: Front2 } = api;
   var YOUTUBE_LANGUAGES = {
     original: {
       code: "original",
@@ -3534,20 +3545,20 @@
     }
     // Register SurfingKeys shortcuts
     registerKeys() {
-      mapkey5(
+      mapkey6(
         "ayy",
         "\u{1F310} Toggle YouTube language (Original \u2194 English USA)",
         () => {
           this.toggleLanguage();
         }
       );
-      mapkey5("ayo", "\u{1F3AC} Switch to Original language", () => {
+      mapkey6("ayo", "\u{1F3AC} Switch to Original language", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.original);
       });
-      mapkey5("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
+      mapkey6("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.en);
       });
-      mapkey5("ays", "\u{1F4CA} Show current YouTube language", () => {
+      mapkey6("ays", "\u{1F4CA} Show current YouTube language", () => {
         this.detectCurrentLanguage();
       });
     }
@@ -3631,7 +3642,7 @@
     url.search = params.toString();
     window.location.href = url.toString();
   }
-  mapkey5(
+  mapkey6(
     "ayt",
     "\u{1F4FA} Toggle YouTube captions (quick method)",
     toggleYouTubeCaptions
