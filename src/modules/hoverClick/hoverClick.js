@@ -87,4 +87,22 @@ api.mapkey(
 //w: (end)  ╰──────────── postman click ────────────╯
 //  insert name
 
-
+// Simple version to start with
+api.mapkey(
+  "ti",
+  "🎯 Prisma Studio inputs",
+  function () {
+    api.Hints.create(
+      'input, textarea, select, [contenteditable="true"]',
+      function (element) {
+        element.focus();
+        element.click();
+        if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+          element.select();
+        }
+      },
+      { multipleHits: true },
+    );
+  },
+  { domain: /localhost:5555/i },
+);

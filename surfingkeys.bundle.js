@@ -820,6 +820,24 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
+  api.mapkey(
+    "ti",
+    "\u{1F3AF} Prisma Studio inputs",
+    function() {
+      api.Hints.create(
+        'input, textarea, select, [contenteditable="true"]',
+        function(element) {
+          element.focus();
+          element.click();
+          if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+            element.select();
+          }
+        },
+        { multipleHits: true }
+      );
+    },
+    { domain: /localhost:5555/i }
+  );
 
   // src/modules/testDate.js
   var import_dayjs = __toESM(require_dayjs_min());
