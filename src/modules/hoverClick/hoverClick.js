@@ -1,6 +1,6 @@
 //t: 🔁 Persistent smart click loop that detects and clicks both semantic and styled custom clickable elements across page navigations.
 
-// const { mapkey } = require("../../utils/utils");
+const { mapkey } = require("../../utils/utils");
 
 //w: (start)╭──────────── Persistent smart click ────────────╮
 api.mapkey("cb", "🔁 Persistent click hints", function repeatClickHints() {
