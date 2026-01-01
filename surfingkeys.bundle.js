@@ -28,9 +28,9 @@
   // src/utils/utils.js
   var require_utils = __commonJS({
     "src/utils/utils.js"(exports, module) {
-      var { mapkey: mapkey7 } = api;
+      var { mapkey: mapkey8 } = api;
       module.exports = {
-        mapkey: mapkey7
+        mapkey: mapkey8
       };
     }
   });
@@ -3648,21 +3648,93 @@
     toggleYouTubeCaptions
   );
 
-  // surfingkeys.js
-  settings.defaultLLMProvider = "deepseek";
-  settings.llm = {
-    deepseek: {
-      apiBaseUrl: "https://api.deepseek.com",
-      apiKey: "check the env with name DEEPSEEK",
-      model: "deepseek-chat"
-    }
-  };
-  api.mapkey("A", "#8Open DeepSeek Chat with role", function() {
-    api.Front.openOmnibar({
-      type: "LLMChat",
-      extra: {
-        system: "You are a Linux and browser automation assistant. Reply clearly and concisely, assuming user uses Arch, CLI, and Neovim."
+  // src/modules/style/google.js
+  var { mapkey: mapkey7, Front: Front3 } = api;
+  var googleUICustom = false;
+  function toggleGoogleUI() {
+    const styleId = "google-eye-candy-style";
+    let styleTag = document.getElementById(styleId);
+    if (googleUICustom) {
+      if (styleTag) styleTag.remove();
+      Front3.showBanner("\u{1F441}\uFE0F Default Google UI restored.");
+    } else {
+      if (!styleTag) {
+        styleTag = document.createElement("style");
+        styleTag.id = styleId;
+        styleTag.textContent = `
+        /* Smooth background tone */
+        body, html {
+          background: #0f1115 !important;
+          color: #d8dee9 !important;
+        }
+
+        /* Result blocks \u2014 compact, clean, subtle accent */
+        #search .g {
+          background: rgba(32, 34, 38, 0.9) !important;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 8px;
+          padding: 12px 16px;
+          margin: 10px 0;
+          transition: transform 0.12s ease, box-shadow 0.15s ease;
+        }
+        #search .g:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Title link \u2014 subtle glow with accent */
+        #search .g h3 {
+          color: #8be9fd !important;
+          font-weight: 600;
+          font-size: 1.05rem;
+          margin-bottom: 3px;
+          text-shadow: 0 0 8px rgba(139, 233, 253, 0.15);
+        }
+
+        /* URL / cite \u2014 modern muted green */
+        #search .g cite {
+          color: #50fa7b !important;
+          font-size: 0.85rem;
+          opacity: 0.9;
+        }
+
+        /* Description / snippet */
+        #search .g .VwiC3b {
+          color: #e5e9f0 !important;
+          font-size: 0.93rem;
+          line-height: 1.45;
+        }
+
+        /* Remove clutter / gray lines */
+        .ULSxyf, .kvH3mc, .v5yQqb, .GHDvEf, .RzdJxc { display: none !important; }
+
+        /* Slight separator lines for flow */
+        #search .g:not(:last-child) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Vibrant accent on hover for links */
+        a:hover h3 {
+          color: #ff79c6 !important;
+          text-shadow: 0 0 10px rgba(255, 121, 198, 0.2);
+        }
+
+        /* \u201CPeople also ask\u201D and similar */
+        .related-question-pair {
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 6px;
+          padding: 8px 10px;
+        }
+      `;
+        document.head.appendChild(styleTag);
       }
-    });
-  });
+      Front3.showBanner("\u{1F308} EyeCandy: Modern Compact UI enabled!");
+    }
+    googleUICustom = !googleUICustom;
+  }
+  if (/google\.com\/search/.test(window.location.href)) {
+    window.addEventListener("load", () => toggleGoogleUI());
+    mapkey7("<Space>g", "Toggle Google EyeCandy UI", toggleGoogleUI);
+  }
 })();
