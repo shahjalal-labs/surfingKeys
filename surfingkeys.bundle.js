@@ -25,12 +25,61 @@
     mod
   ));
 
+  // src/modules/opener/aiOpener.js
+  var require_aiOpener = __commonJS({
+    "src/modules/opener/aiOpener.js"(exports, module) {
+      var { mapkey: mapkey7 } = api;
+      mapkey7("oac", "Open ChatGPT chk", function() {
+        let newTab = window.open("https://chatgpt.com/", "_blank");
+        console.log(newTab, ".surfingkeys.js", 240);
+        setInterval(() => {
+          console.log(`hellow`);
+        }, 2e3);
+      });
+      var urlOpener2 = (key, desc, url) => {
+        mapkey7(key, desc, function() {
+          const host = new URL(url).hostname;
+          if (window.location.hostname === host) {
+            window.location.href = url;
+          } else {
+            window.open(url, "_blank");
+          }
+        });
+      };
+      mapkey7("oap", "perplexity ai", function() {
+        if (window.location.hostname.includes("perplexity")) {
+          window.location.href = "https://www.perplexity.ai/";
+        } else {
+          window.open("https://www.perplexity.ai/", "_blank");
+        }
+      });
+      mapkey7("oaj", "gemini ai", function() {
+        if (window.location.hostname.includes("gemini")) {
+          window.location.href = "https://gemini.google.com/app";
+        } else {
+          window.open("https://gemini.google.com/app", "_blank");
+        }
+      });
+      mapkey7("oad", "Deep ai", function() {
+        window.open("https://deepai.org/dashboard/images", "_blank");
+      });
+      urlOpener2("oas", "Open deepseek", "https://chat.deepseek.com/");
+      urlOpener2("oak", "claude", "https://claude.ai/new");
+      urlOpener2("oag", "open grok ai", "https://grok.com/");
+      urlOpener2("oaa", "open google audio", "https://aistudio.google.com/live");
+      urlOpener2("oaq", "Open github copilot", "https://github.com/copilot");
+      module.exports = {
+        urlOpener: urlOpener2
+      };
+    }
+  });
+
   // src/utils/utils.js
   var require_utils = __commonJS({
     "src/utils/utils.js"(exports, module) {
-      var { mapkey: mapkey8 } = api;
+      var { mapkey: mapkey7 } = api;
       module.exports = {
-        mapkey: mapkey8
+        mapkey: mapkey7
       };
     }
   });
@@ -446,47 +495,8 @@
     window.open("https://blank.page/", "_blank");
   });
 
-  // src/modules/opener/aiOpener.js
-  var { mapkey } = api;
-  mapkey("oac", "Open ChatGPT chk", function() {
-    let newTab = window.open("https://chatgpt.com/", "_blank");
-    console.log(newTab, ".surfingkeys.js", 240);
-    setInterval(() => {
-      console.log(`hellow`);
-    }, 2e3);
-  });
-  var urlOpener = (key, desc, url) => {
-    mapkey(key, desc, function() {
-      const host = new URL(url).hostname;
-      if (window.location.hostname === host) {
-        window.location.href = url;
-      } else {
-        window.open(url, "_blank");
-      }
-    });
-  };
-  mapkey("oap", "perplexity ai", function() {
-    if (window.location.hostname.includes("perplexity")) {
-      window.location.href = "https://www.perplexity.ai/";
-    } else {
-      window.open("https://www.perplexity.ai/", "_blank");
-    }
-  });
-  mapkey("oaj", "gemini ai", function() {
-    if (window.location.hostname.includes("gemini")) {
-      window.location.href = "https://gemini.google.com/app";
-    } else {
-      window.open("https://gemini.google.com/app", "_blank");
-    }
-  });
-  mapkey("oad", "Deep ai", function() {
-    window.open("https://deepai.org/dashboard/images", "_blank");
-  });
-  urlOpener("oas", "Open deepseek", "https://chat.deepseek.com/");
-  urlOpener("oak", "claude", "https://claude.ai/new");
-  urlOpener("oag", "open grok ai", "https://grok.com/");
-  urlOpener("oaa", "open google audio", "https://aistudio.google.com/live");
-  urlOpener("oaq", "Open github copilot", "https://github.com/copilot");
+  // surfingkeys.js
+  var import_aiOpener = __toESM(require_aiOpener());
 
   // src/modules/opener/webDevOpener.js
   api.mapkey("ocm", "open mongodb", function() {
@@ -770,7 +780,7 @@
   });
 
   // src/modules/hoverClick/hoverClick.js
-  var { mapkey: mapkey2 } = require_utils();
+  var { mapkey } = require_utils();
   api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
     api.Hints.create(
       "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
@@ -831,7 +841,7 @@
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  mapkey2("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
+  mapkey("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
     api.Hints.create(
       'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
       function(element) {
@@ -2354,7 +2364,7 @@
   api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
 
   // src/modules/yank/urlYanker.js
-  var { mapkey: mapkey3, Clipboard } = api;
+  var { mapkey: mapkey2, Clipboard } = api;
   function copyUrlParts(n) {
     const { origin, pathname } = window.location;
     const parts = pathname.split("/").filter(Boolean);
@@ -2369,12 +2379,12 @@
     }
     Clipboard.write(toCopy);
   }
-  mapkey3("ag0", "Copy root URL", () => copyUrlParts(0));
-  mapkey3("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
-  mapkey3("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
-  mapkey3("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
-  mapkey3("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
-  mapkey3("ag,", "Open root URL in new tab", () => {
+  mapkey2("ag0", "Copy root URL", () => copyUrlParts(0));
+  mapkey2("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
+  mapkey2("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
+  mapkey2("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
+  mapkey2("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
+  mapkey2("ag,", "Open root URL in new tab", () => {
     const root = window.location.origin;
     window.open(root, "_blank");
   });
@@ -2672,7 +2682,7 @@
   });
 
   // src/modules/tab.js
-  var { mapkey: mapkey4, RUNTIME } = api;
+  var { mapkey: mapkey3, RUNTIME } = api;
   api.map("tj", "g0");
   api.map("tk", "g$");
   api.map("th", "E");
@@ -2699,7 +2709,7 @@
   api.map("th", "<<");
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
-  mapkey4("sxx", "Close all tabs from same host", function() {
+  mapkey3("sxx", "Close all tabs from same host", function() {
     chrome.tabs.query({}, function(tabs) {
       chrome.tabs.query(
         { active: true, currentWindow: true },
@@ -2878,7 +2888,7 @@
   });
 
   // src/modules/style/chatgpt.js
-  var { mapkey: mapkey5, Front } = api;
+  var { mapkey: mapkey4, Front } = api;
   function initFaviconReplacement() {
     let faviconObserver;
     let customFaviconUrl;
@@ -3327,7 +3337,7 @@
     replaceBranding();
     cleanupFavicon = initFaviconReplacement();
     cleanupPlaceholders = initPlaceholderReplacement();
-    mapkey5("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
+    mapkey4("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
       const style = document.getElementById("sjPulse-night-theme");
       if (style) {
         style.remove();
@@ -3341,7 +3351,7 @@
         Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
-    mapkey5("tv", "Cycle theme variants", () => {
+    mapkey4("tv", "Cycle theme variants", () => {
       const variantNames = Object.keys(variants);
       const currentIndex = variantNames.indexOf(currentVariant);
       const nextIndex = (currentIndex + 1) % (variantNames.length + 1);
@@ -3360,7 +3370,7 @@
         );
       }
     });
-    mapkey5("tc", "Toggle compact layout", () => {
+    mapkey4("tc", "Toggle compact layout", () => {
       const styleId = "sjPulse-compact-style";
       let style = document.getElementById(styleId);
       if (style) {
@@ -3397,7 +3407,7 @@
   var import_textExpanse = __toESM(require_textExpanse());
 
   // src/modules/yt/yt.js
-  var { mapkey: mapkey6, Front: Front2 } = api;
+  var { mapkey: mapkey5, Front: Front2 } = api;
   var YOUTUBE_LANGUAGES = {
     original: {
       code: "original",
@@ -3545,20 +3555,20 @@
     }
     // Register SurfingKeys shortcuts
     registerKeys() {
-      mapkey6(
+      mapkey5(
         "ayy",
         "\u{1F310} Toggle YouTube language (Original \u2194 English USA)",
         () => {
           this.toggleLanguage();
         }
       );
-      mapkey6("ayo", "\u{1F3AC} Switch to Original language", () => {
+      mapkey5("ayo", "\u{1F3AC} Switch to Original language", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.original);
       });
-      mapkey6("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
+      mapkey5("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.en);
       });
-      mapkey6("ays", "\u{1F4CA} Show current YouTube language", () => {
+      mapkey5("ays", "\u{1F4CA} Show current YouTube language", () => {
         this.detectCurrentLanguage();
       });
     }
@@ -3642,14 +3652,14 @@
     url.search = params.toString();
     window.location.href = url.toString();
   }
-  mapkey6(
+  mapkey5(
     "ayt",
     "\u{1F4FA} Toggle YouTube captions (quick method)",
     toggleYouTubeCaptions
   );
 
   // src/modules/style/google.js
-  var { mapkey: mapkey7, Front: Front3 } = api;
+  var { mapkey: mapkey6, Front: Front3 } = api;
   var googleUICustom = false;
   function toggleGoogleUI() {
     const styleId = "google-eye-candy-style";
@@ -3735,6 +3745,14 @@
   }
   if (/google\.com\/search/.test(window.location.href)) {
     window.addEventListener("load", () => toggleGoogleUI());
-    mapkey7("<Space>g", "Toggle Google EyeCandy UI", toggleGoogleUI);
+    mapkey6("<Space>g", "Toggle Google EyeCandy UI", toggleGoogleUI);
   }
+
+  // src/modules/opener/knowledge/common.js
+  var { urlOpener } = require_aiOpener();
+  urlOpener(
+    "okd",
+    "open fahim abdullah deep focus",
+    "https://learn.fahimabdullah.com/student/dashboard"
+  );
 })();

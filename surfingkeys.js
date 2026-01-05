@@ -26,5 +26,6 @@ import "./src/modules/style/chatgpt.js";
 import "./src/modules/insertMode/textExpanse/textExpanse.js";
 import "./src/modules/yt/yt.js";
 import "./src/modules/style/google.js";
+import "./src/modules/opener/knowledge/common.js";
 //
 // import "./src/modules/style/deepseek.js";

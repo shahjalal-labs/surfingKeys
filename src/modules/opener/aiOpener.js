@@ -58,3 +58,7 @@ urlOpener("oaa", "open google audio", "https://aistudio.google.com/live");
 
 // github copilot
 urlOpener("oaq", "Open github copilot", "https://github.com/copilot");
+
+module.exports = {
+  urlOpener,
+};
