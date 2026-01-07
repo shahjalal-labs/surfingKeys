@@ -1,29 +1,3 @@
-//w: 1╭──────────── Block Start ────────────╮
-//t: github repository page opening
-api.mapkey("gro", "Github own Repositories", function () {
-  window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
-});
-
-//w: github Ruhul vai
-githubUrlOpener(
-  "grr",
-  "github Ruhul vai",
-  "https://github.com/ruhulamin-programming",
-);
-
-//w: github Mirhasankhan vai
-githubUrlOpener(
-  "grm",
-  "github Mirhasankhan vai",
-  "https://github.com/Mirhasankhan",
-);
-
-//w: (start)╭──────────── create new github repo────────────╮
-api.mapkey("grn", "create new github repo", function () {
-  window.open("https://github.com/new", "_blank");
-});
-//w: (end)  ╰───────────── create new github repo───────────╯
-
 //w: 2╭──────────── Block Start ────────────╮
 // t: 📋 Smart GitHub Repo Copier
 api.mapkey("gyu", "📋 Smart GitHub Repo Copier", async function () {
@@ -199,5 +173,3 @@ api.mapkey(
 //w: 9╭──────────── Block Start ────────────╮
 
 //w: 9╰───────────── Block End ─────────────╯
-
-

@@ -364,12 +364,9 @@
     }
   });
 
-  // src/modules/github/github.js
-  var require_github = __commonJS({
-    "src/modules/github/github.js"(exports, module) {
-      api.mapkey("gro", "Github own Repositories", function() {
-        window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
-      });
+  // src/modules/github/githubUrlOpener.js
+  var require_githubUrlOpener = __commonJS({
+    "src/modules/github/githubUrlOpener.js"(exports, module) {
       var githubUrlOpener = (key, desc, url) => {
         api.mapkey(key, desc, function() {
           const repoUrl = url + "?tab=repositories";
@@ -382,127 +379,27 @@
           }
         });
       };
+      api.mapkey("gro", "Github own Repositories", function() {
+        window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
+      });
       githubUrlOpener(
         "grr",
         "github Ruhul vai",
         "https://github.com/ruhulamin-programming"
       );
-      api.mapkey("grm", "github Mirhasankhan vai", function() {
-        const baseUrl = "https://github.com/Mirhasankhan";
-        const repoUrl = baseUrl + "?tab=repositories";
-        if (window.location.href.startsWith(repoUrl)) {
-          window.location.href = baseUrl;
-        } else if (window.location.href.startsWith(baseUrl)) {
-          window.location.href = repoUrl;
-        } else {
-          window.open(repoUrl, "_blank");
-        }
-      });
+      githubUrlOpener(
+        "grm",
+        "github Mirhasankhan vai",
+        "https://github.com/Mirhasankhan"
+      );
+      githubUrlOpener(
+        "grs",
+        "github SMTech24-official",
+        "https://github.com/SMTech24-official"
+      );
       api.mapkey("grn", "create new github repo", function() {
         window.open("https://github.com/new", "_blank");
       });
-      api.mapkey("gyu", "\u{1F4CB} Smart GitHub Repo Copier", async function() {
-        const url = window.location.href;
-        const extractUserRepo = (href) => {
-          const match = href.match(/^\/([^/]+)\/([^/]+)/);
-          return match ? `${match[1]}/${match[2]}` : null;
-        };
-        if (url.includes("?tab=repositories")) {
-          let clickLoopActive = true;
-          const runHintLoop = () => {
-            if (!clickLoopActive) return;
-            api.Hints.create('a[href*="/"][itemprop="name codeRepository"]', (el) => {
-              const user = location.pathname.split("/")[1];
-              const repo = el.innerText.trim();
-              if (user && repo) {
-                api.Clipboard.write(`${user}/${repo}`);
-                api.Front.showBanner(`\u2705 Copied: ${user}/${repo}`);
-              }
-              setTimeout(runHintLoop, 200);
-            });
-          };
-          runHintLoop();
-          api.mapkey("<Esc>", "\u274C Stop GitHub Repo Copier loop", () => {
-            clickLoopActive = false;
-          });
-        } else if (/^https:\/\/github\.com\/[^/]+\/[^/]+/.test(url)) {
-          const match = url.match(/^https:\/\/github\.com\/([^/]+)\/([^/]+)/);
-          if (match) {
-            const userRepo = `${match[1]}/${match[2]}`;
-            api.Clipboard.write(userRepo);
-            api.Front.showBanner(`\u2705 Copied: ${userRepo}`);
-          }
-          api.Hints.create("clipboard-copy[data-copy-feedback]", (el) => {
-            const ssh = el.getAttribute("value") || el.innerText;
-            api.Clipboard.write(ssh);
-            api.Front.showBanner(`\u{1F511} Copied SSH: ${ssh}`);
-          });
-        } else {
-          api.Front.showBanner("\u26A0\uFE0F Not on a GitHub repo or repositories page");
-        }
-      });
-      api.mapkey(
-        "gyr",
-        "Copy GitHub username/repo",
-        function() {
-          const url = window.location.href;
-          if (!url.includes("github.com")) {
-            api.Front.showBanner("Not a GitHub page");
-            return;
-          }
-          const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)(\/|$)/);
-          if (match) {
-            const user = match[1];
-            const repo = match[2];
-            const textToCopy = `${user}/${repo}`;
-            api.Clipboard.write(textToCopy);
-            api.Front.showBanner(`Copied: ${textToCopy}`);
-          } else {
-            api.Front.showBanner("Not a repo URL");
-          }
-        },
-        { domain: /./, prefix: " " }
-      );
-      api.mapkey("grp", "\u{1F464} Go to GitHub user profile from repo page", function() {
-        const match = window.location.href.match(
-          /^https:\/\/github\.com\/([^\/?#]+)/
-        );
-        if (match && match[1]) {
-          const user = match[1];
-          window.location.href = `https://github.com/${user}`;
-        } else {
-          api.Front.showBanner("\u274C Not on a GitHub repo page");
-        }
-      });
-      api.mapkey(
-        "gm",
-        "\u{1F464} Go to GitHub user profile or repositories tab",
-        function() {
-          const currentUrl = window.location.href;
-          const staticProfile = "https://github.com/shahjalal-labs";
-          const yourReposTab = "https://github.com/shahjalal-labs?tab=repositories";
-          if (!currentUrl.startsWith("https://github.com/")) {
-            api.tabOpenLink(staticProfile);
-            return;
-          }
-          const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
-          const currentUser = match && match[1];
-          if (!currentUser || ["features", "topics", "collections"].includes(currentUser)) {
-            window.location.href = staticProfile;
-            return;
-          }
-          const isOnProfilePage = currentUrl === `https://github.com/${currentUser}`;
-          if (isOnProfilePage) {
-            if (currentUser.toLowerCase() === "shahjalal-labs") {
-              window.location.href = yourReposTab;
-            } else {
-              window.location.href = staticProfile;
-            }
-          } else {
-            window.location.href = `https://github.com/${currentUser}`;
-          }
-        }
-      );
       module.exports = {
         githubUrlOpener
       };
@@ -2881,8 +2778,112 @@
   api.map("txH", "gx0");
   api.map("txL", "gx$");
 
+  // src/modules/github/github.js
+  api.mapkey("gyu", "\u{1F4CB} Smart GitHub Repo Copier", async function() {
+    const url = window.location.href;
+    const extractUserRepo = (href) => {
+      const match = href.match(/^\/([^/]+)\/([^/]+)/);
+      return match ? `${match[1]}/${match[2]}` : null;
+    };
+    if (url.includes("?tab=repositories")) {
+      let clickLoopActive = true;
+      const runHintLoop = () => {
+        if (!clickLoopActive) return;
+        api.Hints.create('a[href*="/"][itemprop="name codeRepository"]', (el) => {
+          const user = location.pathname.split("/")[1];
+          const repo = el.innerText.trim();
+          if (user && repo) {
+            api.Clipboard.write(`${user}/${repo}`);
+            api.Front.showBanner(`\u2705 Copied: ${user}/${repo}`);
+          }
+          setTimeout(runHintLoop, 200);
+        });
+      };
+      runHintLoop();
+      api.mapkey("<Esc>", "\u274C Stop GitHub Repo Copier loop", () => {
+        clickLoopActive = false;
+      });
+    } else if (/^https:\/\/github\.com\/[^/]+\/[^/]+/.test(url)) {
+      const match = url.match(/^https:\/\/github\.com\/([^/]+)\/([^/]+)/);
+      if (match) {
+        const userRepo = `${match[1]}/${match[2]}`;
+        api.Clipboard.write(userRepo);
+        api.Front.showBanner(`\u2705 Copied: ${userRepo}`);
+      }
+      api.Hints.create("clipboard-copy[data-copy-feedback]", (el) => {
+        const ssh = el.getAttribute("value") || el.innerText;
+        api.Clipboard.write(ssh);
+        api.Front.showBanner(`\u{1F511} Copied SSH: ${ssh}`);
+      });
+    } else {
+      api.Front.showBanner("\u26A0\uFE0F Not on a GitHub repo or repositories page");
+    }
+  });
+  api.mapkey(
+    "gyr",
+    "Copy GitHub username/repo",
+    function() {
+      const url = window.location.href;
+      if (!url.includes("github.com")) {
+        api.Front.showBanner("Not a GitHub page");
+        return;
+      }
+      const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)(\/|$)/);
+      if (match) {
+        const user = match[1];
+        const repo = match[2];
+        const textToCopy = `${user}/${repo}`;
+        api.Clipboard.write(textToCopy);
+        api.Front.showBanner(`Copied: ${textToCopy}`);
+      } else {
+        api.Front.showBanner("Not a repo URL");
+      }
+    },
+    { domain: /./, prefix: " " }
+  );
+  api.mapkey("grp", "\u{1F464} Go to GitHub user profile from repo page", function() {
+    const match = window.location.href.match(
+      /^https:\/\/github\.com\/([^\/?#]+)/
+    );
+    if (match && match[1]) {
+      const user = match[1];
+      window.location.href = `https://github.com/${user}`;
+    } else {
+      api.Front.showBanner("\u274C Not on a GitHub repo page");
+    }
+  });
+  api.mapkey(
+    "gm",
+    "\u{1F464} Go to GitHub user profile or repositories tab",
+    function() {
+      const currentUrl = window.location.href;
+      const staticProfile = "https://github.com/shahjalal-labs";
+      const yourReposTab = "https://github.com/shahjalal-labs?tab=repositories";
+      if (!currentUrl.startsWith("https://github.com/")) {
+        api.tabOpenLink(staticProfile);
+        return;
+      }
+      const match = currentUrl.match(/^https:\/\/github\.com\/([^\/?#]+)/);
+      const currentUser = match && match[1];
+      if (!currentUser || ["features", "topics", "collections"].includes(currentUser)) {
+        window.location.href = staticProfile;
+        return;
+      }
+      const isOnProfilePage = currentUrl === `https://github.com/${currentUser}`;
+      if (isOnProfilePage) {
+        if (currentUser.toLowerCase() === "shahjalal-labs") {
+          window.location.href = yourReposTab;
+        } else {
+          window.location.href = staticProfile;
+        }
+      } else {
+        window.location.href = `https://github.com/${currentUser}`;
+      }
+    }
+  );
+
   // surfingkeys.js
-  var import_github = __toESM(require_github());
+  var import_githubUrlOpener = __toESM(require_githubUrlOpener());
 
   // src/modules/opener/smtFigma/smtFigma.js
   var { urlOpener } = require_aiOpener();
