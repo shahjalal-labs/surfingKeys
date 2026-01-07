@@ -12,21 +12,29 @@ api.mapkey("gro", "Github own Repositories", function () {
 //w: (start)╭──────────── github Ruhul vai  ────────────╮
 //t: github repository page opening
 
-api.mapkey("grr", "github Ruhul vai ", function () {
-  const baseUrl = "https://github.com/ruhulamin-programming";
-  const repoUrl = baseUrl + "?tab=repositories";
+const githubUrlOpener = (key, desc, url) => {
+  api.mapkey(key, desc, function () {
+    const repoUrl = url + "?tab=repositories";
 
-  if (window.location.href.startsWith(repoUrl)) {
-    // On repositories page → switch to profile
-    window.location.href = baseUrl;
-  } else if (window.location.href.startsWith(baseUrl)) {
-    // On profile (or subpage under profile) → switch to repositories
-    window.location.href = repoUrl;
-  } else {
-    // Anywhere else → open repositories in a new tab
-    window.open(repoUrl, "_blank");
-  }
-});
+    if (window.location.href.startsWith(repoUrl)) {
+      // On repositories page → switch to profile
+      window.location.href = url;
+    } else if (window.location.href.startsWith(url)) {
+      // On profile (or subpage under profile) → switch to repositories
+      window.location.href = repoUrl;
+    } else {
+      // Anywhere else → open repositories in a new tab
+      window.open(repoUrl, "_blank");
+    }
+  });
+};
+
+githubUrlOpener(
+  "grr",
+  "github Ruhul vai",
+  "https://github.com/ruhulamin-programming",
+);
+
 //w: (end)╰───────────── github Ruhul vai  ─────────────╯
 
 //
@@ -230,3 +238,7 @@ api.mapkey(
 //w: 9╭──────────── Block Start ────────────╮
 
 //w: 9╰───────────── Block End ─────────────╯
+
+module.exports = {
+  githubUrlOpener,
+};
