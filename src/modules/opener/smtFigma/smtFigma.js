@@ -30,23 +30,8 @@ api.mapkey("ovda", "ashmaster docs", function () {
 });
 //w: (end)  ╰──────────── ashmaster  ────────────╯
 
-const figmaAndDocs = [
-  {
-    key: "ovh",
-    desc: "",
-    url: "",
-  },
-];
-
 // open habib050505 figma
 //w: (start)╭──────────── habib050505 ────────────╮
-
-figmaAndDocs.push(
-  "ovdh",
-  "open habib050505 docs",
-  "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0",
-);
-
 urlOpener(
   "ovh",
   "open habib050505 figma",
@@ -60,7 +45,7 @@ urlOpener(
 );
 //w: (end)  ╰──────────── habib050505 ────────────╯
 
-// open habib050505 figma
+// open rkrazak figma
 //w: (start)╭──────────── rkrazak ────────────╮
 urlOpener(
   "ovr",
@@ -69,10 +54,8 @@ urlOpener(
 );
 
 urlOpener(
-  "ovdh",
+  "ovdr",
   "open rkrazak docs",
   "https://docs.google.com/spreadsheets/d/1e84IK20ryP9PAnYRRZzKSDZ47hBr2ugAuMwIuVJe5ZI/edit?gid=0#gid=0",
 );
 //w: (end)  ╰──────────── rkrazak ────────────╯
-
-figmaAndDocs.forEach((f) => urlOpener(f.key, f.desc, f.url));

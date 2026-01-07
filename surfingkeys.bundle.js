@@ -2887,22 +2887,23 @@
       );
     }
   });
-  var figmaAndDocs = [
-    {
-      key: "ovh",
-      desc: "",
-      url: ""
-    }
-  ];
+  var figmaAndDocs = [];
+  var pusher = (key, desc, url) => {
+    figmaAndDocs.push({
+      key,
+      desc,
+      url
+    });
+  };
+  pusher(
+    "ovdh",
+    "open habib050505 docs",
+    "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0"
+  );
   urlOpener(
     "ovh",
     "open habib050505 figma",
     "https://www.figma.com/design/G0pU3jlT4NMwC3OYJp2ruW/habib050505_azmabiomed.com_Website?node-id=42432-498&t=UA5pLMtzMBhkbqFy-0"
-  );
-  urlOpener(
-    "ovdh",
-    "open habib050505 docs",
-    "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0"
   );
   urlOpener(
     "ovr",
@@ -2910,7 +2911,7 @@
     "https://www.figma.com/design/Lfe9pK63CjmvnIn1NXTXsm/rkrazak---ABS-Fresh--Farming-mobile-app-?node-id=0-1&p=f&t=GMwTyB5T0BIDLVpO-0"
   );
   urlOpener(
-    "ovdh",
+    "ovdr",
     "open rkrazak docs",
     "https://docs.google.com/spreadsheets/d/1e84IK20ryP9PAnYRRZzKSDZ47hBr2ugAuMwIuVJe5ZI/edit?gid=0#gid=0"
   );
