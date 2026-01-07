@@ -1,4 +1,6 @@
-// open visual => ov => visual means figma design which help us to visual view
+//  ,,o,v => ,Open ,Visual => => visual means figma design which help us to visual view
+
+const { urlOpener } = require("../aiOpener");
 
 //w: (start)╭──────────── ashmaster  ────────────╮
 // open ashmaster
@@ -27,3 +29,33 @@ api.mapkey("ovda", "ashmaster docs", function () {
   }
 });
 //w: (end)  ╰──────────── ashmaster  ────────────╯
+
+// open habib050505 figma
+//w: (start)╭──────────── habib050505 ────────────╮
+urlOpener(
+  "ovh",
+  "open habib050505 figma",
+  "https://www.figma.com/design/G0pU3jlT4NMwC3OYJp2ruW/habib050505_azmabiomed.com_Website?node-id=42432-498&t=UA5pLMtzMBhkbqFy-0",
+);
+
+urlOpener(
+  "ovdh",
+  "open habib050505 docs",
+  "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0",
+);
+//w: (end)  ╰──────────── habib050505 ────────────╯
+
+// open habib050505 figma
+//w: (start)╭──────────── habib050505 ────────────╮
+urlOpener(
+  "ovh",
+  "open habib050505 figma",
+  "https://www.figma.com/design/G0pU3jlT4NMwC3OYJp2ruW/habib050505_azmabiomed.com_Website?node-id=42432-498&t=UA5pLMtzMBhkbqFy-0",
+);
+
+urlOpener(
+  "ovdh",
+  "open habib050505 docs",
+  "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0",
+);
+//w: (end)  ╰──────────── habib050505 ────────────╯

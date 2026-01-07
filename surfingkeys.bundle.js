@@ -36,7 +36,7 @@
           console.log(`hellow`);
         }, 2e3);
       });
-      var urlOpener2 = (key, desc, url) => {
+      var urlOpener3 = (key, desc, url) => {
         mapkey7(key, desc, function() {
           const host = new URL(url).hostname;
           if (window.location.hostname === host) {
@@ -63,13 +63,13 @@
       mapkey7("oad", "Deep ai", function() {
         window.open("https://deepai.org/dashboard/images", "_blank");
       });
-      urlOpener2("oas", "Open deepseek", "https://chat.deepseek.com/");
-      urlOpener2("oak", "claude", "https://claude.ai/new");
-      urlOpener2("oag", "open grok ai", "https://grok.com/");
-      urlOpener2("oaa", "open google audio", "https://aistudio.google.com/live");
-      urlOpener2("oaq", "Open github copilot", "https://github.com/copilot");
+      urlOpener3("oas", "Open deepseek", "https://chat.deepseek.com/");
+      urlOpener3("oak", "claude", "https://claude.ai/new");
+      urlOpener3("oag", "open grok ai", "https://grok.com/");
+      urlOpener3("oaa", "open google audio", "https://aistudio.google.com/live");
+      urlOpener3("oaq", "Open github copilot", "https://github.com/copilot");
       module.exports = {
-        urlOpener: urlOpener2
+        urlOpener: urlOpener3
       };
     }
   });
@@ -2866,6 +2866,7 @@
   );
 
   // src/modules/opener/smtFigma/smtFigma.js
+  var { urlOpener } = require_aiOpener();
   api.mapkey("ova", "ashmaster figma", function() {
     if (window.location.hostname.includes("www.figma.com")) {
       window.location.href = "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1";
@@ -2886,6 +2887,11 @@
       );
     }
   });
+  urlOpener(
+    "ovh",
+    "open habib figma",
+    "https://www.figma.com/design/G0pU3jlT4NMwC3OYJp2ruW/habib050505_azmabiomed.com_Website?node-id=42432-498&t=UA5pLMtzMBhkbqFy-0"
+  );
 
   // src/modules/style/chatgpt.js
   var { mapkey: mapkey4, Front } = api;
@@ -3749,8 +3755,8 @@
   }
 
   // src/modules/opener/knowledge/common.js
-  var { urlOpener } = require_aiOpener();
-  urlOpener(
+  var { urlOpener: urlOpener2 } = require_aiOpener();
+  urlOpener2(
     "okd",
     "open fahim abdullah deep focus",
     "https://learn.fahimabdullah.com/student/dashboard"
