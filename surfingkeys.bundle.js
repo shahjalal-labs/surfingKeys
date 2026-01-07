@@ -566,6 +566,9 @@
   api.unmap("<ctrl-i>");
   api.unmap("p");
   api.unmap("t");
+  api.unmap("gr");
+  api.lmap("grR", "gr");
+  api.map("grR", "gr");
   api.map(",", "<Ctrl-6>");
 
   // src/settings/theme.js

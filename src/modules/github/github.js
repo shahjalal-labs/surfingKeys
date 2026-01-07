@@ -1,61 +1,22 @@
-//w: (start)╭──────────── Block Start ────────────╮
-
-//w: (end)  ╰───────────── Block End ─────────────╯
 //w: 1╭──────────── Block Start ────────────╮
 //t: github repository page opening
 api.mapkey("gro", "Github own Repositories", function () {
   window.open("https://github.com/shahjalal-labs?tab=repositories", "_blank");
 });
 
-//t:  new repo for github
-
-//w: (start)╭──────────── github Ruhul vai  ────────────╮
-//t: github repository page opening
-
-const githubUrlOpener = (key, desc, url) => {
-  api.mapkey(key, desc, function () {
-    const repoUrl = url + "?tab=repositories";
-
-    if (window.location.href.startsWith(repoUrl)) {
-      // On repositories page → switch to profile
-      window.location.href = url;
-    } else if (window.location.href.startsWith(url)) {
-      // On profile (or subpage under profile) → switch to repositories
-      window.location.href = repoUrl;
-    } else {
-      // Anywhere else → open repositories in a new tab
-      window.open(repoUrl, "_blank");
-    }
-  });
-};
-
+//w: github Ruhul vai
 githubUrlOpener(
   "grr",
   "github Ruhul vai",
   "https://github.com/ruhulamin-programming",
 );
 
-//w: (end)╰───────────── github Ruhul vai  ─────────────╯
-
-//
-//w: (start)╭──────────── github Mirhasankhan vai ────────────╮
-api.mapkey("grm", "github Mirhasankhan vai", function () {
-  const baseUrl = "https://github.com/Mirhasankhan";
-  const repoUrl = baseUrl + "?tab=repositories";
-
-  if (window.location.href.startsWith(repoUrl)) {
-    // On repositories page → switch to profile
-    window.location.href = baseUrl;
-  } else if (window.location.href.startsWith(baseUrl)) {
-    // On profile (or subpage under profile) → switch to repositories
-    window.location.href = repoUrl;
-  } else {
-    // Anywhere else → open repositories in a new tab
-    window.open(repoUrl, "_blank");
-  }
-});
-//w: (end)╰───────────── github Mirhasankhan vai ─────────────╯
-//
+//w: github Mirhasankhan vai
+githubUrlOpener(
+  "grm",
+  "github Mirhasankhan vai",
+  "https://github.com/Mirhasankhan",
+);
 
 //w: (start)╭──────────── create new github repo────────────╮
 api.mapkey("grn", "create new github repo", function () {
@@ -239,6 +200,4 @@ api.mapkey(
 
 //w: 9╰───────────── Block End ─────────────╯
 
-module.exports = {
-  githubUrlOpener,
-};
+
