@@ -99,3 +99,13 @@ api.mapkey("ocp", "open postman web", function () {
   }
 });
 //w: (end)  ╰──────────── open postman web ────────────╯
+
+//w: (start)╭──────────── open dns checker org ────────────╮
+api.mapkey("ocd", "open dns checker org", function () {
+  if (window.location.hostname.includes("dnschecker")) {
+    window.location.href = "https://dnschecker.org/";
+  } else {
+    window.open("https://dnschecker.org/", "_blank");
+  }
+});
+//w: (end)  ╰──────────── open dns checker org ────────────╯

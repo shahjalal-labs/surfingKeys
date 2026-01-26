@@ -606,6 +606,13 @@
       );
     }
   });
+  api.mapkey("ocd", "open daisyUI", function() {
+    if (window.location.hostname.includes("dnschecker")) {
+      window.location.href = "https://dnschecker.org/";
+    } else {
+      window.open("https://dnschecker.org/", "_blank");
+    }
+  });
 
   // src/modules/opener/socialOpener.js
   api.mapkey("ouc", "open gContacts", function() {

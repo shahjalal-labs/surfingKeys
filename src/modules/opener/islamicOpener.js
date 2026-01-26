@@ -1,4 +1,4 @@
-//t: isami music playlist
+//t: islami music playlist
 //
 /* api.mapkey("su", "isami music playlist", function () {
   window.open(
@@ -16,7 +16,6 @@ api.mapkey("sj", "Open Wedding Nasheed", function () {
 });
 
 //t: Open Quran
-//
 api.mapkey("opq", "Open Quran", function () {
   window.open("https://quran.com", "_blank");
 });
