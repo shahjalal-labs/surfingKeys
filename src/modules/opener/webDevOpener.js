@@ -109,3 +109,23 @@ api.mapkey("ocd", "open dns checker org", function () {
   }
 });
 //w: (end)  ╰──────────── open dns checker org ────────────╯
+
+//w: (start)╭──────────── open dns checker org ────────────╮
+api.mapkey("ocii", "open ip info", function () {
+  if (window.location.hostname.includes("ipinfo.io")) {
+    window.location.href = "https://ipinfo.io/";
+  } else {
+    window.open("https://ipinfo.io/", "_blank");
+  }
+});
+//w: (end)  ╰──────────── open dns checker org ────────────╯
+
+//w: (start)╭──────────── open dns checker org ────────────╮
+api.mapkey("ocil", "open ip2 location", function () {
+  if (window.location.hostname.includes("www.ip2location.com")) {
+    window.location.href = "https://www.ip2location.com/demo";
+  } else {
+    window.open("https://www.ip2location.com/demo", "_blank");
+  }
+});
+//w: (end)  ╰──────────── open dns checker org ────────────╯
