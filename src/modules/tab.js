@@ -102,3 +102,18 @@ api.map("txH", "gx0");
 
 //close all tabs on right
 api.map("txL", "gx$");
+
+// Close tab by number (tx1, tx2, tx3, etc.)
+for (let i = 1; i <= 9; i++) {
+  api.mapkey(`tx${i}`, `❌ Close tab ${i}`, function () {
+    chrome.tabs.query({ currentWindow: true }, function (tabs) {
+      if (tabs[i - 1]) {
+        chrome.tabs.remove(tabs[i - 1].id);
+        api.Front.showBanner(`❌ Closed tab ${i}`);
+      } else {
+        api.Front.showBanner(`❌ Tab ${i} doesn't exist`);
+      }
+    });
+  });
+}
+
