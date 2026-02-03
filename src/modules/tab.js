@@ -72,10 +72,11 @@ api.map("tl", ">>");
 console.log("🚀 Console error-free tab navigation loaded!");
 
 mapkey("sxx", "Close all tabs from same host", function () {
-  chrome.tabs.query({}, function (tabs) {
-    chrome.tabs.query(
-      { active: true, currentWindow: true },
-      function (activeTabs) {
+  api.RUNTIME("getTabs", { queryInfo: {} }, function (response) {
+    const tabs = response.tabs;
+    api.RUNTIME("getTabs", { queryInfo: { active: true, currentWindow: true } }, function (response2) {
+      const activeTabs = response2.tabs;
+      if (activeTabs && activeTabs.length > 0) {
         const currentTab = activeTabs[0];
         const currentHost = new URL(currentTab.url).hostname;
         const sameHostTabs = tabs.filter((tab) => {
@@ -85,9 +86,11 @@ mapkey("sxx", "Close all tabs from same host", function () {
             return false;
           }
         });
-        sameHostTabs.forEach((tab) => chrome.tabs.remove(tab.id));
-      },
-    );
+        sameHostTabs.forEach((tab) => {
+          api.RUNTIME("closeTab", { tabId: tab.id });
+        });
+      }
+    });
   });
 });
 
@@ -106,14 +109,21 @@ api.map("txL", "gx$");
 // Close tab by number (tx1, tx2, tx3, etc.)
 for (let i = 1; i <= 9; i++) {
   api.mapkey(`tx${i}`, `❌ Close tab ${i}`, function () {
-    chrome.tabs.query({ currentWindow: true }, function (tabs) {
-      if (tabs[i - 1]) {
-        chrome.tabs.remove(tabs[i - 1].id);
-        api.Front.showBanner(`❌ Closed tab ${i}`);
-      } else {
-        api.Front.showBanner(`❌ Tab ${i} doesn't exist`);
-      }
-    });
+    console.log(`Trying to close tab ${i}`);
+    api.RUNTIME(
+      "getTabs",
+      { queryInfo: { currentWindow: true } },
+      (response) => {
+        if (response.tabs && response.tabs[i - 1]) {
+          const targetTab = response.tabs[i - 1];
+          api.RUNTIME("closeTab", { tabId: targetTab.id }, () => {
+            api.Front.showBanner(`❌ Closed tab ${i}`);
+          });
+        } else {
+          api.Front.showBanner(`❌ Tab ${i} doesn't exist`);
+        }
+      },
+    );
   });
 }
 

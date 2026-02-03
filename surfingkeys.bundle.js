@@ -2800,14 +2800,20 @@
   api.map("txL", "gx$");
   for (let i = 1; i <= 9; i++) {
     api.mapkey(`tx${i}`, `\u274C Close tab ${i}`, function() {
-      chrome.tabs.query({ currentWindow: true }, function(tabs) {
-        if (tabs[i - 1]) {
-          chrome.tabs.remove(tabs[i - 1].id);
-          api.Front.showBanner(`\u274C Closed tab ${i}`);
-        } else {
-          api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
+      api.RUNTIME(
+        "getTabs",
+        { queryInfo: { currentWindow: true } },
+        (response) => {
+          if (response.tabs && response.tabs[i - 1]) {
+            const targetTab = response.tabs[i - 1];
+            api.RUNTIME("closeTab", { tabId: targetTab.id }, () => {
+              api.Front.showBanner(`\u274C Closed tab ${i}`);
+            });
+          } else {
+            api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
+          }
         }
-      });
+      );
     });
   }
 
