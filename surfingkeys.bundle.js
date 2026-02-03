@@ -2776,10 +2776,11 @@
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
   mapkey3("sxx", "Close all tabs from same host", function() {
-    chrome.tabs.query({}, function(tabs) {
-      chrome.tabs.query(
-        { active: true, currentWindow: true },
-        function(activeTabs) {
+    api.RUNTIME("getTabs", { queryInfo: {} }, function(response) {
+      const tabs = response.tabs;
+      api.RUNTIME("getTabs", { queryInfo: { active: true, currentWindow: true } }, function(response2) {
+        const activeTabs = response2.tabs;
+        if (activeTabs && activeTabs.length > 0) {
           const currentTab = activeTabs[0];
           const currentHost = new URL(currentTab.url).hostname;
           const sameHostTabs = tabs.filter((tab) => {
@@ -2789,9 +2790,11 @@
               return false;
             }
           });
-          sameHostTabs.forEach((tab) => chrome.tabs.remove(tab.id));
+          sameHostTabs.forEach((tab) => {
+            api.RUNTIME("removeTab", { tabId: tab.id });
+          });
         }
-      );
+      });
     });
   });
   api.map("txh", "gxt");
@@ -2800,15 +2803,15 @@
   api.map("txL", "gx$");
   for (let i = 1; i <= 9; i++) {
     api.mapkey(`tx${i}`, `\u274C Close tab ${i}`, function() {
+      console.log(`Trying to close tab ${i}`);
       api.RUNTIME(
         "getTabs",
         { queryInfo: { currentWindow: true } },
         (response) => {
           if (response.tabs && response.tabs[i - 1]) {
             const targetTab = response.tabs[i - 1];
-            api.RUNTIME("closeTab", { tabId: targetTab.id }, () => {
-              api.Front.showBanner(`\u274C Closed tab ${i}`);
-            });
+            api.RUNTIME("removeTab", { tabId: targetTab.id });
+            api.Front.showBanner(`\u274C Closed tab ${i}`);
           } else {
             api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
           }

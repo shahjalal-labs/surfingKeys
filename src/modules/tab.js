@@ -87,7 +87,7 @@ mapkey("sxx", "Close all tabs from same host", function () {
           }
         });
         sameHostTabs.forEach((tab) => {
-          api.RUNTIME("closeTab", { tabId: tab.id });
+          api.RUNTIME("removeTab", { tabId: tab.id });
         });
       }
     });
@@ -116,9 +116,8 @@ for (let i = 1; i <= 9; i++) {
       (response) => {
         if (response.tabs && response.tabs[i - 1]) {
           const targetTab = response.tabs[i - 1];
-          api.RUNTIME("closeTab", { tabId: targetTab.id }, () => {
-            api.Front.showBanner(`❌ Closed tab ${i}`);
-          });
+          api.RUNTIME("removeTab", { tabId: targetTab.id });
+          api.Front.showBanner(`❌ Closed tab ${i}`);
         } else {
           api.Front.showBanner(`❌ Tab ${i} doesn't exist`);
         }
