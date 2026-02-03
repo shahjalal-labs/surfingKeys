@@ -110,19 +110,36 @@ api.map("txL", "gx$");
 for (let i = 1; i <= 9; i++) {
   api.mapkey(`tx${i}`, `❌ Close tab ${i}`, function () {
     console.log(`Trying to close tab ${i}`);
-    api.RUNTIME(
-      "getTabs",
-      { queryInfo: { currentWindow: true } },
-      (response) => {
-        if (response.tabs && response.tabs[i - 1]) {
-          const targetTab = response.tabs[i - 1];
-          api.RUNTIME("removeTab", { tabId: targetTab.id });
-          api.Front.showBanner(`❌ Closed tab ${i}`);
-        } else {
-          api.Front.showBanner(`❌ Tab ${i} doesn't exist`);
-        }
-      },
-    );
+    api.RUNTIME("getTabs", { queryInfo: { active: true, currentWindow: true } }, (res) => {
+      const currentTabId = res.tabs[0].id;
+      api.RUNTIME(
+        "getTabs",
+        { queryInfo: { currentWindow: true } },
+        (response) => {
+          if (response.tabs && response.tabs[i - 1]) {
+            const targetTab = response.tabs[i - 1];
+            if (targetTab.id === currentTabId) {
+              // Target is current tab, just close it
+              api.Normal.feedkeys("x");
+            } else {
+              // Target is different, switch -> close -> return
+              api.RUNTIME("focusTab", { tabId: targetTab.id });
+              setTimeout(() => {
+                api.Normal.feedkeys("x");
+                // Attempt to return to original tab after a short delay
+                // Note: If original tab was closed (unlikely here), this might fail gracefully
+                setTimeout(() => {
+                  api.RUNTIME("focusTab", { tabId: currentTabId });
+                }, 50);
+              }, 100);
+            }
+            api.Front.showBanner(`❌ Closed tab ${i}`);
+          } else {
+            api.Front.showBanner(`❌ Tab ${i} doesn't exist`);
+          }
+        },
+      );
+    });
   });
 }
 

@@ -2804,19 +2804,32 @@
   for (let i = 1; i <= 9; i++) {
     api.mapkey(`tx${i}`, `\u274C Close tab ${i}`, function() {
       console.log(`Trying to close tab ${i}`);
-      api.RUNTIME(
-        "getTabs",
-        { queryInfo: { currentWindow: true } },
-        (response) => {
-          if (response.tabs && response.tabs[i - 1]) {
-            const targetTab = response.tabs[i - 1];
-            api.RUNTIME("removeTab", { tabId: targetTab.id });
-            api.Front.showBanner(`\u274C Closed tab ${i}`);
-          } else {
-            api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
+      api.RUNTIME("getTabs", { queryInfo: { active: true, currentWindow: true } }, (res) => {
+        const currentTabId = res.tabs[0].id;
+        api.RUNTIME(
+          "getTabs",
+          { queryInfo: { currentWindow: true } },
+          (response) => {
+            if (response.tabs && response.tabs[i - 1]) {
+              const targetTab = response.tabs[i - 1];
+              if (targetTab.id === currentTabId) {
+                api.Normal.feedkeys("x");
+              } else {
+                api.RUNTIME("focusTab", { tabId: targetTab.id });
+                setTimeout(() => {
+                  api.Normal.feedkeys("x");
+                  setTimeout(() => {
+                    api.RUNTIME("focusTab", { tabId: currentTabId });
+                  }, 50);
+                }, 100);
+              }
+              api.Front.showBanner(`\u274C Closed tab ${i}`);
+            } else {
+              api.Front.showBanner(`\u274C Tab ${i} doesn't exist`);
+            }
           }
-        }
-      );
+        );
+      });
     });
   }
 
