@@ -139,15 +139,13 @@ api.mapkey("out", "open ms team live", function () {
   }
 });
 //w: ╰───────────── Block End ─────────────╯
-//w: ╭──────────── Block Start ────────────╮
 
-//w: ╰───────────── Block End ─────────────╯
-//w: ╭──────────── Block Start ────────────╮
-
-//w: ╰───────────── Block End ─────────────╯
-//w: ╭──────────── Block Start ────────────╮
-
-//w: ╰───────────── Block End ─────────────╯
-//w: ╭──────────── Block Start ────────────╮
-
-//w: ╰───────────── Block End ─────────────╯
+//w: (start)╭──────────── open telegram ────────────╮
+api.mapkey("oua", "open telegram", function () {
+  if (window.location.hostname.includes("web.telegram.org")) {
+    window.location.href = "https://web.telegram.org/a/#5772149609";
+  } else {
+    window.open("https://web.telegram.org/a/#5772149609", "_blank");
+  }
+});
+//w: (end)  ╰──────────── api ────────────╯

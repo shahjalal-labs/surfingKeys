@@ -708,6 +708,13 @@
       window.open("https://teams.live.com/v2/", "_blank");
     }
   });
+  api.mapkey("oua", "open telegram", function() {
+    if (window.location.hostname.includes("web.telegram.org")) {
+      window.location.href = "https://web.telegram.org/a/#5772149609";
+    } else {
+      window.open("https://web.telegram.org/a/#5772149609", "_blank");
+    }
+  });
 
   // src/modules/opener/phOpener.js
   api.mapkey("pso", "scribble l1b10", () => {
