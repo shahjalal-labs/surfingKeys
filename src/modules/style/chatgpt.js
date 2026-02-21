@@ -466,8 +466,6 @@ function replaceBranding() {
         newText = newText
           .replace(/\bChatGPT\b/gi, "SJ Pulse 🚀")
           .replace(/\bChatGPT-\d\b/gi, "SJ Pulse")
-          .replace(/Copy code/gi, "Yank 📋")
-          .replace(/\bCopy\b/gi, "Yank")
           .replace(/\bAsk anything\b/gi, "Pulse Query 🫀");
       }
 
