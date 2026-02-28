@@ -64,10 +64,10 @@ api.mapkey("ocn", "open nextjs Docs", function () {
 
 //w: (start)╭──────────── Fiverr Message Rewriter ────────────╮
 api.mapkey("ocf", "Fiverr Message Rewriter", function () {
-  if (window.location.hostname.includes("relevance-phi.vercel.app")) {
-    window.location.href = "https://relevance-phi.vercel.app/";
+  if (window.location.hostname.includes("safemessage.vercel.app")) {
+    window.location.href = "https://safemessage.vercel.app/";
   } else {
-    window.open("https://relevance-phi.vercel.app/", "_blank");
+    window.open("https://safemessage.vercel.app/", "_blank");
   }
 });
 //w: (end)  ╰──────────── Fiverr Message Rewriter ────────────╯

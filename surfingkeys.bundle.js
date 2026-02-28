@@ -583,10 +583,10 @@
     }
   });
   api.mapkey("ocf", "Fiverr Message Rewriter", function() {
-    if (window.location.hostname.includes("relevance-phi.vercel.app")) {
-      window.location.href = "https://relevance-phi.vercel.app/";
+    if (window.location.hostname.includes("safemessage.vercel.app")) {
+      window.location.href = "https://safemessage.vercel.app/";
     } else {
-      window.open("https://relevance-phi.vercel.app/", "_blank");
+      window.open("https://safemessage.vercel.app/", "_blank");
     }
   });
   api.mapkey("oce", "open temp mail", function() {
@@ -2426,10 +2426,10 @@
   api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
   var openTeamUnitySheets = () => {
     if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=493767892#gid=493767892";
+      window.location.href = "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1080140336#gid=1080140336";
     } else {
       window.open(
-        "https://docs.google.com/spreadsheets/d/1nGC-g1KKlB4soo28RgKguGwghvV0CCF7h_ahhUzjpFw/edit?gid=493767892#gid=493767892",
+        "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1080140336#gid=1080140336",
         "_blank"
       );
     }
