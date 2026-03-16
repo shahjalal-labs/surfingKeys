@@ -104,3 +104,18 @@ const openTeamUnitySheets = () => {
 };
 api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
 //w: ╰───────────── openTeamUnitySheets ─────────────╯
+
+//w: ╭──────────── openTeamUnityUpdateStatusSheets ────────────╮
+const openTeamUnityUpdateStatusSheets = () => {
+  if (window.location.hostname.includes("docs")) {
+    window.location.href =
+      "https://docs.google.com/spreadsheets/d/1Olck6WYQ-lRHvnApmjVAb9DxXaBDJeOsiqvJJqrkTZ4/edit?gid=1080140336#gid=1080140336";
+  } else {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/1Olck6WYQ-lRHvnApmjVAb9DxXaBDJeOsiqvJJqrkTZ4/edit?gid=1080140336#gid=1080140336",
+      "_blank",
+    );
+  }
+};
+api.mapkey("orU", "open Team Unity Sheets", openTeamUnitySheets);
+//w: ╰───────────── openTeamUnityUpdateStatusSheets ─────────────╯
