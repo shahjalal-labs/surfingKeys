@@ -5,7 +5,7 @@ if (location.hostname === "chatgpt.com") {
 
 const { imapkey } = api;
 
-export function textPaster(keys, desc, text) {
+function textPaster(keys, desc, text) {
   imapkey(keys, desc, function () {
     document.execCommand("insertText", false, text);
   });
@@ -52,3 +52,27 @@ textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
 textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
 
 // ,,re,g,po,l,e (regpol)
+
+//resume
+textPaster(
+  ",re",
+  "Insert resume",
+  "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
+);
+
+// portfolio
+
+textPaster(",rp", "Insert portfolio", "https://shahjalal-labs.surge.sh/");
+
+// github
+textPaster(",rg", "Insert github", "https://github.com/shahjalal-labs");
+
+// linkedin
+textPaster(
+  ",rg",
+  "Insert linkedin",
+  "https://www.linkedin.com/in/shahjalal-labs/",
+);
+
+// facebook
+textPaster(",rg", "Insert fb url", "https://www.facebook.com/shahjalal.labs");
