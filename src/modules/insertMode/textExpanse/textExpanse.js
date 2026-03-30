@@ -20,7 +20,7 @@ textPaster(
 
 // portfolio
 
-textPaster(",rp", "Insert portfolio", "https://shahjalal-labs.surge.sh/");
+textPaster(",rp", "Insert portfolio", "https://shahjalal-labs.surge.sh");
 
 // github
 textPaster(",rg", "Insert github", "https://github.com/shahjalal-labs");
@@ -29,11 +29,11 @@ textPaster(",rg", "Insert github", "https://github.com/shahjalal-labs");
 textPaster(
   ",rg",
   "Insert linkedin",
-  "https://www.linkedin.com/in/shahjalal-labs/",
+  "https://www.linkedin.com/in/shahjalal-labs",
 );
 
 // facebook
-textPaster(",rg", "Insert fb url", "https://www.facebook.com/shahjalal.labs");
+textPaster(",rf", "Insert fb url", "https://www.facebook.com/shahjalal.labs");
 
 // insert fullname
 textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
