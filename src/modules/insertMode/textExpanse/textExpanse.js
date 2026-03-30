@@ -5,7 +5,7 @@ if (location.hostname === "chatgpt.com") {
 
 const { imapkey } = api;
 
-function textPaster(keys, desc, text) {
+export function textPaster(keys, desc, text) {
   imapkey(keys, desc, function () {
     document.execCommand("insertText", false, text);
   });
@@ -50,3 +50,5 @@ textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
 
 // Insert Salam
 textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
+
+// ,,re,g,po,l,e (regpol)

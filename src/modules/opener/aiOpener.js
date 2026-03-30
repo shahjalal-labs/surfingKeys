@@ -9,7 +9,7 @@ mapkey("oac", "Open ChatGPT chk", function () {
 
 //w: opening perplexity ai ai
 
-const urlOpener = (key, desc, url) => {
+export const urlOpener = (key, desc, url) => {
   mapkey(key, desc, function () {
     const host = new URL(url).hostname;
     if (window.location.hostname === host) {

@@ -117,5 +117,5 @@ const openTeamUnityUpdateStatusSheets = () => {
     );
   }
 };
-api.mapkey("orU", "open Team Unity Sheets", openTeamUnitySheets);
+api.mapkey("orU", "open Team Unity Sheets", openTeamUnityUpdateStatusSheets);
 //w: ╰───────────── openTeamUnityUpdateStatusSheets ─────────────╯
