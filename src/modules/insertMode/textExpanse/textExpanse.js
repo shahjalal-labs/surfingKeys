@@ -13,7 +13,7 @@ function textPaster(keys, desc, text) {
 
 //resume
 textPaster(
-  ",re",
+  ",rr",
   "Insert resume",
   "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
 );
@@ -27,7 +27,7 @@ textPaster(",rg", "Insert github", "https://github.com/shahjalal-labs");
 
 // linkedin
 textPaster(
-  ",rg",
+  ",rl",
   "Insert linkedin",
   "https://www.linkedin.com/in/shahjalal-labs",
 );
