@@ -41,6 +41,8 @@ textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
 // insert firstname:
 textPaster(",nf", "Insert Firstname: Md.", "Md. ");
 
+textPaster(",nl", "Insert Lastname: ", "Shahjalal");
+
 // insert root mail
 textPaster(
   ",er",
@@ -67,10 +69,10 @@ textPaster(
 //w: (end)  ╰──────────── insert backend mail ────────────╯
 
 // Insert BL Phn: 01989
-textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
+textPaster(",pb", "Insert BL Phn: 01989", "+8801989763775");
 
 // Insert TEL Phn: 01540
-textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
+textPaster(",pt", "Insert TEL Phn: 01540", "+8801540325659");
 
 // Insert Salam
 textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
