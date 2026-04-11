@@ -237,13 +237,11 @@ This is the cleanest, most portable method—using your GitHub-hosted bundle.
 #### 🧭 Steps:
 
 1. ✅ Ensure all permissions are enabled in the **Surfingkeys extension settings**:
-
    - ☑️ Allow access to file URLs
    - ☑️ Allow on all websites
    - ☑️ Enable extension
 
 2. 🔧 Enter **Advanced Mode**:
-
    - Press `;e` on any webpage to enter Surfingkeys' configuration editor
    - Click `Advanced Mode` to switch to raw URL input mode
 

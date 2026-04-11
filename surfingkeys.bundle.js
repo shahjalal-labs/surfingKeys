@@ -419,20 +419,21 @@
         });
       }
       textPaster(
-        ",re",
+        ",rr",
         "Insert resume",
         "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view"
       );
-      textPaster(",rp", "Insert portfolio", "https://shahjalal-labs.surge.sh/");
+      textPaster(",rp", "Insert portfolio", "https://shahjalal-labs.surge.sh");
       textPaster(",rg", "Insert github", "https://github.com/shahjalal-labs");
       textPaster(
-        ",rg",
+        ",rl",
         "Insert linkedin",
-        "https://www.linkedin.com/in/shahjalal-labs/"
+        "https://www.linkedin.com/in/shahjalal-labs"
       );
-      textPaster(",rg", "Insert fb url", "https://www.facebook.com/shahjalal.labs");
+      textPaster(",rf", "Insert fb url", "https://www.facebook.com/shahjalal.labs");
       textPaster(",nn", "Insert Fullname: Md. Shahjalal", "Md. Shahjalal");
       textPaster(",nf", "Insert Firstname: Md.", "Md. ");
+      textPaster(",nl", "Insert Lastname: ", "Shahjalal");
       textPaster(
         ",er",
         "insert root mail muhommodshah...",
@@ -449,8 +450,8 @@
         "Insert Backend Mail: shahjalal.backend@gmail.com",
         "shahjalal.backend@gmail.com"
       );
-      textPaster(",pb", "Insert BL Phn: 01989", "01989763775");
-      textPaster(",pt", "Insert TEL Phn: 01540", "01540325659");
+      textPaster(",pb", "Insert BL Phn: 01989", "+8801989763775");
+      textPaster(",pt", "Insert TEL Phn: 01540", "+8801540325659");
       textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
     }
   });
