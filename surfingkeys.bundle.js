@@ -453,6 +453,20 @@
       textPaster(",pb", "Insert BL Phn: 01989", "+8801989763775");
       textPaster(",pt", "Insert TEL Phn: 01540", "+8801540325659");
       textPaster(",is", "Insert Salam", "Assalamu Alaikum,");
+      textPaster(
+        ",ra",
+        "Insert formatted profile bundle",
+        `Resume: https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view
+
+Portfolio: https://shahjalal-labs.surge.sh
+Github: https://github.com/shahjalal-labs
+
+LinkedIn: https://www.linkedin.com/in/shahjalal-labs
+Facebook: https://www.facebook.com/shahjalal.labs
+
+I\u2019d appreciate it if you review my profile\u2014a quick review could be worth your time.
+`
+      );
     }
   });
 
