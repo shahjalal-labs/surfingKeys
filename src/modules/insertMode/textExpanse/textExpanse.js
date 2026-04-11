@@ -85,8 +85,8 @@ textPaster(
   "Insert formatted profile bundle",
   `Resume: https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view
 
-Portfolio: https://shahjalal-labs.surge.sh
 Github: https://github.com/shahjalal-labs
+Portfolio: https://shahjalal-labs.surge.sh
 
 LinkedIn: https://www.linkedin.com/in/shahjalal-labs
 Facebook: https://www.facebook.com/shahjalal.labs
