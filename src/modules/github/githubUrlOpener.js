@@ -1,3 +1,5 @@
+const { urlOpener } = require("../opener/aiOpener");
+
 //w: (start)╭──────────── githubUrlOpener ────────────╮
 const githubUrlOpener = (key, desc, url) => {
   api.mapkey(key, desc, function () {
@@ -49,6 +51,13 @@ api.mapkey("grn", "create new github repo", function () {
   window.open("https://github.com/new", "_blank");
 });
 //w: (end)  ╰───────────── create new github repo───────────╯
+
+//open credential
+urlOpener(
+  "orc",
+  "open credential",
+  "https://github.com/shahjalal-labs/project_track/blob/main/smt_ofice_credential/cred.md#smt-office-credential",
+);
 
 module.exports = {
   githubUrlOpener,

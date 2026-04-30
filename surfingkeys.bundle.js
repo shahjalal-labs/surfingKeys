@@ -367,6 +367,7 @@
   // src/modules/github/githubUrlOpener.js
   var require_githubUrlOpener = __commonJS({
     "src/modules/github/githubUrlOpener.js"(exports, module) {
+      var { urlOpener: urlOpener3 } = require_aiOpener();
       var githubUrlOpener = (key, desc, url) => {
         api.mapkey(key, desc, function() {
           const repoUrl = url + "?tab=repositories";
@@ -400,6 +401,11 @@
       api.mapkey("grn", "create new github repo", function() {
         window.open("https://github.com/new", "_blank");
       });
+      urlOpener3(
+        "orc",
+        "open credential",
+        "https://github.com/shahjalal-labs/project_track/blob/main/smt_ofice_credential/cred.md#smt-office-credential"
+      );
       module.exports = {
         githubUrlOpener
       };
@@ -2454,10 +2460,10 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
   var openTeamUnitySheets = () => {
     if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1080140336#gid=1080140336";
+      window.location.href = "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1280894611#gid=1280894611";
     } else {
       window.open(
-        "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1080140336#gid=1080140336",
+        "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1280894611#gid=1280894611",
         "_blank"
       );
     }
