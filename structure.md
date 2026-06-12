@@ -1,5 +1,1 @@
 # 📁 Project Structure
-
-```bash
-
-```
