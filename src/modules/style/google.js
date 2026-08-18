@@ -163,6 +163,6 @@ function toggleGoogleUI() {
 
 // Apply automatically + bind toggle
 if (/google\.com\/search/.test(window.location.href)) {
-  window.addEventListener("load", () => toggleGoogleUI());
+  //window.addEventListener("load", () => toggleGoogleUI());
   mapkey("<Space>g", "Toggle Google EyeCandy UI", toggleGoogleUI);
 }
