@@ -2458,6 +2458,14 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     }
   };
   api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
+  var openBetopiaErp = () => {
+    if (window.location.hostname.includes("erp.betopiagroup.com")) {
+      window.location.href = "https://erp.betopiagroup.com/";
+    } else {
+      window.open("https://erp.betopiagroup.com/", "_blank");
+    }
+  };
+  api.mapkey("ore", "open betopia erp", openBetopiaErp);
   var openTeamUnitySheets = () => {
     if (window.location.hostname.includes("docs")) {
       window.location.href = "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1280894611#gid=1280894611";

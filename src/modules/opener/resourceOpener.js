@@ -90,6 +90,18 @@ api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
 //w: ╰───────────── Block End ─────────────╯
 //
 
+//w: ╭──────────── Block Start ────────────╮
+const openBetopiaErp = () => {
+  if (window.location.hostname.includes("erp.betopiagroup.com")) {
+    window.location.href = "https://erp.betopiagroup.com/";
+  } else {
+    window.open("https://erp.betopiagroup.com/", "_blank");
+  }
+};
+api.mapkey("ore", "open betopia erp", openBetopiaErp);
+//w: ╰───────────── Block End ─────────────╯
+//
+
 //w: ╭──────────── openTeamUnitySheets ────────────╮
 const openTeamUnitySheets = () => {
   if (window.location.hostname.includes("docs")) {
