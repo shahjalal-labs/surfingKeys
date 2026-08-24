@@ -28,16 +28,16 @@
   // src/modules/opener/aiOpener.js
   var require_aiOpener = __commonJS({
     "src/modules/opener/aiOpener.js"(exports, module) {
-      var { mapkey: mapkey6 } = api;
-      mapkey6("oac", "Open ChatGPT chk", function() {
+      var { mapkey: mapkey7 } = api;
+      mapkey7("oac", "Open ChatGPT chk", function() {
         let newTab = window.open("https://chatgpt.com/", "_blank");
         console.log(newTab, ".surfingkeys.js", 240);
         setInterval(() => {
           console.log(`hellow`);
         }, 2e3);
       });
-      var urlOpener3 = (key, desc, url) => {
-        mapkey6(key, desc, function() {
+      var urlOpener4 = (key, desc, url) => {
+        mapkey7(key, desc, function() {
           const host = new URL(url).hostname;
           if (window.location.hostname === host) {
             window.location.href = url;
@@ -46,30 +46,30 @@
           }
         });
       };
-      mapkey6("oap", "perplexity ai", function() {
+      mapkey7("oap", "perplexity ai", function() {
         if (window.location.hostname.includes("perplexity")) {
           window.location.href = "https://www.perplexity.ai/";
         } else {
           window.open("https://www.perplexity.ai/", "_blank");
         }
       });
-      mapkey6("oaj", "gemini ai", function() {
+      mapkey7("oaj", "gemini ai", function() {
         if (window.location.hostname.includes("gemini")) {
           window.location.href = "https://gemini.google.com/app";
         } else {
           window.open("https://gemini.google.com/app", "_blank");
         }
       });
-      mapkey6("oad", "Deep ai", function() {
+      mapkey7("oad", "Deep ai", function() {
         window.open("https://deepai.org/dashboard/images", "_blank");
       });
-      urlOpener3("oas", "Open deepseek", "https://chat.deepseek.com/");
-      urlOpener3("oak", "claude", "https://claude.ai/new");
-      urlOpener3("oag", "open grok ai", "https://grok.com/");
-      urlOpener3("oaa", "open google audio", "https://aistudio.google.com/live");
-      urlOpener3("oaq", "Open github copilot", "https://github.com/copilot");
+      urlOpener4("oas", "Open deepseek", "https://chat.deepseek.com/");
+      urlOpener4("oak", "claude", "https://claude.ai/new");
+      urlOpener4("oag", "open grok ai", "https://grok.com/");
+      urlOpener4("oaa", "open google audio", "https://aistudio.google.com/live");
+      urlOpener4("oaq", "Open github copilot", "https://github.com/copilot");
       module.exports = {
-        urlOpener: urlOpener3
+        urlOpener: urlOpener4
       };
     }
   });
@@ -77,9 +77,9 @@
   // src/utils/utils.js
   var require_utils = __commonJS({
     "src/utils/utils.js"(exports, module) {
-      var { mapkey: mapkey6 } = api;
+      var { mapkey: mapkey7 } = api;
       module.exports = {
-        mapkey: mapkey6
+        mapkey: mapkey7
       };
     }
   });
@@ -367,7 +367,7 @@
   // src/modules/github/githubUrlOpener.js
   var require_githubUrlOpener = __commonJS({
     "src/modules/github/githubUrlOpener.js"(exports, module) {
-      var { urlOpener: urlOpener3 } = require_aiOpener();
+      var { urlOpener: urlOpener4 } = require_aiOpener();
       var githubUrlOpener = (key, desc, url) => {
         api.mapkey(key, desc, function() {
           const repoUrl = url + "?tab=repositories";
@@ -401,7 +401,7 @@
       api.mapkey("grn", "create new github repo", function() {
         window.open("https://github.com/new", "_blank");
       });
-      urlOpener3(
+      urlOpener4(
         "orc",
         "open credential",
         "https://github.com/shahjalal-labs/project_track/blob/main/smt_ofice_credential/cred.md#smt-office-credential"
@@ -470,7 +470,7 @@ Portfolio: https://shahjalal-labs.surge.sh
 LinkedIn: https://www.linkedin.com/in/shahjalal-labs
 Facebook: https://www.facebook.com/shahjalal.labs
 
-I\u2019d appreciate it if you review my profile\u2014a quick review could be worth your time.
+I\u2019d appreciate it if you review my profile\u2014a quick review could be worth me .
 `
       );
     }
@@ -578,87 +578,45 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   var import_aiOpener = __toESM(require_aiOpener());
 
   // src/modules/opener/webDevOpener.js
-  api.mapkey("ocm", "open mongodb", function() {
-    if (window.location.hostname.includes("mongodb")) {
-      window.location.href = "https://cloud.mongodb.com";
-    } else {
-      window.open("https://cloud.mongodb.com", "_blank");
-    }
-  });
-  api.mapkey("oct", "open tailwind vite ", function() {
-    if (window.location.hostname.includes("tailwindcss")) {
-      window.location.href = "https://tailwindcss.com/docs/installation/using-vite";
-    } else {
-      window.open(
-        "https://tailwindcss.com/docs/installation/using-vite",
-        "_blank"
-      );
-    }
-  });
-  api.mapkey("ocd", "open daisyUI", function() {
-    if (window.location.hostname.includes("daisyui")) {
-      window.location.href = "https://daisyui.com/docs/install/vite/";
-    } else {
-      window.open("https://daisyui.com/docs/install/vite/", "_blank");
-    }
-  });
+  var { mapkey } = api;
+  var urlOpener = (key, desc, url) => {
+    mapkey(key, desc, function() {
+      const host = new URL(url).hostname;
+      if (window.location.hostname === host) {
+        window.location.href = url;
+      } else {
+        window.open(url, "_blank");
+      }
+    });
+  };
+  urlOpener("ocm", "open mongodb", "https://cloud.mongodb.com");
+  urlOpener(
+    "oct",
+    "open tailwind vite",
+    "https://tailwindcss.com/docs/installation/using-vite"
+  );
+  urlOpener("ocd", "open daisyUI", "https://daisyui.com/docs/install/vite/");
+  urlOpener("ocn", "open nextjs Docs", "https://nextjs.org/docs");
+  urlOpener("oce", "open temp mail", "https://tempmail.plus/en/#!");
+  urlOpener(
+    "ocp",
+    "open postman web",
+    "https://shahjalal-backend-9458759.postman.co/workspaces"
+  );
+  urlOpener("ocdn", "open dns checker org", "https://dnschecker.org/");
+  urlOpener("ocii", "open ip info", "https://ipinfo.io/");
+  urlOpener("ocil", "open ip2 location", "https://www.ip2location.com/demo");
+  urlOpener(
+    "ocr",
+    "Fiverr safe message Rewriter",
+    "https://safemessage.vercel.app/"
+  );
+  urlOpener("ocf", "Fiverr message Rewriter", "https://rewrite.smtsigma.com/");
   api.mapkey("ocl", "open localhost", function() {
     if (window.location.hostname.includes("localhost")) {
       window.open("http://localhost:5174/", "_blank");
     } else {
       window.open("http://localhost:5173/", "_blank");
-    }
-  });
-  api.mapkey("ocn", "open nextjs Docs", function() {
-    if (window.location.hostname.includes("nextjs.org")) {
-      window.location.href = "https://nextjs.org/docs";
-    } else {
-      window.open("https://nextjs.org/docs", "_blank");
-    }
-  });
-  api.mapkey("ocf", "Fiverr Message Rewriter", function() {
-    if (window.location.hostname.includes("safemessage.vercel.app")) {
-      window.location.href = "https://safemessage.vercel.app/";
-    } else {
-      window.open("https://safemessage.vercel.app/", "_blank");
-    }
-  });
-  api.mapkey("oce", "open temp mail", function() {
-    if (window.location.hostname.includes("tempmail.plus")) {
-      window.location.href = "https://tempmail.plus/en/#!";
-    } else {
-      window.open("https://tempmail.plus/en/#!", "_blank");
-    }
-  });
-  api.mapkey("ocp", "open postman web", function() {
-    if (window.location.hostname.includes("shahjalal-backend-9458759.postman.co")) {
-      window.location.href = "https://shahjalal-backend-9458759.postman.co/workspaces";
-    } else {
-      window.open(
-        "https://shahjalal-backend-9458759.postman.co/workspaces",
-        "_blank"
-      );
-    }
-  });
-  api.mapkey("ocd", "open dns checker org", function() {
-    if (window.location.hostname.includes("dnschecker")) {
-      window.location.href = "https://dnschecker.org/";
-    } else {
-      window.open("https://dnschecker.org/", "_blank");
-    }
-  });
-  api.mapkey("ocii", "open ip info", function() {
-    if (window.location.hostname.includes("ipinfo.io")) {
-      window.location.href = "https://ipinfo.io/";
-    } else {
-      window.open("https://ipinfo.io/", "_blank");
-    }
-  });
-  api.mapkey("ocil", "open ip2 location", function() {
-    if (window.location.hostname.includes("www.ip2location.com")) {
-      window.location.href = "https://www.ip2location.com/demo";
-    } else {
-      window.open("https://www.ip2location.com/demo", "_blank");
     }
   });
 
@@ -887,7 +845,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   });
 
   // src/modules/hoverClick/hoverClick.js
-  var { mapkey } = require_utils();
+  var { mapkey: mapkey2 } = require_utils();
   api.mapkey("cb", "\u{1F501} Persistent click hints", function repeatClickHints() {
     api.Hints.create(
       "a, button, select, input, textarea, summary, *[onclick], *[contenteditable=true], *.jfk-button, *.goog-flat-menu-button, *[role=button], *[role=link], *[role=menuitem], *[role=option], *[role=switch], *[role=tab], *[role=checkbox], *[role=combobox], *[role=menuitemcheckbox], *[role=menuitemradio]",
@@ -948,7 +906,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     }
     // { domain: /\.postman\.(co|com)$/i }, // work only domain where postman .com exists this type something
   );
-  mapkey("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
+  mapkey2("ti", "\u{1F3AF} Prisma Studio input/value hints", function() {
     api.Hints.create(
       'input, textarea, td, [contenteditable], [role="textbox"], [class*="editable"], [class*="cell"], .ag-cell',
       function(element) {
@@ -2490,7 +2448,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   api.mapkey("orU", "open Team Unity Sheets", openTeamUnityUpdateStatusSheets);
 
   // src/modules/yank/urlYanker.js
-  var { mapkey: mapkey2, Clipboard } = api;
+  var { mapkey: mapkey3, Clipboard } = api;
   function copyUrlParts(n) {
     const { origin, pathname } = window.location;
     const parts = pathname.split("/").filter(Boolean);
@@ -2505,12 +2463,12 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     }
     Clipboard.write(toCopy);
   }
-  mapkey2("ag0", "Copy root URL", () => copyUrlParts(0));
-  mapkey2("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
-  mapkey2("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
-  mapkey2("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
-  mapkey2("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
-  mapkey2("ag,", "Open root URL in new tab", () => {
+  mapkey3("ag0", "Copy root URL", () => copyUrlParts(0));
+  mapkey3("ag1", "Copy last 1 path segment", () => copyUrlParts(1));
+  mapkey3("ag2", "Copy last 2 path segments", () => copyUrlParts(2));
+  mapkey3("ag3", "Copy last 3 path segments", () => copyUrlParts(3));
+  mapkey3("ag4", "Copy last 4 path segments", () => copyUrlParts(4));
+  mapkey3("ag,", "Open root URL in new tab", () => {
     const root = window.location.origin;
     window.open(root, "_blank");
   });
@@ -2808,7 +2766,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   });
 
   // src/modules/tab.js
-  var { mapkey: mapkey3, RUNTIME } = api;
+  var { mapkey: mapkey4, RUNTIME } = api;
   api.map("tj", "g0");
   api.map("tk", "g$");
   api.map("th", "E");
@@ -2835,7 +2793,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   api.map("th", "<<");
   api.map("tl", ">>");
   console.log("\u{1F680} Console error-free tab navigation loaded!");
-  mapkey3("sxx", "Close all tabs from same host", function() {
+  mapkey4("sxx", "Close all tabs from same host", function() {
     api.RUNTIME("getTabs", { queryInfo: {} }, function(response) {
       const tabs = response.tabs;
       api.RUNTIME("getTabs", { queryInfo: { active: true, currentWindow: true } }, function(response2) {
@@ -3001,7 +2959,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   var import_githubUrlOpener = __toESM(require_githubUrlOpener());
 
   // src/modules/opener/smtFigma/smtFigma.js
-  var { urlOpener } = require_aiOpener();
+  var { urlOpener: urlOpener2 } = require_aiOpener();
   api.mapkey("ova", "ashmaster figma", function() {
     if (window.location.hostname.includes("www.figma.com")) {
       window.location.href = "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1";
@@ -3022,29 +2980,29 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       );
     }
   });
-  urlOpener(
+  urlOpener2(
     "ovh",
     "open habib050505 figma",
     "https://www.figma.com/design/G0pU3jlT4NMwC3OYJp2ruW/habib050505_azmabiomed.com_Website?node-id=42432-498&t=UA5pLMtzMBhkbqFy-0"
   );
-  urlOpener(
+  urlOpener2(
     "ovdh",
     "open habib050505 docs",
     "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0"
   );
-  urlOpener(
+  urlOpener2(
     "ovr",
     "open rkrazak figma",
     "https://www.figma.com/design/Lfe9pK63CjmvnIn1NXTXsm/rkrazak---ABS-Fresh--Farming-mobile-app-?node-id=0-1&p=f&t=GMwTyB5T0BIDLVpO-0"
   );
-  urlOpener(
+  urlOpener2(
     "ovdr",
     "open rkrazak docs",
     "https://docs.google.com/spreadsheets/d/1e84IK20ryP9PAnYRRZzKSDZ47hBr2ugAuMwIuVJe5ZI/edit?gid=0#gid=0"
   );
 
   // src/modules/style/chatgpt.js
-  var { mapkey: mapkey4, Front } = api;
+  var { mapkey: mapkey5, Front } = api;
   function initFaviconReplacement() {
     let faviconObserver;
     let customFaviconUrl;
@@ -3493,7 +3451,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     replaceBranding();
     cleanupFavicon = initFaviconReplacement();
     cleanupPlaceholders = initPlaceholderReplacement();
-    mapkey4("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
+    mapkey5("ts", "Toggle SJ Pulse/ChatGPT UI", () => {
       const style = document.getElementById("sjPulse-night-theme");
       if (style) {
         style.remove();
@@ -3507,7 +3465,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         Front.showBanner("\u{1F680} SJ Pulse Stealth UI Activated");
       }
     });
-    mapkey4("tv", "Cycle theme variants", () => {
+    mapkey5("tv", "Cycle theme variants", () => {
       const variantNames = Object.keys(variants);
       const currentIndex = variantNames.indexOf(currentVariant);
       const nextIndex = (currentIndex + 1) % (variantNames.length + 1);
@@ -3526,7 +3484,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         );
       }
     });
-    mapkey4("tc", "Toggle compact layout", () => {
+    mapkey5("tc", "Toggle compact layout", () => {
       const styleId = "sjPulse-compact-style";
       let style = document.getElementById(styleId);
       if (style) {
@@ -3563,7 +3521,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   var import_textExpanse = __toESM(require_textExpanse());
 
   // src/modules/yt/yt.js
-  var { mapkey: mapkey5, Front: Front2 } = api;
+  var { mapkey: mapkey6, Front: Front2 } = api;
   var YOUTUBE_LANGUAGES = {
     original: {
       code: "original",
@@ -3711,20 +3669,20 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     }
     // Register SurfingKeys shortcuts
     registerKeys() {
-      mapkey5(
+      mapkey6(
         "ayy",
         "\u{1F310} Toggle YouTube language (Original \u2194 English USA)",
         () => {
           this.toggleLanguage();
         }
       );
-      mapkey5("ayo", "\u{1F3AC} Switch to Original language", () => {
+      mapkey6("ayo", "\u{1F3AC} Switch to Original language", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.original);
       });
-      mapkey5("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
+      mapkey6("ayu", "\u{1F1FA}\u{1F1F8} Switch to English (USA)", () => {
         this.setLanguage(YOUTUBE_LANGUAGES.en);
       });
-      mapkey5("ays", "\u{1F4CA} Show current YouTube language", () => {
+      mapkey6("ays", "\u{1F4CA} Show current YouTube language", () => {
         this.detectCurrentLanguage();
       });
     }
@@ -3808,15 +3766,15 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     url.search = params.toString();
     window.location.href = url.toString();
   }
-  mapkey5(
+  mapkey6(
     "ayt",
     "\u{1F4FA} Toggle YouTube captions (quick method)",
     toggleYouTubeCaptions
   );
 
   // src/modules/opener/knowledge/common.js
-  var { urlOpener: urlOpener2 } = require_aiOpener();
-  urlOpener2(
+  var { urlOpener: urlOpener3 } = require_aiOpener();
+  urlOpener3(
     "okd",
     "open fahim abdullah deep focus",
     "https://learn.fahimabdullah.com/student/dashboard"

@@ -1,45 +1,64 @@
-//w: ╭──────────── Block Start ────────────╮
-//w: ╰───────────── Block End ─────────────╯
+const { mapkey } = api;
 
-//
-//w: ╭──────────── Block Start ────────────╮
-api.mapkey("ocm", "open mongodb", function () {
-  if (window.location.hostname.includes("mongodb")) {
-    window.location.href = "https://cloud.mongodb.com";
-  } else {
-    window.open("https://cloud.mongodb.com", "_blank");
-  }
-});
-//w: ╰───────────── Block End ─────────────╯
+// Helper function – reuse for all simple URL openers
+const urlOpener = (key, desc, url) => {
+  mapkey(key, desc, function () {
+    const host = new URL(url).hostname;
+    if (window.location.hostname === host) {
+      window.location.href = url;
+    } else {
+      window.open(url, "_blank");
+    }
+  });
+};
 
-//
-//w: ╭──────────── Block Start ────────────╮
-api.mapkey("oct", "open tailwind vite ", function () {
-  if (window.location.hostname.includes("tailwindcss")) {
-    window.location.href =
-      "https://tailwindcss.com/docs/installation/using-vite";
-  } else {
-    window.open(
-      "https://tailwindcss.com/docs/installation/using-vite",
-      "_blank",
-    );
-  }
-});
-//w: ╰───────────── Block End ─────────────╯
+// ── Replaced blocks ─────────────────────────────────────────
 
-//
-//w: ╭──────────── Block Start ────────────╮
-api.mapkey("ocd", "open daisyUI", function () {
-  if (window.location.hostname.includes("daisyui")) {
-    window.location.href = "https://daisyui.com/docs/install/vite/";
-  } else {
-    window.open("https://daisyui.com/docs/install/vite/", "_blank");
-  }
-});
-//w: ╰───────────── Block End ─────────────╯
+// open mongodb
+urlOpener("ocm", "open mongodb", "https://cloud.mongodb.com");
 
-//
-//w: ╭──────────── Block Start ────────────╮
+// open tailwind vite
+urlOpener(
+  "oct",
+  "open tailwind vite",
+  "https://tailwindcss.com/docs/installation/using-vite",
+);
+
+// open daisyUI (key remains "ocd")
+urlOpener("ocd", "open daisyUI", "https://daisyui.com/docs/install/vite/");
+
+// open nextjs Docs
+urlOpener("ocn", "open nextjs Docs", "https://nextjs.org/docs");
+
+// open temp mail
+urlOpener("oce", "open temp mail", "https://tempmail.plus/en/#!");
+
+// open postman web
+urlOpener(
+  "ocp",
+  "open postman web",
+  "https://shahjalal-backend-9458759.postman.co/workspaces",
+);
+
+// open DNS checker (renamed to "ocdn" to avoid conflict)
+urlOpener("ocdn", "open dns checker org", "https://dnschecker.org/");
+
+// open ip info
+urlOpener("ocii", "open ip info", "https://ipinfo.io/");
+
+// open ip2 location
+urlOpener("ocil", "open ip2 location", "https://www.ip2location.com/demo");
+
+urlOpener(
+  "ocr",
+  "Fiverr safe message Rewriter",
+  "https://safemessage.vercel.app/",
+);
+
+urlOpener("ocf", "Fiverr message Rewriter", "https://rewrite.smtsigma.com/");
+
+// ── Special case: localhost with port logic (cannot be replaced) ──
+
 //t:localhost
 api.mapkey("ocl", "open localhost", function () {
   if (window.location.hostname.includes("localhost")) {
@@ -48,84 +67,3 @@ api.mapkey("ocl", "open localhost", function () {
     window.open("http://localhost:5173/", "_blank");
   }
 });
-//w: ╰───────────── Block End ─────────────╯
-
-//
-//w: ╭──────────── Block Start ────────────╮
-api.mapkey("ocn", "open nextjs Docs", function () {
-  if (window.location.hostname.includes("nextjs.org")) {
-    window.location.href = "https://nextjs.org/docs";
-  } else {
-    window.open("https://nextjs.org/docs", "_blank");
-  }
-});
-//w: ╰───────────── Block End ─────────────╯
-//
-
-//w: (start)╭──────────── Fiverr Message Rewriter ────────────╮
-api.mapkey("ocf", "Fiverr Message Rewriter", function () {
-  if (window.location.hostname.includes("safemessage.vercel.app")) {
-    window.location.href = "https://safemessage.vercel.app/";
-  } else {
-    window.open("https://safemessage.vercel.app/", "_blank");
-  }
-});
-//w: (end)  ╰──────────── Fiverr Message Rewriter ────────────╯
-
-//w: (start)╭──────────── open temp mail ────────────╮
-api.mapkey("oce", "open temp mail", function () {
-  if (window.location.hostname.includes("tempmail.plus")) {
-    window.location.href = "https://tempmail.plus/en/#!";
-  } else {
-    window.open("https://tempmail.plus/en/#!", "_blank");
-  }
-});
-//w: (end)  ╰──────────── open temp mail ────────────╯
-//
-
-//w: (start)╭──────────── open postman web ────────────╮
-// open postman web
-api.mapkey("ocp", "open postman web", function () {
-  if (
-    window.location.hostname.includes("shahjalal-backend-9458759.postman.co")
-  ) {
-    window.location.href =
-      "https://shahjalal-backend-9458759.postman.co/workspaces";
-  } else {
-    window.open(
-      "https://shahjalal-backend-9458759.postman.co/workspaces",
-      "_blank",
-    );
-  }
-});
-//w: (end)  ╰──────────── open postman web ────────────╯
-
-//w: (start)╭──────────── open dns checker org ────────────╮
-api.mapkey("ocd", "open dns checker org", function () {
-  if (window.location.hostname.includes("dnschecker")) {
-    window.location.href = "https://dnschecker.org/";
-  } else {
-    window.open("https://dnschecker.org/", "_blank");
-  }
-});
-//w: (end)  ╰──────────── open dns checker org ────────────╯
-
-//w: (start)╭──────────── open dns checker org ────────────╮
-api.mapkey("ocii", "open ip info", function () {
-  if (window.location.hostname.includes("ipinfo.io")) {
-    window.location.href = "https://ipinfo.io/";
-  } else {
-    window.open("https://ipinfo.io/", "_blank");
-  }
-});
-//w: (end)  ╰──────────── open dns checker org ────────────╯
-
-//w: (start)╭──────────── open dns checker org ────────────╮
-api.mapkey("ocil", "open ip2 location", function () {
-  if (window.location.hostname.includes("www.ip2location.com")) {
-    window.location.href = "https://www.ip2location.com/demo";
-  } else {
-    window.open("https://www.ip2location.com/demo", "_blank");
-  }
-});
-//w: (end)  ╰──────────── open dns checker org ────────────╯

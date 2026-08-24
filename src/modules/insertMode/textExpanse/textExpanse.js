@@ -91,6 +91,6 @@ Portfolio: https://shahjalal-labs.surge.sh
 LinkedIn: https://www.linkedin.com/in/shahjalal-labs
 Facebook: https://www.facebook.com/shahjalal.labs
 
-I’d appreciate it if you review my profile—a quick review could be worth your time.
+I’d appreciate it if you review my profile—a quick review could be worth me.
 `,
 );
