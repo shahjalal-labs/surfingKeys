@@ -57,6 +57,8 @@ urlOpener(
 
 urlOpener("ocf", "Fiverr message Rewriter", "https://rewrite.smtsigma.com/");
 
+urlOpener("ocg", "SMT Collaborate", "http://collaborate.smtsigma.com/");
+
 // ── Special case: localhost with port logic (cannot be replaced) ──
 
 //t:localhost

@@ -58,6 +58,92 @@ api.mapkey("gyu", "📋 Smart GitHub Repo Copier", async function () {
 });
 //w: 2╰───────────── Block End ─────────────╯
 
+//w: 2.1╭──────────── Block Start ────────────╮
+// t: 🔑 Copy GitHub Repo SSH URL with Hints
+api.mapkey(
+  "gys",
+  "🔑 Copy GitHub Repo SSH clone URL with hints",
+  function () {
+    if (!window.location.hostname.includes("github.com")) {
+      api.Front.showBanner("⚠️ Not on a GitHub page");
+      return;
+    }
+
+    const repoSelector = [
+      'a[href*="/"][itemprop="name codeRepository"]',
+      'a[data-hovercard-type="repository"]',
+      'a[data-testid="listitem-title-link"]',
+    ].join(", ");
+
+    const getSshUrl = (el) => {
+      const href = el.getAttribute("href") || el.pathname || "";
+      const match = href.match(/(?:github\.com\/|^|\/)([^\/?#]+)\/([^\/?#]+)/);
+      if (
+        match &&
+        !["orgs", "topics", "collections", "features", "settings"].includes(
+          match[1],
+        )
+      ) {
+        const owner = match[1];
+        const repo = match[2].replace(/\.git$/, "");
+        return `git@github.com:${owner}/${repo}.git`;
+      }
+
+      // Fallback: owner from URL path, repo from element text
+      const owner = window.location.pathname.split("/").filter(Boolean)[0];
+      const repo = el.innerText.trim().replace(/\.git$/, "");
+      if (owner && repo) {
+        return `git@github.com:${owner}/${repo}.git`;
+      }
+      return null;
+    };
+
+    const hasRepoElements = document.querySelectorAll(repoSelector).length > 0;
+    let hintCreated = false;
+
+    if (hasRepoElements) {
+      hintCreated = api.Hints.create(repoSelector, (el) => {
+        const sshUrl = getSshUrl(el);
+        if (sshUrl) {
+          api.Clipboard.write(sshUrl);
+          api.Front.showBanner(`🔑 Copied SSH: ${sshUrl}`);
+        } else {
+          api.Front.showBanner("❌ Could not extract repository info");
+        }
+      });
+    }
+
+    // If not in a repo listing or no hints created, check if already on a single repo page
+    if (!hintCreated) {
+      const pathParts = window.location.pathname.split("/").filter(Boolean);
+      if (
+        pathParts.length >= 2 &&
+        ![
+          "orgs",
+          "topics",
+          "collections",
+          "settings",
+          "notifications",
+          "search",
+          "explore",
+          "marketplace",
+          "trending",
+        ].includes(pathParts[0])
+      ) {
+        const owner = pathParts[0];
+        const repo = pathParts[1].replace(/\.git$/, "");
+        const sshUrl = `git@github.com:${owner}/${repo}.git`;
+        api.Clipboard.write(sshUrl);
+        api.Front.showBanner(`🔑 Copied SSH: ${sshUrl}`);
+      } else if (!hasRepoElements) {
+        api.Front.showBanner("⚠️ No GitHub repositories found on this page");
+      }
+    }
+  },
+  { domain: /github\.com/i },
+);
+//w: 2.1╰───────────── Block End ─────────────╯
+
 //w: 3╭──────────── Block Start ────────────╮
 //t: copy github username/repo like shahjalal-labs/nvim
 api.mapkey(

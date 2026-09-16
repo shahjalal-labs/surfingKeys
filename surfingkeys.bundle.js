@@ -470,7 +470,7 @@ Portfolio: https://shahjalal-labs.surge.sh
 LinkedIn: https://www.linkedin.com/in/shahjalal-labs
 Facebook: https://www.facebook.com/shahjalal.labs
 
-I\u2019d appreciate it if you review my profile\u2014a quick review could be worth me .
+I\u2019d appreciate it if you review my profile\u2014a quick review could be worth me.
 `
       );
     }
@@ -550,11 +550,98 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
 .sk_theme #sk_omnibarSearchResult ul li.focused {
     background: #313244; /* Highlight */
 }
-#sk_status, #sk_find {
-    font-size: 20pt;
-    background: #1e1e2e; /* Base */
-    color: #cdd6f4; /* Text */
-}`;
+    #sk_status, #sk_find {
+        font-size: 20pt;
+        background: #1e1e2e; /* Base */
+        color: #cdd6f4; /* Text */
+    }
+
+    /* \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 Modern Night Tab Switcher (#sk_tabs) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+    #sk_tabs {
+        background: rgba(17, 17, 27, 0.95) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+        padding: 8px 12px !important;
+    }
+
+    #sk_tabs div.sk_tab, div.sk_tab {
+        background: #1e1e2e !important;
+        border: 1px solid #313244 !important;
+        border-radius: 8px !important;
+        margin: 3px !important;
+        padding: 6px 10px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+        transition: all 0.15s ease-in-out !important;
+        box-sizing: border-box !important;
+    }
+
+    #sk_tabs div.sk_tab:hover, div.sk_tab:hover {
+        background: #252739 !important;
+        border-color: #89b4fa !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 16px rgba(137, 180, 250, 0.25) !important;
+    }
+
+    #sk_tabs div.sk_tab.active, div.sk_tab.active {
+        background: #313244 !important;
+        border-color: #cba6f7 !important;
+        box-shadow: 0 0 14px rgba(203, 166, 247, 0.3) !important;
+    }
+
+    #sk_tabs div.sk_tab_title, div.sk_tab_title {
+        color: #cdd6f4 !important;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        font-size: 11pt !important;
+        font-weight: 500 !important;
+        padding-left: 6px !important;
+    }
+
+    #sk_tabs div.sk_tab_url, div.sk_tab_url {
+        color: #a6adc8 !important;
+        font-size: 9pt !important;
+        font-family: "JetBrains Mono", monospace !important;
+    }
+
+    #sk_tabs div.sk_tab_hint, div.sk_tab_hint {
+        background: linear-gradient(135deg, #fab387 0%, #f38ba8 100%) !important;
+        color: #11111b !important;
+        border: none !important;
+        border-radius: 6px !important;
+        font-family: "JetBrains Mono", monospace !important;
+        font-size: 10pt !important;
+        font-weight: 700 !important;
+        padding: 2px 7px !important;
+        margin: 4px 6px !important;
+        box-shadow: 0 2px 8px rgba(243, 139, 168, 0.4) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    #sk_tabs.vertical div.sk_tab, div.sk_tab.vertical {
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+        margin-bottom: 6px !important;
+    }
+
+    #sk_tabs.vertical div.sk_tab_hint, div.sk_tab.vertical div.sk_tab_hint {
+        position: relative !important;
+        left: auto !important;
+        float: right !important;
+    }
+
+    #sk_banner {
+        background: #181825 !important;
+        color: #cdd6f4 !important;
+        border: 1px solid #cba6f7 !important;
+        border-top: none !important;
+        border-radius: 0 0 10px 10px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+        font-family: "Inter", sans-serif !important;
+        font-weight: 500 !important;
+    }
+`;
 
   // src/settings/settings.js
   api.Hints.setCharacters("asdjkluiopwermnhgzx,cvq'");
@@ -612,6 +699,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     "https://safemessage.vercel.app/"
   );
   urlOpener("ocf", "Fiverr message Rewriter", "https://rewrite.smtsigma.com/");
+  urlOpener("ocg", "SMT Collaborate", "http://collaborate.smtsigma.com/");
   api.mapkey("ocl", "open localhost", function() {
     if (window.location.hostname.includes("localhost")) {
       window.open("http://localhost:5174/", "_blank");
@@ -2892,6 +2980,74 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       api.Front.showBanner("\u26A0\uFE0F Not on a GitHub repo or repositories page");
     }
   });
+  api.mapkey(
+    "gys",
+    "\u{1F511} Copy GitHub Repo SSH clone URL with hints",
+    function() {
+      if (!window.location.hostname.includes("github.com")) {
+        api.Front.showBanner("\u26A0\uFE0F Not on a GitHub page");
+        return;
+      }
+      const repoSelector = [
+        'a[href*="/"][itemprop="name codeRepository"]',
+        'a[data-hovercard-type="repository"]',
+        'a[data-testid="listitem-title-link"]'
+      ].join(", ");
+      const getSshUrl = (el) => {
+        const href = el.getAttribute("href") || el.pathname || "";
+        const match = href.match(/(?:github\.com\/|^|\/)([^\/?#]+)\/([^\/?#]+)/);
+        if (match && !["orgs", "topics", "collections", "features", "settings"].includes(
+          match[1]
+        )) {
+          const owner2 = match[1];
+          const repo2 = match[2].replace(/\.git$/, "");
+          return `git@github.com:${owner2}/${repo2}.git`;
+        }
+        const owner = window.location.pathname.split("/").filter(Boolean)[0];
+        const repo = el.innerText.trim().replace(/\.git$/, "");
+        if (owner && repo) {
+          return `git@github.com:${owner}/${repo}.git`;
+        }
+        return null;
+      };
+      const hasRepoElements = document.querySelectorAll(repoSelector).length > 0;
+      let hintCreated = false;
+      if (hasRepoElements) {
+        hintCreated = api.Hints.create(repoSelector, (el) => {
+          const sshUrl = getSshUrl(el);
+          if (sshUrl) {
+            api.Clipboard.write(sshUrl);
+            api.Front.showBanner(`\u{1F511} Copied SSH: ${sshUrl}`);
+          } else {
+            api.Front.showBanner("\u274C Could not extract repository info");
+          }
+        });
+      }
+      if (!hintCreated) {
+        const pathParts = window.location.pathname.split("/").filter(Boolean);
+        if (pathParts.length >= 2 && ![
+          "orgs",
+          "topics",
+          "collections",
+          "settings",
+          "notifications",
+          "search",
+          "explore",
+          "marketplace",
+          "trending"
+        ].includes(pathParts[0])) {
+          const owner = pathParts[0];
+          const repo = pathParts[1].replace(/\.git$/, "");
+          const sshUrl = `git@github.com:${owner}/${repo}.git`;
+          api.Clipboard.write(sshUrl);
+          api.Front.showBanner(`\u{1F511} Copied SSH: ${sshUrl}`);
+        } else if (!hasRepoElements) {
+          api.Front.showBanner("\u26A0\uFE0F No GitHub repositories found on this page");
+        }
+      }
+    },
+    { domain: /github\.com/i }
+  );
   api.mapkey(
     "gyr",
     "Copy GitHub username/repo",
