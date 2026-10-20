@@ -561,74 +561,154 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         background: rgba(17, 17, 27, 0.95) !important;
         backdrop-filter: blur(20px) saturate(180%) !important;
         -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
-        padding: 8px 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7) !important;
+        padding: 6px !important;
+        width: 290px !important;
+        max-width: 290px !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 3px !important;
+    }
+
+    #sk_tabs::-webkit-scrollbar {
+        width: 4px !important;
+    }
+    #sk_tabs::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+    #sk_tabs::-webkit-scrollbar-thumb {
+        background: #313244 !important;
+        border-radius: 2px !important;
     }
 
     #sk_tabs div.sk_tab, div.sk_tab {
         background: #1e1e2e !important;
         border: 1px solid #313244 !important;
-        border-radius: 8px !important;
-        margin: 3px !important;
-        padding: 6px 10px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+        border-radius: 6px !important;
+        margin: 0 !important;
+        padding: 4px 8px !important;
+        box-shadow: none !important;
         transition: all 0.15s ease-in-out !important;
         box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        height: 32px !important;
+        overflow: hidden !important;
     }
 
     #sk_tabs div.sk_tab:hover, div.sk_tab:hover {
         background: #252739 !important;
         border-color: #89b4fa !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 16px rgba(137, 180, 250, 0.25) !important;
+        transform: none !important;
+        box-shadow: 0 2px 8px rgba(137, 180, 250, 0.2) !important;
     }
 
     #sk_tabs div.sk_tab.active, div.sk_tab.active {
         background: #313244 !important;
         border-color: #cba6f7 !important;
-        box-shadow: 0 0 14px rgba(203, 166, 247, 0.3) !important;
+        box-shadow: 0 0 10px rgba(203, 166, 247, 0.25) !important;
     }
 
-    #sk_tabs div.sk_tab_title, div.sk_tab_title {
-        color: #cdd6f4 !important;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-        font-size: 11pt !important;
-        font-weight: 500 !important;
-        padding-left: 6px !important;
-    }
-
-    #sk_tabs div.sk_tab_url, div.sk_tab_url {
-        color: #a6adc8 !important;
-        font-size: 9pt !important;
+    /* Hint badge: strictly left-aligned in a single column */
+    #sk_tabs div.sk_tab_hint, div.sk_tab_hint,
+    #sk_tabs.vertical div.sk_tab_hint, div.sk_tab.vertical div.sk_tab_hint {
+        position: static !important;
+        float: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 20px !important;
+        min-width: 20px !important;
+        max-width: 20px !important;
+        height: 18px !important;
+        box-sizing: border-box !important;
+        padding: 0 !important;
+        margin: 0 7px 0 0 !important;
+        flex-shrink: 0 !important;
+        order: -1 !important;
         font-family: "JetBrains Mono", monospace !important;
-    }
-
-    #sk_tabs div.sk_tab_hint, div.sk_tab_hint {
+        font-size: 8.5pt !important;
+        font-weight: 700 !important;
+        text-align: center !important;
         background: linear-gradient(135deg, #fab387 0%, #f38ba8 100%) !important;
         color: #11111b !important;
+        border-radius: 4px !important;
         border: none !important;
-        border-radius: 6px !important;
-        font-family: "JetBrains Mono", monospace !important;
-        font-size: 10pt !important;
-        font-weight: 700 !important;
-        padding: 2px 7px !important;
-        margin: 4px 6px !important;
-        box-shadow: 0 2px 8px rgba(243, 139, 168, 0.4) !important;
+        box-shadow: 0 1px 4px rgba(243, 139, 168, 0.3) !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
     }
 
-    #sk_tabs.vertical div.sk_tab, div.sk_tab.vertical {
-        padding: 8px 12px !important;
-        border-radius: 8px !important;
-        margin-bottom: 6px !important;
+    /* Active tab indicator: reserves the hint column space so active tab icon & title stay aligned */
+    #sk_tabs div.sk_tab.active::before, div.sk_tab.active::before {
+        content: "\u2022" !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 20px !important;
+        min-width: 20px !important;
+        max-width: 20px !important;
+        height: 18px !important;
+        box-sizing: border-box !important;
+        margin: 0 7px 0 0 !important;
+        flex-shrink: 0 !important;
+        order: -1 !important;
+        color: #cba6f7 !important;
+        font-size: 15pt !important;
+        line-height: 18px !important;
+        font-weight: 700 !important;
+        text-shadow: 0 0 6px rgba(203, 166, 247, 0.6) !important;
     }
 
-    #sk_tabs.vertical div.sk_tab_hint, div.sk_tab.vertical div.sk_tab_hint {
-        position: relative !important;
-        left: auto !important;
-        float: right !important;
+    /* Tab wrap: flex row for icon + title */
+    #sk_tabs div.sk_tab_wrap, div.sk_tab_wrap {
+        display: flex !important;
+        align-items: center !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* Favicon */
+    #sk_tabs div.sk_tab_icon, div.sk_tab_icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        width: 18px !important;
+        height: 18px !important;
+        margin: 0 7px 0 0 !important;
+        padding: 0 !important;
+    }
+
+    #sk_tabs div.sk_tab_icon img, div.sk_tab_icon img {
+        width: 16px !important;
+        height: 16px !important;
+        border-radius: 3px !important;
+    }
+
+    /* Tab Title: single line, truncated with ellipsis */
+    #sk_tabs div.sk_tab_title, div.sk_tab_title {
+        color: #cdd6f4 !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        font-size: 9pt !important;
+        font-weight: 500 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+    }
+
+    #sk_tabs div.sk_tab_url, div.sk_tab_url,
+    #sk_tabs div.tab_rocket, div.tab_rocket {
+        display: none !important;
     }
 
     #sk_banner {
@@ -2809,6 +2889,108 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     });
   });
 
+  // src/modules/yank/telegramYanker.js
+  function extractTelegramChatInfo(element) {
+    let chatUrl = "";
+    if (element.tagName === "A" && element.getAttribute("href")) {
+      chatUrl = element.href;
+    } else if (element.querySelector("a[href]")) {
+      chatUrl = element.querySelector("a[href]").href;
+    } else if (element.closest("a[href]")) {
+      chatUrl = element.closest("a[href]").href;
+    } else {
+      const peerId = element.getAttribute("data-peer-id") || element.dataset?.peerId;
+      if (peerId) {
+        const base = window.location.origin + window.location.pathname;
+        chatUrl = `${base}#${peerId}`;
+      }
+    }
+    const titleEl = element.querySelector(".peer-title, .user-title, .ListItem-title, .title");
+    const timeEl = element.querySelector(".message-time, .time");
+    const subtitleEl = element.querySelector(".dialog-subtitle, .row-subtitle, .subtitle");
+    const title = titleEl ? titleEl.innerText.split("\n")[0].trim() : "";
+    const time = timeEl ? timeEl.innerText.trim() : "";
+    const lastMessage = subtitleEl ? subtitleEl.innerText.trim().replace(/\s+/g, " ") : "";
+    const parts = [];
+    if (title) parts.push(`Chat: ${title}`);
+    if (chatUrl) parts.push(`Link: ${chatUrl}`);
+    if (time) parts.push(`Time: ${time}`);
+    if (lastMessage) parts.push(`Last Message: ${lastMessage}`);
+    return {
+      chatUrl,
+      title,
+      time,
+      lastMessage,
+      formatted: parts.join("\n") || chatUrl
+    };
+  }
+  function triggerTelegramHints(copyFullInfo = true) {
+    if (!window.location.hostname.includes("telegram.org")) {
+      api.Front.showBanner("\u26A0\uFE0F Not on Telegram Web");
+      return;
+    }
+    if (document.activeElement && (document.activeElement.isContentEditable || ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName))) {
+      document.activeElement.blur();
+    }
+    const selector = "a.chatlist-chat, a.chat-list-item, a[data-peer-id]";
+    api.Hints.create(selector, function(element) {
+      const info = extractTelegramChatInfo(element);
+      const toCopy = copyFullInfo ? info.formatted : info.chatUrl;
+      if (toCopy) {
+        api.Clipboard.write(toCopy);
+        const preview = info.title ? `[${info.title}]` : info.chatUrl;
+        api.Front.showBanner(`\u{1F4CB} Copied Telegram: ${preview}`);
+      } else {
+        api.Front.showBanner("\u26A0\uFE0F Could not extract Telegram chat info");
+      }
+    });
+  }
+  function copyActiveTelegramChat(copyFullInfo = true) {
+    if (!window.location.hostname.includes("telegram.org")) {
+      api.Front.showBanner("\u26A0\uFE0F Not on Telegram Web");
+      return;
+    }
+    if (document.activeElement && (document.activeElement.isContentEditable || ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName))) {
+      document.activeElement.blur();
+    }
+    const activeEl = document.querySelector("a.chatlist-chat.active, a.chat-list-item.active");
+    let info = null;
+    if (activeEl) {
+      info = extractTelegramChatInfo(activeEl);
+    } else {
+      const title = document.querySelector(".chat-info .peer-title, .top .peer-title, .chat-title")?.innerText?.trim() || "";
+      const chatUrl = window.location.href;
+      const parts = [];
+      if (title) parts.push(`Chat: ${title}`);
+      if (chatUrl) parts.push(`Link: ${chatUrl}`);
+      info = {
+        chatUrl,
+        title,
+        time: "",
+        lastMessage: "",
+        formatted: parts.join("\n") || chatUrl
+      };
+    }
+    const toCopy = copyFullInfo ? info.formatted : info.chatUrl;
+    if (toCopy && (info.chatUrl.includes("#") || window.location.href.includes("#"))) {
+      api.Clipboard.write(toCopy);
+      const preview = info.title ? `[${info.title}]` : info.chatUrl;
+      api.Front.showBanner(`\u{1F4CB} Copied Active Telegram: ${preview}`);
+    } else {
+      api.Front.showBanner("\u26A0\uFE0F No active chat selected");
+    }
+  }
+  api.mapkey("yc", "\u{1F4CB} Copy Telegram chat info (Name, Link, Time, Message) using hints", () => triggerTelegramHints(true));
+  api.mapkey("yC", "\u{1F4CB} Copy active Telegram chat info directly", () => copyActiveTelegramChat(true));
+  api.mapkey("yt", "\u{1F4CB} Copy Telegram chat URL only using hints", () => triggerTelegramHints(false));
+  api.mapkey("yT", "\u{1F4CB} Copy active Telegram chat URL directly", () => copyActiveTelegramChat(false));
+  api.imapkey("yC", "\u{1F4CB} Copy active Telegram chat info directly (Insert mode)", () => copyActiveTelegramChat(true), { domain: /telegram\.org/i });
+  api.imapkey("yT", "\u{1F4CB} Copy active Telegram chat URL directly (Insert mode)", () => copyActiveTelegramChat(false), { domain: /telegram\.org/i });
+  api.imapkey(",yc", "\u{1F4CB} Copy Telegram chat info using hints (Insert mode)", () => triggerTelegramHints(true), { domain: /telegram\.org/i });
+  api.imapkey(",yC", "\u{1F4CB} Copy active Telegram chat info directly (Insert mode)", () => copyActiveTelegramChat(true), { domain: /telegram\.org/i });
+  api.imapkey(",yt", "\u{1F4CB} Copy Telegram chat URL only using hints (Insert mode)", () => triggerTelegramHints(false), { domain: /telegram\.org/i });
+  api.imapkey(",yT", "\u{1F4CB} Copy active Telegram chat URL directly (Insert mode)", () => copyActiveTelegramChat(false), { domain: /telegram\.org/i });
+
   // src/modules/opener/PH/PhHelp/phHelp.js
   api.mapkey("phg", "PH b11 github repositories", function() {
     window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
@@ -3269,7 +3451,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       isReplacing = true;
       const textareas = document.querySelectorAll("textarea");
       textareas.forEach((textarea) => {
-        if (textarea.placeholder && textarea.placeholder.includes("Ask anything")) {
+        if (textarea.placeholder && (textarea.placeholder.includes("Ask anything") || textarea.placeholder.includes("Ask ChatGPT"))) {
           Object.defineProperty(textarea, "placeholder", {
             get: function() {
               return "Pulse Query \u{1FAC0}";
@@ -3289,6 +3471,14 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
           if (!originalDescriptor || !originalDescriptor.get) {
             textarea._originalPlaceholder = "Pulse Query \u{1FAC0}";
           }
+        }
+      });
+      const prosePlaceholders = document.querySelectorAll(
+        ".ProseMirror p[data-placeholder]"
+      );
+      prosePlaceholders.forEach((p) => {
+        if (p.getAttribute("data-placeholder") !== "Pulse Query \u{1FAC0}") {
+          p.setAttribute("data-placeholder", "Pulse Query \u{1FAC0}");
         }
       });
       isReplacing = false;
@@ -3339,98 +3529,177 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       font-family: 'Segoe UI', system-ui, sans-serif !important;
     }
 
-    /* Header & Branding */
-    header, .sticky {
+    /* Top Header */
+    header {
       background: rgba(10, 10, 20, 0.95) !important;
       backdrop-filter: blur(20px) !important;
       border-bottom: 1px solid #2a2a4a !important;
     }
 
-    /* Main Chat Area - Safe styling */
-    main, [class*="flex-1"] {
-      background: rgba(15, 15, 30, 0.8) !important;
-      border-radius: 16px !important;
-      margin: 8px !important;
-      border: 1px solid #2a2a4a !important;
-    }
-
-    /* Message Bubbles */
-    .text-base {
-      background: linear-gradient(135deg, #1e1e3f 0%, #2d2b55 100%) !important;
-      border-radius: 18px !important;
-      padding: 16px 20px !important;
-      margin: 12px 0 !important;
-      border: 1px solid #3a3a6a !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-      color: #A7B49E !important;
-    }
-
-    /* User message bubbles */
-    [data-message-author-role="user"] .text-base {
-      background: linear-gradient(135deg, #2a2a5a 0%, #3a3a7a 100%) !important;
-      border: 1px solid #4a4a8a !important;
-      color: #A7B49E !important;
-    }
-
-    /* Input Area - Fixed */
-    form textarea, [data-testid*="textarea"] {
-      background: rgba(20, 20, 40, 0.9) !important;
-      color: #A7B49E !important;
-      border: 1px solid #3a3a6a !important;
-      border-radius: 20px !important;
-      padding: 16px 20px !important;
-      font-size: 14px !important;
-      backdrop-filter: blur(10px) !important;
-      resize: vertical !important;
-    }
-
-    form textarea:focus, [data-testid*="textarea"]:focus {
-      border-color: #646cff !important;
-      box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2) !important;
+    /* Main Chat Layout & Canvas - Transparent, no cascading borders */
+    main {
+      background: transparent !important;
       outline: none !important;
+      border: none !important;
     }
 
-    /* Send button */
+    /* Prevent any nested flex-1 containers from cascading margins or borders */
+    [class*="flex-1"] {
+      border-color: transparent;
+      box-shadow: none !important;
+    }
+
+    /* Remove focus rings and extra outlines from conversation scroll containers */
+    [class*="thread-scroll-container"],
+    [class*="MainContent"] {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+
+    /* User Message Bubble - Targeted, sleek, compact */
+    [data-user-message-bubble="true"],
+    [data-message-author-role="user"] {
+      background: linear-gradient(135deg, #25254d 0%, #343468 100%) !important;
+      border: 1px solid #4a4a8a !important;
+      border-radius: 14px !important;
+      padding: 8px 14px !important;
+      color: #D3DDCB !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+      max-width: 80% !important;
+    }
+
+    /* Assistant Response Container */
+    [data-message-author-role="assistant"],
+    [data-chatgpt-search-unit-key*="assistant"] {
+      color: #A7B49E !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Sidebar Shell */
+    nav, [class*="sidebar-rail"], aside {
+      background: rgba(10, 10, 20, 0.94) !important;
+      backdrop-filter: blur(15px) !important;
+      border-right: 1px solid #22223a !important;
+    }
+
+    /* Sidebar items - Compact, reset rogue pill styles */
+    nav .sidebar-item,
+    nav button,
+    nav a {
+      background: transparent;
+      border: none !important;
+      border-radius: 6px !important;
+      box-shadow: none !important;
+      color: #A7B49E !important;
+      transition: background 0.15s ease, color 0.15s ease !important;
+    }
+
+    nav .sidebar-item:hover,
+    nav button:hover,
+    nav a:hover {
+      background: rgba(100, 108, 255, 0.14) !important;
+      color: #ffffff !important;
+    }
+
+    /* Active / Selected Chat in Sidebar - Crystal clear visibility */
+    nav .sidebar-item[aria-current="page"],
+    nav .sidebar-item:has([aria-current="page"]),
+    nav [data-app-action-sidebar-thread-selected="true"],
+    nav [data-sidebar-cycle-item][aria-current="page"],
+    nav [data-sidebar-chatgpt-conversation-key]:has([aria-current="page"]) .sidebar-item,
+    nav [data-sidebar-chatgpt-conversation-key]:has([aria-current="page"]) a,
+    nav li:has([aria-current="page"]) {
+      background: linear-gradient(90deg, rgba(100, 108, 255, 0.28) 0%, rgba(42, 42, 90, 0.45) 100%) !important;
+      border: 1px solid rgba(100, 108, 255, 0.5) !important;
+      border-left: 3px solid #646cff !important;
+      border-radius: 6px !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 12px rgba(100, 108, 255, 0.18) !important;
+    }
+
+    nav .sidebar-item[aria-current="page"] *,
+    nav .sidebar-item:has([aria-current="page"]) *,
+    nav [data-app-action-sidebar-thread-selected="true"] *,
+    nav [data-sidebar-chatgpt-conversation-key]:has([aria-current="page"]) * {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+    }
+
+    /* Neutralize .text-base inside nav/sidebar */
+    nav .text-base,
+    nav [class*="text-"] {
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* Input & Composer Area */
+    form [contenteditable="true"],
+    form textarea,
+    [data-testid*="textarea"] {
+      background: transparent !important;
+      color: #D3DDCB !important;
+      font-size: 14px !important;
+    }
+
+    /* Outer composer pill */
+    form > div {
+      background: rgba(18, 18, 36, 0.95) !important;
+      border: 1px solid #36365a !important;
+      border-radius: 18px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    form > div:focus-within {
+      border-color: #646cff !important;
+      box-shadow: 0 0 0 1px #646cff, 0 4px 20px rgba(100, 108, 255, 0.2) !important;
+    }
+
+    /* Placeholder in ProseMirror */
+    .ProseMirror p.placeholder::before {
+      content: "Pulse Query \u{1FAC0}" !important;
+      color: #A7B49E !important;
+      opacity: 0.65 !important;
+    }
+
+    /* Fix bottom black cutoff strip */
+    .background-uNUrfY,
+    [class*="surface-nr8PSS"],
+    div[class*="pointer-events-none"][class*="bottom-0"] {
+      background: transparent !important;
+    }
+
+    /* Send & action buttons */
     button[data-testid*="send"] {
       background: linear-gradient(135deg, #646cff 0%, #747bff 100%) !important;
       border: none !important;
-      border-radius: 12px !important;
+      border-radius: 10px !important;
       color: white !important;
-      transition: all 0.3s ease !important;
+      transition: all 0.2s ease !important;
     }
 
     button[data-testid*="send"]:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 8px 25px rgba(100, 108, 255, 0.4) !important;
-    }
-
-    /* Sidebar - Safe styling */
-    nav, [class*="sidebar"], [class*="Nav"] {
-      background: rgba(10, 10, 20, 0.9) !important;
-      backdrop-filter: blur(15px) !important;
-      border-right: 1px solid #2a2a4a !important;
-    }
-
-    /* Sidebar items */
-    nav a, [class*="Nav"] a, [class*="nav"] a {
-      background: transparent !important;
-      border-radius: 10px !important;
-      margin: 4px 8px !important;
-      transition: all 0.3s ease !important;
-      color: #A7B49E !important;
-    }
-
-    nav a:hover, [class*="Nav"] a:hover {
-      background: rgba(100, 108, 255, 0.1) !important;
-      transform: translateX(4px) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4) !important;
     }
 
     /* Code Blocks */
-    pre, code {
-      background: #1a1a2e !important;
-      border: 1px solid #2a2a4a !important;
-      border-radius: 12px !important;
-      color: #A7B49E !important;
+    pre, pre code, [class*="code-block"] {
+      background: #121224 !important;
+      border: 1px solid #282846 !important;
+      border-radius: 8px !important;
+      color: #c0ceb8 !important;
+    }
+
+    /* Inline code */
+    :not(pre) > code {
+      background: rgba(100, 108, 255, 0.12) !important;
+      color: #9cb4dd !important;
+      padding: 2px 5px !important;
+      border-radius: 4px !important;
+      border: 1px solid rgba(100, 108, 255, 0.2) !important;
     }
 
     /* Copy/Yank button */
@@ -3439,27 +3708,31 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       border: 1px solid #646cff !important;
       border-radius: 8px !important;
       color: #646cff !important;
-      transition: all 0.3s ease !important;
+      transition: all 0.2s ease !important;
     }
 
     button:has(> div > svg):hover, button[class*="copy"]:hover {
       background: #646cff !important;
       color: white !important;
-      transform: scale(1.05) !important;
     }
 
     /* Scrollbars */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 5px;
+      height: 5px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #1a1a2e;
+      background: transparent;
     }
 
     ::-webkit-scrollbar-thumb {
+      background: #2a2a4a;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
       background: #646cff;
-      border-radius: 4px;
     }
 
     /* Loading Animation */
@@ -3467,37 +3740,26 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       color: #646cff !important;
     }
 
-    /* New Chat button */
-    button:has(svg), button[class*="new-chat"] {
-      background: linear-gradient(135deg, #646cff 0%, #747bff 100%) !important;
-      border: none !important;
-      border-radius: 12px !important;
-      color: white !important;
-      font-weight: 600 !important;
+    /* Typography hierarchy */
+    h1, h2, h3, h4, h5, h6 {
+      color: #e0eade !important;
     }
 
-    /* User menu */
-    [class*="user"] button {
-      background: transparent !important;
-      border: 1px solid #3a3a6a !important;
-      border-radius: 12px !important;
-      color: #A7B49E !important;
+    p, span, li, td, th, label {
+      color: #A7B49E;
     }
 
-    /* Additional text elements */
-    h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-      color: #A7B49E !important;
+    strong, b {
+      color: #e6efe3 !important;
     }
 
-    /* Input text */
     input, select, option {
       color: #A7B49E !important;
     }
 
-    /* Placeholder text */
     ::placeholder {
       color: #A7B49E !important;
-      opacity: 0.7 !important;
+      opacity: 0.65 !important;
     }
   `;
     const style = document.createElement("style");
@@ -3541,17 +3803,21 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%) !important;
         color: #A7B49E !important;
       }
-      .text-base {
+      [data-user-message-bubble="true"],
+      [data-message-author-role="user"] {
         background: linear-gradient(135deg, #1a0033 0%, #330066 100%) !important;
         border: 1px solid #00ff88 !important;
-        box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.25) !important;
         color: #A7B49E !important;
+      }
+      nav .sidebar-item[aria-current="page"],
+      nav .sidebar-item:has([aria-current="page"]),
+      nav [data-app-action-sidebar-thread-selected="true"] {
+        border-left: 3px solid #00ff88 !important;
+        background: rgba(0, 255, 136, 0.18) !important;
       }
       button[data-testid*="send"] {
         background: linear-gradient(135deg, #ff00ff 0%, #00ff88 100%) !important;
-      }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
       }
     `,
       "midnight-blue": `
@@ -3559,13 +3825,17 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         background: linear-gradient(135deg, #0f1a2b 0%, #1e3a5f 100%) !important;
         color: #A7B49E !important;
       }
-      .text-base {
+      [data-user-message-bubble="true"],
+      [data-message-author-role="user"] {
         background: linear-gradient(135deg, #1e3a5f 0%, #2e4a7f 100%) !important;
         border: 1px solid #3a5f8f !important;
         color: #A7B49E !important;
       }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
+      nav .sidebar-item[aria-current="page"],
+      nav .sidebar-item:has([aria-current="page"]),
+      nav [data-app-action-sidebar-thread-selected="true"] {
+        border-left: 3px solid #3a5f8f !important;
+        background: rgba(30, 58, 95, 0.45) !important;
       }
     `,
       amethyst: `
@@ -3573,13 +3843,17 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         background: linear-gradient(135deg, #1a102b 0%, #3a1f5f 100%) !important;
         color: #A7B49E !important;
       }
-      .text-base {
+      [data-user-message-bubble="true"],
+      [data-message-author-role="user"] {
         background: linear-gradient(135deg, #2a1f4f 0%, #4a2f7f 100%) !important;
         border: 1px solid #6b46c1 !important;
         color: #A7B49E !important;
       }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
+      nav .sidebar-item[aria-current="page"],
+      nav .sidebar-item:has([aria-current="page"]),
+      nav [data-app-action-sidebar-thread-selected="true"] {
+        border-left: 3px solid #6b46c1 !important;
+        background: rgba(107, 70, 193, 0.35) !important;
       }
     `,
       "deep-space": `
@@ -3587,13 +3861,17 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f3460 100%) !important;
         color: #A7B49E !important;
       }
-      .text-base {
+      [data-user-message-bubble="true"],
+      [data-message-author-role="user"] {
         background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%) !important;
         border: 1px solid #4cc9f0 !important;
         color: #A7B49E !important;
       }
-      h1, h2, h3, h4, h5, h6, p, span, div, li, td, th, label {
-        color: #A7B49E !important;
+      nav .sidebar-item[aria-current="page"],
+      nav .sidebar-item:has([aria-current="page"]),
+      nav [data-app-action-sidebar-thread-selected="true"] {
+        border-left: 3px solid #4cc9f0 !important;
+        background: rgba(76, 201, 240, 0.25) !important;
       }
     `
     };
@@ -3650,18 +3928,29 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
         style = document.createElement("style");
         style.id = styleId;
         style.textContent = `
-        .text-base { 
+        [data-user-message-bubble="true"],
+        [data-message-author-role="user"] { 
           font-size: 13px !important; 
-          padding: 12px 16px !important; 
-          margin: 8px 0 !important;
+          padding: 6px 10px !important; 
+          border-radius: 10px !important;
         }
-        form textarea, [data-testid*="textarea"] {
-          padding: 12px 16px !important;
+        [data-message-author-role="assistant"],
+        [data-chatgpt-search-unit-key*="assistant"],
+        .text-size-chat {
           font-size: 13px !important;
-          min-height: 60px !important;
+          line-height: 1.45 !important;
         }
-        main, [class*="flex-1"] {
-          margin: 4px !important;
+        nav .sidebar-item, nav button, nav a {
+          padding-top: 2px !important;
+          padding-bottom: 2px !important;
+          font-size: 12px !important;
+        }
+        pre, pre code {
+          font-size: 12px !important;
+          padding: 8px 12px !important;
+        }
+        form > div {
+          padding: 4px 8px !important;
         }
       `;
         document.head.appendChild(style);
