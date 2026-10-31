@@ -2924,6 +2924,34 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       formatted: parts.join("\n") || chatUrl
     };
   }
+  function extractTelegramMessageText(element) {
+    if (!element) return "";
+    const bubble = element.closest(".bubble, .Message") || element;
+    const msg = bubble.querySelector(".message, .media-caption, .translatable-message, .text-content, .attachment-description") || bubble;
+    const clone = msg.cloneNode(true);
+    clone.querySelectorAll(".time, .time-inner, .message-time, .status-icon, .reactions, .bubble-tail, .clearfix, svg").forEach((e) => e.remove());
+    return (clone.innerText || clone.textContent || "").trim();
+  }
+  function triggerTelegramMessageHints() {
+    if (!window.location.hostname.includes("telegram.org")) {
+      api.Front.showBanner("\u26A0\uFE0F Not on Telegram Web");
+      return;
+    }
+    if (document.activeElement && (document.activeElement.isContentEditable || ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName))) {
+      document.activeElement.blur();
+    }
+    const selector = ".bubble[data-mid]:not(.service), .Message[data-message-id]";
+    api.Hints.create(selector, function(element) {
+      const text = extractTelegramMessageText(element);
+      if (text) {
+        api.Clipboard.write(text);
+        const preview = text.length > 40 ? text.slice(0, 40) + "..." : text;
+        api.Front.showBanner(`\u{1F4CB} Copied Message: ${preview}`);
+      } else {
+        api.Front.showBanner("\u26A0\uFE0F No message text found in selected bubble");
+      }
+    });
+  }
   function triggerTelegramHints(copyFullInfo = true) {
     if (!window.location.hostname.includes("telegram.org")) {
       api.Front.showBanner("\u26A0\uFE0F Not on Telegram Web");
@@ -2980,10 +3008,12 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       api.Front.showBanner("\u26A0\uFE0F No active chat selected");
     }
   }
+  api.mapkey("ym", "\u{1F4CB} Copy Telegram message text using hints", () => triggerTelegramMessageHints());
   api.mapkey("yc", "\u{1F4CB} Copy Telegram chat info (Name, Link, Time, Message) using hints", () => triggerTelegramHints(true));
   api.mapkey("yC", "\u{1F4CB} Copy active Telegram chat info directly", () => copyActiveTelegramChat(true));
   api.mapkey("yt", "\u{1F4CB} Copy Telegram chat URL only using hints", () => triggerTelegramHints(false));
   api.mapkey("yT", "\u{1F4CB} Copy active Telegram chat URL directly", () => copyActiveTelegramChat(false));
+  api.imapkey(",ym", "\u{1F4CB} Copy Telegram message text using hints (Insert mode)", () => triggerTelegramMessageHints(), { domain: /telegram\.org/i });
   api.imapkey("yC", "\u{1F4CB} Copy active Telegram chat info directly (Insert mode)", () => copyActiveTelegramChat(true), { domain: /telegram\.org/i });
   api.imapkey("yT", "\u{1F4CB} Copy active Telegram chat URL directly (Insert mode)", () => copyActiveTelegramChat(false), { domain: /telegram\.org/i });
   api.imapkey(",yc", "\u{1F4CB} Copy Telegram chat info using hints (Insert mode)", () => triggerTelegramHints(true), { domain: /telegram\.org/i });
