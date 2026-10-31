@@ -3008,12 +3008,12 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       api.Front.showBanner("\u26A0\uFE0F No active chat selected");
     }
   }
-  api.mapkey("ym", "\u{1F4CB} Copy Telegram message text using hints", () => triggerTelegramMessageHints());
+  api.mapkey("yo", "\u{1F4CB} Copy Telegram message text using hints", () => triggerTelegramMessageHints());
   api.mapkey("yc", "\u{1F4CB} Copy Telegram chat info (Name, Link, Time, Message) using hints", () => triggerTelegramHints(true));
   api.mapkey("yC", "\u{1F4CB} Copy active Telegram chat info directly", () => copyActiveTelegramChat(true));
   api.mapkey("yt", "\u{1F4CB} Copy Telegram chat URL only using hints", () => triggerTelegramHints(false));
   api.mapkey("yT", "\u{1F4CB} Copy active Telegram chat URL directly", () => copyActiveTelegramChat(false));
-  api.imapkey(",ym", "\u{1F4CB} Copy Telegram message text using hints (Insert mode)", () => triggerTelegramMessageHints(), { domain: /telegram\.org/i });
+  api.imapkey(",yo", "\u{1F4CB} Copy Telegram message text using hints (Insert mode)", () => triggerTelegramMessageHints(), { domain: /telegram\.org/i });
   api.imapkey("yC", "\u{1F4CB} Copy active Telegram chat info directly (Insert mode)", () => copyActiveTelegramChat(true), { domain: /telegram\.org/i });
   api.imapkey("yT", "\u{1F4CB} Copy active Telegram chat URL directly (Insert mode)", () => copyActiveTelegramChat(false), { domain: /telegram\.org/i });
   api.imapkey(",yc", "\u{1F4CB} Copy Telegram chat info using hints (Insert mode)", () => triggerTelegramHints(true), { domain: /telegram\.org/i });
