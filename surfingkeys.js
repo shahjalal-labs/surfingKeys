@@ -31,3 +31,9 @@ import "./src/modules/yt/yt.js";
 import "./src/modules/opener/knowledge/common.js";
 //
 // import "./src/modules/style/deepseek.js";
+
+console.log("🚀 [SurfingKeys] Custom configuration loaded successfully!");
+if (typeof api !== "undefined" && api.Front && api.Front.showBanner) {
+  api.Front.showBanner("🚀 Surfingkeys config active", 2000);
+}
+

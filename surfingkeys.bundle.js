@@ -4213,4 +4213,10 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
     "open fahim abdullah deep focus",
     "https://learn.fahimabdullah.com/student/dashboard"
   );
+
+  // surfingkeys.js
+  console.log("\u{1F680} [SurfingKeys] Custom configuration loaded successfully!");
+  if (typeof api !== "undefined" && api.Front && api.Front.showBanner) {
+    api.Front.showBanner("\u{1F680} Surfingkeys config active", 2e3);
+  }
 })();
