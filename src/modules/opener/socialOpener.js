@@ -1,151 +1,102 @@
-//w: ╭──────────── Block Start ────────────╮
-
-//w: ╰───────────── Block End ─────────────╯
-
-//w: ╭──────────── Block Start ────────────╮
-// p: open discord session announcement
-api.mapkey("ouc", "open gContacts", function () {
-  if (window.location.hostname.includes("contacts")) {
-    window.location.href = "https://contacts.google.com/new";
+// Helper to open link in current tab if already on matching site, or new tab via SurfingKeys API
+function openTabOrRedirect(targetUrl, hostMatch) {
+  if (hostMatch && window.location.hostname.includes(hostMatch)) {
+    window.location.href = targetUrl;
   } else {
-    window.location.href = "https://contacts.google.com/";
-    window.open("https://contacts.google.com/new", "_blank");
+    api.tabOpenLink(targetUrl);
   }
+}
+
+//w: ╭──────────── Block Start ────────────╮
+// p: open gContacts
+api.mapkey("ouc", "open gContacts", function () {
+  openTabOrRedirect("https://contacts.google.com/new", "contacts");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 api.mapkey("oux", "open twitter @shahjalal_labs", function () {
-  if (window.location.hostname.includes("x.com")) {
-    window.location.href = "https://x.com/shahjalal_labs ";
-  } else {
-    window.open("https://x.com/shahjalal_labs ", "_blank");
-  }
+  openTabOrRedirect("https://x.com/shahjalal_labs", "x.com");
 });
 //w: ╰───────────── Block End ─────────────╯
-//
 
-//
 //w: ╭──────────── Block Start ────────────╮
 //t: facebook
 api.mapkey("ouf", "Open Facebook", function () {
-  window.open("https://www.facebook.com", "_blank");
+  api.tabOpenLink("https://www.facebook.com");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 api.mapkey("oue", "email inbox opening", function () {
-  window.open("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox", "_blank");
+  api.tabOpenLink("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 //t: open whatsApp
 api.mapkey("ouw", "whatsApp", function () {
-  window.open("https://web.whatsapp.com/", "_blank");
+  api.tabOpenLink("https://web.whatsapp.com/");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
-// p: open zoom session
+// p: open linkedin
 api.mapkey("oul", "open linkedin", function () {
-  if (window.location.hostname.includes("linkedin")) {
-    window.location.href = "https://www.linkedin.com/in/shahjalal-labs/";
-  } else {
-    window.open("https://www.linkedin.com/in/shahjalal-labs/", "_blank");
-  }
+  openTabOrRedirect("https://www.linkedin.com/in/shahjalal-labs/", "linkedin");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 // p: open discord session announcement
 api.mapkey("oud", "open ejp discord sesssion announcement", function () {
-  if (window.location.hostname.includes("discord")) {
-    window.location.href =
-      "https://discord.com/channels/1391805056957026364/1391809512100462592";
-  } else {
-    window.open(
-      "https://discord.com/channels/1391805056957026364/1391809512100462592",
-      "_blank",
-    );
-  }
+  openTabOrRedirect(
+    "https://discord.com/channels/1391805056957026364/1391809512100462592",
+    "discord"
+  );
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 // p: open zoom session
 api.mapkey("anz", "open ejp discord sesssion announcement", function () {
-  if (window.location.hostname.includes("zoom")) {
-    window.location.href = "https://www.zoom.us/join";
-  } else {
-    window.open("https://www.zoom.us/profile", "_blank");
-  }
+  openTabOrRedirect("https://www.zoom.us/profile", "zoom");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 //t: open youtube @shahjalal-labs
 api.mapkey("ouy", "open yt @shahjalal-labs", function () {
-  if (window.location.hostname.includes("youtube")) {
-    window.location.href = "https://www.youtube.com/@shahjalal-labs";
-  } else {
-    window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
-  }
+  openTabOrRedirect("https://www.youtube.com/@shahjalal-labs", "youtube");
 });
 //w: ╰───────────── Block End ─────────────╯
 
-//
 //w: ╭──────────── Block Start ────────────╮
 //t: open portfolio shahjalal-labs
 api.mapkey("oup", "open portfolio shahjalal-labs", function () {
-  if (window.location.hostname.includes("shahjalal-labs.surge.sh")) {
-    window.location.href = "https://shahjalal-labs.surge.sh";
-  } else {
-    window.open("https://shahjalal-labs.surge.sh", "_blank");
-  }
+  openTabOrRedirect("https://shahjalal-labs.surge.sh", "shahjalal-labs.surge.sh");
 });
 //w: ╰───────────── Block End ─────────────╯
-//
-//
+
 //w: ╭──────────── Block Start ────────────╮
-//t: open resume  shahjalal-labs
+//t: open resume shahjalal-labs
 api.mapkey("our", "open resume root", function () {
-  if (window.location.hostname.includes("drive.google.com")) {
-    window.location.href =
-      "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view";
-  } else {
-    window.open(
-      "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
-      "_blank",
-    );
-  }
+  openTabOrRedirect(
+    "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
+    "drive.google.com"
+  );
 });
 //w: ╰───────────── Block End ─────────────╯
 
 //w: ╭──────────── Block Start ────────────╮
 // open ms team live
 api.mapkey("out", "open ms team live", function () {
-  if (window.location.hostname.includes("teams.live.com")) {
-    window.location.href = "https://teams.live.com/v2/";
-  } else {
-    window.open("https://teams.live.com/v2/", "_blank");
-  }
+  openTabOrRedirect("https://teams.live.com/v2/", "teams.live.com");
 });
 //w: ╰───────────── Block End ─────────────╯
 
 //w: (start)╭──────────── open telegram ────────────╮
 api.mapkey("oua", "open telegram", function () {
-  if (window.location.hostname === "web.telegram.org") {
-    window.location.href = "https://web.telegram.org/a/#5772149609";
-  } else {
-    window.open("https://web.telegram.org/a/#5772149609", "_blank");
-  }
+  openTabOrRedirect("https://web.telegram.org/a/#5772149609", "web.telegram.org");
 });
-//w: (end)  ╰──────────── api ────────────╯
+//w: (end) ╰──────────── api ────────────╯

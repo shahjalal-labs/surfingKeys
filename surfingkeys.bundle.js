@@ -29,39 +29,30 @@
   var require_aiOpener = __commonJS({
     "src/modules/opener/aiOpener.js"(exports, module) {
       var { mapkey: mapkey7 } = api;
-      mapkey7("oac", "Open ChatGPT chk", function() {
-        let newTab = window.open("https://chatgpt.com/", "_blank");
-        console.log(newTab, ".surfingkeys.js", 240);
-        setInterval(() => {
-          console.log(`hellow`);
-        }, 2e3);
+      function openAiTab(url, hostMatch) {
+        if (hostMatch && window.location.hostname.includes(hostMatch)) {
+          window.location.href = url;
+        } else {
+          api.tabOpenLink(url);
+        }
+      }
+      mapkey7("oac", "Open ChatGPT", function() {
+        openAiTab("https://chatgpt.com/", "chatgpt.com");
       });
       var urlOpener4 = (key, desc, url) => {
         mapkey7(key, desc, function() {
           const host = new URL(url).hostname;
-          if (window.location.hostname === host) {
-            window.location.href = url;
-          } else {
-            window.open(url, "_blank");
-          }
+          openAiTab(url, host);
         });
       };
       mapkey7("oap", "perplexity ai", function() {
-        if (window.location.hostname.includes("perplexity")) {
-          window.location.href = "https://www.perplexity.ai/";
-        } else {
-          window.open("https://www.perplexity.ai/", "_blank");
-        }
+        openAiTab("https://www.perplexity.ai/", "perplexity");
       });
       mapkey7("oaj", "gemini ai", function() {
-        if (window.location.hostname.includes("gemini")) {
-          window.location.href = "https://gemini.google.com/app";
-        } else {
-          window.open("https://gemini.google.com/app", "_blank");
-        }
+        openAiTab("https://gemini.google.com/app", "gemini");
       });
       mapkey7("oad", "Deep ai", function() {
-        window.open("https://deepai.org/dashboard/images", "_blank");
+        api.tabOpenLink("https://deepai.org/dashboard/images");
       });
       urlOpener4("oas", "Open deepseek", "https://chat.deepseek.com/");
       urlOpener4("oak", "claude", "https://claude.ai/new");
@@ -729,16 +720,13 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
 
   // src/modules/opener/opener.js
   api.mapkey("ad", "Dotfiles", function() {
-    window.open(
-      "https://github.com/shahjalal-labs/allDotfilesBackupEndeavourOs",
-      "_blank"
-    );
+    api.tabOpenLink("https://github.com/shahjalal-labs/allDotfilesBackupEndeavourOs");
   });
   api.mapkey("ay,", "youtube opening", function() {
-    window.open("https://www.youtube.com/", "_blank");
+    api.tabOpenLink("https://www.youtube.com/");
   });
   api.mapkey("sb", "Open blank page", function() {
-    window.open("https://blank.page/", "_blank");
+    api.tabOpenLink("https://blank.page/");
   });
 
   // surfingkeys.js
@@ -752,7 +740,7 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
       if (window.location.hostname === host) {
         window.location.href = url;
       } else {
-        window.open(url, "_blank");
+        api.tabOpenLink(url);
       }
     });
   };
@@ -782,180 +770,133 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   urlOpener("ocg", "SMT Collaborate", "http://collaborate.smtsigma.com/");
   api.mapkey("ocl", "open localhost", function() {
     if (window.location.hostname.includes("localhost")) {
-      window.open("http://localhost:5174/", "_blank");
+      api.tabOpenLink("http://localhost:5174/");
     } else {
-      window.open("http://localhost:5173/", "_blank");
+      api.tabOpenLink("http://localhost:5173/");
     }
   });
 
   // src/modules/opener/socialOpener.js
-  api.mapkey("ouc", "open gContacts", function() {
-    if (window.location.hostname.includes("contacts")) {
-      window.location.href = "https://contacts.google.com/new";
+  function openTabOrRedirect(targetUrl, hostMatch) {
+    if (hostMatch && window.location.hostname.includes(hostMatch)) {
+      window.location.href = targetUrl;
     } else {
-      window.location.href = "https://contacts.google.com/";
-      window.open("https://contacts.google.com/new", "_blank");
+      api.tabOpenLink(targetUrl);
     }
+  }
+  api.mapkey("ouc", "open gContacts", function() {
+    openTabOrRedirect("https://contacts.google.com/new", "contacts");
   });
   api.mapkey("oux", "open twitter @shahjalal_labs", function() {
-    if (window.location.hostname.includes("x.com")) {
-      window.location.href = "https://x.com/shahjalal_labs ";
-    } else {
-      window.open("https://x.com/shahjalal_labs ", "_blank");
-    }
+    openTabOrRedirect("https://x.com/shahjalal_labs", "x.com");
   });
   api.mapkey("ouf", "Open Facebook", function() {
-    window.open("https://www.facebook.com", "_blank");
+    api.tabOpenLink("https://www.facebook.com");
   });
   api.mapkey("oue", "email inbox opening", function() {
-    window.open("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox", "_blank");
+    api.tabOpenLink("https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox");
   });
   api.mapkey("ouw", "whatsApp", function() {
-    window.open("https://web.whatsapp.com/", "_blank");
+    api.tabOpenLink("https://web.whatsapp.com/");
   });
   api.mapkey("oul", "open linkedin", function() {
-    if (window.location.hostname.includes("linkedin")) {
-      window.location.href = "https://www.linkedin.com/in/shahjalal-labs/";
-    } else {
-      window.open("https://www.linkedin.com/in/shahjalal-labs/", "_blank");
-    }
+    openTabOrRedirect("https://www.linkedin.com/in/shahjalal-labs/", "linkedin");
   });
   api.mapkey("oud", "open ejp discord sesssion announcement", function() {
-    if (window.location.hostname.includes("discord")) {
-      window.location.href = "https://discord.com/channels/1391805056957026364/1391809512100462592";
-    } else {
-      window.open(
-        "https://discord.com/channels/1391805056957026364/1391809512100462592",
-        "_blank"
-      );
-    }
+    openTabOrRedirect(
+      "https://discord.com/channels/1391805056957026364/1391809512100462592",
+      "discord"
+    );
   });
   api.mapkey("anz", "open ejp discord sesssion announcement", function() {
-    if (window.location.hostname.includes("zoom")) {
-      window.location.href = "https://www.zoom.us/join";
-    } else {
-      window.open("https://www.zoom.us/profile", "_blank");
-    }
+    openTabOrRedirect("https://www.zoom.us/profile", "zoom");
   });
   api.mapkey("ouy", "open yt @shahjalal-labs", function() {
-    if (window.location.hostname.includes("youtube")) {
-      window.location.href = "https://www.youtube.com/@shahjalal-labs";
-    } else {
-      window.open("https://www.youtube.com/@shahjalal-labs", "_blank");
-    }
+    openTabOrRedirect("https://www.youtube.com/@shahjalal-labs", "youtube");
   });
   api.mapkey("oup", "open portfolio shahjalal-labs", function() {
-    if (window.location.hostname.includes("shahjalal-labs.surge.sh")) {
-      window.location.href = "https://shahjalal-labs.surge.sh";
-    } else {
-      window.open("https://shahjalal-labs.surge.sh", "_blank");
-    }
+    openTabOrRedirect("https://shahjalal-labs.surge.sh", "shahjalal-labs.surge.sh");
   });
   api.mapkey("our", "open resume root", function() {
-    if (window.location.hostname.includes("drive.google.com")) {
-      window.location.href = "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view";
-    } else {
-      window.open(
-        "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
-        "_blank"
-      );
-    }
+    openTabOrRedirect(
+      "https://drive.google.com/file/d/1eKx1OO7p2tvSIxPKD1aDHu6sgPkVcJwN/view",
+      "drive.google.com"
+    );
   });
   api.mapkey("out", "open ms team live", function() {
-    if (window.location.hostname.includes("teams.live.com")) {
-      window.location.href = "https://teams.live.com/v2/";
-    } else {
-      window.open("https://teams.live.com/v2/", "_blank");
-    }
+    openTabOrRedirect("https://teams.live.com/v2/", "teams.live.com");
   });
   api.mapkey("oua", "open telegram", function() {
-    if (window.location.hostname === "web.telegram.org") {
-      window.location.href = "https://web.telegram.org/a/#5772149609";
-    } else {
-      window.open("https://web.telegram.org/a/#5772149609", "_blank");
-    }
+    openTabOrRedirect("https://web.telegram.org/a/#5772149609", "web.telegram.org");
   });
 
   // src/modules/opener/phOpener.js
   api.mapkey("pso", "scribble l1b10", () => {
-    window.open(
-      "https://web.programming-hero.com/update-1/video/update-1-42-1-scribbles-cafe-project-overview-and-tailwind-setup",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/update-1/video/update-1-42-1-scribbles-cafe-project-overview-and-tailwind-setup"
     );
   });
   api.mapkey("pwh", "HELP DESK", function() {
-    window.open("https://helpdesk.programming-hero.com/", "_blank");
+    api.tabOpenLink("https://helpdesk.programming-hero.com/");
   });
   api.mapkey("si", "L2B4Web", function() {
-    window.open(
-      "https://web.programming-hero.com/level2-batch-4-frontend-track/video/level2-batch-4-frontend-track-36-11-displaying-blogs-and-handling-loading-with-rtk-query-module-summary",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/level2-batch-4-frontend-track/video/level2-batch-4-frontend-track-36-11-displaying-blogs-and-handling-loading-with-rtk-query-module-summary"
     );
   });
   api.mapkey("sk", "outline L2B4", function() {
-    window.open(
-      "https://web.programming-hero.com/676fa61320dff5186afcd780/course-outline",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/676fa61320dff5186afcd780/course-outline"
     );
   });
   api.mapkey("ae", "Conceptual Level1 Batch 10", function() {
-    window.open("https://web.programming-hero.com/conceptual-session", "_blank");
+    api.tabOpenLink("https://web.programming-hero.com/conceptual-session");
   });
   api.mapkey("acd", "Conceptual Level1 Batch 11", function() {
-    window.open("https://web.programming-hero.com/conceptual-session", "_blank");
+    api.tabOpenLink("https://web.programming-hero.com/conceptual-session");
   });
   api.mapkey("sr", "redux", function() {
-    window.open(
-      "https://web.programming-hero.com/level2-batch-1/video/level2-batch-1-21-1-project-initialization-and-redux-store-setup-recap",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/level2-batch-1/video/level2-batch-1-21-1-project-initialization-and-redux-store-setup-recap"
     );
   });
   api.mapkey("sp", "pre requisite level2", function() {
-    window.open(
-      "https://web.programming-hero.com/next-level-prerequisites-batch4/video/next-level-prerequisites-batch4-45-8-active-route-loading-spinner-uselocation-usenavigation",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/next-level-prerequisites-batch4/video/next-level-prerequisites-batch4-45-8-active-route-loading-spinner-uselocation-usenavigation"
     );
   });
   api.mapkey("s4", "L2B4 typescript module 2", function() {
-    window.open(
+    api.tabOpenLink(
       "https://web.programming-hero.com/level2-batch-4/video/level2-batch-4-2-1-type-assertion-type-narrowing"
     );
   });
   api.mapkey("pwj", "Level1 Batch 11", function() {
-    window.open(
-      "https://web.programming-hero.com/web-11/video/web-11-15-9-module-summary-legal-system-practice-task-",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/web-11/video/web-11-15-9-module-summary-legal-system-practice-task-"
     );
   });
   api.mapkey("php", "open ph podcast", function() {
-    if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@ProgrammingHeroCommunity/podcasts")) {
-      window.location.href = "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts";
+    const url = "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts";
+    if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@programmingherocommunity/podcasts")) {
+      window.location.href = url;
     } else {
-      window.open(
-        "https://www.youtube.com/@ProgrammingHeroCommunity/podcasts",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
   });
 
   // src/modules/opener/islamicOpener.js
   api.mapkey("sj", "Open Wedding Nasheed", function() {
-    window.open(
-      "https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds",
-      "_blank"
-    );
+    api.tabOpenLink("https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds");
   });
   api.mapkey("opq", "Open Quran", function() {
-    window.open("https://quran.com", "_blank");
+    api.tabOpenLink("https://quran.com");
   });
   api.mapkey("ops", "open shariyah solution ahmadullah", function() {
+    const url = "https://www.youtube.com/@sheikhahmadullahofficial/streams";
     if (window.location.hostname.includes("youtube.com") && window.location.pathname.toLowerCase().includes("@sheikhahmadullahofficial")) {
-      window.location.href = "https://www.youtube.com/@sheikhahmadullahofficial/streams";
+      window.location.href = url;
     } else {
-      window.open(
-        "https://www.youtube.com/@sheikhahmadullahofficial/streams",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
   });
 
@@ -2534,86 +2475,77 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   });
 
   // src/modules/opener/resourceOpener.js
-  var openGDrive = () => {
-    if (window.location.hostname.includes("drive")) {
-      window.location.href = "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp";
+  function openResourceTab(url, hostMatch) {
+    if (hostMatch && window.location.hostname.includes(hostMatch)) {
+      window.location.href = url;
     } else {
-      window.open(
-        "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
+  }
+  var openGDrive = () => {
+    openResourceTab(
+      "https://drive.google.com/drive/u/0/folders/1zjnO2RfqwIhV_95-7nMnTPi1-2q5m1Cp",
+      "drive"
+    );
   };
   api.mapkey("ord", "open GDrive Resource", openGDrive);
   var openImgbb = () => {
     if (window.location.hostname.includes("imgbb") || window.location.hostname.includes("ibb")) {
       window.location.href = "https://md-shahjalal.imgbb.com/";
     } else {
-      window.open("https://md-shahjalal.imgbb.com/", "_blank");
+      api.tabOpenLink("https://md-shahjalal.imgbb.com/");
     }
   };
   api.mapkey("ori", "open imgbb Resource", openImgbb);
   var openJpSheet = () => {
-    if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628";
-    } else {
-      window.open(
-        "https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628",
-        "_blank"
-      );
-    }
+    openResourceTab(
+      "https://docs.google.com/spreadsheets/d/1OA2UGMcqJc6zST3BVR70qUqyMnjftBuFHLGP7sHR0z8/edit?gid=2099620628#gid=2099620628",
+      "docs"
+    );
   };
   api.mapkey("ors", "open Jp Sheet", openJpSheet);
   var openJpMasumVaiSheet = () => {
-    if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0";
-    } else {
-      window.open(
-        "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0",
-        "_blank"
-      );
-    }
+    openResourceTab(
+      "https://docs.google.com/spreadsheets/d/1MVvvT7qvJZEmejn9vdfPyOnjLFCxMpqUT92eClzV9PE/edit?gid=0#gid=0",
+      "docs"
+    );
   };
   api.mapkey("orm", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
-  api.mapkey("ork", "open Jp Masum Vai Sheet", openJpMasumVaiSheet);
+  var openJpMahinVaiSheet = () => {
+    openResourceTab(
+      "https://docs.google.com/spreadsheets/d/1d9wPS0-rstt0TY23AR1LP4SpCQfULYHItmUZZoI5Ww4/edit?gid=0#gid=0",
+      "docs"
+    );
+  };
+  api.mapkey("ork", "open Jp Mahin Vai Sheet", openJpMahinVaiSheet);
   var openPeopleDesk = () => {
-    if (window.location.hostname.includes("app.peopledesk.io")) {
-      window.location.href = "https://app.peopledesk.io/dashboard/employee";
-    } else {
-      window.open("https://app.peopledesk.io/dashboard/employee", "_blank");
-    }
+    openResourceTab(
+      "https://app.peopledesk.io/dashboard/employee",
+      "app.peopledesk.io"
+    );
   };
   api.mapkey("orp", "openPeopleDesk", openPeopleDesk);
   var openBetopiaErp = () => {
-    if (window.location.hostname.includes("erp.betopiagroup.com")) {
-      window.location.href = "https://erp.betopiagroup.com/";
-    } else {
-      window.open("https://erp.betopiagroup.com/", "_blank");
-    }
+    openResourceTab(
+      "https://erp.betopiagroup.com/",
+      "erp.betopiagroup.com"
+    );
   };
   api.mapkey("ore", "open betopia erp", openBetopiaErp);
   var openTeamUnitySheets = () => {
-    if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1280894611#gid=1280894611";
-    } else {
-      window.open(
-        "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1280894611#gid=1280894611",
-        "_blank"
-      );
-    }
+    openResourceTab(
+      "https://docs.google.com/spreadsheets/d/1Nknt_IAy5ZaRPWfFiN-8XqlNZ-N50Y_JLJ_e1AQIjtE/edit?gid=1280894611#gid=1280894611",
+      "docs"
+    );
   };
   api.mapkey("oru", "open Team Unity Sheets", openTeamUnitySheets);
   var openTeamUnityUpdateStatusSheets = () => {
-    if (window.location.hostname.includes("docs")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1Olck6WYQ-lRHvnApmjVAb9DxXaBDJeOsiqvJJqrkTZ4/edit?gid=1080140336#gid=1080140336";
-    } else {
-      window.open(
-        "https://docs.google.com/spreadsheets/d/1Olck6WYQ-lRHvnApmjVAb9DxXaBDJeOsiqvJJqrkTZ4/edit?gid=1080140336#gid=1080140336",
-        "_blank"
-      );
-    }
+    openResourceTab(
+      "https://docs.google.com/spreadsheets/d/1Olck6WYQ-lRHvnApmjVAb9DxXaBDJeOsiqvJJqrkTZ4/edit?gid=1080140336#gid=1080140336",
+      "docs"
+    );
   };
-  api.mapkey("orU", "open Team Unity Sheets", openTeamUnityUpdateStatusSheets);
+  api.mapkey("orU", "open Team Unity Update Status Sheets", openTeamUnityUpdateStatusSheets);
 
   // src/modules/yank/urlYanker.js
   var { mapkey: mapkey3, Clipboard } = api;
@@ -3071,45 +3003,38 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
 
   // src/modules/opener/PH/PhHelp/phHelp.js
   api.mapkey("phg", "PH b11 github repositories", function() {
-    window.open("https://github.com/ProgrammingHero1?tab=repositories", "_blank");
+    api.tabOpenLink("https://github.com/ProgrammingHero1?tab=repositories");
   });
   api.mapkey("phc", "fbLevel1", function() {
-    window.open("https://www.facebook.com/groups/programmingHero", "_blank");
+    api.tabOpenLink("https://www.facebook.com/groups/programmingHero");
   });
   api.mapkey("ph2", "fbLevel2", function() {
-    window.open("https://www.facebook.com/groups/phapollo4", "_blank");
+    api.tabOpenLink("https://www.facebook.com/groups/phapollo4");
   });
-  api.mapkey("phf", "fb  Level1 Batch 11 support group", function() {
-    window.open("https://www.facebook.com/groups/targetwebdevcareer", "_blank");
+  api.mapkey("phf", "fb Level1 Batch 11 support group", function() {
+    api.tabOpenLink("https://www.facebook.com/groups/targetwebdevcareer");
   });
   api.mapkey("phs", "SCIC", function() {
+    const url = "https://www.facebook.com/groups/scic11/announcements";
     if (window.location.pathname.includes("/groups/scic11/announcements")) {
-      console.log(window.location.pathname, "pathname");
       window.location.href = "https://www.facebook.com/groups/scic11/";
     } else {
-      window.open(
-        "https://www.facebook.com/groups/scic11/announcements",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
   });
 
   // src/modules/opener/PH/PhWeb/phWeb.js
   api.mapkey("pws", "SCIC", function() {
+    const url = "https://web.programming-hero.com/scic-11/video/scic-11-0-2-tips-to-get-the-best-out-of-scic";
     if (window.location.pathname.includes("/groups/scic11/announcements")) {
-      console.log(window.location.pathname, "pathname");
-      window.location.href = "https://web.programming-hero.com/scic-11/video/scic-11-0-2-tips-to-get-the-best-out-of-scic";
+      window.location.href = url;
     } else {
-      window.open(
-        "https://web.programming-hero.com/scic-11/video/scic-11-0-2-tips-to-get-the-best-out-of-scic",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
   });
   api.mapkey("pwo", "outline SCIC", function() {
-    window.open(
-      "https://web.programming-hero.com/688f7b564965ce7350b23f35/course-outline",
-      "_blank"
+    api.tabOpenLink(
+      "https://web.programming-hero.com/688f7b564965ce7350b23f35/course-outline"
     );
   });
 
@@ -3377,23 +3302,19 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   // src/modules/opener/smtFigma/smtFigma.js
   var { urlOpener: urlOpener2 } = require_aiOpener();
   api.mapkey("ova", "ashmaster figma", function() {
+    const url = "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1";
     if (window.location.hostname.includes("www.figma.com")) {
-      window.location.href = "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1";
+      window.location.href = url;
     } else {
-      window.open(
-        "https://www.figma.com/design/zQdcO8yAzu6RBqaWAHY5Qt/ash_master_Bridge-Network-App?node-id=28320-2244&t=SAlFLJ39wHSWPOjA-1",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
   });
   api.mapkey("ovda", "ashmaster docs", function() {
+    const url = "https://docs.google.com/spreadsheets/d/1QUT4qSbz6graO9wLbTLk5rrr37AMKlN09dOIG5dUCTg/edit?gid=0#gid=0";
     if (window.location.hostname.includes("docs.google.com")) {
-      window.location.href = "https://docs.google.com/spreadsheets/d/1QUT4qSbz6graO9wLbTLk5rrr37AMKlN09dOIG5dUCTg/edit?gid=0#gid=0";
+      window.location.href = url;
     } else {
-      window.open(
-        "https://docs.google.com/spreadsheets/d/1QUT4qSbz6graO9wLbTLk5rrr37AMKlN09dOIG5dUCTg/edit?gid=0#gid=0",
-        "_blank"
-      );
+      api.tabOpenLink(url);
     }
   });
   urlOpener2(
@@ -3403,18 +3324,8 @@ I\u2019d appreciate it if you review my profile\u2014a quick review could be wor
   );
   urlOpener2(
     "ovdh",
-    "open habib050505 docs",
-    "https://docs.google.com/spreadsheets/d/1JLURTgXqxSvjM-JKxMXlQjBZtBUp3qV_RFnxwXLd0B8/edit?gid=0#gid=0"
-  );
-  urlOpener2(
-    "ovr",
-    "open rkrazak figma",
-    "https://www.figma.com/design/Lfe9pK63CjmvnIn1NXTXsm/rkrazak---ABS-Fresh--Farming-mobile-app-?node-id=0-1&p=f&t=GMwTyB5T0BIDLVpO-0"
-  );
-  urlOpener2(
-    "ovdr",
-    "open rkrazak docs",
-    "https://docs.google.com/spreadsheets/d/1e84IK20ryP9PAnYRRZzKSDZ47hBr2ugAuMwIuVJe5ZI/edit?gid=0#gid=0"
+    "open habib050505 document",
+    "https://docs.google.com/document/d/1Ld_X2fC4a5W0Xf2kGz-XG1L_pLqZ5dE3r7T_7lP5yQ/edit"
   );
 
   // src/modules/style/chatgpt.js

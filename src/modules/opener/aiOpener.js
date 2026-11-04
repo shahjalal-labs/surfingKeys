@@ -1,53 +1,40 @@
 const { mapkey } = api;
-mapkey("oac", "Open ChatGPT chk", function () {
-  let newTab = window.open("https://chatgpt.com/", "_blank"); // Open ChatGPT in a new tab
-  console.log(newTab, ".surfingkeys.js", 240);
-  setInterval(() => {
-    console.log(`hellow`);
-  }, 2000);
-});
 
-//w: opening perplexity ai ai
+function openAiTab(url, hostMatch) {
+  if (hostMatch && window.location.hostname.includes(hostMatch)) {
+    window.location.href = url;
+  } else {
+    api.tabOpenLink(url);
+  }
+}
+
+mapkey("oac", "Open ChatGPT", function () {
+  openAiTab("https://chatgpt.com/", "chatgpt.com");
+});
 
 const urlOpener = (key, desc, url) => {
   mapkey(key, desc, function () {
     const host = new URL(url).hostname;
-    if (window.location.hostname === host) {
-      window.location.href = url;
-    } else {
-      window.open(url, "_blank");
-    }
+    openAiTab(url, host);
   });
 };
 
 mapkey("oap", "perplexity ai", function () {
-  if (window.location.hostname.includes("perplexity")) {
-    window.location.href = "https://www.perplexity.ai/";
-  } else {
-    window.open("https://www.perplexity.ai/", "_blank");
-  }
+  openAiTab("https://www.perplexity.ai/", "perplexity");
 });
-
-//w: opening gemini ai
 
 mapkey("oaj", "gemini ai", function () {
-  if (window.location.hostname.includes("gemini")) {
-    window.location.href = "https://gemini.google.com/app";
-  } else {
-    window.open("https://gemini.google.com/app", "_blank");
-  }
+  openAiTab("https://gemini.google.com/app", "gemini");
 });
 
-//
-//t:  open deep  ai
 mapkey("oad", "Deep ai", function () {
-  window.open("https://deepai.org/dashboard/images", "_blank");
+  api.tabOpenLink("https://deepai.org/dashboard/images");
 });
 
 // Open deepseek
 urlOpener("oas", "Open deepseek", "https://chat.deepseek.com/");
 
-//t: open  claude ai
+// open claude ai
 urlOpener("oak", "claude", "https://claude.ai/new");
 
 // open grok ai

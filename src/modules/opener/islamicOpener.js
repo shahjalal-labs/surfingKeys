@@ -1,39 +1,24 @@
-//t: islami music playlist
-//
-/* api.mapkey("su", "isami music playlist", function () {
-  window.open(
-    "https://www.youtube.com/watch?v=rL6qQ49hBlQ&list=PLXOE5SEv6NpDUSPNxCu1fFTfBi8HZDeJM",
-    "_blank",
-  );
-}); */
-
 //t: Open Wedding Nasheed
 api.mapkey("sj", "Open Wedding Nasheed", function () {
-  window.open(
-    "https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds",
-    "_blank",
-  );
+  api.tabOpenLink("https://www.youtube.com/watch?v=dWBgNHT4ipE&ab_channel=HuzaifahNasheeds");
 });
 
 //t: Open Quran
 api.mapkey("opq", "Open Quran", function () {
-  window.open("https://quran.com", "_blank");
+  api.tabOpenLink("https://quran.com");
 });
 
 //w: ╭──────────── Block Start ────────────╮
 //t: open shariyah solution ahmadullah
 api.mapkey("ops", "open shariyah solution ahmadullah", function () {
+  const url = "https://www.youtube.com/@sheikhahmadullahofficial/streams";
   if (
     window.location.hostname.includes("youtube.com") &&
     window.location.pathname.toLowerCase().includes("@sheikhahmadullahofficial")
   ) {
-    window.location.href =
-      "https://www.youtube.com/@sheikhahmadullahofficial/streams";
+    window.location.href = url;
   } else {
-    window.open(
-      "https://www.youtube.com/@sheikhahmadullahofficial/streams",
-      "_blank",
-    );
+    api.tabOpenLink(url);
   }
 });
 //w: ╰───────────── Block End ─────────────╯

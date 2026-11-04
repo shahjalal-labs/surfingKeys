@@ -7,7 +7,7 @@ const urlOpener = (key, desc, url) => {
     if (window.location.hostname === host) {
       window.location.href = url;
     } else {
-      window.open(url, "_blank");
+      api.tabOpenLink(url);
     }
   });
 };
@@ -64,8 +64,8 @@ urlOpener("ocg", "SMT Collaborate", "http://collaborate.smtsigma.com/");
 //t:localhost
 api.mapkey("ocl", "open localhost", function () {
   if (window.location.hostname.includes("localhost")) {
-    window.open("http://localhost:5174/", "_blank");
+    api.tabOpenLink("http://localhost:5174/");
   } else {
-    window.open("http://localhost:5173/", "_blank");
+    api.tabOpenLink("http://localhost:5173/");
   }
 });
